@@ -1,0 +1,28 @@
+//BACKGROUNDS
+$background-1: $white;
+$background-2: $black-10;
+$background-3: $black-30;
+$background-inverse: $black-100;
+$background-inverse-2: $black-60;
+
+//CONTENT
+$content-1: $black-100;
+$content-2: $black-70;
+$content-3: $black-60;
+$content-4: $coral-80;
+$content-inverse: $white;
+$content-inverse-2: $white;
+
+//SEMANTIC
+$semantic-highlight: (regular: $black-100, hover: $black-80);
+$semantic-danger: (regular: $coral-80, hover: $coral-70);
+$semantic-warning: (regular: $lightning-80, hover: $lightning-70);
+$semantic-success: (regular: $emerald-80, hover: $emerald-70);
+$semantic-info: (regular: $dodge-80, hover: $dodge-70);
+
+//BORDERS
+$border-1: 1px solid $black-100;
+$border-2: 1px solid $black-80;
+$border-3: 1px solid $black-50;
+$border-4: 1px solid $black-20;
+$border-inverse: 1px solid $white;

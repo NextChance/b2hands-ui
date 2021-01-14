@@ -1,0 +1,140 @@
+//COMMON MIXINS
+@mixin set-content-state($color, $background) {
+  &:hover {
+    @if ($color) {
+      color: $black-80;
+    }
+    @if ($background) {
+      background-color: $black-20;
+    }
+  }
+
+  &:active {
+    @if ($color) {
+      color: $black-100;
+    }
+    @if ($background) {
+      background-color: $black-30;
+    }
+  }
+
+  &:disabled {
+    @if ($color) {
+      color: $black-50;
+    }
+    @if ($background) {
+      background-color: $black-20;
+    }
+  }
+}
+
+
+// @include set-content($content-1,$background-3,$border-2)
+@mixin set-content($color, $background, $border: false) {
+  @include set-content-state($color, $background);
+
+  background-color: $background;
+  color: $color;
+
+  @if ($border) {
+    border: $border;
+  }
+}
+
+// @include set-semantic()
+@mixin set-semantic($theme, $reverse: false) {
+  border: 1px solid map-get($theme, 'regular');
+  @if ($reverse) {
+    background-color: map-get($theme, 'regular');
+    color: $white;
+
+    &:hover {
+      background-color: map-get($theme, 'hover');
+      border: 1px solid map-get($theme, 'hover');
+    }
+  } @else {
+    background-color: $white;
+    color: map-get($theme, 'regular');
+
+    &:hover {
+      border: 1px solid map-get($theme, 'hover');
+      color: map-get($theme, 'hover');
+    }
+  }
+}
+
+
+//TYPO MIXINS
+@mixin typography-regular {
+  font-family: $font-helvetica-regular;
+  font-weight: $font-regular;
+}
+
+@mixin typography-medium {
+  font-family: $font-helvetica-medium;
+  font-weight: $font-medium;
+}
+
+@mixin detail ($type) {
+  @include typography-regular;
+
+  line-height: $line-height-1;
+
+  @if ($type == 'upper') {
+    font-size: $font-size-1;
+    text-transform: uppercase;
+  } @else if ($type == 'strike') {
+    font-size: $font-size-1;
+    text-decoration: line-through;
+  } @else {
+    font-size: $font-size-2;
+  }
+}
+
+@mixin body ($size) {
+  @include typography-regular;
+  @if ($size == 'm') {
+    font-size: $font-size-4;
+    line-height: $line-height-2;
+  } @else {
+    font-size: $font-size-4;
+    line-height: $line-height-2;
+  }
+}
+
+@mixin button($type) {
+  font-size: $font-size-3;
+  line-height: $line-height-1;
+
+  @if ($type == 'upper') {
+    @include typography-medium;
+
+    text-transform: uppercase;
+  } @else {
+    @include typography-regular;
+  }
+}
+
+@mixin headers ($size) {
+  @include typography-medium;
+  @if ($type == 'm') {
+    font-size: $font-size-4;
+    line-height: $line-height-3;
+  } @else if ($type == 'l') {
+    font-size: $font-size-6;
+    line-height: $line-height-3;
+  } @else if ($type == 'xl') {
+    font-size: $font-size-7;
+    line-height: $line-height-4;
+  } @else if ($type == 'xxl') {
+    font-size: $font-size-9;
+    line-height: $line-height-5;
+  } @else {
+    font-size: $font-size-3;
+    line-height: $line-height-2;
+  }
+}
+
+
+
+

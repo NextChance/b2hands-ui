@@ -1,0 +1,12 @@
+.b2-btn {
+  // DUMMY
+  padding: $spacing-size-8;
+
+  &__highlight {
+    @include set-semantic($semantic-highlight);
+
+    &-reverse {
+      @include set-semantic($semantic-highlight, true);
+    }
+  }
+}
