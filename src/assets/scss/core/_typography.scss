@@ -1,21 +1,3 @@
-//FONTS
-@font-face {
-  font-display: fallback;
-  font-family: 'Helvetica Now';
-  font-style: normal;
-  font-weight: normal;
-  src: url('~assets/fonts/Helvetica_Now_Text.otf') format('embedded-opentype');
-}
-
-
-@font-face {
-  font-display: fallback;
-  font-family: 'Helvetica Now Medium';
-  font-style: normal;
-  font-weight: normal;
-  src: url('~assets/fonts/Helvetica_Now_Text_Medium.otf') format('embedded-opentype');
-}
-
 $font-helvetica-regular: 'Helvetica Now', sans-serif;
 $font-helvetica-medium: 'Helvetica Now Medium', sans-serif;
 
