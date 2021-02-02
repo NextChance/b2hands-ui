@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+      <h1>{{msg}}</h1>
       <h1><i class='b2i-heart b2i-heart--active'></i></h1>
       <h1><i class='b2i-filters b2i-filters--active'></i></h1>
       <p>
