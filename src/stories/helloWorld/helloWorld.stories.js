@@ -9,6 +9,6 @@ export default {
 
 export const regular = () => ({
   components: { HelloWorld },
-  template: '<HelloWorld></HelloWorld>',
+  template: '<HelloWorld class="pepe"></HelloWorld>',
   methods: { action: action('clicked') },
 });

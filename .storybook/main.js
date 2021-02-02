@@ -13,7 +13,9 @@ module.exports = {
         {
           loader: 'sass-loader',
           options: {
-            additionalData: `@import "@/assets/scss/_config.scss";`
+            additionalData: `
+              @import "@/assets/scss/_config.scss";
+            `
           }
         }
       ],
