@@ -137,7 +137,7 @@
 
 
 // Layout
-@mixin get_columns ($breakPointsGaps, $break-points){
+@mixin getGridClasses($breakPointsGaps, $break-points){
   @each $bp,$bp_size in $break-points {
     @media(min-width:#{$bp_size}) {
 
@@ -156,15 +156,3 @@
     }
   }
 }
-
-// Move to theme/_breakpoints.scss
-$breakPointsGaps:(
-  'xs': 8,
-  's': 16,
-  'm': 16,
-  'l': 16,
-  'xl': 16
-);
-
-
-

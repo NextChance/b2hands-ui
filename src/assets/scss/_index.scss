@@ -2,4 +2,4 @@
 @import "core/fonts";
 @import 'theme/buttons';
 
-// @include get_columns($breakPointsGaps, $breakPoints)
+@include getGridClasses($breakPointsGaps, $breakPoints)
