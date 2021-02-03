@@ -86,6 +86,10 @@ export default Vue.extend({
         }
       }
     }
+
+    &[lazy='error'] {
+      display: none;
+    }
   }
 }
 </style>

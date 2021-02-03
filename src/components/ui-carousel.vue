@@ -2,19 +2,19 @@
   <div class="ui-carousel">
     <h1 class="b2-btn">Aquí irá mi carousel</h1>
     <div class="ui-carousel__container">
+      <div>{{ extraContent }}</div>
       <ul class="ui-carousel__list">
         <li
-          v-for="(image, index) in images"
+          v-for="(item, index) in items"
           :key="`carousel-${index}`"
           class="ui-carousel__list__item"
         >
           <ui-lazy-image
             class="item-image-container"
-            :src="item.image.src"
-            :alt="item.image.alt"
+            :src="item.src"
+            :alt="item.alt"
             :placeholder="placeholderImage"
             :error="errorImage"
-            :src-sets="srcSets"
           />
         </li>
       </ul>
@@ -28,7 +28,7 @@ interface ImgItem {
   src: string
   alt: string
 }
-import UiLazyImage from '.ui-lazy-image.vue'
+import UiLazyImage from '~/components/ui-lazy-image.vue'
 export default Vue.extend({
   name: 'UiCarousel',
   components: {
@@ -38,6 +38,18 @@ export default Vue.extend({
     items: {
       type: Array,
       default: (): Array<ImgItem> => []
+    },
+    extraContent: {
+      type: String,
+      default: ''
+    },
+    errorImage: {
+      type: String,
+      default: ''
+    },
+    placeholderImage: {
+      type: String,
+      default: ''
     }
   }
 })
@@ -47,9 +59,12 @@ export default Vue.extend({
 .ui-carousel {
   width: auto;
   height: 90vw;
-  background-color: red;
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
   @media (min-width: $breakpoint-xs) {
-    background-color: blue;
   }
 }
 </style>
