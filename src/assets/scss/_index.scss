@@ -1,5 +1,6 @@
 @import 'config';
 @import 'core/fonts';
+@import 'icons/style';
 @import 'theme/buttons';
 
 @include getGridClasses($breakPointsGaps, $breakPoints)
