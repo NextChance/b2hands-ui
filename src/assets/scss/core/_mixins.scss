@@ -136,5 +136,35 @@
 }
 
 
+// Layout
+@mixin get_columns ($breakPointsGaps, $break-points){
+  @each $bp,$bp_size in $break-points {
+    @media(min-width:#{$bp_size}) {
+
+      .col-container {
+        margin-left: -1 * map.get($breakPointsGaps, $bp)/2;
+        margin-right: -1 * map.get($breakPointsGaps, $bp)/2;
+      }
+
+      @for $col from 0 to 12 {
+        .col-#{$col+1}--#{$bp} {
+          width : percentage(1/12*($col+1));
+          padding-left: map.get($breakPointsGaps, $bp)/2;
+          padding-right: map.get($breakPointsGaps, $bp)/2;
+        }
+      }
+    }
+  }
+}
+
+// Move to theme/_breakpoints.scss
+$breakPointsGaps:(
+  'xs': 8,
+  's': 16,
+  'm': 16,
+  'l': 16,
+  'xl': 16
+);
+
 
 
