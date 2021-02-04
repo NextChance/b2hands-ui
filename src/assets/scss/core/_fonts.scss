@@ -1,4 +1,6 @@
-@import "~@/assets/fonts/B2Icons/style.scss";
+$fonts-path: '~@/assets/fonts' !default;
+
+@import "../../fonts/B2Icons/style";
 
 //FONTS
 @font-face {
@@ -6,7 +8,7 @@
   font-family: 'Helvetica Now';
   font-style: normal;
   font-weight: normal;
-  src: url('~@/assets/fonts/Helvetica_Now_Text.otf') format('embedded-opentype');
+  src: url('#{$fonts-path}/Helvetica_Now_Text.otf') format('opentype');
 }
 
 
@@ -15,9 +17,10 @@
   font-family: 'Helvetica Now Medium';
   font-style: normal;
   font-weight: normal;
-  src: url('~@/assets/fonts/Helvetica_Now_Text_Medium.otf') format('embedded-opentype');
+  src: url('#{$fonts-path}/Helvetica_Now_Text_Medium.otf') format('opentype');
 }
 
 body {
-  font-family: 'Helvetica Now', sans-serif;
+  color: #FF5577 !important;
+  font-family: 'Helvetica Now', serif;
 }
