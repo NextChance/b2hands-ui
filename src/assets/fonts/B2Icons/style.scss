@@ -25,6 +25,16 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.b2i-plus {
+  &:before {
+    content: $b2i-plus;
+  }
+}
+.b2i-gallery {
+  &:before {
+    content: $b2i-gallery;
+  }
+}
 .b2i-billionhands {
   &:before {
     content: $b2i-billionhands;
@@ -117,17 +127,19 @@
     left: 0;
     top: 0;
     content: $b2i-heart-active;
-    opacity: 0;
-    transition: opacity .2s;
+    transition: transform .2s;
+    transform: scale(0);
+    transform-origin: 50% 50%;
   }
   &--active {
     &:after {
-      opacity: 1;
+      transform: scale(1);
     }
   }
 }
 .b2i-filters {
   position: relative;
+
   &:before {
     content: $b2i-filters;
   }
@@ -135,14 +147,15 @@
     position: absolute;
     left: 0;
     top: 0;
-    opacity: 0;
-    transition: opacity .2s;
+    transition: transform .2s;
+    transform: scale(0);
+    transform-origin: 82% 5%;
     content: $b2i-filters-active;
     color: $coral-80;
   }
   &--active {
     &:after{
-      opacity: 1;
+      transform: scale(1);
     }
   }
 }
