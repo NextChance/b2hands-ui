@@ -15,7 +15,7 @@
       </li>
     </ul>
     <div class="ui-carousel__images col-10--s">
-      <ul v-if="items.length > 1" class="ui-carousel__images__list">
+      <ul class="ui-carousel__images__list">
         <li
           v-for="(item, index) in items"
           :key="`carousel-${index}`"
@@ -42,20 +42,12 @@
           </div>
         </li>
       </ul>
-      <ui-lazy-image
-        v-else
-        class="ui-carousel__images__one-image"
-        :src="items[0].src"
-        :alt="items[0].alt"
-        :placeholder="placeholderImage"
-        :error="errorImage"
-      />
     </div>
-    <div class="ui-carousel__extra-content-common">
+    <div class="ui-carousel__extra-content">
       <span class="type-label">{{ extraContent }}</span>
     </div>
-    <div class="ui-carousel__icons-common">
-      <button type="button" class="icon-button" @click="handleEyeIcon(0)">
+    <div class="ui-carousel__icons">
+      <button type="button" class="icon-button" @click="handleEyeIcon(index)">
         <i class="b2i-eye"></i>
       </button>
     </div>
@@ -104,9 +96,10 @@ export default Vue.extend({
 /deep/ {
   .ui-lazy-image__image {
     max-width: 100vw;
-    max-height: 90vw;
-    height: auto;
+    max-height: 100%;
     width: auto;
+    height: auto;
+    border: 1px solid yellow;
   }
 }
 @mixin extra-content-label {
@@ -136,7 +129,6 @@ export default Vue.extend({
     background: $background-1;
     font-size: 23px;
     padding: 4px 2px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
   }
 }
 .ui-carousel {
@@ -161,64 +153,39 @@ export default Vue.extend({
     overflow-x: scroll;
     overflow-y: hidden;
     scroll-behavior: smooth;
-    &::-webkit-scrollbar {
-      display: block;
-      height: 2px;
-      padding: 3px 0 0 0;
-    }
-    &::-webkit-scrollbar-thumb {
-      border-radius: 0;
-      background-color: $background-3;
-    }
     &__list {
-      height: 100%;
       list-style: none;
       margin: 0;
       padding: 0;
       display: flex;
       flex-direction: row;
-      align-items: flex-start;
     }
     &__item {
-      height: 100%;
-      margin-bottom: 0;
+      border: 1px solid green;
       margin-right: 8px;
+      //width: auto;
       &__extra-content {
         display: none;
       }
       &__icons {
         display: none;
       }
-      .item-image-container {
-        height: 100%;
-        display: flex;
-        align-items: center;
-      }
     }
-    &__one-image {
+    .item-image-container {
+      border: 1px solid blue;
       display: flex;
-      width: 100%;
-      height: 100%;
-      justify-content: center;
       align-items: center;
+      //width: fit-content;
     }
   }
-  &__extra-content-common {
+  &__extra-content {
     @include extra-content-label;
   }
-  &__icons-common {
+  &__icons {
     @include icons-buttons;
   }
 
   @media (min-width: $breakpoint-s) {
-    /deep/ {
-      .ui-lazy-image__image {
-        max-height: unset;
-        max-width: unset;
-        width: 100%;
-        height: 100%;
-      }
-    }
     height: 100%;
     width: 100%;
     flex-direction: row;
@@ -250,21 +217,16 @@ export default Vue.extend({
         position: relative;
         margin-bottom: 16px;
         &__extra-content {
-          display: block;
           @include extra-content-label;
         }
         &__icons {
-          display: block;
           @include icons-buttons;
         }
       }
 
-    }
-    &__extra-content-common {
-      display: none;
-    }
-    &__icons-common {
-      display: none;
+      &__extra-content {
+        display: none;
+      }
     }
   }
 }
