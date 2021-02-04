@@ -1,5 +1,3 @@
-@use "sass:map";
-
 //COMMON MIXINS
 @mixin set-content-state($color, $background) {
   &:hover {
