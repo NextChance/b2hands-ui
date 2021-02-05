@@ -1,9 +1,5 @@
 <template>
-  <component
-    :is="tag"
-    v-lazy-container="{ selector: 'img' }"
-    class="ui-lazy-image"
-  >
+  <div v-lazy-container="{ selector: 'img' }" class="ui-lazy-image">
     <img
       :alt="alt"
       :data-src="src"
@@ -13,7 +9,7 @@
       :data-loading="placeholder"
       class="ui-lazy-image__image"
     />
-  </component>
+  </div>
 </template>
 
 <script lang="ts">
@@ -45,10 +41,6 @@ export default Vue.extend({
     sizes: {
       type: String,
       default: ''
-    },
-    tag: {
-      type: String,
-      default: 'div'
     }
   }
 })

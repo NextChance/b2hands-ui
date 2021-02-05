@@ -1,4 +1,6 @@
+import { action } from '@storybook/addon-actions'
 import UiCarousel from '~/components/ui-carousel'
+
 
 const itemsMock = [
   {
@@ -39,7 +41,6 @@ const itemsMockOneImageVertical = [
   }
 ]
 
-
 export default {
   title: 'UI-carousel',
   component: UiCarousel
@@ -57,9 +58,10 @@ export const carouselWithSeveralImages = () => ({
   template: `
     <div class="col-container">
       <div class="col-6--s">
-        <ui-carousel :items="items" :extra-content="extraContent"/>
+        <ui-carousel :items="items" :extra-content="extraContent" @on-click-eye-icon="onClickIcon"/>
       </div>
-    </div>`
+    </div>`,
+  methods: { onClickIcon: action('go to image search') }
 })
 
 export const carouselWithOneImageHorizontal = () => ({
@@ -75,7 +77,8 @@ export const carouselWithOneImageHorizontal = () => ({
       <div class="col-6--s">
         <ui-carousel :items="items" :extra-content="extraContent"/>
       </div>
-    </div>`
+    </div>`,
+   methods: { onClickIcon: action('go to image search') }
 })
 
 export const carouselWithOneImageVertical = () => ({
@@ -91,5 +94,6 @@ export const carouselWithOneImageVertical = () => ({
       <div class="col-6--s">
         <ui-carousel :items="items" :extra-content="extraContent"/>
       </div>
-    </div>`
+    </div>`,
+  methods: { onClickIcon: action('go to image search') }
 })

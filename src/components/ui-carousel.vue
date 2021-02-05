@@ -6,15 +6,20 @@
         :key="`carousel-thumbnails-${index}`"
         class="ui-carousel__thumbnails__item"
       >
-        <img
-          class="item-image"
-          :src="item.src"
-          :alt="`thumbnails-${item.alt}`"
-          :placeholder="placeholderImage"
-        />
+        <a :href="`#image-${index}`">
+          <img
+            class="item-image"
+            :src="item.src"
+            :alt="`thumbnails-${item.alt}`"
+            :placeholder="placeholderImage"
+          />
+        </a>
       </li>
     </ul>
-    <div class="ui-carousel__images col-10--s">
+    <div
+      class="ui-carousel__images col-10--s"
+      :class="{ 'ui-carousel__images--no-scroll': items.length === 1 }"
+    >
       <ul v-if="items.length > 1" class="ui-carousel__images__list">
         <li
           v-for="(item, index) in items"
@@ -22,6 +27,7 @@
           class="ui-carousel__images__item"
         >
           <ui-lazy-image
+            :id="`image-${index}`"
             class="item-image-container"
             :src="item.src"
             :alt="item.alt"
@@ -32,19 +38,15 @@
             <span class="type-label">{{ extraContent }}</span>
           </div>
           <div class="ui-carousel__images__item__icons">
-            <button
-              type="button"
-              class="icon-button"
-              @click="handleEyeIcon(index)"
-            >
+            <a :href="url" class="icon-link" @click="handleEyeIcon($event)">
               <i class="b2i-eye"></i>
-            </button>
+            </a>
           </div>
         </li>
       </ul>
       <ui-lazy-image
         v-else
-        class="ui-carousel__images__one-image"
+        class="item-image-container item-image-container--one-image"
         :src="items[0].src"
         :alt="items[0].alt"
         :placeholder="placeholderImage"
@@ -55,9 +57,9 @@
       <span class="type-label">{{ extraContent }}</span>
     </div>
     <div class="ui-carousel__icons-common">
-      <button type="button" class="icon-button" @click="handleEyeIcon(0)">
+      <a :href="url" class="icon-link" @click="handleEyeIcon($event)">
         <i class="b2i-eye"></i>
-      </button>
+      </a>
     </div>
   </div>
 </template>
@@ -68,7 +70,8 @@ interface ImgItem {
   src: string
   alt: string
 }
-import UiLazyImage from '~/components/ui-lazy-image.vue'
+
+import UiLazyImage from './ui-lazy-image.vue'
 export default Vue.extend({
   name: 'UiCarousel',
   components: {
@@ -83,6 +86,10 @@ export default Vue.extend({
       type: String,
       default: ''
     },
+    url: {
+      type: String,
+      default: ''
+    },
     errorImage: {
       type: String,
       default: ''
@@ -93,8 +100,10 @@ export default Vue.extend({
     }
   },
   methods: {
-    handleEyeIcon(index: number): void {
-      this.$emit('on-click-eye-icon', index)
+    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+    handleEyeIcon(ev: Event) {
+      ev.preventDefault()
+      this.$emit('on-click-eye-icon')
     }
   }
 })
@@ -128,14 +137,16 @@ export default Vue.extend({
   position: absolute;
   bottom: 8px;
   left: 8px;
-  .icon-button {
-    border: none;
+  .icon-link {
+    color: $black-100;
+    text-decoration: none;
+    display: block;
+    text-align: center;
     width: 32px;
     height: 32px;
     border-radius: 50%;
     background: $background-1;
     font-size: 23px;
-    padding: 4px 2px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
   }
 }
@@ -161,6 +172,9 @@ export default Vue.extend({
     overflow-x: scroll;
     overflow-y: hidden;
     scroll-behavior: smooth;
+    &--no-scroll {
+      overflow-x: hidden;
+    }
     &::-webkit-scrollbar {
       display: block;
       height: 2px;
@@ -189,18 +203,17 @@ export default Vue.extend({
       &__icons {
         display: none;
       }
-      .item-image-container {
-        height: 100%;
-        display: flex;
-        align-items: center;
-      }
     }
-    &__one-image {
-      display: flex;
-      width: 100%;
+    .item-image-container {
       height: 100%;
+      display: flex;
+      align-items: center;
       justify-content: center;
       align-items: center;
+      &--one-image {
+        justify-content: center;
+        align-items: center;
+      }
     }
   }
   &__extra-content-common {
@@ -258,7 +271,6 @@ export default Vue.extend({
           @include icons-buttons;
         }
       }
-
     }
     &__extra-content-common {
       display: none;
