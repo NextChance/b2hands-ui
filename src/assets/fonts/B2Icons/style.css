@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'b2icons';
   src:
-    url('fonts/b2icons.ttf?acshmk') format('truetype'),
-    url('fonts/b2icons.woff?acshmk') format('woff'),
-    url('fonts/b2icons.svg?acshmk#b2icons') format('svg');
+    url('fonts/b2icons.ttf?eygklf') format('truetype'),
+    url('fonts/b2icons.woff?eygklf') format('woff'),
+    url('fonts/b2icons.svg?eygklf#b2icons') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -84,4 +84,16 @@
 }
 .b2i-share:before {
   content: "\e916";
+}
+.b2i-facebook:before {
+  content: "\ea91";
+}
+.b2i-instagram:before {
+  content: "\ea92";
+}
+.b2i-twitter:before {
+  content: "\ea96";
+}
+.b2i-youtube:before {
+  content: "\ea9d";
 }

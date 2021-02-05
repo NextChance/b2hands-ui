@@ -25,6 +25,26 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.b2i-facebook {
+  &:before {
+    content: $b2i-facebook; 
+  }
+}
+.b2i-instagram {
+  &:before {
+    content: $b2i-instagram; 
+  }
+}
+.b2i-twitter {
+  &:before {
+    content: $b2i-twitter; 
+  }
+}
+.b2i-youtube {
+  &:before {
+    content: $b2i-youtube; 
+  }
+}
 .b2i-billionhands {
   &:before {
     content: $b2i-billionhands;
