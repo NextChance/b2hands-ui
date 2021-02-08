@@ -5,7 +5,7 @@ import UiCarousel from '~/components/ui-carousel'
 const itemsMock = [
   {
     src:
-      'https://previews.123rf.com/images/andreaobzerova/andreaobzerova1405/andreaobzerova140500048/28447933-imagen-vertical-del-color-de-ramas-de-%C3%A1rboles-de-cerezo-en-flor-procesamiento-posterior-suave-de-la-ve.jpg',
+      'https://www.xtrafondos.com/wallpapers/flores-de-cerezo-4625.jpg',
     alt: 'image2'
   },
   {

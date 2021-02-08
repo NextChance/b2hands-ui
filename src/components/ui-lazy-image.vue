@@ -66,7 +66,9 @@ export default Vue.extend({
       right: 0;
       background: #ffffff;
     }
-
+    &[lazy='loading'] {
+      background: $background-2;
+    }
     &[lazy='loaded'] {
       opacity: 0;
       animation-name: fadein;
