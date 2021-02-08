@@ -116,17 +116,18 @@
 }
 
 @mixin headers ($size) {
-  @include typography-medium;
-  @if ($type == 'm') {
+  @include typography-regular;
+  font-weight: 500;
+  @if ($size == 'm') {
     font-size: $font-size-4;
     line-height: $line-height-3;
-  } @else if ($type == 'l') {
+  } @else if ($size == 'l') {
     font-size: $font-size-6;
     line-height: $line-height-3;
-  } @else if ($type == 'xl') {
+  } @else if ($size == 'xl') {
     font-size: $font-size-7;
     line-height: $line-height-4;
-  } @else if ($type == 'xxl') {
+  } @else if ($size == 'xxl') {
     font-size: $font-size-9;
     line-height: $line-height-5;
   } @else {

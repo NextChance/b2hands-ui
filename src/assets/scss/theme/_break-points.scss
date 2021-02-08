@@ -14,10 +14,10 @@ $breakPoints:(
 
 
 $breakPointsGaps:(
-  'xs': 8,
-  's': 16,
-  'm': 16,
-  'l': 16,
-  'xl': 16
+  'xs': $spacing-size-2,
+  's': $spacing-size-4,
+  'm': $spacing-size-4,
+  'l': $spacing-size-4,
+  'xl': $spacing-size-4
 );
 
