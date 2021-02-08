@@ -58,7 +58,7 @@ export default Vue.extend({
     object-fit: cover;
     width: 100%;
     &::after {
-      background: #$background-1;
+      background: $background-1;
       bottom: 0;
       content: '';
       left: 0;
