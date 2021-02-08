@@ -27,22 +27,22 @@
 
 .b2i-facebook {
   &:before {
-    content: $b2i-facebook; 
+    content: $b2i-facebook;
   }
 }
 .b2i-instagram {
   &:before {
-    content: $b2i-instagram; 
+    content: $b2i-instagram;
   }
 }
 .b2i-twitter {
   &:before {
-    content: $b2i-twitter; 
+    content: $b2i-twitter;
   }
 }
 .b2i-youtube {
   &:before {
-    content: $b2i-youtube; 
+    content: $b2i-youtube;
   }
 }
 .b2i-billionhands {
@@ -137,8 +137,9 @@
     left: 0;
     top: 0;
     content: $b2i-heart-active;
-    opacity: 0;
-    transition: opacity .2s;
+    transition: transform .2s;
+    transform: scale(0);
+    transform-origin: 82% 5%;
   }
   &--active {
     &:after {
