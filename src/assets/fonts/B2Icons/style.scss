@@ -139,7 +139,7 @@
     content: $b2i-heart-active;
     transition: transform .2s;
     transform: scale(0);
-    transform-origin: 82% 5%;
+    transform-origin: 50% 50%;
   }
   &--active {
     &:after {
@@ -156,8 +156,9 @@
     position: absolute;
     left: 0;
     top: 0;
-    opacity: 0;
-    transition: opacity .2s;
+    transition: transform .2s;
+    transform: scale(0);
+    transform-origin: 82% 5%;
     content: $b2i-filters-active;
     color: $coral-80;
   }
