@@ -1,0 +1,21 @@
+
+@mixin affrodance-velo-reset {
+  &::after {
+    content: none;
+  }
+}
+@mixin affrodance-velo {
+  &::after {
+    background: $background-inverse;
+    bottom: 0;
+    content: '';
+    height: 100%;
+    left: 0;
+    opacity: 0.02;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: map-get($zindex, affrondance-velo);
+  }
+}

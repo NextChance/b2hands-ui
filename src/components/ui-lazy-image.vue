@@ -48,35 +48,32 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .ui-lazy-image {
-  width: 100%;
-  height: 100%;
   align-self: center;
+  height: 100%;
+  width: 100%;
 
   &__image {
     display: block;
-    width: 100%;
     height: 100%;
     object-fit: cover;
+    width: 100%;
     &::after {
-      position: absolute;
-      content: '';
-      top: 0;
+      background: #$background-1;
       bottom: 0;
+      content: '';
       left: 0;
+      position: absolute;
       right: 0;
-      background: #ffffff;
-    }
-    &[lazy='loading'] {
-      background: $background-2;
+      top: 0;
     }
     &[lazy='loaded'] {
-      opacity: 0;
-      animation-name: fadein;
-      animation-duration: 1s;
-      animation-iteration-count: 1;
-      animation-fill-mode: forwards;
       animation-direction: normal;
+      animation-duration: 1s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: 1;
+      animation-name: fadein;
       animation-timing-function: ease-out;
+      opacity: 0;
       &::after {
         display: none;
       }
@@ -88,10 +85,6 @@ export default Vue.extend({
           opacity: 1;
         }
       }
-    }
-
-    &[lazy='error'] {
-      display: none;
     }
   }
 }

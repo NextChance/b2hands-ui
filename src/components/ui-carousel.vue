@@ -1,5 +1,5 @@
 <template>
-  <div class="ui-carousel">
+  <div class="ui-carousel col-container">
     <ul class="ui-carousel__thumbnails col-2--s">
       <li
         v-for="(item, index) in items"
@@ -17,14 +17,16 @@
       </li>
     </ul>
     <div
-      class="ui-carousel__images col-10--s"
-      :class="{ 'ui-carousel__images--no-scroll': items.length === 1 }"
+      class="ui-carousel__images-container col-10--s"
+      :class="{
+        'ui-carousel__images-container--one-image': items.length === 1
+      }"
     >
-      <ul v-if="items.length > 1" class="ui-carousel__images__list">
+      <ul class="ui-carousel__images-container__list">
         <li
           v-for="(item, index) in items"
           :key="`carousel-${index}`"
-          class="ui-carousel__images__item"
+          class="ui-carousel__images-container__item"
         >
           <ui-lazy-image
             :id="`image-${index}`"
@@ -34,32 +36,19 @@
             :placeholder="placeholderImage"
             :error="errorImage"
           />
-          <div class="ui-carousel__images__item__extra-content">
+          <div
+            v-if="extraContent"
+            class="ui-carousel__images-container__item__extra-content"
+          >
             <span class="type-label">{{ extraContent }}</span>
           </div>
-          <div class="ui-carousel__images__item__icons">
+          <div class="ui-carousel__images-container__item__icons">
             <a :href="url" class="icon-link" @click="handleEyeIcon($event)">
               <i class="b2i-eye"></i>
             </a>
           </div>
         </li>
       </ul>
-      <ui-lazy-image
-        v-else
-        class="item-image-container item-image-container--one-image"
-        :src="items[0].src"
-        :alt="items[0].alt"
-        :placeholder="placeholderImage"
-        :error="errorImage"
-      />
-    </div>
-    <div class="ui-carousel__extra-content-common">
-      <span class="type-label">{{ extraContent }}</span>
-    </div>
-    <div class="ui-carousel__icons-common">
-      <a :href="url" class="icon-link" @click="handleEyeIcon($event)">
-        <i class="b2i-eye"></i>
-      </a>
     </div>
   </div>
 </template>
@@ -100,183 +89,193 @@ export default Vue.extend({
     }
   },
   methods: {
-    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-    handleEyeIcon(ev: Event) {
+    handleEyeIcon(ev: Event): void {
       ev.preventDefault()
       this.$emit('on-click-eye-icon')
     }
   }
 })
 </script>
-
 <style lang="scss" scoped>
 /deep/ {
   .ui-lazy-image__image {
-    max-width: 100vw;
-    max-height: 90vw;
     height: auto;
+    max-height: 90vw;
+    max-width: 100vw;
     width: auto;
-  }
-}
-@mixin extra-content-label {
-  position: absolute;
-  top: 2px;
-  right: 0;
-  z-index: 1;
-  font-size: 12px;
-  .type-label {
-    width: auto;
-    box-sizing: border-box;
-    height: 20px;
-    padding: 2px 8px;
-    background-color: $background-inverse;
-    color: $content-inverse;
-  }
-}
-@mixin icons-buttons {
-  position: absolute;
-  bottom: 8px;
-  left: 8px;
-  .icon-link {
-    color: $black-100;
-    text-decoration: none;
-    display: block;
-    text-align: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: $background-1;
-    font-size: 23px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
   }
 }
 .ui-carousel {
-  width: 100%;
+  display: flex;
   height: 90vw;
   position: relative;
-  display: flex;
+  width: 100%;
   &__thumbnails {
     display: none;
     list-style: none;
-    margin: 0 16px 0 0;
+    margin-top: 0;
     padding: 0;
   }
-  &__images {
-    width: 100%;
-    height: 100%;
-    position: relative;
+  &__images-container {
+    $uiCarouselImages: &;
     box-sizing: border-box;
     display: flex;
+    height: 100%;
     justify-content: space-between;
+    scroll-behavior: smooth;
     scroll-snap-type: x;
     overflow-x: scroll;
     overflow-y: hidden;
-    scroll-behavior: smooth;
-    &--no-scroll {
+    width: 100%;
+    @include affrodance-velo;
+    &--one-image {
       overflow-x: hidden;
+      #{$uiCarouselImages} {
+        &__list,
+        &__item {
+          width: 100%;
+        }
+      }
+      .item-image-container {
+        align-items: center;
+        justify-content: center;
+      }
     }
     &::-webkit-scrollbar {
+      background-color: $background-1;
       display: block;
       height: 2px;
-      padding: 3px 0 0 0;
+      padding: 0;
     }
     &::-webkit-scrollbar-thumb {
-      border-radius: 0;
       background-color: $background-3;
+      border-radius: 0;
     }
     &__list {
-      height: 100%;
-      list-style: none;
-      margin: 0;
-      padding: 0;
+      align-items: flex-start;
       display: flex;
       flex-direction: row;
-      align-items: flex-start;
+      height: 100%;
+      list-style: none;
+      padding: 0;
+      margin: 0;
     }
     &__item {
+      $item: &;
       height: 100%;
       margin-bottom: 0;
-      margin-right: 8px;
+      & + & {
+        margin-left: $spacing-size-2;
+      }
       &__extra-content {
-        display: none;
+        font-size: $font-size-2;
+        position: absolute;
+        right: 0;
+        top: 2px;
+        z-index: map-get($zindex, affrondance-velo);
+        .type-label {
+          background-color: $background-inverse;
+          box-sizing: border-box;
+          color: $content-inverse;
+          height: $spacing-size-5;
+          padding: 2px $spacing-size-2;
+          width: auto;
+        }
       }
       &__icons {
-        display: none;
+        bottom: $spacing-size-2;
+        left: $spacing-size-2;
+        position: absolute;
+        z-index: map-get($zindex, carousel-icons);
+        .icon-link {
+          background: $background-1;
+          border-radius: 50%;
+          box-shadow: 0px $spacing-size-1 $spacing-size-1 rgba(0, 0, 0, 0.05);
+          color: $black-100;
+          display: block;
+          font-size: $font-size-7;
+          height: $spacing-size-7;
+          text-decoration: none;
+          text-align: center;
+          width: $spacing-size-7;
+          &:hover {
+            color: $black-80;
+          }
+        }
+      }
+      &:nth-child(n + 2) {
+        #{$item}__extra-content {
+          display: none;
+        }
+        #{$item}__icons {
+          display: none;
+        }
       }
     }
     .item-image-container {
-      height: 100%;
+      align-items: center;
       display: flex;
-      align-items: center;
+      height: 100%;
       justify-content: center;
-      align-items: center;
-      &--one-image {
-        justify-content: center;
-        align-items: center;
-      }
     }
-  }
-  &__extra-content-common {
-    @include extra-content-label;
-  }
-  &__icons-common {
-    @include icons-buttons;
   }
 
   @media (min-width: $breakpoint-s) {
     /deep/ {
       .ui-lazy-image__image {
+        height: 100%;
         max-height: unset;
         max-width: unset;
         width: 100%;
-        height: 100%;
       }
     }
+    align-items: flex-start;
+    flex-direction: row;
     height: 100%;
     width: 100%;
-    flex-direction: row;
-    align-items: flex-start;
     &__thumbnails {
+      position: sticky;
       display: block;
+      top: 0;
       &__item {
-        width: 100%;
         height: auto;
-        margin-bottom: 8px;
+        margin-bottom: $spacing-size-2;
+        width: 100%;
       }
       .item-image {
-        width: 100%;
         height: auto;
         vertical-align: top;
+        width: 100%;
       }
     }
-    &__images {
+    &__images-container {
+      @include affrodance-velo-reset;
       &__list {
         flex-direction: column;
         .item-image-container {
           flex-direction: column;
-          width: 100%;
           height: auto;
+          width: 100%;
+          @include affrodance-velo;
         }
       }
 
       &__item {
+        $item: &;
+        margin-bottom: $spacing-size-4;
         position: relative;
-        margin-bottom: 16px;
-        &__extra-content {
-          display: block;
-          @include extra-content-label;
+        & + & {
+          margin-left: 0;
         }
-        &__icons {
-          display: block;
-          @include icons-buttons;
+        &:nth-child(n + 2) {
+          #{$item}__extra-content {
+            display: block;
+          }
+          #{$item}__icons {
+            display: block;
+          }
         }
       }
-    }
-    &__extra-content-common {
-      display: none;
-    }
-    &__icons-common {
-      display: none;
     }
   }
 }

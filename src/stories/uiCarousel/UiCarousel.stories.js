@@ -6,12 +6,12 @@ const itemsMock = [
   {
     src:
       'https://www.xtrafondos.com/wallpapers/flores-de-cerezo-4625.jpg',
-    alt: 'image2'
+    alt: 'image1'
   },
   {
     src:
-      'https://s1.eestatic.com/2020/06/23/curiosidades/naturaleza-planeta-tierra/ciencias_naturales-flores-tierra_-planeta_499960581_154305912_1706x960.jpg',
-    alt: 'image1'
+      'https://previews.123rf.com/images/andreaobzerova/andreaobzerova1405/andreaobzerova140500048/28447933-imagen-vertical-del-color-de-ramas-de-%C3%A1rboles-de-cerezo-en-flor-procesamiento-posterior-suave-de-la-ve.jpg',
+    alt: 'image2'
   },
   {
     src:
