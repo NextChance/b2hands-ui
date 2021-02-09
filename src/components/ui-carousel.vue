@@ -97,6 +97,7 @@ export default Vue.extend({
 })
 </script>
 <style lang="scss" scoped>
+
 /deep/ {
   .ui-lazy-image__image {
     height: auto;
@@ -110,6 +111,7 @@ export default Vue.extend({
   height: 90vw;
   position: relative;
   width: 100%;
+  background: $black-10;
   &__thumbnails {
     display: none;
     list-style: none;
@@ -127,7 +129,6 @@ export default Vue.extend({
     overflow-x: scroll;
     overflow-y: hidden;
     width: 100%;
-    @include affrodance-velo;
     &--one-image {
       overflow-x: hidden;
       #{$uiCarouselImages} {
@@ -162,8 +163,12 @@ export default Vue.extend({
     }
     &__item {
       $item: &;
+      align-items: center;
+      display: flex;
       height: 100%;
+      justify-content: center;
       margin-bottom: 0;
+      width: 100%;
       & + & {
         margin-left: $spacing-size-2;
       }
@@ -213,10 +218,7 @@ export default Vue.extend({
       }
     }
     .item-image-container {
-      align-items: center;
-      display: flex;
-      height: 100%;
-      justify-content: center;
+      height: auto;
     }
   }
 
@@ -233,6 +235,7 @@ export default Vue.extend({
     flex-direction: row;
     height: 100%;
     width: 100%;
+    background: $white;
     &__thumbnails {
       position: sticky;
       display: block;
@@ -249,14 +252,12 @@ export default Vue.extend({
       }
     }
     &__images-container {
-      @include affrodance-velo-reset;
       &__list {
         flex-direction: column;
         .item-image-container {
           flex-direction: column;
           height: auto;
           width: 100%;
-          @include affrodance-velo;
         }
       }
 

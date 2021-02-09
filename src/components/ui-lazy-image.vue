@@ -48,24 +48,18 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .ui-lazy-image {
+  position: relative;
   align-self: center;
   height: 100%;
   width: 100%;
+  @include affrodance-velo;
 
   &__image {
     display: block;
     height: 100%;
     object-fit: cover;
     width: 100%;
-    &::after {
-      background: $background-1;
-      bottom: 0;
-      content: '';
-      left: 0;
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
+
     &[lazy='loaded'] {
       animation-direction: normal;
       animation-duration: 1s;
@@ -74,9 +68,6 @@ export default Vue.extend({
       animation-name: fadein;
       animation-timing-function: ease-out;
       opacity: 0;
-      &::after {
-        display: none;
-      }
       @keyframes fadein {
         0% {
           opacity: 0;
