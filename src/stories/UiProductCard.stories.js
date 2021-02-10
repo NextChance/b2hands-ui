@@ -8,7 +8,7 @@ export default {
 
 const productsMocks = [
   {
-    alt: 'Imagen de ramos de flores',
+    alt: 'Imagen de lampara',
     brand: 'Cañete',
     error: '',
     finalPrice: '59,3€',
@@ -17,11 +17,11 @@ const productsMocks = [
     merchant: 'outlet-textil',
     src:
       'https://media.kavehome.com/media/cache/65/22/65221deb42f3b30886e4ab7f710ef284.jpg',
-    title: 'Colcha silas',
+    title: 'lampara silas',
     url: ''
   },
   {
-    alt: 'Imagen de ramos de flores',
+    alt: 'Imagen de cama',
     brand: 'Cañete',
     error: '',
     finalPrice: '59,3€',
@@ -35,7 +35,7 @@ const productsMocks = [
     url: ''
   },
   {
-    alt: 'Imagen de ramos de flores',
+    alt: 'Imagen habitación',
     brand: 'Cañete',
     error: '',
     finalPrice: '59,3€',
@@ -43,19 +43,31 @@ const productsMocks = [
     labelText: 'No disponible',
     merchant: 'outlet-textil',
     src:
-      'https://media-esp-buyviu-com.s3.amazonaws.com/products/27bcbc75071ca1c45ee7b4b31a718d1d_image_1.jpg',
+      'https://previews.123rf.com/images/kuprin28/kuprin281511/kuprin28151101312/47622146-vista-panor%C3%A1mica-en-el-estudio-moderno-las-paredes-blancas-y-muebles-de-color-marr%C3%B3n-y-gris-mezclado-piso.jpg',
     title: 'Caso de producto no disponible',
     url: ''
   },
   {
-    alt: 'Imagen de ramos de flores',
+    alt: 'Imagen de cuadro',
     brand: 'Cañete',
     error: '',
     finalPrice: '65,89€',
     merchant: 'outlet-textil',
     src:
+      'https://c8.alamy.com/compes/g75gjf/vista-panoramica-vertical-de-one-world-trade-center-rascacielos-al-atardecer-lower-manhattan-el-distrito-financiero-de-la-ciudad-de-nueva-york-g75gjf.jpg',
+    title: 'Caso de producto sin descuento e imagen muy alta recortada',
+    url: ''
+  },
+  {
+    alt: 'Imagen de cuadro',
+    brand: '',
+    error: '',
+    finalPrice: '65,89€',
+    fullPrice: '65,89€',
+    merchant: 'outlet-textil',
+    src:
       'https://media-esp-buyviu-com.s3.amazonaws.com/products/27bcbc75071ca1c45ee7b4b31a718d1d_image_1.jpg',
-    title: 'Caso de producto sin descuento',
+    title: 'Caso de producto sin brand',
     url: ''
   }
 ]
@@ -203,14 +215,15 @@ export const productCardWithoutBrand = () => ({
           <li
             class="col-2--xs col-3--s">
             <ui-product-card
-              :src="products[3].src"
-              :alt="products[3].alt"
-              :url="products[3].url"
-              :label-text="products[3].labelText"
-              :title="products[3].title"
-              :merchant="products[3].merchant"
-              :final-price="products[3].finalPrice"
-              :full-price="products[3].fullPrice"
+              :src="products[4].src"
+              :alt="products[4].alt"
+              :url="products[4].url"
+              :label-text="products[4].labelText"
+              :title="products[4].title"
+              :brand="products[4].brand"
+              :merchant="products[4].merchant"
+              :final-price="products[4].finalPrice"
+              :full-price="products[4].fullPrice"
             />
           </li>
         </ul>
@@ -250,3 +263,4 @@ export const productCardList = () => ({
 
     </div>`
 })
+

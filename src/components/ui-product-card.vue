@@ -1,21 +1,22 @@
 <template>
   <div class="ui-product-card">
     <div class="ui-product-card__media">
-      <!-- Replace for ui-lazy-image -->
-      <div class="ui-product-card__media__image-container">
-        <img
-          class="ui-lazy-image__image"
-          :src="src"
-          :alt="alt"
-          :error="error"
-        />
+      <ui-lazy-image
+        class="ui-product-card__media__image-container"
+        :src="src"
+        :alt="alt"
+        :placeholder="placeholderImage"
+        :error="errorImage"
+      />
+      <div v-if="labelText" class="label-tag">
+        <span class="label-tag__content">{{ labelText }}</span>
       </div>
-      <!-- /Replace for ui-lazy-image -->
-      <div v-if="labelText" class="ui-product-card__media__label">
-        <span class="label-content">{{ labelText }}</span>
-      </div>
-      <div class="ui-product-card__media__icons">
-        <a :href="url" class="icons-content" @click="handleEyeIcon($event)">
+      <div class="nav-actions">
+        <a
+          :href="url"
+          class="nav-actions__icons"
+          @click="handleEyeIcon($event)"
+        >
           <i class="b2i-eye"></i>
         </a>
       </div>
@@ -37,8 +38,12 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
+import UiLazyImage from './ui-lazy-image.vue'
 export default Vue.extend({
   name: 'UiProductCard',
+  components: {
+    UiLazyImage
+  },
   props: {
     src: {
       type: String,
@@ -48,7 +53,11 @@ export default Vue.extend({
       type: String,
       default: ''
     },
-    error: {
+    placeholderImage: {
+      type: String,
+      default: ''
+    },
+    errorImage: {
       type: String,
       default: ''
     },
@@ -86,63 +95,29 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .ui-product-card {
   width: 100%;
+  /deep/ {
+    .ui-lazy-image__image {
+      height: auto;
+      width: 100%;
+    }
+  }
   &__media {
     position: relative;
     width: 100%;
     &__image-container {
       align-items: center;
       display: flex;
-      justify-content: center;
       height: 100%;
+      justify-content: center;
+      overflow: hidden;
       width: 100%;
-      img {
-        height: auto;
-        width: 100%;
-      }
-    }
-    /* pasar a un mixin genérico para usar en la app*/
-    &__label {
-      font-size: $font-size-2;
-      position: absolute;
-      right: 0;
-      top: 2px;
-      z-index: 2;
-      .label-content {
-        background-color: $background-inverse;
-        box-sizing: border-box;
-        color: $content-inverse;
-        height: $spacing-size-5;
-        padding: 2px $spacing-size-2;
-        width: auto;
-      }
-    }
-    /* pasar a un mixin genérico para usar en la app*/
-    &__icons {
-      bottom: $spacing-size-2;
-      left: $spacing-size-2;
-      position: absolute;
-      z-index: 3;
-      .icons-content {
-        background: $background-1;
-        border-radius: 50%;
-        box-shadow: 0px $spacing-size-1 $spacing-size-1 rgba(0, 0, 0, 0.05);
-        color: $black-100;
-        display: block;
-        font-size: $font-size-7;
-        height: $spacing-size-7;
-        text-decoration: none;
-        text-align: center;
-        width: $spacing-size-7;
-        &:hover {
-          color: $black-80;
-        }
-      }
     }
   }
   &__info {
     padding: $spacing-size-1;
     &__title {
       color: $content-1;
+      height: $spacing-size-7;
       @include body('s');
       @include ellipsis(2);
     }

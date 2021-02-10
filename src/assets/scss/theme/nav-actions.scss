@@ -1,0 +1,22 @@
+    /* pasar a un mixin genérico para usar en la app*/
+    .nav-actions {
+      bottom: $spacing-size-2;
+      left: $spacing-size-2;
+      position: absolute;
+      z-index: map-get($zindex, actions-icons);
+      &__icons {
+        background: $background-1;
+        border-radius: 50%;
+        box-shadow: 0px $spacing-size-1 $spacing-size-1 rgba(0, 0, 0, 0.05);
+        color: $black-100;
+        display: block;
+        font-size: $font-size-7;
+        height: $spacing-size-7;
+        text-decoration: none;
+        text-align: center;
+        width: $spacing-size-7;
+        &:hover {
+          color: $black-80;
+        }
+      }
+    }
