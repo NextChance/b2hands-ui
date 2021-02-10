@@ -16,7 +16,7 @@ const productsMocks = [
     labelText: '10%',
     merchant: 'outlet-textil',
     src:
-      'https://media-esp-buyviu-com.s3.amazonaws.com/products/27bcbc75071ca1c45ee7b4b31a718d1d_image_1.jpg',
+      'https://media.kavehome.com/media/cache/65/22/65221deb42f3b30886e4ab7f710ef284.jpg',
     title: 'Colcha silas',
     url: ''
   },
@@ -218,7 +218,7 @@ export const productCardWithoutBrand = () => ({
     </div>`
 })
 
-export const productCarList = () => ({
+export const productCardList = () => ({
   components: { UiProductCard },
   data() {
     return {
@@ -226,13 +226,13 @@ export const productCarList = () => ({
     }
   },
   template: `
-    <div class="col-container story-product-card-containers">
-      <div class="col-12--xs col-12--s">
-        <ul class="col-container">
+    <div class="story-product-card-containers">
+      <div class="story-product-card">
+        <ul class="list col-container">
           <li
             v-for="(product, index) in products"
             :key=index
-            class="col-2--xs col-3--s">
+            class="item col-6--xs col-3--s">
             <ui-product-card
               :src="product.src"
               :alt="product.alt"
@@ -247,5 +247,6 @@ export const productCarList = () => ({
           </li>
         </ul>
       </div>
+
     </div>`
 })

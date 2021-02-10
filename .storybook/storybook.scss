@@ -1,12 +1,31 @@
 @import "~@/assets/scss/_index.scss";
- ul {
-   li {
-     list-style: none;
-     padding: 0;
-     margin: 0;
-   }
- }
+ul {
+  padding: 0;
+  margin: 0;
+  li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+}
 
  .story-product-card-containers {
-
+   margin: 0 -1rem;
+  .story-product-card {
+    .list {
+      display: flex;
+      flex-wrap: wrap;
+      .item {
+        min-width: 156px;
+        box-sizing: border-box;
+        /deep/ {
+          .ui-product-card {
+            &__media {
+              height: 59.58vw;
+            }
+          }
+        }
+      }
+    }
+  }
  }
