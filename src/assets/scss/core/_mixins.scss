@@ -97,7 +97,7 @@
     font-size: $font-size-4;
     line-height: $line-height-2;
   } @else {
-    font-size: $font-size-4;
+    font-size: $font-size-3;
     line-height: $line-height-2;
   }
 }
@@ -156,4 +156,14 @@
       }
     }
   }
+}
+
+//ellipsis
+@mixin ellipsis($lines) {
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  -webkit-line-clamp: $lines;
 }
