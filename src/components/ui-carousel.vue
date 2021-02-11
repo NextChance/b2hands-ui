@@ -10,6 +10,7 @@
           <img
             class="item-image"
             :src="item.src"
+            :src-sets="item.srcSets"
             :alt="`thumbnails-${item.alt}`"
             :placeholder="placeholderImage"
           />
@@ -17,7 +18,7 @@
       </li>
     </ul>
     <div
-      class="ui-carousel__images-container col-10--s"
+      class="ui-carousel__images-container col-12--s col-10--s"
       :class="{
         'ui-carousel__images-container--one-image': items.length === 1
       }"
@@ -57,6 +58,7 @@
 import Vue from 'vue'
 interface ImgItem {
   src: string
+  srcSets: string
   alt: string
 }
 
@@ -110,13 +112,9 @@ export default Vue.extend({
   display: flex;
   height: 90vw;
   position: relative;
-  width: 100%;
   background: $black-10;
   &__thumbnails {
     display: none;
-    list-style: none;
-    margin-top: 0;
-    padding: 0;
   }
   &__images-container {
     $uiCarouselImages: &;
@@ -254,6 +252,7 @@ export default Vue.extend({
     &__images-container {
       &__list {
         flex-direction: column;
+        width: 100%;
         .item-image-container {
           flex-direction: column;
           height: auto;
