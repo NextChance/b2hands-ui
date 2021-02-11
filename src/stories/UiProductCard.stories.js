@@ -1,92 +1,18 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
+import { action } from '@storybook/addon-actions'
 import UiProductCard from '~/components/ui-product-card'
+import { productsMocks } from '~/fixtures/ui-product-card.fixture.js'
 
 export default {
   title: 'UI-product-card',
   component: UiProductCard
 }
 
-const productsMocks = [
-  {
-    alt: 'Imagen de lampara',
-    brand: 'Cañete',
-    error: '',
-    finalPrice: '59,3€',
-    fullPrice: '65,89€',
-    labelText: '10%',
-    merchant: 'outlet-textil',
-    src:
-      'https://media.kavehome.com/media/cache/65/22/65221deb42f3b30886e4ab7f710ef284.jpg',
-    title: 'lampara silas',
-    url: ''
-  },
-  {
-    alt: 'Imagen de cama',
-    brand: 'Cañete',
-    error: '',
-    finalPrice: '59,3€',
-    fullPrice: '65,89€',
-    labelText: '10%',
-    merchant: 'outlet-textil',
-    src:
-      'https://media-esp-buyviu-com.s3.amazonaws.com/products/27bcbc75071ca1c45ee7b4b31a718d1d_image_1.jpg',
-    title:
-      'Caso de título con más de dos líneas. Caso de título con más de dos líneas. Caso de título con más de dos líneas. Caso de título con más de dos líneas.',
-    url: ''
-  },
-  {
-    alt: 'Imagen habitación',
-    brand: 'Cañete',
-    error: '',
-    finalPrice: '59,3€',
-    fullPrice: '65,89€',
-    labelText: 'No disponible',
-    merchant: 'outlet-textil',
-    src:
-      'https://previews.123rf.com/images/kuprin28/kuprin281511/kuprin28151101312/47622146-vista-panor%C3%A1mica-en-el-estudio-moderno-las-paredes-blancas-y-muebles-de-color-marr%C3%B3n-y-gris-mezclado-piso.jpg',
-    title: 'Caso de producto no disponible',
-    url: ''
-  },
-  {
-    alt: 'Imagen de cuadro',
-    brand: 'Cañete',
-    error: '',
-    finalPrice: '65,89€',
-    merchant: 'outlet-textil',
-    src:
-      'https://c8.alamy.com/compes/g75gjf/vista-panoramica-vertical-de-one-world-trade-center-rascacielos-al-atardecer-lower-manhattan-el-distrito-financiero-de-la-ciudad-de-nueva-york-g75gjf.jpg',
-    title: 'Caso de producto sin descuento e imagen muy alta recortada',
-    url: ''
-  },
-  {
-    alt: 'Imagen de cuadro',
-    brand: '',
-    error: '',
-    finalPrice: '65,89€',
-    fullPrice: '65,89€',
-    merchant: 'outlet-textil',
-    src:
-      'https://media-esp-buyviu-com.s3.amazonaws.com/products/27bcbc75071ca1c45ee7b4b31a718d1d_image_1.jpg',
-    title: 'Caso de producto sin brand',
-    url: ''
-  }
-]
-
 export const productCardBasic = () => ({
   components: { UiProductCard },
   data() {
     return {
-      src:
-        'https://media-esp-buyviu-com.s3.amazonaws.com/products/27bcbc75071ca1c45ee7b4b31a718d1d_image_1.jpg',
-      alt: 'ramos de flores',
-      error: '',
-      url: '',
-      labelText: '10%',
-      title: 'Colcha silas',
-      brand: 'Cañete',
-      merchant: 'outlet-textil',
-      finalPrice: '59,3€',
-      fullPrice: '65,89€'
+      products: productsMocks
     }
   },
   template: `
@@ -95,20 +21,23 @@ export const productCardBasic = () => ({
         <ul class="col-container">
           <li class="col-2--xs col-3--s">
             <ui-product-card
-              :src="src"
-              :alt="alt"
-              :url="url"
-              :label-text="labelText"
-              :title="title"
-              :brand="brand"
-              :merchant="merchant"
-              :final-price="finalPrice"
-              :full-price="fullPrice"
+              :src="products[0].src"
+              :alt="products[0].alt"
+              :url="products[0].url"
+              :label-text="products[0].labelText"
+              :title="products[0].title"
+              :brand="products[0].brand"
+              :merchant="products[0].merchant"
+              :final-price="products[0].finalPrice"
+              :full-price="products[0].fullPrice"
+              :id="products[0].id"
+              @on-click-eye-icon="onClickIcon"
             />
           </li>
         </ul>
       </div>
-    </div>`
+    </div>`,
+  methods: { onClickIcon: action(`(go to image search) id`) }
 })
 
 export const productCardTitleWithTwoLines = () => ({
@@ -134,11 +63,14 @@ export const productCardTitleWithTwoLines = () => ({
               :merchant="products[1].merchant"
               :final-price="products[1].finalPrice"
               :full-price="products[1].fullPrice"
+              :id="products[1].id"
+              @on-click-eye-icon="onClickIcon"
             />
           </li>
         </ul>
       </div>
-    </div>`
+    </div>`,
+  methods: { onClickIcon: action(`(go to image search) id`) }
 })
 
 export const productCardNotAvailable = () => ({
@@ -164,11 +96,14 @@ export const productCardNotAvailable = () => ({
               :merchant="products[2].merchant"
               :final-price="products[2].finalPrice"
               :full-price="products[2].fullPrice"
+              :id="products[2].id"
+              @on-click-eye-icon="onClickIcon"
             />
           </li>
         </ul>
       </div>
-    </div>`
+    </div>`,
+   methods: { onClickIcon: action(`(go to image search) id`) }
 })
 
 export const productCardWithoutDiscount = () => ({
@@ -194,11 +129,14 @@ export const productCardWithoutDiscount = () => ({
               :merchant="products[3].merchant"
               :final-price="products[3].finalPrice"
               :full-price="products[3].fullPrice"
+              :id="products[3].id"
+              @on-click-eye-icon="onClickIcon"
             />
           </li>
         </ul>
       </div>
-    </div>`
+    </div>`,
+  methods: { onClickIcon: action(`(go to image search) id`) }
 })
 
 export const productCardWithoutBrand = () => ({
@@ -224,11 +162,14 @@ export const productCardWithoutBrand = () => ({
               :merchant="products[4].merchant"
               :final-price="products[4].finalPrice"
               :full-price="products[4].fullPrice"
+              :id="products[4].id"
+              @on-click-eye-icon="onClickIcon"
             />
           </li>
         </ul>
       </div>
-    </div>`
+    </div>`,
+    methods: { onClickIcon: action(`(go to image search) id`) }
 })
 
 export const productCardList = () => ({
@@ -256,11 +197,12 @@ export const productCardList = () => ({
               :merchant="product.merchant"
               :final-price="product.finalPrice"
               :full-price="product.fullPrice"
+              :id="product.id"
+              @on-click-eye-icon="onClickIcon"
             />
           </li>
         </ul>
       </div>
-
-    </div>`
+    </div>`,
+  methods: { onClickIcon: action(`(go to image search) id`) }
 })
-

@@ -88,6 +88,16 @@ export default Vue.extend({
     fullPrice: {
       type: String,
       default: ''
+    },
+    id: {
+      type: String,
+      default: ''
+    }
+  },
+  methods: {
+    handleEyeIcon(ev: Event): void {
+      ev.preventDefault()
+      this.$emit('on-click-eye-icon', this.id)
     }
   }
 })

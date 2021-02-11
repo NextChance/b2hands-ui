@@ -1,21 +1,15 @@
 <template>
-    <div id="app">
-        <img alt="Vue logo" src="./assets/logo.png" />
-      Bartolo
-      <i class="b2i-filters"></i>
-        <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
-    </div>
+  <div id="app">
+    <img alt="Vue logo" src="./assets/logo.png" />
+    Bartolo
+    <i class="b2i-filters"></i>
+  </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import HelloWorld from './components/HelloWorld.vue'
 
-@Component({
-    components: {
-        HelloWorld
-    }
-})
+@Component({})
 export default class App extends Vue {}
 </script>
 
