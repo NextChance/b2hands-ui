@@ -34,10 +34,9 @@ describe('UiProductCard', () => {
       beforeEach(() => {
         wrapper = shallowMount(UiProductCard, componentConfig)
         jest.spyOn(event, 'preventDefault')
-        wrapper.find('a.nav-actions__icons').trigger('click')
+        wrapper.vm.handleEyeIcon(event)
       })
       it('should emit the event on-click-eye-icon', () => {
-        debugger
         expect(wrapper.emitted('on-click-eye-icon')).toBeTruthy()
         expect(wrapper.emitted()['on-click-eye-icon'][0]).toEqual([
           productsMocks[0].id

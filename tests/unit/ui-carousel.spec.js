@@ -23,7 +23,7 @@ describe('UiCarousel.vue', () => {
       beforeEach(() => {
         wrapper = shallowMount(UiCarousel, componentConfig)
         jest.spyOn(event, 'preventDefault')
-        wrapper.find('a.nav-actions__icons').trigger('click')
+        wrapper.vm.handleEyeIcon(event)
       })
       it('should emit the event bon-click-eye-icon', () => {
         expect(wrapper.emitted('on-click-eye-icon')).toBeTruthy()
