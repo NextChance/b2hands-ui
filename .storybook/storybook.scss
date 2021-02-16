@@ -1,1 +1,46 @@
 @import "~@/assets/scss/_index.scss";
+ul {
+  padding: 0;
+  margin: 0;
+  li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+ .story-product-card-containers {
+   margin: 0 -1rem;
+  .story-product-card {
+    .list {
+      display: flex;
+      flex-wrap: wrap;
+      max-width: 1161px;
+      margin: 0 auto;
+      .item {
+        box-sizing: border-box;
+        max-width: 290px;
+        min-width: 156px;
+        /deep/ {
+          .ui-product-card {
+            &__media {
+              height: 59.58vw;
+            }
+          }
+        }
+      }
+      @media (min-width: $breakpoint-s) {
+        .item {
+          /deep/ {
+            .ui-product-card {
+              &__media {
+                height: 29.54vw;
+                max-height: 355px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+ }

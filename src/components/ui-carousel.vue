@@ -39,12 +39,16 @@
           />
           <div
             v-if="extraContent"
-            class="ui-carousel__images-container__item__extra-content"
+            class="ui-carousel__images-container__item__extra-content label-tag"
           >
-            <span class="type-label">{{ extraContent }}</span>
+            <span class="label-tag__content">{{ extraContent }}</span>
           </div>
-          <div class="ui-carousel__images-container__item__icons">
-            <a :href="url" class="icon-link" @click="handleEyeIcon($event)">
+          <div class="nav-actions">
+            <a
+              :href="url"
+              class="nav-actions__icons"
+              @click="handleEyeIcon($event)"
+            >
               <i class="b2i-eye"></i>
             </a>
           </div>
@@ -99,7 +103,6 @@ export default Vue.extend({
 })
 </script>
 <style lang="scss" scoped>
-
 /deep/ {
   .ui-lazy-image__image {
     height: auto;
@@ -137,6 +140,7 @@ export default Vue.extend({
       }
       .item-image-container {
         align-items: center;
+        display: flex;
         justify-content: center;
       }
     }
@@ -169,42 +173,6 @@ export default Vue.extend({
       width: 100%;
       & + & {
         margin-left: $spacing-size-2;
-      }
-      &__extra-content {
-        font-size: $font-size-2;
-        position: absolute;
-        right: 0;
-        top: 2px;
-        z-index: map-get($zindex, affrondance-velo);
-        .type-label {
-          background-color: $background-inverse;
-          box-sizing: border-box;
-          color: $content-inverse;
-          height: $spacing-size-5;
-          padding: 2px $spacing-size-2;
-          width: auto;
-        }
-      }
-      &__icons {
-        bottom: $spacing-size-2;
-        left: $spacing-size-2;
-        position: absolute;
-        z-index: map-get($zindex, carousel-icons);
-        .icon-link {
-          background: $background-1;
-          border-radius: 50%;
-          box-shadow: 0px $spacing-size-1 $spacing-size-1 rgba(0, 0, 0, 0.05);
-          color: $black-100;
-          display: block;
-          font-size: $font-size-7;
-          height: $spacing-size-7;
-          text-decoration: none;
-          text-align: center;
-          width: $spacing-size-7;
-          &:hover {
-            color: $black-80;
-          }
-        }
       }
       &:nth-child(n + 2) {
         #{$item}__extra-content {

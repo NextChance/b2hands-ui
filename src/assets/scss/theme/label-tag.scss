@@ -1,0 +1,15 @@
+.label-tag {
+  font-size: $font-size-2;
+  position: absolute;
+  right: 0;
+  top: 2px;
+  z-index: map-get($zindex, affrondance-velo);
+  &__content {
+    background-color: $background-inverse;
+    box-sizing: border-box;
+    color: $content-inverse;
+    height: $spacing-size-5;
+    padding: 2px $spacing-size-2;
+    width: auto;
+  }
+}
