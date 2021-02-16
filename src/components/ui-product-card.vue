@@ -124,7 +124,7 @@ export default Vue.extend({
     }
   }
   &__info {
-    padding: $spacing-size-1;
+    padding: $spacing-size-2;
     &__title {
       color: $content-1;
       height: $spacing-size-7;
