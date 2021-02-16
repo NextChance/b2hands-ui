@@ -51,6 +51,7 @@
     &:hover {
       background-color: map-get($theme, 'hover');
       border: 1px solid map-get($theme, 'hover');
+      color: $white;
     }
   } @else {
     background-color: $white;
@@ -116,7 +117,7 @@
 }
 
 @mixin headers ($size) {
-  @include typography-regular;
+  font-family: $font-helvetica-regular;
   font-weight: 500;
   @if ($size == 'm') {
     font-size: $font-size-4;

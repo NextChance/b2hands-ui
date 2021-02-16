@@ -1,10 +1,12 @@
 import { action } from '@storybook/addon-actions'
 import UiCarousel from '~/components/ui-carousel'
+
 import {
   itemsMock,
   itemsMockOneImage,
   itemsMockOneImageVertical
 } from '~/fixtures/ui-carousel.fixture.js'
+
 
 export default {
   title: 'UI-carousel',

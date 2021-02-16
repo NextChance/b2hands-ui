@@ -1,4 +1,9 @@
 .b2-btn {
+  border-radius: $spacing-size-1;
+  font-size: $font-size-3;
+  line-height: $line-height-1;
+  padding: $spacing-size-3 $spacing-size-1;
+  text-align: center;
   &__highlight {
     @include set-semantic($semantic-highlight);
 
