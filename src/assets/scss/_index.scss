@@ -1,5 +1,8 @@
 @import 'config';
 @import 'core/fonts';
 @import 'theme/buttons';
+@import 'theme/label-tag';
+@import 'theme/nav-actions';
+@import 'theme/placeholder-image';
 
 @include getGridClasses($breakPointsGaps, $breakPoints)

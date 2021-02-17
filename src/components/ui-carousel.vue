@@ -18,7 +18,7 @@
       </li>
     </ul>
     <div
-      class="ui-carousel__images-container col-12--s col-10--s"
+      class="ui-carousel__images-container col-12--xs col-10--s"
       :class="{
         'ui-carousel__images-container--one-image': items.length === 1
       }"
@@ -29,14 +29,13 @@
           :key="`carousel-${index}`"
           class="ui-carousel__images-container__item"
         >
-          <ui-lazy-image
-            :id="`image-${index}`"
-            class="item-image-container"
+          <img
+            class="item-image"
             :src="item.src"
+            :srcset="item.srcSets"
             :alt="item.alt"
-            :placeholder="placeholderImage"
-            :error="errorImage"
-          />
+            @error="setErrorImage"
+          >
           <div
             v-if="extraContent"
             class="ui-carousel__images-container__item__extra-content label-tag"
@@ -60,18 +59,15 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { replaceNodeWithErrorImage } from '../tools/errorImage'
 interface ImgItem {
   src: string
   srcSets: string
   alt: string
 }
 
-import UiLazyImage from './ui-lazy-image.vue'
 export default Vue.extend({
   name: 'UiCarousel',
-  components: {
-    UiLazyImage
-  },
   props: {
     items: {
       type: Array,
@@ -79,7 +75,7 @@ export default Vue.extend({
     },
     extraContent: {
       type: String,
-      default: ''
+      default: '20%'
     },
     url: {
       type: String,
@@ -98,6 +94,13 @@ export default Vue.extend({
     handleEyeIcon(ev: Event): void {
       ev.preventDefault()
       this.$emit('on-click-eye-icon')
+    },
+
+    setErrorImage(evt: Event) {
+      if (evt.currentTarget) {
+        replaceNodeWithErrorImage(evt.currentTarget as HTMLElement)
+      }
+      console.log('evt')
     }
   }
 })
@@ -105,55 +108,59 @@ export default Vue.extend({
 <style lang="scss" scoped>
 /deep/ {
   .ui-lazy-image__image {
-    height: auto;
+    height: unset;
     max-height: 90vw;
     max-width: 100vw;
-    width: auto;
+    object-fit: unset;
+    width: unset;
   }
 }
 .ui-carousel {
   display: flex;
   height: 90vw;
   position: relative;
-  background: $black-10;
+
   &__thumbnails {
     display: none;
   }
+
   &__images-container {
     $uiCarouselImages: &;
-    box-sizing: border-box;
-    display: flex;
     height: 100%;
-    justify-content: space-between;
     scroll-behavior: smooth;
     scroll-snap-type: x;
     overflow-x: scroll;
     overflow-y: hidden;
-    width: 100%;
+
     &--one-image {
       overflow-x: hidden;
+
       #{$uiCarouselImages} {
         &__list,
         &__item {
           width: 100%;
         }
       }
+
       .item-image-container {
         align-items: center;
         display: flex;
         justify-content: center;
       }
     }
+
     &::-webkit-scrollbar {
       background-color: $background-1;
       display: block;
       height: 2px;
       padding: 0;
     }
+
     &::-webkit-scrollbar-thumb {
       background-color: $background-3;
       border-radius: 0;
     }
+
     &__list {
       align-items: flex-start;
       display: flex;
@@ -163,28 +170,53 @@ export default Vue.extend({
       padding: 0;
       margin: 0;
     }
+
+    .item-image {
+      object-fit: contain;
+      max-width: 100vw;
+      min-width: 100%;
+      min-height: 100%;
+    }
+
     &__item {
       $item: &;
       align-items: center;
       display: flex;
-      height: 100%;
       justify-content: center;
       margin-bottom: 0;
-      width: 100%;
+
       & + & {
         margin-left: $spacing-size-2;
       }
-      &:nth-child(n + 2) {
-        #{$item}__extra-content {
-          display: none;
+    }
+  }
+
+  @media (max-width: $breakpoint-s - 1px) {
+    &__images-container {
+      @include affrodance-velo;
+      width: 100%;
+      background-color: #FDFDFD;
+
+      &__item {
+        $item: &;
+        height: 100%;
+
+        &:nth-child(n + 2) {
+          #{$item}__extra-content,
+          .nav-actions {
+            display: none;
+          }
         }
-        #{$item}__icons {
-          display: none;
+
+        /deep/ {
+          .placeholder-image {
+            height: 100%;
+            svg {
+              height: 100%;
+            }
+          }
         }
       }
-    }
-    .item-image-container {
-      height: auto;
     }
   }
 
@@ -202,10 +234,12 @@ export default Vue.extend({
     height: 100%;
     width: 100%;
     background: $white;
+
     &__thumbnails {
       position: sticky;
       display: block;
       top: 0;
+
       &__item {
         height: auto;
         margin-bottom: $spacing-size-2;
@@ -221,6 +255,7 @@ export default Vue.extend({
       &__list {
         flex-direction: column;
         width: 100%;
+
         .item-image-container {
           flex-direction: column;
           height: auto;
@@ -228,19 +263,38 @@ export default Vue.extend({
         }
       }
 
+      .item-image {
+        width: 100%;
+      }
+
       &__item {
         $item: &;
+        @include affrodance-velo;
+
         margin-bottom: $spacing-size-4;
         position: relative;
+        width: 100%;
+
         & + & {
           margin-left: 0;
         }
+
         &:nth-child(n + 2) {
           #{$item}__extra-content {
             display: block;
           }
+
           #{$item}__icons {
             display: block;
+          }
+        }
+
+        /deep/ {
+          .placeholder-image {
+            width: 100%;
+            svg {
+              width: 100%;
+            }
           }
         }
       }
