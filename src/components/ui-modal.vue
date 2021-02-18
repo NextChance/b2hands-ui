@@ -1,16 +1,18 @@
 <template>
-  <div
-    v-if="value"
-    class="modal"
-  >
-    <div class='modal__header wrapper--s'>
-      <i class="modal__icon b2i-modal" @click="handleClose"></i>
+  <transition name='modal-fade'>
+    <div
+      v-if="value"
+      class="modal"
+    >
+      <div class='modal__header wrapper--s'>
+        <i class="modal__icon b2i-modal" @click="handleClose"></i>
+      </div>
+      <div class="modal__content">
+        <!-- @slot Default slot for modal content -->
+        <slot />
+      </div>
     </div>
-    <div class="modal__content">
-      <!-- @slot Default slot for modal content -->
-      <slot />
-    </div>
-  </div>
+  </transition>
 </template>
 
 <script lang='ts'>
@@ -92,5 +94,15 @@ export default Vue.extend({
       }
     }
   }
+}
+
+.modal-fade-enter,
+.modal-fade-leave-active {
+  opacity: 0;
+}
+
+.modal-fade-enter-active,
+.modal-fade-leave-active {
+  transition: opacity .2s ease
 }
 </style>
