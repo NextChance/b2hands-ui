@@ -8,29 +8,30 @@
       >
         <a :href="`#image-${index}`">
           <img
-            class="item-image"
+            class="ui-carousel__thumbnails__image"
             :src="item.src"
             :src-sets="item.srcSets"
             :alt="`thumbnails-${item.alt}`"
             :placeholder="placeholderImage"
+            @error="setErrorImage"
           />
         </a>
       </li>
     </ul>
     <div
-      class="ui-carousel__images-container col-12--xs col-10--s"
+      class="ui-carousel__gallery col-12--xs col-10--s"
       :class="{
-        'ui-carousel__images-container--one-image': items.length === 1
+        'ui-carousel__gallery--one-image': items.length === 1
       }"
     >
-      <ul class="ui-carousel__images-container__list">
+      <ul class="ui-carousel__gallery__list">
         <li
           v-for="(item, index) in items"
           :key="`carousel-${index}`"
-          class="ui-carousel__images-container__item"
+          class="ui-carousel__gallery__item"
         >
           <img
-            class="item-image"
+            class="ui-carousel__gallery__image"
             :src="item.src"
             :srcset="item.srcSets"
             :alt="item.alt"
@@ -38,7 +39,7 @@
           >
           <div
             v-if="extraContent"
-            class="ui-carousel__images-container__item__extra-content label-tag"
+            class="ui-carousel__gallery__item__extra-content label-tag"
           >
             <span class="label-tag__content">{{ extraContent }}</span>
           </div>
@@ -100,21 +101,11 @@ export default Vue.extend({
       if (evt.currentTarget) {
         replaceNodeWithErrorImage(evt.currentTarget as HTMLElement)
       }
-      console.log('evt')
     }
   }
 })
 </script>
 <style lang="scss" scoped>
-/deep/ {
-  .ui-lazy-image__image {
-    height: unset;
-    max-height: 90vw;
-    max-width: 100vw;
-    object-fit: unset;
-    width: unset;
-  }
-}
 .ui-carousel {
   display: flex;
   height: 90vw;
@@ -124,8 +115,8 @@ export default Vue.extend({
     display: none;
   }
 
-  &__images-container {
-    $uiCarouselImages: &;
+  &__gallery {
+    $uiCarouselGallery: &;
     height: 100%;
     scroll-behavior: smooth;
     scroll-snap-type: x;
@@ -135,17 +126,11 @@ export default Vue.extend({
     &--one-image {
       overflow-x: hidden;
 
-      #{$uiCarouselImages} {
+      #{$uiCarouselGallery} {
         &__list,
         &__item {
           width: 100%;
         }
-      }
-
-      .item-image-container {
-        align-items: center;
-        display: flex;
-        justify-content: center;
       }
     }
 
@@ -171,13 +156,6 @@ export default Vue.extend({
       margin: 0;
     }
 
-    .item-image {
-      object-fit: contain;
-      max-width: 100vw;
-      min-width: 100%;
-      min-height: 100%;
-    }
-
     &__item {
       $item: &;
       align-items: center;
@@ -189,10 +167,26 @@ export default Vue.extend({
         margin-left: $spacing-size-2;
       }
     }
+
+    &__image {
+      object-fit: contain;
+      max-width: 100vw;
+      min-width: 100%;
+      min-height: 100%;
+    }
   }
 
   @media (max-width: $breakpoint-s - 1px) {
-    &__images-container {
+    /deep/ {
+      .placeholder-image {
+        height: 100%;
+        svg {
+          height: 100%;
+        }
+      }
+    }
+
+    &__gallery {
       @include affrodance-velo;
       width: 100%;
       background-color: #FDFDFD;
@@ -207,63 +201,57 @@ export default Vue.extend({
             display: none;
           }
         }
-
-        /deep/ {
-          .placeholder-image {
-            height: 100%;
-            svg {
-              height: 100%;
-            }
-          }
-        }
       }
     }
   }
 
   @media (min-width: $breakpoint-s) {
-    /deep/ {
-      .ui-lazy-image__image {
-        height: 100%;
-        max-height: unset;
-        max-width: unset;
-        width: 100%;
-      }
-    }
     align-items: flex-start;
     flex-direction: row;
     height: 100%;
     width: 100%;
     background: $white;
 
+    /deep/ {
+      .placeholder-image {
+        width: 100%;
+        svg {
+          width: 100%;
+        }
+      }
+    }
+
     &__thumbnails {
       position: sticky;
       display: block;
       top: 0;
+
+      /deep/ {
+        .placeholder-image__error {
+          font-size: $font-size-6;
+        }
+      }
 
       &__item {
         height: auto;
         margin-bottom: $spacing-size-2;
         width: 100%;
       }
-      .item-image {
+
+      &__image {
         height: auto;
         vertical-align: top;
         width: 100%;
       }
     }
-    &__images-container {
+
+    &__gallery {
       &__list {
         flex-direction: column;
         width: 100%;
-
-        .item-image-container {
-          flex-direction: column;
-          height: auto;
-          width: 100%;
-        }
       }
 
-      .item-image {
+      &__image {
         width: 100%;
       }
 
@@ -282,19 +270,6 @@ export default Vue.extend({
         &:nth-child(n + 2) {
           #{$item}__extra-content {
             display: block;
-          }
-
-          #{$item}__icons {
-            display: block;
-          }
-        }
-
-        /deep/ {
-          .placeholder-image {
-            width: 100%;
-            svg {
-              width: 100%;
-            }
           }
         }
       }
