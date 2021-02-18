@@ -25,6 +25,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.b2i-error-image {
+  &:before {
+    content: $b2i-error-image;
+  }
+}
 .b2i-facebook {
   &:before {
     content: $b2i-facebook;
