@@ -2,10 +2,11 @@
   position: relative;
 
   &--error {
+    font-size: 35px;
+
     &:before {
-      content: $b2i-camera;
+      content: $b2i-error-image;
       font-family: $icomoon-font-family;
-      font-size: 35px;
       left: 50%;
       position: absolute;
       top: 50%;

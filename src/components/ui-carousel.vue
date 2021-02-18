@@ -227,8 +227,8 @@ export default Vue.extend({
       top: 0;
 
       /deep/ {
-        .placeholder-image__error {
-          font-size: $font-size-6;
+        .placeholder-image--error {
+          font-size: $font-size-7;
         }
       }
 
@@ -246,6 +246,12 @@ export default Vue.extend({
     }
 
     &__gallery {
+      /deep/ {
+        .placeholder-image--error {
+          font-size: $font-size-13;
+        }
+      }
+
       &__list {
         flex-direction: column;
         width: 100%;
