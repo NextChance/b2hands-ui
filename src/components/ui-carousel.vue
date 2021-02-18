@@ -8,38 +8,38 @@
       >
         <a :href="`#image-${index}`">
           <img
-            class="item-image"
+            class="ui-carousel__thumbnails__image"
             :src="item.src"
             :src-sets="item.srcSets"
             :alt="`thumbnails-${item.alt}`"
             :placeholder="placeholderImage"
+            @error="setErrorImage"
           />
         </a>
       </li>
     </ul>
     <div
-      class="ui-carousel__images-container col-12--s col-10--s"
+      class="ui-carousel__gallery col-12--xs col-10--s"
       :class="{
-        'ui-carousel__images-container--one-image': items.length === 1
+        'ui-carousel__gallery--one-image': items.length === 1
       }"
     >
-      <ul class="ui-carousel__images-container__list">
+      <ul class="ui-carousel__gallery__list">
         <li
           v-for="(item, index) in items"
           :key="`carousel-${index}`"
-          class="ui-carousel__images-container__item"
+          class="ui-carousel__gallery__item"
         >
-          <ui-lazy-image
-            :id="`image-${index}`"
-            class="item-image-container"
+          <img
+            class="ui-carousel__gallery__image"
             :src="item.src"
+            :srcset="item.srcSets"
             :alt="item.alt"
-            :placeholder="placeholderImage"
-            :error="errorImage"
-          />
+            @error="setErrorImage"
+          >
           <div
             v-if="extraContent"
-            class="ui-carousel__images-container__item__extra-content label-tag"
+            class="ui-carousel__gallery__item__extra-content label-tag"
           >
             <span class="label-tag__content">{{ extraContent }}</span>
           </div>
@@ -60,18 +60,15 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import { replaceNodeWithErrorImage } from '../tools/errorImage'
 interface ImgItem {
   src: string
   srcSets: string
   alt: string
 }
 
-import UiLazyImage from './ui-lazy-image.vue'
 export default Vue.extend({
   name: 'UiCarousel',
-  components: {
-    UiLazyImage
-  },
   props: {
     items: {
       type: Array,
@@ -79,7 +76,7 @@ export default Vue.extend({
     },
     extraContent: {
       type: String,
-      default: ''
+      default: '20%'
     },
     url: {
       type: String,
@@ -98,62 +95,57 @@ export default Vue.extend({
     handleEyeIcon(ev: Event): void {
       ev.preventDefault()
       this.$emit('on-click-eye-icon')
+    },
+
+    setErrorImage(evt: Event) {
+      if (evt.currentTarget) {
+        replaceNodeWithErrorImage(evt.currentTarget as HTMLElement)
+      }
     }
   }
 })
 </script>
 <style lang="scss" scoped>
-/deep/ {
-  .ui-lazy-image__image {
-    height: auto;
-    max-height: 90vw;
-    max-width: 100vw;
-    width: auto;
-  }
-}
 .ui-carousel {
   display: flex;
   height: 90vw;
   position: relative;
-  background: $black-10;
+
   &__thumbnails {
     display: none;
   }
-  &__images-container {
-    $uiCarouselImages: &;
-    box-sizing: border-box;
-    display: flex;
+
+  &__gallery {
+    $uiCarouselGallery: &;
     height: 100%;
-    justify-content: space-between;
     scroll-behavior: smooth;
     scroll-snap-type: x;
     overflow-x: scroll;
     overflow-y: hidden;
-    width: 100%;
+
     &--one-image {
       overflow-x: hidden;
-      #{$uiCarouselImages} {
+
+      #{$uiCarouselGallery} {
         &__list,
         &__item {
           width: 100%;
         }
       }
-      .item-image-container {
-        align-items: center;
-        display: flex;
-        justify-content: center;
-      }
     }
+
     &::-webkit-scrollbar {
       background-color: $background-1;
       display: block;
       height: 2px;
       padding: 0;
     }
+
     &::-webkit-scrollbar-thumb {
       background-color: $background-3;
       border-radius: 0;
     }
+
     &__list {
       align-items: flex-start;
       display: flex;
@@ -163,83 +155,126 @@ export default Vue.extend({
       padding: 0;
       margin: 0;
     }
+
     &__item {
       $item: &;
       align-items: center;
       display: flex;
-      height: 100%;
       justify-content: center;
       margin-bottom: 0;
-      width: 100%;
+
       & + & {
         margin-left: $spacing-size-2;
       }
-      &:nth-child(n + 2) {
-        #{$item}__extra-content {
-          display: none;
-        }
-        #{$item}__icons {
-          display: none;
+    }
+
+    &__image {
+      object-fit: contain;
+      max-width: 100vw;
+      min-width: 100%;
+      min-height: 100%;
+    }
+  }
+
+  @media (max-width: $breakpoint-s - 1px) {
+    /deep/ {
+      .placeholder-image {
+        height: 100%;
+        svg {
+          height: 100%;
         }
       }
     }
-    .item-image-container {
-      height: auto;
+
+    &__gallery {
+      @include affrodance-velo;
+      width: 100%;
+      background-color: #FDFDFD;
+
+      &__item {
+        $item: &;
+        height: 100%;
+
+        &:nth-child(n + 2) {
+          #{$item}__extra-content,
+          .nav-actions {
+            display: none;
+          }
+        }
+      }
     }
   }
 
   @media (min-width: $breakpoint-s) {
-    /deep/ {
-      .ui-lazy-image__image {
-        height: 100%;
-        max-height: unset;
-        max-width: unset;
-        width: 100%;
-      }
-    }
     align-items: flex-start;
     flex-direction: row;
     height: 100%;
     width: 100%;
     background: $white;
+
+    /deep/ {
+      .placeholder-image {
+        width: 100%;
+        svg {
+          width: 100%;
+        }
+      }
+    }
+
     &__thumbnails {
       position: sticky;
       display: block;
       top: 0;
+
+      /deep/ {
+        .placeholder-image--error {
+          font-size: $font-size-7;
+        }
+      }
+
       &__item {
         height: auto;
         margin-bottom: $spacing-size-2;
         width: 100%;
       }
-      .item-image {
+
+      &__image {
         height: auto;
         vertical-align: top;
         width: 100%;
       }
     }
-    &__images-container {
+
+    &__gallery {
+      /deep/ {
+        .placeholder-image--error {
+          font-size: $font-size-13;
+        }
+      }
+
       &__list {
         flex-direction: column;
         width: 100%;
-        .item-image-container {
-          flex-direction: column;
-          height: auto;
-          width: 100%;
-        }
+      }
+
+      &__image {
+        width: 100%;
       }
 
       &__item {
         $item: &;
+        @include affrodance-velo;
+
         margin-bottom: $spacing-size-4;
         position: relative;
+        width: 100%;
+
         & + & {
           margin-left: 0;
         }
+
         &:nth-child(n + 2) {
           #{$item}__extra-content {
-            display: block;
-          }
-          #{$item}__icons {
             display: block;
           }
         }
