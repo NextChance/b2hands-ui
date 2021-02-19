@@ -17,6 +17,11 @@ export const itemsMock = [
     src:
       'https://www.jardineriaon.com/wp-content/uploads/2018/04/flores-decorativas-y-vistosas.jpg.webp',
     alt: 'image4'
+  },
+  {
+    src:
+      'https://www.jardineriaon.com/wp-content/uploads/2018/04/flores-decorativas-y-viosas.jpg',
+    alt: 'image5'
   }
 ]
 
