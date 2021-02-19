@@ -16,7 +16,7 @@ export const carouselWithSeveralImages = () => ({
   template: `
     <div>
         <button @click='toogleOpen'>modal</button>
-        <ui-modal v-model='isOpen' @on-modal-close='closeModal'>
+        <ui-modal :isOpen='isOpen' @on-modal-close='closeModal'>
           <div class='wrapper'>
             <span>Content</span>
           </div>

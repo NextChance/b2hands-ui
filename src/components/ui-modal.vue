@@ -1,7 +1,7 @@
 <template>
   <transition name='modal-fade'>
     <div
-      v-if="value"
+      v-if="isOpen"
       class="modal"
     >
       <div class='modal__header wrapper--s'>
@@ -23,7 +23,7 @@ export default Vue.extend({
     /**
      * Value that shows or hides the modal
      */
-    value: {
+    isOpen: {
       type: Boolean,
       default: false
     }
