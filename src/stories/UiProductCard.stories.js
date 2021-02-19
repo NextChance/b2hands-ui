@@ -16,27 +16,27 @@ export const productCardBasic = () => ({
     }
   },
   template: `
-    <div class="col-container">
-      <div class="col-12--xs col-12--s">
-        <ul class="col-container">
-          <li class="col-2--xs col-3--s">
-            <ui-product-card
-              :src="products[0].src"
-              :alt="products[0].alt"
-              :url="products[0].url"
-              :label-text="products[0].labelText"
-              :title="products[0].title"
-              :brand="products[0].brand"
-              :merchant="products[0].merchant"
-              :final-price="products[0].finalPrice"
-              :full-price="products[0].fullPrice"
-              :id="products[0].id"
-              @on-click-eye-icon="onClickIcon"
-            />
-          </li>
-        </ul>
-      </div>
-    </div>`,
+  <div class="story-product-card-containers">
+    <div class="story-product-card">
+      <ul class="list col-container">
+        <li class="item col-6--xs col-3--s">
+          <ui-product-card
+            :src="products[0].src"
+            :alt="products[0].alt"
+            :url="products[0].url"
+            :label-text="products[0].labelText"
+            :title="products[0].title"
+            :brand="products[0].brand"
+            :merchant="products[0].merchant"
+            :final-price="products[0].finalPrice"
+            :full-price="products[0].fullPrice"
+            :id="products[0].id"
+            @on-click-eye-icon="onClickIcon"
+          />
+        </li>
+      </ul>
+    </div>
+  </div>`,
   methods: { onClickIcon: action(`(go to image search) id`) }
 })
 
@@ -48,11 +48,10 @@ export const productCardTitleWithTwoLines = () => ({
     }
   },
   template: `
-    <div class="col-container">
-      <div class="col-12--xs col-12--s">
-        <ul class="col-container">
-          <li
-            class="col-2--xs col-3--s">
+    <div class="story-product-card-containers">
+      <div class="story-product-card">
+        <ul class="list col-container">
+          <li class="item col-6--xs col-3--s">
             <ui-product-card
               :src="products[1].src"
               :alt="products[1].alt"
@@ -81,11 +80,10 @@ export const productCardNotAvailable = () => ({
     }
   },
   template: `
-    <div class="col-container">
-      <div class="col-12--xs col-12--s">
-        <ul class="col-container">
-          <li
-            class="col-2--xs col-3--s">
+    <div class="story-product-card-container">
+      <div class="story-product-card">
+        <ul class="list col-container">
+          <li class="item col-6--xs col-3--s">
             <ui-product-card
               :src="products[2].src"
               :alt="products[2].alt"
@@ -114,11 +112,10 @@ export const productCardWithoutDiscount = () => ({
     }
   },
   template: `
-    <div class="col-container">
-      <div class="col-12--xs col-12--s">
-        <ul class="col-container">
-          <li
-            class="col-2--xs col-3--s">
+    <div class="story-product-card-containers">
+      <div class="story-product-card">
+        <ul class="list col-container">
+          <li class="item col-6--xs col-3--s">
             <ui-product-card
               :src="products[3].src"
               :alt="products[3].alt"
@@ -147,11 +144,10 @@ export const productCardWithoutBrand = () => ({
     }
   },
   template: `
-    <div class="col-container">
-      <div class="col-12--xs col-12--s">
-        <ul class="col-container">
-          <li
-            class="col-2--xs col-3--s">
+    <div class="story-product-card-containers">
+      <div class="story-product-card">
+        <ul class="list col-container">
+          <li class="item col-6--xs col-3--s">
             <ui-product-card
               :src="products[4].src"
               :alt="products[4].alt"
@@ -180,7 +176,7 @@ export const productCardList = () => ({
     }
   },
   template: `
-    <div class="story-product-card-containers">
+    <div class="story-product-card-containers story-product-card-containers--list">
       <div class="story-product-card">
         <ul class="list col-container">
           <li

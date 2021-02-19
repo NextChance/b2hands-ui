@@ -27,6 +27,7 @@
       <ul class="ui-carousel__gallery__list">
         <li
           v-for="(item, index) in items"
+          :id="`image-${index}`"
           :key="`carousel-${index}`"
           class="ui-carousel__gallery__item"
         >
@@ -169,6 +170,7 @@ export default Vue.extend({
     }
 
     &__image {
+      height: inherit;
       object-fit: contain;
       max-width: 100vw;
       min-width: 100%;

@@ -23,10 +23,8 @@ export const carouselWithSeveralImages = () => ({
     }
   },
   template: `
-    <div class="col-container">
-      <div class="col-6--s">
-        <ui-carousel :items="items" :extra-content="extraContent" @on-click-eye-icon="onClickIcon"/>
-      </div>
+    <div class="story-ui-carousel-container">
+      <ui-carousel :items="items" :extra-content="extraContent" @on-click-eye-icon="onClickIcon"/>
     </div>`,
   methods: { onClickIcon: action('go to image search') }
 })
@@ -40,10 +38,8 @@ export const carouselWithOneImageHorizontal = () => ({
     }
   },
   template: `
-    <div class="col-container">
-      <div class="col-6--s">
-        <ui-carousel :items="items" :extra-content="extraContent"/>
-      </div>
+    <div class="story-ui-carousel-container">
+      <ui-carousel :items="items" :extra-content="extraContent"/>
     </div>`,
    methods: { onClickIcon: action('go to image search') }
 })
@@ -57,10 +53,8 @@ export const carouselWithOneImageVertical = () => ({
     }
   },
   template: `
-    <div class="col-container">
-      <div class="col-6--s">
-        <ui-carousel :items="items" :extra-content="extraContent"/>
-      </div>
+    <div class="story-ui-carousel-container">
+      <ui-carousel :items="items" :extra-content="extraContent"/>
     </div>`,
   methods: { onClickIcon: action('go to image search') }
 })

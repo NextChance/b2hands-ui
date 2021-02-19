@@ -1,4 +1,10 @@
 @import "~@/assets/scss/_index.scss";
+.sb-show-main {
+  &.sb-main-padded {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
 ul {
   padding: 0;
   margin: 0;
@@ -8,9 +14,29 @@ ul {
     margin: 0;
   }
 }
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.story-ui-carousel-container {
+  width: 100vw;
+  @media (min-width: $breakpoint-s) {
+    width: 50%;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    .col-container {
+      flex-wrap: nowrap;
+    }
+  }
+
+}
 
  .story-product-card-containers {
-   margin: 0 -1rem;
+   padding: 1rem;
+   &--list {
+     padding: 0;
+   }
   .story-product-card {
     .list {
       display: flex;
