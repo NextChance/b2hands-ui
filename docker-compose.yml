@@ -1,0 +1,8 @@
+version: '3'
+services:
+    node:
+        container_name: billionhands_web_node
+        build:
+            context: .
+        volumes:
+            - ./storybook-static:/code/storybook-static
