@@ -2,6 +2,12 @@
 import { shallowMount } from '@vue/test-utils'
 import UiCarousel from '@/src/components/ui-carousel.vue'
 import { itemsMock } from '@/src/fixtures/ui-carousel.fixture'
+import { replaceNodeWithErrorImage } from '@/src/tools/errorImage'
+jest.mock('@/src/tools/errorImage', () => {
+  return {
+    replaceNodeWithErrorImage: jest.fn()
+  }
+})
 
 const componentConfig = {
   propsData: { items: itemsMock }
@@ -18,7 +24,7 @@ describe('UiCarousel.vue', () => {
   })
 
   describe('Methods', () => {
-    const event = { preventDefault: () => {} }
+    const event = { preventDefault: jest.fn() }
     describe('handleEyeIcon', () => {
       beforeEach(() => {
         wrapper = shallowMount(UiCarousel, componentConfig)
@@ -27,6 +33,18 @@ describe('UiCarousel.vue', () => {
       })
       it('should emit the event bon-click-eye-icon', () => {
         expect(wrapper.emitted('on-click-eye-icon')).toBeTruthy()
+      })
+    })
+    describe('setErrorImage()', () => {
+      const event = {
+        currentTarget: '<img/>'
+      }
+      beforeEach(() => {
+        wrapper = shallowMount(UiCarousel, componentConfig)
+        wrapper.vm.setErrorImage(event)
+      })
+      it('should called replaceNodeWithErrorImage', () => {
+        expect(replaceNodeWithErrorImage).toHaveBeenCalled()
       })
     })
   })
