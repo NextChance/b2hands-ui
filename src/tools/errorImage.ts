@@ -19,3 +19,12 @@ export const replaceNodeWithErrorImage = (nodeElement: HTMLElement) => {
   errorImage.appendChild(svg)
   nodeElement.parentElement?.replaceChild(errorImage, nodeElement)
 }
+
+export const addSiblingNodeWithLoadingImage = (nodeElement: HTMLElement) => {
+  const loadingImage: HTMLElement = document.createElement('div')
+  loadingImage.classList.add('placeholder-image', 'placeholder-image--loading')
+  const svg = createPlaceholderImage()
+  loadingImage.appendChild(svg)
+  nodeElement.parentElement?.appendChild(loadingImage)
+  return loadingImage
+}

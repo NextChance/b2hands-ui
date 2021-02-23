@@ -38,9 +38,6 @@ describe('UiProductCard', () => {
       })
       it('should emit the event on-click-eye-icon', () => {
         expect(wrapper.emitted('on-click-eye-icon')).toBeTruthy()
-        expect(wrapper.emitted()['on-click-eye-icon'][0]).toEqual([
-          productsMocks[0].id
-        ])
       })
     })
   })

@@ -38,15 +38,14 @@ a {
      padding: 0;
    }
   .story-product-card {
+    $wrapperWidth: 1208px;
+    $gutter: 8px;
     .list {
       display: flex;
       flex-wrap: wrap;
-      max-width: 1161px;
+      max-width: $wrapperWidth + $gutter;
       margin: 0 auto;
       .item {
-        box-sizing: border-box;
-        max-width: 290px;
-        min-width: 156px;
         /deep/ {
           .ui-product-card {
             &__media {
@@ -56,6 +55,8 @@ a {
         }
       }
       @media (min-width: $breakpoint-s) {
+        $gutter: 16px;
+        max-width: $wrapperWidth + $gutter;
         .item {
           /deep/ {
             .ui-product-card {

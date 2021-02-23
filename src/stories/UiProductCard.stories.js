@@ -22,6 +22,7 @@ export const productCardBasic = () => ({
         <li class="item col-6--xs col-3--s">
           <ui-product-card
             :src="products[0].src"
+            :srcSet="products[0].srcSet"
             :alt="products[0].alt"
             :url="products[0].url"
             :label-text="products[0].labelText"
