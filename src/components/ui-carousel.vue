@@ -98,7 +98,7 @@ export default Vue.extend({
       this.$emit('on-click-eye-icon')
     },
 
-    setErrorImage(evt: Event) {
+    setErrorImage(evt: Event): void {
       if (evt.currentTarget) {
         replaceNodeWithErrorImage(evt.currentTarget as HTMLElement)
       }
