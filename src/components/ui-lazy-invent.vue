@@ -4,7 +4,7 @@
        v-observe-visibility="{
       callback: onVisibilityChanged,
       intersection: {
-        rootMargin: '-20px 0px 0px 0px'
+        rootMargin: '30%'
       },
       once: true
     }"></div>
@@ -57,7 +57,6 @@ export default Vue.extend({
   methods: {
     onVisibilityChanged(isVisible: boolean): void {
       if (isVisible) {
-        console.log('Request')
         this.isHidden = false
       }
     },
