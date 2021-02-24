@@ -26,5 +26,8 @@ module.exports = {
     }
   },
   coverageReporters: ['text', 'html'],
-  snapshotSerializers: ['<rootDir>/node_modules/jest-serializer-vue']
+  snapshotSerializers: ['<rootDir>/node_modules/jest-serializer-vue'],
+  setupFiles: [
+    '<rootDir>/tests/config/jest-init.js'
+  ]
 }
