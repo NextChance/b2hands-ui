@@ -16,6 +16,7 @@
       </label>
       <input
         :id="id"
+        ref="searchInput"
         v-model="textValue"
         :disabled="disabled"
         :type="type"
@@ -68,6 +69,10 @@ export default Vue.extend({
     labelText: {
       type: String,
       default: ''
+    },
+    hasAutoFocus: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -82,6 +87,12 @@ export default Vue.extend({
       handler(_value): void {
         this.textValue = _value
       }
+    }
+  },
+  mounted() {
+    if (this.hasAutoFocus) {
+      const searchInput = this.$refs.searchInput as HTMLElement
+      searchInput.focus()
     }
   },
   methods: {
