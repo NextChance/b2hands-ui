@@ -41,14 +41,23 @@ export default Vue.extend({
     return data
   },
   props: {
+    /**
+     * Src url to use in case srset is not available
+     */
     src: {
       type: String,
       default: ''
     },
+    /**
+     * Formatted srcset
+     */
     srcset: {
       type: String,
       default: ''
     },
+    /**
+     * Text to use in accesibility mode
+     */
     alt: {
       type: String,
       default: ''
@@ -69,6 +78,7 @@ export default Vue.extend({
     },
     onImageError(evt: Event) {
       replaceNodeWithErrorImage(evt.currentTarget as HTMLElement)
+      this.loadingImage?.remove()
     }
   },
   mounted() {

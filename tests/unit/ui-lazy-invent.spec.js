@@ -1,6 +1,6 @@
-import { shallowMount } from '@vue/test-utils'
+import { createLocalVue, shallowMount } from '@vue/test-utils'
 import UiLazyInvent from '@/src/components/ui-lazy-invent.vue'
-import { itemsMock } from '@/src/fixtures/ui-carousel.fixture'
+import { mockImageProps } from '@/src/fixtures/ui-carousel.fixture'
 import { addSiblingNodeWithLoadingImage, replaceNodeWithErrorImage } from '@/src/tools/errorImage'
 
 const mockClasList = {
@@ -8,6 +8,10 @@ const mockClasList = {
 }
 
 const mockRemoveNode = jest.fn()
+
+const localVue = createLocalVue()
+
+localVue.directive('observe-visibility', () => {  })
 
 jest.mock('@/src/tools/errorImage', () => {
   return {
@@ -20,7 +24,8 @@ jest.mock('@/src/tools/errorImage', () => {
 })
 
 const componentConfig = () => ({
-  propsData: { items: itemsMock }
+  localVue,
+  propsData: { ...mockImageProps }
 })
 
 describe('UiLazyInvent', () => {
@@ -101,6 +106,10 @@ describe('UiLazyInvent', () => {
 
         it('should set call replaceNodeWithImage with currentTarget', () => {
           expect(replaceNodeWithErrorImage).toBeCalledWith(mockCurrentTarget)
+        })
+
+        it('should remove loading image', () => {
+          expect(mockRemoveNode).toBeCalledWith()
         })
       })
     })
