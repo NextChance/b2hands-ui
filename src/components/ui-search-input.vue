@@ -92,7 +92,6 @@ export default Vue.extend({
   mounted() {
     if (this.hasAutoFocus) {
       (this.$refs.searchInput as HTMLElement).focus()
-      searchInput.focus()
     }
   },
   methods: {
