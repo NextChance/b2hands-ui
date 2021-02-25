@@ -7,7 +7,8 @@ const textMocked = 'text search'
 const event = { preventDefault: jest.fn() }
 const componentConfig = {
   propsData: {
-    id: 'mockId'
+    id: 'mockId',
+    hasAutoFocus: true
   }
 }
 describe('UiSearchInput', () => {
