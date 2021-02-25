@@ -32,11 +32,11 @@ a {
 
 }
 
- .story-product-card-containers {
-   padding: 1rem;
-   &--list {
-     padding: 0;
-   }
+.story-product-card-containers {
+  padding: 1rem;
+  &--list {
+    padding: 0;
+  }
   .story-product-card {
     .list {
       display: flex;
@@ -73,4 +73,8 @@ a {
 .story-search-input {
   padding: 1rem;
   width: 800px;
+}
+
+.story-ui-lazy-invent {
+  width: 200px;
 }

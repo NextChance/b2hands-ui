@@ -8,7 +8,7 @@ export const productsMocks = [
     labelText: '10%',
     merchant: 'outlet-textil',
     src:
-      'https://media.kavehome.com/media/cache/65/22/65221deb42f3b30886e4ab7f710ef284.jpg',
+      'https://deelay.me/5000/https://render.fineartamerica.com/images/images-profile-flow/400/images-medium-large/apollo-15-lunar-roving-vehicle-nasa.jpg',
     title: 'lampara silas',
     url: '',
     id: '1'

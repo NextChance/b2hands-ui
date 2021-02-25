@@ -1,13 +1,10 @@
 import '!style-loader!css-loader!sass-loader!./storybook.scss';
 import Vue from 'vue'
-import VueLazyload from 'vue-lazyload'
 import { addParameters } from '@storybook/client-api';
 
-Vue.use(VueLazyload, {
-  lazyComponent: true,
-  preLoad: 2,
-  attempt: 1
-})
+import { ObserveVisibility } from 'vue-observe-visibility'
+
+Vue.directive('observe-visibility', ObserveVisibility)
 
 export const parameters = {
   previewTabs: { 'storybook/docs/panel': { index: -1 } },

@@ -1,12 +1,11 @@
 <template>
   <div class="ui-product-card">
     <div class="ui-product-card__media">
-      <ui-lazy-image
+      <ui-lazy-invent
         class="ui-product-card__media__image-container"
         :src="src"
+        :srcset="srcset"
         :alt="alt"
-        :placeholder="placeholderImage"
-        :error="errorImage"
       />
       <div v-if="labelText" class="label-tag">
         <span class="label-tag__content">{{ labelText }}</span>
@@ -15,7 +14,7 @@
         <a
           :href="url"
           class="nav-actions__icons"
-          @click="handleEyeIcon($event)"
+          @click.prevent.stop="handleEyeIcon($event)"
         >
           <i class="b2i-eye"></i>
         </a>
@@ -38,14 +37,18 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
-import UiLazyImage from './ui-lazy-image.vue'
+import UiLazyInvent from './ui-lazy-invent.vue'
 export default Vue.extend({
   name: 'UiProductCard',
   components: {
-    UiLazyImage
+    UiLazyInvent
   },
   props: {
     src: {
+      type: String,
+      default: ''
+    },
+    srcset: {
       type: String,
       default: ''
     },
@@ -88,16 +91,11 @@ export default Vue.extend({
     fullPrice: {
       type: String,
       default: ''
-    },
-    id: {
-      type: String,
-      default: ''
     }
   },
   methods: {
     handleEyeIcon(ev: Event): void {
-      ev.preventDefault()
-      this.$emit('on-click-eye-icon', this.id)
+      this.$emit('on-click-eye-icon')
     }
   }
 })
@@ -105,45 +103,44 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .ui-product-card {
   width: 100%;
-  /deep/ {
-    .ui-lazy-image__image {
-      height: auto;
-      width: 100%;
-    }
-  }
+
   &__media {
+    @include affrodance-velo;
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    overflow: hidden;
     position: relative;
     width: 100%;
     &__image-container {
-      align-items: center;
-      display: flex;
-      height: 100%;
-      justify-content: center;
-      overflow: hidden;
-      width: 100%;
     }
   }
   &__info {
     padding: $spacing-size-2;
+
     &__title {
       color: $content-1;
       height: $spacing-size-7;
       @include body('s');
       @include ellipsis(2);
     }
+
     &__complementary {
       .merchant,
       .brand {
-        color: $content-3;
         @include detail('upper');
-      }
-      .full-price {
         color: $content-3;
-        @include detail('strike');
       }
+
+      .full-price {
+        @include detail('strike');
+        color: $content-3;
+      }
+
       .final-price {
-        color: $content-1;
         @include headers('s');
+        color: $content-1;
       }
     }
   }
