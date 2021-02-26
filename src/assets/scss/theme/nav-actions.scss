@@ -4,6 +4,11 @@
   left: $spacing-size-2;
   position: absolute;
   z-index: map-get($zindex, actions-icons);
+
+  &--error {
+    display: none;
+  }
+
   &__icons {
     background: $background-1;
     border-radius: 50%;

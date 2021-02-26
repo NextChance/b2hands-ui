@@ -35,16 +35,22 @@ describe('UiCarousel.vue', () => {
         expect(wrapper.emitted('on-click-eye-icon')).toBeTruthy()
       })
     })
-    describe('setErrorImage()', () => {
-      const event = {
-        currentTarget: '<img/>'
-      }
+    describe('onImageError()', () => {
+      const mockReffName = 0
+      const mockAddClass = jest.fn()
       beforeEach(() => {
         wrapper = shallowMount(UiCarousel, componentConfig)
-        wrapper.vm.setErrorImage(event)
+        wrapper.vm.$refs['image-actions']= [
+          {
+            classList: {
+              add: mockAddClass
+            }
+          }
+        ]
+        wrapper.vm.onImageError(mockReffName)
       })
-      it('should called replaceNodeWithErrorImage', () => {
-        expect(replaceNodeWithErrorImage).toHaveBeenCalled()
+      it('should set error class', () => {
+        expect(mockAddClass).toHaveBeenCalledWith('nav-actions--error')
       })
     })
   })

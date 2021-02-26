@@ -74,11 +74,12 @@ export default Vue.extend({
       this.loadingImage?.classList.add('lazy-image__loading--loaded')
       setTimeout(() => {
         this.loadingImage?.remove()
-      }, 1000)
+      }, 10)
     },
     onImageError(evt: Event) {
       replaceNodeWithErrorImage(evt.currentTarget as HTMLElement)
       this.loadingImage?.remove()
+      this.$emit('on-image-error')
     }
   },
   mounted() {
