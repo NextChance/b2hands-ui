@@ -80,7 +80,8 @@ a {
 }
 .story-search-input {
   padding: 1rem;
-  width: 800px;
+  max-width: 800px;
+  width: 100%;
 }
 
 .story-ui-lazy-invent {
