@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'b2icons';
   src:
-    url('fonts/b2icons.ttf?p8ak8e') format('truetype'),
-    url('fonts/b2icons.woff?p8ak8e') format('woff'),
-    url('fonts/b2icons.svg?p8ak8e#b2icons') format('svg');
+    url('fonts/b2icons.ttf?7yhq9u') format('truetype'),
+    url('fonts/b2icons.woff?7yhq9u') format('woff'),
+    url('fonts/b2icons.svg?7yhq9u#b2icons') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -24,7 +24,13 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.b2i-Error-Image:before {
+.b2i-plus:before {
+  content: "\e912";
+}
+.b2i-image-gallery:before {
+  content: "\e914";
+}
+.b2i-error-image:before {
   content: "\e906";
 }
 .b2i-billionhands:before {
