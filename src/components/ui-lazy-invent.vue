@@ -75,6 +75,7 @@ export default Vue.extend({
       setTimeout(() => {
         this.loadingImage?.remove()
       }, 10)
+      this.$emit('on-image-loaded', this.$refs.main)
     },
     onImageError(evt: Event) {
       replaceNodeWithErrorImage(evt.currentTarget as HTMLElement)
