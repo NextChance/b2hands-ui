@@ -38,19 +38,16 @@ a {
     padding: 0;
   }
   .story-product-card {
+    max-width: 1208px;
+    margin: 0 auto;
+    overflow-x: hidden;
     .list {
-      display: flex;
-      flex-wrap: wrap;
-      max-width: 1161px;
-      margin: 0 auto;
       .item {
         box-sizing: border-box;
-        max-width: 290px;
-        min-width: 156px;
         /deep/ {
           .ui-product-card {
             &__media {
-              height: 59.58vw;
+              height: 56.91vw;
             }
           }
         }
@@ -60,8 +57,19 @@ a {
           /deep/ {
             .ui-product-card {
               &__media {
-                height: 29.54vw;
+                height: 35.54vw;
                 max-height: 355px;
+              }
+            }
+          }
+        }
+      }
+      @media (min-width: $breakpoint-m) {
+        .item {
+          /deep/ {
+            .ui-product-card {
+              &__media {
+                height: 27.743vw;
               }
             }
           }
@@ -72,7 +80,8 @@ a {
 }
 .story-search-input {
   padding: 1rem;
-  width: 800px;
+  max-width: 800px;
+  width: 100%;
 }
 
 .story-ui-lazy-invent {

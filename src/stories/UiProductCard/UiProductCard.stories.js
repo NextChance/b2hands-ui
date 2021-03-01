@@ -19,7 +19,7 @@ export const productCardBasic = () => ({
   <div class="story-product-card-containers">
     <div class="story-product-card">
       <ul class="list col-container">
-        <li class="item col-6--xs col-3--s">
+        <li class="item col-6--xs col-4--s col-3--m">
           <ui-product-card
             :src="products[0].src"
             :srcSet="products[0].srcSet"
@@ -32,7 +32,7 @@ export const productCardBasic = () => ({
             :final-price="products[0].finalPrice"
             :full-price="products[0].fullPrice"
             :id="products[0].id"
-            @on-click-eye-icon="onClickIcon"
+            @on-click-eye-icon="onClickIcon(products[0].id)"
           />
         </li>
       </ul>
@@ -52,7 +52,7 @@ export const productCardTitleWithTwoLines = () => ({
     <div class="story-product-card-containers">
       <div class="story-product-card">
         <ul class="list col-container">
-          <li class="item col-6--xs col-3--s">
+          <li class="item col-6--xs col-4--s col-3--m">
             <ui-product-card
               :src="products[1].src"
               :alt="products[1].alt"
@@ -64,7 +64,7 @@ export const productCardTitleWithTwoLines = () => ({
               :final-price="products[1].finalPrice"
               :full-price="products[1].fullPrice"
               :id="products[1].id"
-              @on-click-eye-icon="onClickIcon"
+              @on-click-eye-icon="onClickIcon(products[1].id)"
             />
           </li>
         </ul>
@@ -81,10 +81,10 @@ export const productCardNotAvailable = () => ({
     }
   },
   template: `
-    <div class="story-product-card-container">
+    <div class="story-product-card-containers">
       <div class="story-product-card">
         <ul class="list col-container">
-          <li class="item col-6--xs col-3--s">
+          <li class="item col-6--xs col-4--s col-3--m">
             <ui-product-card
               :src="products[2].src"
               :alt="products[2].alt"
@@ -96,7 +96,7 @@ export const productCardNotAvailable = () => ({
               :final-price="products[2].finalPrice"
               :full-price="products[2].fullPrice"
               :id="products[2].id"
-              @on-click-eye-icon="onClickIcon"
+              @on-click-eye-icon="onClickIcon(products[2].id)"
             />
           </li>
         </ul>
@@ -116,7 +116,7 @@ export const productCardWithoutDiscount = () => ({
     <div class="story-product-card-containers">
       <div class="story-product-card">
         <ul class="list col-container">
-          <li class="item col-6--xs col-3--s">
+          <li class="item col-6--xs col-4--s col-3--m">
             <ui-product-card
               :src="products[3].src"
               :alt="products[3].alt"
@@ -128,7 +128,7 @@ export const productCardWithoutDiscount = () => ({
               :final-price="products[3].finalPrice"
               :full-price="products[3].fullPrice"
               :id="products[3].id"
-              @on-click-eye-icon="onClickIcon"
+              @on-click-eye-icon="onClickIcon(products[3].id)"
             />
           </li>
         </ul>
@@ -137,7 +137,7 @@ export const productCardWithoutDiscount = () => ({
   methods: { onClickIcon: action(`(go to image search) id`) }
 })
 
-export const productCardWithoutBrand = () => ({
+export const productCardWithoutBrandAndImageError = () => ({
   components: { UiProductCard },
   data() {
     return {
@@ -148,7 +148,7 @@ export const productCardWithoutBrand = () => ({
     <div class="story-product-card-containers">
       <div class="story-product-card">
         <ul class="list col-container">
-          <li class="item col-6--xs col-3--s">
+          <li class="item col-6--xs col-4--s col-3--m">
             <ui-product-card
               :src="products[4].src"
               :alt="products[4].alt"
@@ -160,7 +160,7 @@ export const productCardWithoutBrand = () => ({
               :final-price="products[4].finalPrice"
               :full-price="products[4].fullPrice"
               :id="products[4].id"
-              @on-click-eye-icon="onClickIcon"
+              @on-click-eye-icon="onClickIcon(products[4].id)"
             />
           </li>
         </ul>
@@ -195,7 +195,7 @@ export const productCardList = () => ({
               :final-price="product.finalPrice"
               :full-price="product.fullPrice"
               :id="product.id"
-              @on-click-eye-icon="onClickIcon"
+              @on-click-eye-icon="onClickIcon(product.id)"
             />
           </li>
         </ul>

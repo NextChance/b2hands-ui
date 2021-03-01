@@ -7,14 +7,12 @@
         class="ui-carousel__thumbnails__item"
       >
         <a :href="`#image-${index}`">
-          <img
+          <ui-lazy-invent
             class="ui-carousel__thumbnails__image"
-            :src="item.src"
-            :src-sets="item.srcSets"
             :alt="`thumbnails-${item.alt}`"
-            :placeholder="placeholderImage"
-            @error="setErrorImage"
-          />
+            :src="item.src"
+            :srcset="item.srcSets"
+          ></ui-lazy-invent>
         </a>
       </li>
     </ul>
@@ -31,24 +29,25 @@
           :key="`carousel-${index}`"
           class="ui-carousel__gallery__item"
         >
-          <img
+          <ui-lazy-invent
             class="ui-carousel__gallery__image"
+            :alt="item.alt"
             :src="item.src"
             :srcset="item.srcSets"
-            :alt="item.alt"
-            @error="setErrorImage"
-          >
+            @on-image-error="onImageError(index)"
+          ></ui-lazy-invent>
           <div
             v-if="extraContent"
             class="ui-carousel__gallery__item__extra-content label-tag"
           >
             <span class="label-tag__content">{{ extraContent }}</span>
           </div>
-          <div class="nav-actions">
+          <div class="nav-actions"
+               ref="image-actions">
             <a
               :href="url"
               class="nav-actions__icons"
-              @click="handleEyeIcon($event)"
+              @click="handleEyeIcon(index)"
             >
               <i class="b2i-eye"></i>
             </a>
@@ -61,6 +60,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import UiLazyInvent from './ui-lazy-invent.vue'
 import { replaceNodeWithErrorImage } from '../tools/errorImage'
 interface ImgItem {
   src: string
@@ -70,6 +70,9 @@ interface ImgItem {
 
 export default Vue.extend({
   name: 'UiCarousel',
+  components: {
+    UiLazyInvent
+  },
   props: {
     items: {
       type: Array,
@@ -93,15 +96,12 @@ export default Vue.extend({
     }
   },
   methods: {
-    handleEyeIcon(ev: Event): void {
-      ev.preventDefault()
-      this.$emit('on-click-eye-icon')
+    handleEyeIcon(imageIndex: number): void {
+      this.$emit('on-click-eye-icon', imageIndex)
     },
 
-    setErrorImage(evt: Event): void {
-      if (evt.currentTarget) {
-        replaceNodeWithErrorImage(evt.currentTarget as HTMLElement)
-      }
+    onImageError(refIndex: number): void {
+      (this.$refs['image-actions'] as HTMLElement[])[refIndex].classList.add('nav-actions--error')
     }
   }
 })
@@ -171,10 +171,11 @@ export default Vue.extend({
 
     &__image {
       height: inherit;
-      object-fit: contain;
       max-width: 100vw;
       min-width: 100%;
       min-height: 100%;
+      object-fit: contain;
+      width: auto;
     }
   }
 

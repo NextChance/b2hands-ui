@@ -6,11 +6,15 @@
         :src="src"
         :srcset="srcset"
         :alt="alt"
+        @on-image-error="onImageError(`nav-actions`)"
       />
       <div v-if="labelText" class="label-tag">
         <span class="label-tag__content">{{ labelText }}</span>
       </div>
-      <div class="nav-actions">
+      <div
+        class="nav-actions"
+        :ref="`nav-actions`"
+      >
         <a
           :href="url"
           class="nav-actions__icons"
@@ -96,6 +100,10 @@ export default Vue.extend({
   methods: {
     handleEyeIcon(ev: Event): void {
       this.$emit('on-click-eye-icon')
+    },
+
+    onImageError(refName: string): void {
+      (this.$refs[refName] as HTMLElement).classList.add('nav-actions--error')
     }
   }
 })

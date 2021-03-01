@@ -60,9 +60,10 @@ export const productsMocks = [
     error: '',
     finalPrice: '65,89€',
     fullPrice: '65,89€',
+    labelText: 'No disponible',
     merchant: 'outlet-textil',
     src:
-      'https://media-esp-buyviu-com.s3.amazonaws.com/products/27bcbc75071ca1c45ee7b4b31a718d1d_image_1.jpg',
+      'https://media-esp-buyviu-com.s3.amazonaws.com/products/!!!.jpg',
     title: 'Caso de producto sin brand',
     url: '',
     id: '5'
