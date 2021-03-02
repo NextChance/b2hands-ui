@@ -54,7 +54,7 @@ export default Vue.extend({
   position: fixed;
   right: 0;
   top: 0;
-  z-index: 999;
+  z-index: map-get($zindex, modal);
 
   &__icon {
     cursor: pointer;
