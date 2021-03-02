@@ -50,7 +50,8 @@ export default Vue.extend({
   color: $black-100;
   bottom: 0;
   left: 0;
-  position: absolute;
+  overflow: hidden;
+  position: fixed;
   right: 0;
   top: 0;
   z-index: 999;
