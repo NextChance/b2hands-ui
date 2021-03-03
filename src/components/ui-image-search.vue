@@ -1,5 +1,5 @@
 <template>
-  <div class="image-search image-search--blend">
+  <div class="image-search">
     <ui-lazy-invent
       :src="image.src"
       :srcset="image.srcset"
@@ -7,7 +7,7 @@
       class="image-search__original"
       @on-image-loaded="onImageLoaded"/>
     <svg
-      v-if="activeBound"
+      v-if="isImageLoaded && activeBound"
       class="image-search__selected-mark"
       :height="imageSize.height"
       :width="imageSize.width"
@@ -15,18 +15,26 @@
       <defs>
         <rect
           id="bound_selected"
-          :x="activeBound.left * imageSize.width"
-          :y="activeBound.top * imageSize.height"
-          :height="activeBound.height * imageSize.height"
-          :width="activeBound.width * imageSize.width"
-          rx="15"/>
-        <mask id="selection">
+          class="image-search__selected-mark__bound"
+          :x="0"
+          :y="0"
+          :height="`${100 * activeBound.height}%`"
+          :width="`${100 * activeBound.width}%`"
+          rx="15"
+          :style="`transform: translate(${100 * activeBound.left}%, ${100 * activeBound.top}%)`"
+        />
+        <mask
+          id="selection"
+        >
           <rect
             height="100%"
             width="100%"
             fill="white"
           />
-          <use xlink:href="#bound_selected" fill="black"></use>
+          <use
+            xlink:href="#bound_selected"
+            fill="black"
+          ></use>
         </mask>
       </defs>
       <rect
@@ -43,7 +51,14 @@
         stroke-width="2"
       ></use>
     </svg>
-    <ol class="image-search__bound-list">
+    <ol
+      v-if="isImageLoaded"
+      class="image-search__bound-list"
+      :style="{
+        height: imageSize.height,
+        width: imageSize.width
+      }"
+    >
       <li
         v-for="(bound, key) in bounds"
         :key="`bound-selector-${key}`"
@@ -54,8 +69,8 @@
           }
         ]"
         :style="{
-          top: `${imageSize.height * bound.top}px`,
-          left: `${imageSize.width * bound.left}px`
+          top: `${100 * (bound.top + (bound.height / 2))}%`,
+          left: `${100 * (bound.left + (bound.width / 2))}%`
         }"
         @click="onSelectBound(bound)"
       >
@@ -66,7 +81,7 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue, { PropType } from 'vue'
 import UiLazyInvent from './ui-lazy-invent.vue'
 import { Image } from '../types/Image'
 import { Bound } from '../types/Bound'
@@ -79,9 +94,11 @@ export default Vue.extend({
   data() {
     return {
       imageSize: {
-        height: 0,
-        width: 0
-      }
+        height: '100%',
+        width: '100%'
+      },
+      isImageLoaded: false,
+      isImageMoreLandscape: false
     }
   },
   props:{
@@ -90,7 +107,7 @@ export default Vue.extend({
       default: null
     },
     bounds: {
-      type: Array,
+      type: Array as PropType<Array<Bound>>,
       default: []
     },
     activeProductReferemce: {
@@ -99,19 +116,23 @@ export default Vue.extend({
     }
   },
   computed: {
-    activeBound () {
-      return this.bounds.find(bound => (bound as Bound).product_search_reference === this.activeProductReferemce)
+    activeBound() {
+      return this.bounds.find((bound: Bound) => bound.product_search_reference === this.activeProductReferemce)
     }
   },
   methods: {
     onSelectBound(bound: Bound): void {
       this.$emit('on-select-bound', bound)
     },
-    onImageLoaded(image: HTMLMediaElement) {
-      console.log('image', image)
+    onImageLoaded(image: HTMLImageElement) {
+      const imageAspectRatio = image.naturalWidth / image.naturalHeight
+      const containerMaxAspectRatio = 0.9
+      const isImageMoreLandscape = imageAspectRatio > containerMaxAspectRatio
+
+      this.isImageLoaded = true
       this.imageSize = {
-        height: image.offsetHeight,
-        width: image.offsetWidth
+        height: isImageMoreLandscape ? '100%' : '90vw',
+        width: isImageMoreLandscape ? '100%' : `${90 * imageAspectRatio}vw`
       }
     }
   }
@@ -123,21 +144,45 @@ export default Vue.extend({
   $imageSearch: &;
 
   position: relative;
+  height: 100%;
   width: 100%;
 
+  &--landscape {
+    height: auto;
+    width: 100%;
+  }
+
   &__selected-mark {
-    position: absolute;
+    bottom: 0;
     left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
     top: 0;
 
     &__veil {
       opacity: 0.4;
     }
+
+    &__bound {
+      transition: transform .3s, height .3s, width .3s;
+    }
   }
 
   &__original {
     display: block;
+    height: 100%;
+    object-fit: contain;
     width: 100%;
+  }
+
+  &__bound-list {
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
   }
 
   &__bound {
@@ -148,15 +193,39 @@ export default Vue.extend({
     color: $white;
     cursor: pointer;
     display: flex;
+    height: $spacing-size-7;
     justify-content: center;
     font-size: $font-size-3;
+    margin-top: -1 * $spacing-size-7 /2;
+    margin-left: -1 * $spacing-size-7 /2;
     position: absolute;
-    height: $spacing-size-7;
+    transition: transform 0.2s;
+    transform: scale(1);
+    transform-origin: center;
     width: $spacing-size-7;
     z-index: 1;
 
     &--selected {
-      display: none;
+      transform: scale(0);
+    }
+  }
+
+  /deep/ .placeholder-image {
+    height: 100%;
+
+    svg {
+      height: 100%;
+      object-fit: contain;
+      width: 100%;
+    }
+  }
+
+
+  @media (min-width: $breakpoint-s) {
+    &__selected-mark,
+    &__bound-list {
+      height: 100% !important;
+      width: 100% !important;
     }
   }
 }

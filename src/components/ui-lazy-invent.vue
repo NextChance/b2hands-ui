@@ -1,13 +1,18 @@
 <template>
   <div v-if="isHidden"
        ref="visibilityPlaceholder"
+       class="placeholder-image placeholder-image--loading"
        v-observe-visibility="{
       callback: onVisibilityChanged,
       intersection: {
         rootMargin: '30%'
       },
       once: true
-    }"></div>
+    }">
+      <svg viewBox="0 0 9 11">
+        <rect height="100%" width="100%" x="0" y="0" fill="#F7F7F7"></rect>
+      </svg>
+  </div>
   <img
     v-else
     ref="main"
@@ -67,6 +72,8 @@ export default Vue.extend({
     onVisibilityChanged(isVisible: boolean): void {
       if (isVisible) {
         this.isHidden = false
+        this.loadingImage = addSiblingNodeWithLoadingImage(this.$refs.visibilityPlaceholder as HTMLElement)
+        this.loadingImage?.classList.add('lazy-image__loading')
       }
     },
     onImageLoaded(): void {
@@ -82,10 +89,6 @@ export default Vue.extend({
       this.loadingImage?.remove()
       this.$emit('on-image-error')
     }
-  },
-  mounted() {
-    this.loadingImage = addSiblingNodeWithLoadingImage(this.$refs.visibilityPlaceholder as HTMLElement)
-    this.loadingImage?.classList.add('lazy-image__loading')
   }
 })
 </script>
