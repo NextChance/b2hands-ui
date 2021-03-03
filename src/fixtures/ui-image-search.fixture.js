@@ -1,0 +1,67 @@
+export const ImageWithBoundsUnselected = {
+  image: {
+    src: 'https://deelay.me/3000/https://thumbnails-dev.nc43tech.com/eyJpbWFnZV91cmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2NoYXRtZS1tZWRpYS9kZXZlbG9wbWVudC91c2Vycy9kOTBlZjNkMS0wMmIwLTQwMjItODc0Zi1hOGVhMmE5NGUzMjQvcHJvZHVjdHMvNTZhOTcyMTUtMGYwYy00M2VmLWJlZjktZjA2Y2NhMGFjOWY5LzFlYjA0NzRmLTU2ZWEtNGY2Ni1iNzE4LTNhYTI2NjI1MjA3My5wbmciLCJmb3JtYXQiOiJ3ZWJwIiwid2lkdGgiOjE2MH0=',
+    srcset: 'https://deelay.me/3000/https://thumbnails-dev.nc43tech.com/eyJpbWFnZV91cmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2NoYXRtZS1tZWRpYS9kZXZlbG9wbWVudC91c2Vycy9kOTBlZjNkMS0wMmIwLTQwMjItODc0Zi1hOGVhMmE5NGUzMjQvcHJvZHVjdHMvNTZhOTcyMTUtMGYwYy00M2VmLWJlZjktZjA2Y2NhMGFjOWY5LzFlYjA0NzRmLTU2ZWEtNGY2Ni1iNzE4LTNhYTI2NjI1MjA3My5wbmciLCJmb3JtYXQiOiJ3ZWJwIiwid2lkdGgiOjE2MH0= 160w, https://deelay.me/3000/https://thumbnails-dev.nc43tech.com/eyJpbWFnZV91cmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2NoYXRtZS1tZWRpYS9kZXZlbG9wbWVudC91c2Vycy9kOTBlZjNkMS0wMmIwLTQwMjItODc0Zi1hOGVhMmE5NGUzMjQvcHJvZHVjdHMvNTZhOTcyMTUtMGYwYy00M2VmLWJlZjktZjA2Y2NhMGFjOWY5LzFlYjA0NzRmLTU2ZWEtNGY2Ni1iNzE4LTNhYTI2NjI1MjA3My5wbmciLCJmb3JtYXQiOiJ3ZWJwIiwid2lkdGgiOjMyMH0= 320w, https://deelay.me/3000/https://thumbnails-dev.nc43tech.com/eyJpbWFnZV91cmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2NoYXRtZS1tZWRpYS9kZXZlbG9wbWVudC91c2Vycy9kOTBlZjNkMS0wMmIwLTQwMjItODc0Zi1hOGVhMmE5NGUzMjQvcHJvZHVjdHMvNTZhOTcyMTUtMGYwYy00M2VmLWJlZjktZjA2Y2NhMGFjOWY5LzFlYjA0NzRmLTU2ZWEtNGY2Ni1iNzE4LTNhYTI2NjI1MjA3My5wbmciLCJmb3JtYXQiOiJ3ZWJwIiwid2lkdGgiOjQ4MH0= 480w, https://deelay.me/3000/https://thumbnails-dev.nc43tech.com/eyJpbWFnZV91cmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2NoYXRtZS1tZWRpYS9kZXZlbG9wbWVudC91c2Vycy9kOTBlZjNkMS0wMmIwLTQwMjItODc0Zi1hOGVhMmE5NGUzMjQvcHJvZHVjdHMvNTZhOTcyMTUtMGYwYy00M2VmLWJlZjktZjA2Y2NhMGFjOWY5LzFlYjA0NzRmLTU2ZWEtNGY2Ni1iNzE4LTNhYTI2NjI1MjA3My5wbmciLCJmb3JtYXQiOiJ3ZWJwIiwid2lkdGgiOjY0MH0= 640w, https://deelay.me/3000/https://thumbnails-dev.nc43tech.com/eyJpbWFnZV91cmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2NoYXRtZS1tZWRpYS9kZXZlbG9wbWVudC91c2Vycy9kOTBlZjNkMS0wMmIwLTQwMjItODc0Zi1hOGVhMmE5NGUzMjQvcHJvZHVjdHMvNTZhOTcyMTUtMGYwYy00M2VmLWJlZjktZjA2Y2NhMGFjOWY5LzFlYjA0NzRmLTU2ZWEtNGY2Ni1iNzE4LTNhYTI2NjI1MjA3My5wbmciLCJmb3JtYXQiOiJ3ZWJwIiwid2lkdGgiOjk2MH0= 960w, https://deelay.me/3000/https://thumbnails-dev.nc43tech.com/eyJpbWFnZV91cmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2NoYXRtZS1tZWRpYS9kZXZlbG9wbWVudC91c2Vycy9kOTBlZjNkMS0wMmIwLTQwMjItODc0Zi1hOGVhMmE5NGUzMjQvcHJvZHVjdHMvNTZhOTcyMTUtMGYwYy00M2VmLWJlZjktZjA2Y2NhMGFjOWY5LzFlYjA0NzRmLTU2ZWEtNGY2Ni1iNzE4LTNhYTI2NjI1MjA3My5wbmciLCJmb3JtYXQiOiJ3ZWJwIiwid2lkdGgiOjE0NDB9 1440w',
+    alt: 'mock image'
+  },
+  bounds: [{
+    height: 0.33,
+    width: 0.4,
+    top: 0.05,
+    left: 0.22,
+    product_search_reference: 'bound-1'
+  }, {
+    height: 0.6,
+    width: 0.24,
+    top: 0.2,
+    left: 0.7,
+    product_search_reference: 'bound-2'
+  }, {
+    height: 0.2,
+    width: 0.54,
+    top: 0.75,
+    left: 0.3,
+    product_search_reference: 'bound-3'
+  }
+  ],
+  activeProductReferemce: ''
+}
+
+export const ImageWithBoundsPreselected = {
+  image: {
+    src: 'https://deelay.me/3000/https://thumbnails-dev.nc43tech.com/eyJpbWFnZV91cmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2NoYXRtZS1tZWRpYS9kZXZlbG9wbWVudC91c2Vycy9kOTBlZjNkMS0wMmIwLTQwMjItODc0Zi1hOGVhMmE5NGUzMjQvcHJvZHVjdHMvNTZhOTcyMTUtMGYwYy00M2VmLWJlZjktZjA2Y2NhMGFjOWY5LzFlYjA0NzRmLTU2ZWEtNGY2Ni1iNzE4LTNhYTI2NjI1MjA3My5wbmciLCJmb3JtYXQiOiJ3ZWJwIiwid2lkdGgiOjE2MH0=',
+    srcset: 'https://deelay.me/3000/https://thumbnails-dev.nc43tech.com/eyJpbWFnZV91cmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2NoYXRtZS1tZWRpYS9kZXZlbG9wbWVudC91c2Vycy9kOTBlZjNkMS0wMmIwLTQwMjItODc0Zi1hOGVhMmE5NGUzMjQvcHJvZHVjdHMvNTZhOTcyMTUtMGYwYy00M2VmLWJlZjktZjA2Y2NhMGFjOWY5LzFlYjA0NzRmLTU2ZWEtNGY2Ni1iNzE4LTNhYTI2NjI1MjA3My5wbmciLCJmb3JtYXQiOiJ3ZWJwIiwid2lkdGgiOjE2MH0= 160w, https://deelay.me/3000/https://thumbnails-dev.nc43tech.com/eyJpbWFnZV91cmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2NoYXRtZS1tZWRpYS9kZXZlbG9wbWVudC91c2Vycy9kOTBlZjNkMS0wMmIwLTQwMjItODc0Zi1hOGVhMmE5NGUzMjQvcHJvZHVjdHMvNTZhOTcyMTUtMGYwYy00M2VmLWJlZjktZjA2Y2NhMGFjOWY5LzFlYjA0NzRmLTU2ZWEtNGY2Ni1iNzE4LTNhYTI2NjI1MjA3My5wbmciLCJmb3JtYXQiOiJ3ZWJwIiwid2lkdGgiOjMyMH0= 320w, https://deelay.me/3000/https://thumbnails-dev.nc43tech.com/eyJpbWFnZV91cmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2NoYXRtZS1tZWRpYS9kZXZlbG9wbWVudC91c2Vycy9kOTBlZjNkMS0wMmIwLTQwMjItODc0Zi1hOGVhMmE5NGUzMjQvcHJvZHVjdHMvNTZhOTcyMTUtMGYwYy00M2VmLWJlZjktZjA2Y2NhMGFjOWY5LzFlYjA0NzRmLTU2ZWEtNGY2Ni1iNzE4LTNhYTI2NjI1MjA3My5wbmciLCJmb3JtYXQiOiJ3ZWJwIiwid2lkdGgiOjQ4MH0= 480w, https://deelay.me/3000/https://thumbnails-dev.nc43tech.com/eyJpbWFnZV91cmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2NoYXRtZS1tZWRpYS9kZXZlbG9wbWVudC91c2Vycy9kOTBlZjNkMS0wMmIwLTQwMjItODc0Zi1hOGVhMmE5NGUzMjQvcHJvZHVjdHMvNTZhOTcyMTUtMGYwYy00M2VmLWJlZjktZjA2Y2NhMGFjOWY5LzFlYjA0NzRmLTU2ZWEtNGY2Ni1iNzE4LTNhYTI2NjI1MjA3My5wbmciLCJmb3JtYXQiOiJ3ZWJwIiwid2lkdGgiOjY0MH0= 640w, https://deelay.me/3000/https://thumbnails-dev.nc43tech.com/eyJpbWFnZV91cmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2NoYXRtZS1tZWRpYS9kZXZlbG9wbWVudC91c2Vycy9kOTBlZjNkMS0wMmIwLTQwMjItODc0Zi1hOGVhMmE5NGUzMjQvcHJvZHVjdHMvNTZhOTcyMTUtMGYwYy00M2VmLWJlZjktZjA2Y2NhMGFjOWY5LzFlYjA0NzRmLTU2ZWEtNGY2Ni1iNzE4LTNhYTI2NjI1MjA3My5wbmciLCJmb3JtYXQiOiJ3ZWJwIiwid2lkdGgiOjk2MH0= 960w, https://deelay.me/3000/https://thumbnails-dev.nc43tech.com/eyJpbWFnZV91cmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2NoYXRtZS1tZWRpYS9kZXZlbG9wbWVudC91c2Vycy9kOTBlZjNkMS0wMmIwLTQwMjItODc0Zi1hOGVhMmE5NGUzMjQvcHJvZHVjdHMvNTZhOTcyMTUtMGYwYy00M2VmLWJlZjktZjA2Y2NhMGFjOWY5LzFlYjA0NzRmLTU2ZWEtNGY2Ni1iNzE4LTNhYTI2NjI1MjA3My5wbmciLCJmb3JtYXQiOiJ3ZWJwIiwid2lkdGgiOjE0NDB9 1440w',
+    alt: 'mock image'
+  },
+  bounds: [{
+    height: 0.33,
+    width: 0.4,
+    top: 0.05,
+    left: 0.22,
+    product_search_reference: 'bound-1'
+  }, {
+    height: 0.6,
+    width: 0.24,
+    top: 0.2,
+    left: 0.7,
+    product_search_reference: 'bound-2'
+  }, {
+    height: 0.2,
+    width: 0.54,
+    top: 0.75,
+    left: 0.3,
+    product_search_reference: 'bound-3'
+  }
+  ],
+  activeProductReferemce: 'bound-2'
+}
+
+export const ImageWithoutBounds = {
+  image: {
+    src: 'https://deelay.me/3000/https://thumbnails-dev.nc43tech.com/eyJpbWFnZV91cmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2NoYXRtZS1tZWRpYS9kZXZlbG9wbWVudC91c2Vycy9kOTBlZjNkMS0wMmIwLTQwMjItODc0Zi1hOGVhMmE5NGUzMjQvcHJvZHVjdHMvNTZhOTcyMTUtMGYwYy00M2VmLWJlZjktZjA2Y2NhMGFjOWY5LzFlYjA0NzRmLTU2ZWEtNGY2Ni1iNzE4LTNhYTI2NjI1MjA3My5wbmciLCJmb3JtYXQiOiJ3ZWJwIiwid2lkdGgiOjE2MH0=',
+    srcset: 'https://deelay.me/3000/https://thumbnails-dev.nc43tech.com/eyJpbWFnZV91cmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2NoYXRtZS1tZWRpYS9kZXZlbG9wbWVudC91c2Vycy9kOTBlZjNkMS0wMmIwLTQwMjItODc0Zi1hOGVhMmE5NGUzMjQvcHJvZHVjdHMvNTZhOTcyMTUtMGYwYy00M2VmLWJlZjktZjA2Y2NhMGFjOWY5LzFlYjA0NzRmLTU2ZWEtNGY2Ni1iNzE4LTNhYTI2NjI1MjA3My5wbmciLCJmb3JtYXQiOiJ3ZWJwIiwid2lkdGgiOjE2MH0= 160w, https://deelay.me/3000/https://thumbnails-dev.nc43tech.com/eyJpbWFnZV91cmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2NoYXRtZS1tZWRpYS9kZXZlbG9wbWVudC91c2Vycy9kOTBlZjNkMS0wMmIwLTQwMjItODc0Zi1hOGVhMmE5NGUzMjQvcHJvZHVjdHMvNTZhOTcyMTUtMGYwYy00M2VmLWJlZjktZjA2Y2NhMGFjOWY5LzFlYjA0NzRmLTU2ZWEtNGY2Ni1iNzE4LTNhYTI2NjI1MjA3My5wbmciLCJmb3JtYXQiOiJ3ZWJwIiwid2lkdGgiOjMyMH0= 320w, https://deelay.me/3000/https://thumbnails-dev.nc43tech.com/eyJpbWFnZV91cmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2NoYXRtZS1tZWRpYS9kZXZlbG9wbWVudC91c2Vycy9kOTBlZjNkMS0wMmIwLTQwMjItODc0Zi1hOGVhMmE5NGUzMjQvcHJvZHVjdHMvNTZhOTcyMTUtMGYwYy00M2VmLWJlZjktZjA2Y2NhMGFjOWY5LzFlYjA0NzRmLTU2ZWEtNGY2Ni1iNzE4LTNhYTI2NjI1MjA3My5wbmciLCJmb3JtYXQiOiJ3ZWJwIiwid2lkdGgiOjQ4MH0= 480w, https://deelay.me/3000/https://thumbnails-dev.nc43tech.com/eyJpbWFnZV91cmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2NoYXRtZS1tZWRpYS9kZXZlbG9wbWVudC91c2Vycy9kOTBlZjNkMS0wMmIwLTQwMjItODc0Zi1hOGVhMmE5NGUzMjQvcHJvZHVjdHMvNTZhOTcyMTUtMGYwYy00M2VmLWJlZjktZjA2Y2NhMGFjOWY5LzFlYjA0NzRmLTU2ZWEtNGY2Ni1iNzE4LTNhYTI2NjI1MjA3My5wbmciLCJmb3JtYXQiOiJ3ZWJwIiwid2lkdGgiOjY0MH0= 640w, https://deelay.me/3000/https://thumbnails-dev.nc43tech.com/eyJpbWFnZV91cmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2NoYXRtZS1tZWRpYS9kZXZlbG9wbWVudC91c2Vycy9kOTBlZjNkMS0wMmIwLTQwMjItODc0Zi1hOGVhMmE5NGUzMjQvcHJvZHVjdHMvNTZhOTcyMTUtMGYwYy00M2VmLWJlZjktZjA2Y2NhMGFjOWY5LzFlYjA0NzRmLTU2ZWEtNGY2Ni1iNzE4LTNhYTI2NjI1MjA3My5wbmciLCJmb3JtYXQiOiJ3ZWJwIiwid2lkdGgiOjk2MH0= 960w, https://deelay.me/3000/https://thumbnails-dev.nc43tech.com/eyJpbWFnZV91cmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2NoYXRtZS1tZWRpYS9kZXZlbG9wbWVudC91c2Vycy9kOTBlZjNkMS0wMmIwLTQwMjItODc0Zi1hOGVhMmE5NGUzMjQvcHJvZHVjdHMvNTZhOTcyMTUtMGYwYy00M2VmLWJlZjktZjA2Y2NhMGFjOWY5LzFlYjA0NzRmLTU2ZWEtNGY2Ni1iNzE4LTNhYTI2NjI1MjA3My5wbmciLCJmb3JtYXQiOiJ3ZWJwIiwid2lkdGgiOjE0NDB9 1440w',
+    alt: 'mock image'
+  },
+  bounds: [],
+  activeProductReferemce: ''
+}
