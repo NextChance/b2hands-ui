@@ -11,14 +11,16 @@ const mockRemoveNode = jest.fn()
 
 const localVue = createLocalVue()
 
+const mockLoadingImage = {
+  remove: mockRemoveNode,
+  classList: mockClasList
+}
+
 localVue.directive('observe-visibility', () => {  })
 
 jest.mock('@/src/tools/errorImage', () => {
   return {
-    addSiblingNodeWithLoadingImage: jest.fn(() => ({
-      remove: mockRemoveNode,
-      classList: mockClasList
-    })),
+    addSiblingNodeWithLoadingImage: jest.fn(() => mockLoadingImage),
     replaceNodeWithErrorImage: jest.fn()
   }
 })
@@ -37,14 +39,6 @@ describe('UiLazyInvent', () => {
     it('is a Vue instance', () => {
       expect(wrapper.vm).toBeTruthy()
     })
-
-    it('shouled call addSiblingNodeWithLoadingImage', () => {
-      expect(addSiblingNodeWithLoadingImage).toBeCalled()
-    })
-
-    it('shouled set class lazy-image__loading to loading image', () => {
-      expect(mockClasList.add).toBeCalledWith('lazy-image__loading')
-    })
   })
 
   describe('methods', () => {
@@ -56,6 +50,14 @@ describe('UiLazyInvent', () => {
         it('should set isHidden to true', () => {
           wrapper.vm.onVisibilityChanged(true)
           expect(wrapper.vm.isHidden).toBeFalsy()
+        })
+
+        it('shouled call addSiblingNodeWithLoadingImage', () => {
+          expect(addSiblingNodeWithLoadingImage).toBeCalled()
+        })
+
+        it('shouled set class lazy-image__loading to loading image', () => {
+          expect(mockClasList.add).toBeCalledWith('lazy-image__loading')
         })
       })
 
@@ -71,6 +73,7 @@ describe('UiLazyInvent', () => {
       describe('When the function is called', () => {
         beforeEach(() => {
           wrapper = shallowMount(UiLazyInvent, componentConfig())
+          wrapper.vm.loadingImage = mockLoadingImage
           wrapper.vm.onImageLoaded()
         })
 
@@ -101,6 +104,7 @@ describe('UiLazyInvent', () => {
 
         beforeEach(() => {
           wrapper = shallowMount(UiLazyInvent, componentConfig())
+          wrapper.vm.loadingImage = mockLoadingImage
           wrapper.vm.onImageError(mockEvt)
         })
 

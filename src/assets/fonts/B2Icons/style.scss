@@ -25,6 +25,16 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.b2i-plus {
+  &:before {
+    content: $b2i-plus;
+  }
+}
+.b2i-image-gallery {
+  &:before {
+    content: $b2i-image-gallery;
+  }
+}
 .b2i-error-image {
   &:before {
     content: $b2i-error-image;
