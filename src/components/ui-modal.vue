@@ -58,9 +58,9 @@ export default Vue.extend({
 
   &__icon {
     cursor: pointer;
-    left: $spacing-size-4;
+    left: $spacing-size-6;
     position: absolute;
-    top: $spacing-size-4;
+    top: $spacing-size-6;
     &:before {
       content: "\e90d";
     }
