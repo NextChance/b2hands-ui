@@ -3,20 +3,20 @@
     <div class="ui-product-card__media">
       <ui-lazy-invent
         class="ui-product-card__media__image-container"
-        :src="src"
-        :srcset="srcset"
-        :alt="alt"
+        :src="product.src"
+        :srcset="product.srcset"
+        :alt="product.alt"
         @on-image-error="onImageError(`nav-actions`)"
       />
-      <div v-if="labelText" class="label-tag">
-        <span class="label-tag__content">{{ labelText }}</span>
+      <div v-if="product.labelText" class="label-tag">
+        <span class="label-tag__content">{{ product.labelText }}</span>
       </div>
       <div
         class="nav-actions"
         :ref="`nav-actions`"
       >
         <a
-          :href="url"
+          :href="product.url"
           class="nav-actions__icons"
           @click.prevent.stop="handleEyeIcon($event)"
         >
@@ -26,75 +26,33 @@
     </div>
     <div class="ui-product-card__info">
       <div class="ui-product-card__info__title">
-        {{ title }}
+        {{ product.title }}
       </div>
       <div class="ui-product-card__info__complementary">
-        <span class="merchant">{{ merchant }}</span>
-        <span v-if="brand" class="brand">{{ brand }} </span>
+        <span class="merchant">{{ product.merchant }}</span>
+        <span v-if="product.brand" class="brand">{{ product.brand }} </span>
       </div>
       <div class="ui-product-card__info__complementary">
-        <span v-if="fullPrice" class="full-price">{{ fullPrice }}</span>
-        <span class="final-price">{{ finalPrice }}</span>
+        <span v-if="product.fullPrice" class="full-price">{{ product.fullPrice }}</span>
+        <span class="final-price">{{ product.finalPrice }}</span>
       </div>
     </div>
   </div>
 </template>
 <script lang="ts">
-import Vue from 'vue'
+import Vue, { PropType } from 'vue'
 import UiLazyInvent from './ui-lazy-invent.vue'
+import { Product } from '../types/Product'
+
 export default Vue.extend({
   name: 'UiProductCard',
   components: {
     UiLazyInvent
   },
   props: {
-    src: {
-      type: String,
-      default: ''
-    },
-    srcset: {
-      type: String,
-      default: ''
-    },
-    alt: {
-      type: String,
-      default: ''
-    },
-    placeholderImage: {
-      type: String,
-      default: ''
-    },
-    errorImage: {
-      type: String,
-      default: ''
-    },
-    url: {
-      type: String,
-      default: ''
-    },
-    labelText: {
-      type: String,
-      default: ''
-    },
-    title: {
-      type: String,
-      default: ''
-    },
-    brand: {
-      type: String,
-      default: ''
-    },
-    merchant: {
-      type: String,
-      default: ''
-    },
-    finalPrice: {
-      type: String,
-      default: ''
-    },
-    fullPrice: {
-      type: String,
-      default: ''
+    product: {
+      type: Object as PropType<Product>,
+      default: {}
     }
   },
   methods: {
