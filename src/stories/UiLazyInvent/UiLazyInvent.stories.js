@@ -4,7 +4,6 @@ import {
   mockImageProps,
   mockErrorImageProps
 } from '~/fixtures/ui-lazy-invent.fixture.js'
-import { itemsMock } from '~/fixtures/ui-carousel.fixture'
 
 export default {
   title: 'UI-Lazy-Invent',
