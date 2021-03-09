@@ -65,7 +65,7 @@
         :class="[
           'image-search__bound',
           {
-            'image-search__bound--selected': activeProductReferemce === bound.product_search_reference
+            'image-search__bound--selected': activeProductReference === bound.product_search_reference
           }
         ]"
         :style="{
@@ -110,14 +110,14 @@ export default Vue.extend({
       type: Array as PropType<Array<Bound>>,
       default: []
     },
-    activeProductReferemce: {
+    activeProductReference: {
       type: String,
       default: ''
     }
   },
   computed: {
     activeBound() {
-      return this.bounds.find((bound: Bound) => bound.product_search_reference === this.activeProductReferemce)
+      return this.bounds.find((bound: Bound) => bound.product_search_reference === this.activeProductReference)
     }
   },
   methods: {

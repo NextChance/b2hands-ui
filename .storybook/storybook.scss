@@ -87,3 +87,16 @@ a {
 .story-ui-lazy-invent {
   width: 200px;
 }
+
+.story-ui-image-search {
+  $width: 350px;
+  max-width: $width;
+  max-height: .9 * $width;
+
+  .image-search,
+  .image-search__bound-list,
+  .image-search__selected-mark{
+    width: $width !important;
+    height: .9 * $width !important;
+  }
+}
