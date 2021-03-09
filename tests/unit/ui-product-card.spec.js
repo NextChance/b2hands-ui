@@ -5,16 +5,7 @@ import { productsMocks } from '@/src/fixtures/ui-product-card.fixture'
 describe('UiProductCard', () => {
   const componentConfig = {
     propsData: {
-      src: productsMocks[0].src,
-      alt: productsMocks[0].alt,
-      url: productsMocks[0].url,
-      labelText: productsMocks[0].labelText,
-      title: productsMocks[0].title,
-      brand: productsMocks[0].brand,
-      merchant: productsMocks[0].merchant,
-      finalPrice: productsMocks[0].finalPrice,
-      fullPrice: productsMocks[0].fullPrice,
-      id: productsMocks[0].id
+      product: productsMocks[0]
     }
   }
   describe('rendering', () => {
@@ -29,7 +20,7 @@ describe('UiProductCard', () => {
 
   describe('Methods', () => {
     let wrapper
-    const event = { preventDefault: jest.fn()  }
+    const event = { preventDefault: jest.fn() }
     describe('handleEyeIcon', () => {
       beforeEach(() => {
         wrapper = shallowMount(UiProductCard, componentConfig)

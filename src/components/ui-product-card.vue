@@ -1,22 +1,27 @@
 <template>
-  <div class="ui-product-card">
+  <div
+    class="ui-product-card"
+    :class="{ 'ui-product-card--skeleton': !product }"
+  >
     <div class="ui-product-card__media">
       <ui-lazy-invent
         class="ui-product-card__media__image-container"
-        :src="product.src"
-        :srcset="product.srcset"
-        :alt="product.alt"
+        :src="firstImage.src"
+        :srcset="firstImage.srcSets"
+        :alt="firstImage.alt"
         @on-image-error="onImageError(`nav-actions`)"
       />
-      <div v-if="product.labelText" class="label-tag">
-        <span class="label-tag__content">{{ product.labelText }}</span>
-      </div>
       <div
-        class="nav-actions"
-        :ref="`nav-actions`"
+        v-if="labelText || (product && product.discountPercentage > 0)"
+        class="label-tag"
       >
+        <span class="label-tag__content">
+          {{ labelText || discountPercentage }}
+        </span>
+      </div>
+      <div :ref="`nav-actions`" class="nav-actions">
         <a
-          :href="product.url"
+          :href="product && product.url"
           class="nav-actions__icons"
           @click.prevent.stop="handleEyeIcon($event)"
         >
@@ -26,22 +31,28 @@
     </div>
     <div class="ui-product-card__info">
       <div class="ui-product-card__info__title">
-        {{ product.title }}
+        {{ product && product.name }}
       </div>
       <div class="ui-product-card__info__complementary">
-        <span class="merchant">{{ product.merchant }}</span>
-        <span v-if="product.brand" class="brand">{{ product.brand }} </span>
+        <span class="merchant">{{ product && product.merchantName }}</span>
+        <span v-if="product && product.brand" class="brand">
+          {{ product.brand }}
+        </span>
       </div>
       <div class="ui-product-card__info__complementary">
-        <span v-if="product.fullPrice" class="full-price">{{ product.fullPrice }}</span>
-        <span class="final-price">{{ product.finalPrice }}</span>
+        <span v-if="product && product.fullPrice" class="full-price">
+          {{ product.fullPrice }}
+        </span>
+        <span class="final-price">{{ product && product.salePrice }}</span>
       </div>
     </div>
   </div>
 </template>
 <script lang="ts">
-import Vue, { PropType } from 'vue'
+import Vue from 'vue'
 import UiLazyInvent from './ui-lazy-invent.vue'
+import Image from '../types/Image'
+import AnyObject from '../types/AnyObject'
 import { Product } from '../types/Product'
 
 export default Vue.extend({
@@ -51,8 +62,24 @@ export default Vue.extend({
   },
   props: {
     product: {
-      type: Object as PropType<Product>,
+      type: Product,
       default: {}
+    },
+    labelText: {
+      type: String,
+      default: ''
+    }
+  },
+  computed: {
+    firstImage(): Image | AnyObject {
+      return (
+        (this.product && this.product.images && this.product.images[0]) || {}
+      )
+    },
+    discountPercentage(): string {
+      return this.product
+        ? `${(this.product.discountPercentage * 100).toFixed(0)}%`
+        : ''
     }
   },
   methods: {
@@ -61,13 +88,26 @@ export default Vue.extend({
     },
 
     onImageError(refName: string): void {
-      (this.$refs[refName] as HTMLElement).classList.add('nav-actions--error')
+      const element = this.$refs[refName] as HTMLElement
+      element.classList.add('nav-actions--error')
     }
   }
 })
 </script>
 <style lang="scss" scoped>
+@mixin text-skeleton {
+  &:before {
+    background: $black-10;
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
 .ui-product-card {
+  $uiProductCard: &;
   width: 100%;
 
   &__media {
@@ -79,17 +119,15 @@ export default Vue.extend({
     overflow: hidden;
     position: relative;
     width: 100%;
-    &__image-container {
-    }
   }
   &__info {
     padding: $spacing-size-2;
 
     &__title {
-      color: $content-1;
-      height: $spacing-size-7;
       @include body('s');
       @include ellipsis(2);
+      color: $content-1;
+      height: $spacing-size-7;
     }
 
     &__complementary {
@@ -107,6 +145,32 @@ export default Vue.extend({
       .final-price {
         @include headers('s');
         color: $content-1;
+      }
+    }
+  }
+  &--skeleton {
+    #{$uiProductCard}__media {
+      @include affrodance-velo-reset;
+      @include text-skeleton;
+    }
+    .nav-actions {
+      display: none;
+    }
+    #{$uiProductCard}__info {
+      &__title {
+        @include text-skeleton;
+        margin-bottom: $spacing-size-2;
+        position: relative;
+      }
+      &__complementary {
+        @include text-skeleton;
+        margin-bottom: $spacing-size-2;
+        height: $spacing-size-3;
+        position: relative;
+        width: 72px;
+        &:last-child {
+          width: 48px;
+        }
       }
     }
   }

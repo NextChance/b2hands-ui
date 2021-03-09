@@ -68,6 +68,7 @@ export const productCardNotAvailable = () => ({
           <li class="item col-6--xs col-4--s col-3--m">
             <ui-product-card
               :product="products[2]"
+              label-text="Producto no disponible"
               @on-click-eye-icon="onClickIcon(products[2].id)"
             />
           </li>
@@ -120,7 +121,7 @@ export const productCardWithoutBrandAndImageError = () => ({
         </ul>
       </div>
     </div>`,
-    methods: { onClickIcon: action(`(go to image search) id`) }
+  methods: { onClickIcon: action(`(go to image search) id`) }
 })
 
 export const productCardList = () => ({
@@ -128,6 +129,32 @@ export const productCardList = () => ({
   data() {
     return {
       products: productsMocks
+    }
+  },
+  template: `
+    <div class="story-product-card-containers story-product-card-containers--list">
+      <div class="story-product-card">
+        <ul class="list col-container">
+          <li
+            v-for="(product, index) in (products.length ? products : Array(6).fill({}))"
+            :key=index
+            class="item col-6--xs col-3--s">
+            <ui-product-card
+              :product="product"
+              @on-click-eye-icon="onClickIcon(product.id)"
+            />
+          </li>
+        </ul>
+      </div>
+    </div>`,
+  methods: { onClickIcon: action(`(go to image search) id`) }
+})
+
+export const productCardListSkeleton = () => ({
+  components: { UiProductCard },
+  data() {
+    return {
+      products: Array(6).fill(null)
     }
   },
   template: `
