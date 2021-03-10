@@ -95,17 +95,7 @@ export default Vue.extend({
 })
 </script>
 <style lang="scss" scoped>
-@mixin text-skeleton {
-  &:before {
-    background: $black-10;
-    bottom: 0;
-    content: '';
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-  }
-}
+
 .ui-product-card {
   $uiProductCard: &;
   width: 100%;
@@ -159,14 +149,10 @@ export default Vue.extend({
     #{$uiProductCard}__info {
       &__title {
         @include text-skeleton;
-        margin-bottom: $spacing-size-2;
-        position: relative;
       }
       &__complementary {
         @include text-skeleton;
-        margin-bottom: $spacing-size-2;
         height: $spacing-size-3;
-        position: relative;
         width: 72px;
         &:last-child {
           width: 48px;
