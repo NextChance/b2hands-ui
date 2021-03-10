@@ -14,7 +14,7 @@
       </svg>
   </div>
   <img
-    v-else
+    v-else-if="src && srcset"
     ref="main"
     :src="src"
     :srcset="srcset"
