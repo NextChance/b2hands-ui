@@ -83,8 +83,8 @@
 <script lang="ts">
 import Vue, { PropType } from 'vue'
 import UiLazyInvent from './ui-lazy-invent.vue'
-import { Image } from '../types/Image'
-import { Bound } from '../types/Bound'
+import Image from '../types/Image'
+import Bound from '../types/Bound'
 
 export default Vue.extend({
   name: 'ui-image-search',

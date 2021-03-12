@@ -1,0 +1,13 @@
+@mixin text-skeleton {
+  margin-bottom: $spacing-size-2;
+  position: relative;
+  &:before {
+    background: $black-10;
+    bottom: 0;
+    content: '';
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
