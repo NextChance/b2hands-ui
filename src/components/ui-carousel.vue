@@ -80,7 +80,7 @@ export default Vue.extend({
     },
     extraContent: {
       type: String,
-      default: '20%'
+      default: ''
     },
     url: {
       type: String,

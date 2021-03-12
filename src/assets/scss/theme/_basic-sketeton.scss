@@ -1,13 +1,25 @@
 @mixin text-skeleton {
+  background: $black-10;
+  $color-highlight: lighten($black-10, 3%);
   margin-bottom: $spacing-size-2;
+  overflow: hidden;
   position: relative;
   &:before {
-    background: $black-10;
+    animation: progress 1s ease-in-out infinite;
+    background: linear-gradient(90deg, rgba(247,247,247,0), $color-highlight, rgba(247,247,247,0));
     bottom: 0;
     content: '';
     left: 0;
     position: absolute;
     top: 0;
     width: 100%;
+  }
+  @keyframes progress {
+    0% {
+      transform: translate(-100%, 0);
+    }
+    100% {
+      transform: translate(100%, 0);
+    }
   }
 }
