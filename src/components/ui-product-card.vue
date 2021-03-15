@@ -62,7 +62,7 @@ export default Vue.extend({
   },
   props: {
     product: {
-      type: Product,
+      type: Object as () => Product,
       default: {}
     },
     labelText: {
@@ -77,7 +77,7 @@ export default Vue.extend({
       )
     },
     discountPercentage(): string {
-      return this.product
+      return this.product?.discountPercentage
         ? `${(this.product.discountPercentage * 100).toFixed(0)}%`
         : ''
     }
