@@ -19,9 +19,12 @@
           {{ labelText || discountPercentage }}
         </span>
       </div>
-      <div :ref="`nav-actions`" class="nav-actions">
+      <div
+        :ref="`nav-actions`"
+        class="nav-actions"
+      >
         <a
-          :href="product && product.url"
+          :href="eyeUrl"
           class="nav-actions__icons"
           @click.prevent.stop="handleEyeIcon($event)"
         >
@@ -68,26 +71,30 @@ export default Vue.extend({
     labelText: {
       type: String,
       default: ''
+    },
+    eyeUrl: {
+      type: String,
+      default: ''
     }
   },
   computed: {
-    firstImage(): Image | AnyObject {
+    firstImage (): Image | AnyObject {
       return (
         (this.product && this.product.images && this.product.images[0]) || {}
       )
     },
-    discountPercentage(): string {
+    discountPercentage (): string {
       return this.product?.discountPercentage
         ? `${(this.product.discountPercentage * 100).toFixed(0)}%`
         : ''
     }
   },
   methods: {
-    handleEyeIcon(ev: Event): void {
+    handleEyeIcon (ev: Event): void {
       this.$emit('on-click-eye-icon')
     },
 
-    onImageError(refName: string): void {
+    onImageError (refName: string): void {
       const element = this.$refs[refName] as HTMLElement
       element.classList.add('nav-actions--error')
     }
@@ -95,7 +102,6 @@ export default Vue.extend({
 })
 </script>
 <style lang="scss" scoped>
-
 .ui-product-card {
   $uiProductCard: &;
   width: 100%;
