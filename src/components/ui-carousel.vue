@@ -45,9 +45,9 @@
           <div class="nav-actions"
                ref="image-actions">
             <a
-              :href="url"
+              :href="getUrlEyeIcon(url, index)"
               class="nav-actions__icons"
-              @click="handleEyeIcon(index)"
+              @click="handleEyeIcon($event, index)"
             >
               <i class="b2i-eye"></i>
             </a>
@@ -96,11 +96,16 @@ export default Vue.extend({
     }
   },
   methods: {
-    handleEyeIcon(imageIndex: number): void {
+    getUrlEyeIcon (url: string, index: number) {
+      return url.replace('void', `${index}`)
+    },
+
+    handleEyeIcon ($event: Event, imageIndex: number): void {
+      $event.preventDefault()
       this.$emit('on-click-eye-icon', imageIndex)
     },
 
-    onImageError(refIndex: number): void {
+    onImageError (refIndex: number): void {
       (this.$refs['image-actions'] as HTMLElement[])[refIndex].classList.add('nav-actions--error')
     }
   }
