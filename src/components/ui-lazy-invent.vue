@@ -95,11 +95,11 @@ export default Vue.extend({
 
 <style scoped lang="scss">
 .lazy-image {
-  $lazyImage: &;
+  $lazy-image: &;
 
   object-fit: cover;
-  position: absolute;
   opacity: 0;
+  position: absolute;
   transition: opacity .3s ease-in;
   width: 100%;
 
@@ -110,7 +110,7 @@ export default Vue.extend({
   }
 
   /deep/ {
-    ~ #{$lazyImage}__loading {
+    ~ #{$lazy-image}__loading {
       width: 100%;
 
       &--loaded {

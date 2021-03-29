@@ -8,4 +8,4 @@
 @import 'theme/placeholder-image';
 @import 'theme/layout';
 
-@include getGridClasses($breakPointsGaps, $breakPoints)
+@include get-grid-classes($breakpoints-gaps, $breakpoints)

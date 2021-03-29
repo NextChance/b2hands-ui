@@ -47,8 +47,8 @@ export default Vue.extend({
 <style lang='scss' scoped>
 .modal {
   background-color: $white;
-  color: $black-100;
   bottom: 0;
+  color: $black-100;
   left: 0;
   overflow: hidden;
   position: fixed;
@@ -61,8 +61,9 @@ export default Vue.extend({
     left: $spacing-size-6;
     position: absolute;
     top: $spacing-size-6;
-    &:before {
-      content: "\e90d";
+
+    &::before {
+      content: '\e90d';
     }
   }
 
@@ -74,24 +75,25 @@ export default Vue.extend({
 
   @media (min-width: $breakpoint-s) {
     &__header {
+      box-sizing: border-box;
       display: flex;
       justify-content: flex-end;
-      box-sizing: border-box;
-      margin-top: $spacing-size-6;
       margin-bottom: $spacing-size-12;
+      margin-top: $spacing-size-6;
     }
 
     &__content {
-      padding-top: unset;
       padding-left: unset;
+      padding-top: unset;
     }
 
     &__icon {
       left: unset;
       position: static;
       top: unset;
-      &:before {
-        content: "\e909";
+
+      &::before {
+        content: '\e909';
       }
     }
   }
@@ -104,6 +106,6 @@ export default Vue.extend({
 
 .modal-fade-enter-active,
 .modal-fade-leave-active {
-  transition: opacity .2s ease
+  transition: opacity .2s ease;
 }
 </style>
