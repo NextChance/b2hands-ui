@@ -128,26 +128,28 @@ export default Vue.extend({
 
   &__icon-left {
     background: none;
-    border: none;
+    border: 0;
     margin-right: $spacing-size-2;
-    padding-top: $spacing-size-0;
     outline: none;
+    padding-top: $spacing-size-0;
   }
 
   &__container {
     flex-grow: 1;
-    position: relative;
     padding: $spacing-size-2 0;
+    position: relative;
   }
 
   &__input {
     @include body('m');
+
     background: $background-2;
-    border: none;
+    border: 0;
     box-shadow: 0 0 0 $spacing-size-2 $background-2;
     outline: none;
     padding: 0;
     width: 100%;
+
     &::placeholder {
       color: $black-70;
     }
@@ -159,15 +161,17 @@ export default Vue.extend({
     right: 0;
     top: 50%;
     transform: translateY(-50%);
+
     &__icon {
       font-size: $font-size-1;
     }
   }
 }
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 $spacing-size-2 $background-2 inset !important;
+  box-shadow: 0 0 0 $spacing-size-2 $background-2 inset !important;
 }
 </style>

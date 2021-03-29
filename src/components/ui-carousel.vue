@@ -122,17 +122,18 @@ export default Vue.extend({
   }
 
   &__gallery {
-    $uiCarouselGallery: &;
+    $ui-carousel-gallery: &;
+
     height: 100%;
-    scroll-behavior: smooth;
-    scroll-snap-type: x;
     overflow-x: scroll;
     overflow-y: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: x;
 
     &--one-image {
       overflow-x: hidden;
 
-      #{$uiCarouselGallery} {
+      #{$ui-carousel-gallery} {
         &__list,
         &__item {
           width: 100%;
@@ -158,12 +159,13 @@ export default Vue.extend({
       flex-direction: row;
       height: 100%;
       list-style: none;
-      padding: 0;
       margin: 0;
+      padding: 0;
     }
 
     &__item {
       $item: &;
+
       align-items: center;
       display: flex;
       justify-content: center;
@@ -177,8 +179,8 @@ export default Vue.extend({
     &__image {
       height: inherit;
       max-width: 100vw;
-      min-width: 100%;
       min-height: 100%;
+      min-width: 100%;
       object-fit: contain;
       width: auto;
     }
@@ -188,6 +190,7 @@ export default Vue.extend({
     /deep/ {
       .placeholder-image {
         height: 100%;
+
         svg {
           height: 100%;
         }
@@ -196,11 +199,13 @@ export default Vue.extend({
 
     &__gallery {
       @include affrodance-velo;
+
+      background-color: #fdfdfd;
       width: 100%;
-      background-color: #FDFDFD;
 
       &__item {
         $item: &;
+
         height: 100%;
 
         &:nth-child(n + 2) {
@@ -215,14 +220,15 @@ export default Vue.extend({
 
   @media (min-width: $breakpoint-s) {
     align-items: flex-start;
+    background: $white;
     flex-direction: row;
     height: 100%;
     width: 100%;
-    background: $white;
 
     /deep/ {
       .placeholder-image {
         width: 100%;
+
         svg {
           width: 100%;
         }
@@ -230,8 +236,8 @@ export default Vue.extend({
     }
 
     &__thumbnails {
-      position: sticky;
       display: block;
+      position: sticky;
       top: 0;
 
       /deep/ {

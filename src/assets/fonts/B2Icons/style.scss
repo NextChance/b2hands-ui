@@ -1,142 +1,165 @@
-@import "variables";
+@import 'variables';
 
 @font-face {
+  font-display: block;
   font-family: '#{$icomoon-font-family}';
+  font-style: normal;
+  font-weight: normal;
   src:
     url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?acshmk') format('truetype'),
     url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?acshmk') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: block;
 }
 
-[class^="b2i-"], [class*=" b2i-"] {
+[class^='b2i-'],
+[class*=' b2i-'] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: '#{$icomoon-font-family}' !important;
-  speak: never;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
 
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: normal;
+  line-height: 1;
+  speak: never;
+  text-transform: none;
 }
 
 .b2i-plus {
-  &:before {
+  &::before {
     content: $b2i-plus;
   }
 }
+
 .b2i-image-gallery {
-  &:before {
+  &::before {
     content: $b2i-image-gallery;
   }
 }
+
 .b2i-error-image {
-  &:before {
+  &::before {
     content: $b2i-error-image;
   }
 }
+
 .b2i-facebook {
-  &:before {
+  &::before {
     content: $b2i-facebook;
   }
 }
+
 .b2i-instagram {
-  &:before {
+  &::before {
     content: $b2i-instagram;
   }
 }
+
 .b2i-twitter {
-  &:before {
+  &::before {
     content: $b2i-twitter;
   }
 }
+
 .b2i-youtube {
-  &:before {
+  &::before {
     content: $b2i-youtube;
   }
 }
+
 .b2i-billionhands {
-  &:before {
+  &::before {
     content: $b2i-billionhands;
   }
 }
+
 .b2i-profile {
-  &:before {
+  &::before {
     content: $b2i-profile;
   }
 }
+
 .b2i-search {
-  &:before {
+  &::before {
     content: $b2i-search;
   }
 }
+
 .b2i-visual-search {
-  &:before {
+  &::before {
     content: $b2i-visual-search;
   }
 }
+
 .b2i-check {
-  &:before {
+  &::before {
     content: $b2i-check;
   }
 }
+
 .b2i-close {
-  &:before {
+  &::before {
     content: $b2i-close;
   }
 }
+
 .b2i-down {
-  &:before {
+  &::before {
     content: $b2i-down;
   }
 }
+
 .b2i-info {
-  &:before {
+  &::before {
     content: $b2i-info;
   }
 }
+
 .b2i-left {
-  &:before {
+  &::before {
     content: $b2i-left;
   }
 }
+
 .b2i-circle {
-  &:before {
+  &::before {
     content: $b2i-circle;
   }
 }
+
 .b2i-right {
-  &:before {
+  &::before {
     content: $b2i-right;
   }
 }
+
 .b2i-eye {
-  &:before {
+  &::before {
     content: $b2i-eye;
   }
 }
+
 .b2i-up {
-  &:before {
+  &::before {
     content: $b2i-up;
   }
 }
+
 .b2i-camera {
-  &:before {
+  &::before {
     content: $b2i-camera;
   }
 }
+
 .b2i-menu {
-  &:before {
+  &::before {
     content: $b2i-menu;
   }
 }
+
 .b2i-share {
-  &:before {
+  &::before {
     content: $b2i-share;
   }
 }
@@ -144,41 +167,48 @@
 // OJITOOOOOO //
 .b2i-heart {
   position: relative;
-  &:before {
+
+  &::before {
     content: $b2i-heart;
   }
-  &:after {
-    position: absolute;
-    left: 0;
-    top: 0;
+
+  &::after {
     content: $b2i-heart-active;
-    transition: transform .2s;
+    left: 0;
+    position: absolute;
+    top: 0;
     transform: scale(0);
     transform-origin: 50% 50%;
+    transition: transform .2s;
   }
+
   &--active {
-    &:after {
+    &::after {
       transform: scale(1);
     }
   }
 }
+
 .b2i-filters {
   position: relative;
-  &:before {
+
+  &::before {
     content: $b2i-filters;
   }
-  &:after {
-    position: absolute;
+
+  &::after {
+    color: $coral-80;
+    content: $b2i-filters-active;
     left: 0;
+    position: absolute;
     top: 0;
-    transition: transform .2s;
     transform: scale(0);
     transform-origin: 82% 5%;
-    content: $b2i-filters-active;
-    color: $coral-80;
+    transition: transform .2s;
   }
+
   &--active {
-    &:after{
+    &::after {
       transform: scale(1);
     }
   }

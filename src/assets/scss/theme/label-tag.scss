@@ -4,6 +4,7 @@
   right: 0;
   top: 2px;
   z-index: map-get($zindex, affrondance-velo);
+
   &__content {
     background-color: $background-inverse;
     box-sizing: border-box;

@@ -4,14 +4,14 @@
   &--error {
     font-size: 35px;
 
-    &:before {
+    &::before {
+      color: $black-100;
       content: $b2i-error-image;
       font-family: $icomoon-font-family;
       left: 50%;
       position: absolute;
       top: 50%;
       transform: translate(-50%, -50%);
-      color: $black-100;
     }
   }
 

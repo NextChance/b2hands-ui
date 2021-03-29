@@ -1,7 +1,5 @@
 // COPY-PASTE MAIA
 
-/**/
-
 /* Reset.scss
  * https://github.com/andreapavoni/sass-twitter-bootstrap/blob/master/lib/reset.scss
  * Props to Eric Meyer (meyerweb.com) for his CSS reset file. We're using an adapted version here	that cuts out some of the reset HTML elements we will never need here (i.e., dfn, samp, etc).
@@ -69,10 +67,14 @@ td { border: 0;
   margin: 0;
   padding: 0; }
 
-table { border-collapse: collapse;
-  border-spacing: 0; }
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
 ol,
 ul { list-style: none; }
+
 q::before,
 q::after,
 blockquote::before,
@@ -89,11 +91,15 @@ blockquote::after { content: ''; }
 html {
   font-size: 100%;
   text-size-adjust: 100%;
-  text-size-adjust: 100%;
 }
-// Focus states
-a:focus {
-  outline: thin dotted;
+
+a {
+  color: inherit;
+  text-decoration: none;
+
+  &:focus {
+    outline: thin dotted;
+  }
 }
 
 // Display in IE6-9 and FF3
@@ -196,8 +202,6 @@ input::-moz-focus-inner { // Inner padding and border oddities in FF3/4
 input[type='search'] { // Appearance in Safari/Chrome
   appearance: textfield;
   box-sizing: content-box;
-  box-sizing: content-box;
-  box-sizing: content-box;
 }
 
 input[type='search']::-webkit-search-decoration {
@@ -207,19 +211,4 @@ input[type='search']::-webkit-search-decoration {
 textarea {
   overflow: auto; // Remove vertical scrollbar in IE6-9
   vertical-align: top; // Readability and alignment cross-browser
-}
-
-// Tables
-// -------------------------
-// Source: http://github.com/necolas/normalize.css
-
-// Remove spacing between table cells
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
 }

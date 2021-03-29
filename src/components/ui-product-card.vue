@@ -103,11 +103,13 @@ export default Vue.extend({
 </script>
 <style lang="scss" scoped>
 .ui-product-card {
-  $uiProductCard: &;
+  $ui-product-card: &;
+
   width: 100%;
 
   &__media {
     @include affrodance-velo;
+
     align-items: center;
     display: flex;
     height: 100%;
@@ -116,12 +118,14 @@ export default Vue.extend({
     position: relative;
     width: 100%;
   }
+
   &__info {
     padding: $spacing-size-2;
 
     &__title {
       @include body('s');
       @include ellipsis(2);
+
       color: $content-1;
       height: $spacing-size-7;
     }
@@ -130,36 +134,44 @@ export default Vue.extend({
       .merchant,
       .brand {
         @include detail('upper');
+
         color: $content-3;
       }
 
       .full-price {
         @include detail('strike');
+
         color: $content-3;
       }
 
       .final-price {
         @include headers('s');
+
         color: $content-1;
       }
     }
   }
+
   &--skeleton {
-    #{$uiProductCard}__media {
+    #{$ui-product-card}__media {
       @include affrodance-velo-reset;
       @include text-skeleton;
     }
+
     .nav-actions {
       display: none;
     }
-    #{$uiProductCard}__info {
+    #{$ui-product-card}__info {
       &__title {
         @include text-skeleton;
       }
+
       &__complementary {
         @include text-skeleton;
+
         height: $spacing-size-3;
         width: 72px;
+
         &:last-child {
           width: 48px;
         }

@@ -139,22 +139,21 @@
 
 
 // Layout
-@mixin getGridClasses($breakPointsGaps, $break-points){
+@mixin get-grid-classes($breakpoints-gaps, $break-points) {
   @each $bp,$bp_size in $break-points {
-    @media(min-width:#{$bp_size}) {
-
+    @media (min-width: #{$bp_size}) {
       .col-container {
         display: flex;
         flex-wrap: wrap;
-        margin-left: -1 * map-get($breakPointsGaps, $bp)/2;
-        margin-right: -1 * map-get($breakPointsGaps, $bp)/2;
+        margin-left: -1 * map-get($breakpoints-gaps, $bp)/2;
+        margin-right: -1 * map-get($breakpoints-gaps, $bp)/2;
       }
 
       @for $col from 0 to 12 {
         .col-#{$col+1}--#{$bp} {
-          width : percentage(1/12*($col+1));
-          padding-left: map-get($breakPointsGaps, $bp)/2;
-          padding-right: map-get($breakPointsGaps, $bp)/2;
+          padding-left: map-get($breakpoints-gaps, $bp)/2;
+          padding-right: map-get($breakpoints-gaps, $bp)/2;
+          width: percentage(1/12*($col+1));
         }
       }
     }
@@ -163,71 +162,76 @@
 
 //ellipsis
 @mixin ellipsis($lines) {
-  -webkit-box-orient: vertical;
-  display: -webkit-box;
+  box-orient: vertical;
+  display: box;
+  -webkit-line-clamp: $lines;
   overflow: hidden;
   text-overflow: ellipsis;
   word-break: break-word;
-  -webkit-line-clamp: $lines;
 }
 
 // static generator
-@mixin staticGeneratorStyles ($fragmentName: '') {
+@mixin static-generator-styles ($fragmentName: '') {
   @if ($fragmentName == 'header-S') {
     @include headers('s');
+
     color: $black-60;
   }
 
   @if ($fragmentName == 'header-M') {
     @include headers('m');
+
     color: $black-60;
   }
 
   @if ($fragmentName == 'header-L') {
     @include headers('l');
+
     color: $black-100;
   }
 
   @if ($fragmentName == 'header-XL') {
     @include headers('xl');
+
     color: $black-100;
   }
 
   @if ($fragmentName == 'header-XXL') {
     @include headers('xxl');
+
     color: $black-100;
   }
 }
 
 
 // Recursive custom list generator
-@function getSelectorDepth ($lvl: 1, $class: '') {
-  $nextLvl: $lvl - 1;
-  $finalClass: $class;
-  @if ($nextLvl > 0) {
-    $nextClass: ' ' + $finalClass;
-    $finalClass: $finalClass + getSelectorDepth($nextLvl, $nextClass);
+@function get-selector-depth ($lvl: 1, $class: '') {
+  $next-lvl: $lvl - 1;
+  $final-class: $class;
+  @if ($next-lvl > 0) {
+    $next-class: ' ' + $final-class;
+    $final-class: $final-class + get-selector-depth($next-lvl, $next-class);
   }
-  @return $finalClass;
+  @return $final-class;
 }
 
-@function getCounterString ($lvl: 1, $counterText: '') {
-  $nextLvl: $lvl - 1;
-  $finalCounterText: counter(#{$counterText + '-' + $lvl}) ".";
-  @if ($nextLvl > 0) {
-    $finalCounterText: getCounterString($nextLvl, $counterText) $finalCounterText;
+@function get-counter-string ($lvl: 1, $counter-text: '') {
+  $next-lvl: $lvl - 1;
+  $final-counter-text: counter(#{$counter-text + '-' + $lvl}) '.';
+  @if ($next-lvl > 0) {
+    $final-counter-text: get-counter-string($next-lvl, $counter-text) $final-counter-text;
   }
-  @return $finalCounterText;
+  @return $final-counter-text;
 }
 
-@mixin getNestedSections ($depth: 1, $counterSpacing: 0, $selector: '', $counterName: '') {
-  $staticCounterSizes: (
+@mixin get-nested-sections ($depth: 1, $counter-spacing: 0, $selector: '', $counter-name: '') {
+  $static-counter-sizes: (
     1: 'header-XL',
     2: 'header-L',
     3: 'header-M'
   );
 
-  $staticElementMargin: (
+  $static-element-margin: (
     1: $spacing-size-9,
     2: $spacing-size-7,
     3: $spacing-size-5,
@@ -236,21 +240,23 @@
 
 
   @for $lvl from 1 through $depth {
-    $staticSection: getSelectorDepth($lvl, $selector);
+    $static-section: get-selector-depth($lvl, $selector);
 
-    #{$staticSection} {
-      $counter: $counterName + '-' + $lvl;
-      $counterContent: getCounterString($lvl, $counterName);
+    #{$static-section} {
+      $counter: $counter-name + '-' + $lvl;
+      $counter-content: get-counter-string($lvl, $counter-name);
+
       counter-reset: #{$counter};
 
       #{$selector}__element {
         counter-increment: #{$counter};
-        margin-top: map-get($staticElementMargin, $lvl);
+        margin-top: map-get($static-element-margin, $lvl);
 
         &::before {
-          content: $counterContent;
-          padding-right: $counterSpacing;
-          @include staticGeneratorStyles(map-get($staticCounterSizes, $lvl));
+          @include static-generator-styles(map-get($static-counter-sizes, $lvl));
+
+          content: $counter-content;
+          padding-right: $counter-spacing;
         }
       }
     }

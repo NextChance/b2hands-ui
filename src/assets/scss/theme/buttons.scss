@@ -4,6 +4,7 @@
   line-height: $line-height-1;
   padding: $spacing-size-3 $spacing-size-1;
   text-align: center;
+
   &__highlight {
     @include set-semantic($semantic-highlight);
 
@@ -13,10 +14,11 @@
   }
 
   &--icon {
-    -webkit-tap-highlight-color: transparent;
     background-color: transparent;
     border: 0;
     margin: 0;
+    -webkit-tap-highlight-color: transparent;
+
     &:focus {
       outline: transparent;
     }

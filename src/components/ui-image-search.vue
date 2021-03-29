@@ -141,10 +141,8 @@ export default Vue.extend({
 
 <style scoped lang="scss">
 .image-search {
-  $imageSearch: &;
-
-  position: relative;
   height: 100%;
+  position: relative;
   width: 100%;
 
   &--landscape {
@@ -161,7 +159,7 @@ export default Vue.extend({
     top: 0;
 
     &__veil {
-      opacity: 0.4;
+      opacity: .4;
     }
 
     &__bound {
@@ -193,15 +191,15 @@ export default Vue.extend({
     color: $white;
     cursor: pointer;
     display: flex;
+    font-size: $font-size-3;
     height: $spacing-size-7;
     justify-content: center;
-    font-size: $font-size-3;
-    margin-top: -1 * $spacing-size-7 /2;
     margin-left: -1 * $spacing-size-7 /2;
+    margin-top: -1 * $spacing-size-7 /2;
     position: absolute;
-    transition: transform 0.2s;
     transform: scale(1);
     transform-origin: center;
+    transition: transform .2s;
     width: $spacing-size-7;
     z-index: 1;
 
