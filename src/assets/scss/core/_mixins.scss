@@ -170,3 +170,89 @@
   word-break: break-word;
   -webkit-line-clamp: $lines;
 }
+
+// static generator
+@mixin staticGeneratorStyles ($fragmentName: '') {
+  @if ($fragmentName == 'header-S') {
+    @include headers('s');
+    color: $black-60;
+  }
+
+  @if ($fragmentName == 'header-M') {
+    @include headers('m');
+    color: $black-60;
+  }
+
+  @if ($fragmentName == 'header-L') {
+    @include headers('l');
+    color: $black-100;
+  }
+
+  @if ($fragmentName == 'header-XL') {
+    @include headers('xl');
+    color: $black-100;
+  }
+
+  @if ($fragmentName == 'header-XXL') {
+    @include headers('xxl');
+    color: $black-100;
+  }
+}
+
+
+// Recursive custom list generator
+@function getSelectorDepth ($lvl: 1, $class: '') {
+  $nextLvl: $lvl - 1;
+  $finalClass: $class;
+  @if ($nextLvl > 0) {
+    $nextClass: ' ' + $finalClass;
+    $finalClass: $finalClass + getSelectorDepth($nextLvl, $nextClass);
+  }
+  @return $finalClass;
+}
+
+@function getCounterString ($lvl: 1, $counterText: '') {
+  $nextLvl: $lvl - 1;
+  $finalCounterText: counter(#{$counterText + '-' + $lvl}) ".";
+  @if ($nextLvl > 0) {
+    $finalCounterText: getCounterString($nextLvl, $counterText) $finalCounterText;
+  }
+  @return $finalCounterText;
+}
+
+@mixin getNestedSections ($depth: 1, $counterSpacing: 0, $selector: '', $counterName: '') {
+  $staticCounterSizes: (
+    1: 'header-XL',
+    2: 'header-L',
+    3: 'header-M'
+  );
+
+  $staticElementMargin: (
+    1: $spacing-size-9,
+    2: $spacing-size-7,
+    3: $spacing-size-5,
+    4: $spacing-size-1
+  );
+
+
+  @for $lvl from 1 through $depth {
+    $staticSection: getSelectorDepth($lvl, $selector);
+
+    #{$staticSection} {
+      $counter: $counterName + '-' + $lvl;
+      $counterContent: getCounterString($lvl, $counterName);
+      counter-reset: #{$counter};
+
+      #{$selector}__element {
+        counter-increment: #{$counter};
+        margin-top: map-get($staticElementMargin, $lvl);
+
+        &::before {
+          content: $counterContent;
+          padding-right: $counterSpacing;
+          @include staticGeneratorStyles(map-get($staticCounterSizes, $lvl));
+        }
+      }
+    }
+  }
+}
