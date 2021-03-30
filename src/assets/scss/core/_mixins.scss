@@ -248,7 +248,7 @@
 
       counter-reset: #{$counter};
 
-      #{$selector}__element {
+      > #{$selector}__element {
         counter-increment: #{$counter};
         margin-top: map-get($static-element-margin, $lvl);
 
