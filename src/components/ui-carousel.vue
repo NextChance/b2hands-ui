@@ -35,7 +35,6 @@
             :alt="item.alt"
             :src="item.src"
             :srcset="item.srcSets"
-            :delayLoad="!isFirstImageLoaded && index !== 0"
             sizes="(max-width: 768px) 36.2vw, 90vw"
             @on-image-loaded="onImageLoaded(index)"
             @on-image-error="onImageError(index)"
