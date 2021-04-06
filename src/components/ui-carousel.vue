@@ -11,6 +11,7 @@
             class="ui-carousel__thumbnails__image"
             :alt="`thumbnails-${item.alt}`"
             :src="item.src"
+            sizes="5.6vw"
             :srcset="item.srcSets"
           ></ui-lazy-invent>
         </a>
@@ -34,6 +35,9 @@
             :alt="item.alt"
             :src="item.src"
             :srcset="item.srcSets"
+            :delayLoad="!isFirstImageLoaded && index !== 0"
+            sizes="(max-width: 768px) 36.2vw, 90vw"
+            @on-image-loaded="onImageLoaded(index)"
             @on-image-error="onImageError(index)"
           ></ui-lazy-invent>
           <div
@@ -70,6 +74,11 @@ interface ImgItem {
 
 export default Vue.extend({
   name: 'UiCarousel',
+  data() {
+    return {
+      isFirstImageLoaded: false
+    }
+  },
   components: {
     UiLazyInvent
   },
@@ -103,6 +112,12 @@ export default Vue.extend({
     handleEyeIcon ($event: Event, imageIndex: number): void {
       $event.preventDefault()
       this.$emit('on-click-eye-icon', imageIndex)
+    },
+
+    onImageLoaded (index: number): void {
+      if( index===0 ) {
+        this.isFirstImageLoaded = true
+      }
     },
 
     onImageError (refIndex: number): void {

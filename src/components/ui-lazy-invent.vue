@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isHidden"
+  <div v-if="isHidden || delayLoad"
        ref="visibilityPlaceholder"
        class="placeholder-image placeholder-image--loading"
        v-observe-visibility="{
@@ -18,6 +18,7 @@
     ref="main"
     :src="src"
     :srcset="srcset"
+    :sizes="sizes"
     :alt="alt"
     :class="[
       'lazy-image',
@@ -61,16 +62,32 @@ export default Vue.extend({
       default: ''
     },
     /**
+     * Usage image size
+     */
+    sizes: {
+      type: String,
+      default: ''
+    },
+    /**
      * Text to use in accesibility mode
      */
     alt: {
       type: String,
       default: ''
+    },
+    /**
+     * Whether the image should still showing a loading state until parent requires it
+     */
+    delayLoad: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
     onVisibilityChanged(isVisible: boolean): void {
+      console.log('isVisible', isVisible)
       if (isVisible) {
+        console.log('isVisible', isVisible, this.src)
         this.isHidden = false
         this.loadingImage = addSiblingNodeWithLoadingImage(this.$refs.visibilityPlaceholder as HTMLElement)
         this.loadingImage?.classList.add('lazy-image__loading')
