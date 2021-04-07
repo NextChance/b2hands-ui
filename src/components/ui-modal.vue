@@ -57,6 +57,7 @@ export default Vue.extend({
   z-index: map-get($zindex, modal);
 
   &__icon {
+    font-size: $spacing-size-3;
     cursor: pointer;
     left: $spacing-size-6;
     position: absolute;
@@ -78,7 +79,7 @@ export default Vue.extend({
       box-sizing: border-box;
       display: flex;
       justify-content: flex-end;
-      margin-bottom: $spacing-size-12;
+      margin-bottom: $spacing-size-13;
       margin-top: $spacing-size-6;
     }
 
@@ -89,6 +90,7 @@ export default Vue.extend({
 
     &__icon {
       left: unset;
+      margin-right: $spacing-size-1;
       position: static;
       top: unset;
 
