@@ -124,6 +124,29 @@ export const productCardWithoutBrandAndImageError = () => ({
   methods: { onClickIcon: action(`(go to image search) id`) }
 })
 
+export const productCardWithSameBrandAndMerchant = () => ({
+  components: { UiProductCard },
+  data() {
+    return {
+      products: productsMocks
+    }
+  },
+  template: `
+    <div class="story-product-card-containers">
+      <div class="story-product-card">
+        <ul class="list col-container">
+          <li class="item col-6--xs col-4--s col-3--m">
+            <ui-product-card
+              :product="products[5]"
+              @on-click-eye-icon="onClickIcon(products[5].id)"
+            />
+          </li>
+        </ul>
+      </div>
+    </div>`,
+  methods: { onClickIcon: action(`(go to image search) id`) }
+})
+
 export const productCardList = () => ({
   components: { UiProductCard },
   data() {
