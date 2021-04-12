@@ -6,7 +6,9 @@
         :key="`carousel-thumbnails-${index}`"
         class="ui-carousel__thumbnails__item"
       >
-        <a :href="`#image-${index}`">
+        <a
+          @click='getPosition($event,`#image-${index}`)'
+          :href="`#image-${index}`">
           <ui-lazy-invent
             class="ui-carousel__thumbnails__image"
             :alt="`thumbnails-${item.alt}`"
@@ -122,6 +124,11 @@ export default Vue.extend({
 
     onImageError (refIndex: number): void {
       (this.$refs['image-actions'] as HTMLElement[])[refIndex].classList.add('nav-actions--error')
+    },
+
+    getPosition($event: Event, id: string): void {
+      $event.preventDefault()
+      this.$emit('on-thumbnail', id)
     }
   }
 })
