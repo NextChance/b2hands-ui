@@ -146,6 +146,7 @@ export default Vue.extend({
     background: $background-2;
     border: 0;
     box-shadow: 0 0 0 $spacing-size-2 $background-2;
+    color: $black-100;
     outline: none;
     padding: 0;
     width: 100%;
