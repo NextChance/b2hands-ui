@@ -81,13 +81,25 @@ export default Vue.extend({
     delayLoad: {
       type: Boolean,
       default: false
+    },
+    /**
+     * Whether the image should still showing a loading state until parent requires it
+     */
+    isErrorForced: {
+      type: Boolean,
+      default: false
+    }
+  },
+  watch: {
+    isErrorForced(newValue) {
+      if (newValue) {
+        (this.$refs.main as Element).dispatchEvent(new Event('error'))
+      }
     }
   },
   methods: {
     onVisibilityChanged(isVisible: boolean): void {
-      console.log('isVisible', isVisible)
       if (isVisible) {
-        console.log('isVisible', isVisible, this.src)
         this.isHidden = false
         this.loadingImage = addSiblingNodeWithLoadingImage(this.$refs.visibilityPlaceholder as HTMLElement)
         this.loadingImage?.classList.add('lazy-image__loading')
