@@ -93,7 +93,11 @@ export default Vue.extend({
   watch: {
     isErrorForced(newValue) {
       if (newValue) {
-        (this.$refs.main as Element).dispatchEvent(new Event('error'))
+        if (this.$refs.main) {
+          (this.$refs.main as Element).dispatchEvent(new Event('error'))
+        }else if (this.$refs.visibilityPlaceholder) {
+          replaceNodeWithErrorImage(this.$refs.visibilityPlaceholder as HTMLElement)
+        }
       }
     }
   },
@@ -117,6 +121,12 @@ export default Vue.extend({
       replaceNodeWithErrorImage(evt.currentTarget as HTMLElement)
       this.loadingImage?.remove()
       this.$emit('on-image-error')
+    }
+  },
+  mounted() {
+    if (this.isErrorForced) {
+      replaceNodeWithErrorImage(this.$refs.visibilityPlaceholder as HTMLElement)
+
     }
   }
 })
