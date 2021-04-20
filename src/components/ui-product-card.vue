@@ -43,10 +43,9 @@
         </span>
       </div>
       <div class="ui-product-card__info__complementary">
-        <span v-if="product && product.fullPrice && product.salePrice !== product.fullPrice" class="full-price">
-          {{ product.fullPrice }}
-        </span>
-        <span class="final-price">{{ product?.salePrice }}</span>
+        <span v-if="product && product.fullPrice && product.salePrice !== product.fullPrice"
+              class="full-price">{{ product.fullPrice }}</span>
+        <span class="final-price">{{ product && product.salePrice }}</span>
       </div>
     </div>
   </div>
