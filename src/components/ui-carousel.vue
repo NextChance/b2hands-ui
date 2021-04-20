@@ -61,6 +61,22 @@
         </li>
       </ul>
     </div>
+    <div
+      v-if="extraContent"
+      class="ui-carousel__extra-content--mobile label-tag"
+    >
+      <span class="label-tag__content">{{ extraContent }}</span>
+    </div>
+    <div class="nav-actions nav-actions--mobile"
+         ref="image-actions">
+      <a
+        :href="getUrlEyeIcon(url, 0)"
+        class="nav-actions__icons"
+        @click="handleEyeIcon($event, 0)"
+      >
+        <i class="b2i-eye"></i>
+      </a>
+    </div>
   </div>
 </template>
 
@@ -146,6 +162,7 @@ export default Vue.extend({
   &__gallery {
     $ui-carousel-gallery: &;
 
+    -webkit-transform: translateZ(0); // iOS hack. Don't remove
     height: 100%;
     overflow-x: scroll;
     overflow-y: hidden;
@@ -230,11 +247,9 @@ export default Vue.extend({
 
         height: 100%;
 
-        &:nth-child(n + 2) {
-          #{$item}__extra-content,
-          .nav-actions {
-            display: none;
-          }
+        &__extra-content,
+        .nav-actions {
+          display: none;
         }
       }
     }
@@ -279,6 +294,11 @@ export default Vue.extend({
         vertical-align: top;
         width: 100%;
       }
+    }
+
+    &__extra-content--mobile,
+    .nav-actions--mobile {
+      display: none;
     }
 
     &__gallery {
