@@ -1,5 +1,5 @@
 <template>
-  <div class="ui-search-input">
+  <div class="ui-search-input accept-key-press">
     <slot>
       <button
         id="searchButton"
@@ -39,6 +39,8 @@
 </template>
 <script lang="ts">
 import Vue from 'vue'
+import emojiRegex from 'emoji-regex'
+
 export default Vue.extend({
   name: 'UiSearchInput',
   props: {
@@ -106,8 +108,9 @@ export default Vue.extend({
     },
 
     handleSearch(ev: Event): void {
+      const notEmpty = /([a-zA-Z0-9\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u017F]+)/
       ev.preventDefault()
-      if (this.textValue !== '') {
+      if (notEmpty.test(this.textValue) && !emojiRegex().exec(this.textValue)) {
         this.$emit('on-search-done', this.textValue)
         this.searchIsFocused = false
       }
