@@ -10,6 +10,23 @@
 
     &-reverse {
       @include set-semantic($semantic-highlight, true);
+
+      &-disabled {
+        &,
+        &:hover {
+          background-color: $black-20;
+          border-color: $black-20;
+          color: $black-50;
+        }
+      }
+    }
+
+    &-disabled {
+      &,
+      &:hover {
+        color: $black-50;
+        border-color: $black-50;
+      }
     }
   }
 

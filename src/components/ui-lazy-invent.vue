@@ -126,7 +126,6 @@ export default Vue.extend({
   mounted() {
     if (this.isErrorForced) {
       replaceNodeWithErrorImage(this.$refs.visibilityPlaceholder as HTMLElement)
-
     }
   }
 })
