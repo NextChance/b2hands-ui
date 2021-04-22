@@ -163,7 +163,8 @@
 //ellipsis
 @mixin ellipsis($lines) {
   box-orient: vertical;
-  display: flex;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
   -webkit-line-clamp: $lines;
   overflow: hidden;
   text-overflow: ellipsis;
