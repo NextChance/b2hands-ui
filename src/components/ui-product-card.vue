@@ -38,9 +38,9 @@
       </div>
       <div class="ui-product-card__info__complementary">
         <span class="merchant">{{ product && product.merchantName }}</span>
-        <span v-if="product && product.brand && product.merchantName !== product.brand" class="brand">
-          {{ product.brand }}
-        </span>
+        <span
+          v-if="product && product.brand && product.merchantName !== product.brand"
+          class="brand"> - {{ product.brand }}</span>
       </div>
       <div class="ui-product-card__info__complementary">
         <span v-if="product && product.fullPrice && product.salePrice !== product.fullPrice"
