@@ -100,6 +100,9 @@ export default Vue.extend({
     handleClickDelete(): void {
       this.searchIsFocused = false
       this.textValue = ''
+      this.$nextTick(() => {
+        (this.$refs.searchInput as HTMLElement).focus()
+      })
       this.$emit('on-clear-input')
     },
 
