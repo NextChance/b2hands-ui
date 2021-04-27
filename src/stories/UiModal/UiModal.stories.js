@@ -2,7 +2,7 @@ import { action } from '@storybook/addon-actions'
 import UiModal from '~/components/ui-modal'
 
 export default {
-  title: 'UiModal',
+  title: 'Ui-Modal',
   component: UiModal
 }
 

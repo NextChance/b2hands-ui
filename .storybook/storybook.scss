@@ -100,3 +100,9 @@ a {
     height: .9 * $width !important;
   }
 }
+
+.story-ui-tabs-container {
+  &--scrollable {
+    width: 400px;
+  }
+}
