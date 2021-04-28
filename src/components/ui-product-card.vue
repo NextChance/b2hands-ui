@@ -1,7 +1,8 @@
 <template>
-  <div
+  <component :is="href ? 'nuxt-link' : 'div'"
     class="ui-product-card"
     :class="{ 'ui-product-card--skeleton': !product }"
+    :to="href || ''"
   >
     <div class="ui-product-card__media">
       <ui-lazy-invent
@@ -15,9 +16,7 @@
         v-if="labelText || (product && product.discountPercentage > 0)"
         class="label-tag"
       >
-        <span class="label-tag__content">
-          {{ labelText || discountPercentage }}
-        </span>
+        <span class="label-tag__content">{{ labelText || discountPercentage }}</span>
       </div>
       <div
         :ref="`nav-actions`"
@@ -33,8 +32,7 @@
       </div>
     </div>
     <div class="ui-product-card__info">
-      <div class="ui-product-card__info__title">
-        {{ product && product.name }}
+      <div class="ui-product-card__info__title">{{ product && product.name }}
       </div>
       <div class="ui-product-card__info__complementary">
         <span class="merchant">{{ product && product.merchantName }}</span>
@@ -48,7 +46,7 @@
         <span class="final-price">{{ product && product.salePrice }}</span>
       </div>
     </div>
-  </div>
+  </component>
 </template>
 <script lang="ts">
 import Vue from 'vue'
@@ -63,6 +61,10 @@ export default Vue.extend({
     UiLazyInvent
   },
   props: {
+    href: {
+      type: String,
+      default: ''
+    },
     product: {
       type: Object as () => Product,
       default: {}
@@ -104,6 +106,7 @@ export default Vue.extend({
 .ui-product-card {
   $ui-product-card: &;
 
+  display: block;
   width: 100%;
 
   &__media {
