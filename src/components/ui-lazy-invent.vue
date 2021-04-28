@@ -157,22 +157,11 @@ export default Vue.extend({
 
   /deep/ {
     ~ #{$lazy-image}__loading {
-      width: 100%;
 
       &--loaded {
         position: absolute;
       }
     }
-  }
-}
-.placeholder-image {
-  &--loading {
-    height: 100%;
-    width: 100%;
-  }
-
-  &__loader {
-    animation: progress 1s ease-in-out infinite;
   }
 }
 </style>

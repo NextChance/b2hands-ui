@@ -25,9 +25,9 @@ export const generateLoaderImage = () => {
     const gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient')
     gradient.setAttribute('id', 'loaderGradient')
     gradient.setAttribute('x1', '0')
-    gradient.setAttribute('x2', '0')
+    gradient.setAttribute('x2', '1')
     gradient.setAttribute('y1', '0')
-    gradient.setAttribute('y2', '1')
+    gradient.setAttribute('y2', '0')
     const stop1 = document.createElementNS('http://www.w3.org/2000/svg', 'stop')
     stop1.setAttribute('offset', '0%')
     stop1.setAttribute('stop-color', 'rgb(247, 247, 247)')
@@ -49,7 +49,7 @@ export const generateLoaderImage = () => {
     loader.setAttribute('y', '0')
     loader.setAttribute('height', '100%')
     loader.setAttribute('width', '100%')
-    loader.setAttribute('class', 'placeholder-image__loader')
+    loader.setAttribute('class', 'placeholder-image__loader test')
     loader.setAttribute('fill', 'url(#loaderGradient)')
     return {
         defs,

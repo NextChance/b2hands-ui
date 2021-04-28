@@ -112,10 +112,7 @@ export default Vue.extend({
   &__media {
     @include affrodance-velo;
 
-    align-items: center;
-    display: flex;
     height: 100%;
-    justify-content: center;
     overflow: hidden;
     position: relative;
     width: 100%;
