@@ -20,14 +20,10 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import AnyObject from '../types/AnyObject'
 
 export default Vue.extend({
   name: 'ui-tabs',
-  data() {
-    return {
-      activeTabIndex: -1
-    }
-  },
   props: {
     tabs: {
       type: Array,
@@ -42,31 +38,15 @@ export default Vue.extend({
       default: false
     }
   },
-  watch: {
-    activeTab: {
-      immediate: true,
-      handler(newValue) {
-        if (newValue) {
-          const activeTabIndex = this.tabs.findIndex(tab => tab === newValue)
-          this.$nextTick(() => {
-            this.activeTabIndex = activeTabIndex !== -1 ? activeTabIndex : 0
-          })
-        }
-      }
-    },
-    tabs: {
-      immediate: true,
-      handler(newValue) {
-        if (newValue.length && !this.activeTab) {
-          this.activeTabIndex = 0
-        }
-      }
+  data () {
+    return {
+      activeTabIndex: -1
     }
   },
   computed: {
-    markerProperties() {
-      if (this.$refs.uiTab) {
-        const activeTabRef = this.$refs.uiTab[this.activeTabIndex]
+    markerProperties (): AnyObject {
+      if (this.$refs.uiTab && Array.isArray(this.$refs.uiTab)) {
+        const activeTabRef: HTMLElement = this.$refs.uiTab[this.activeTabIndex] as HTMLElement
         return {
           index: this.activeTabIndex,
           left: activeTabRef.offsetLeft,
@@ -81,8 +61,29 @@ export default Vue.extend({
       }
     }
   },
+  watch: {
+    activeTab: {
+      immediate: true,
+      handler (newValue) {
+        if (newValue) {
+          const activeTabIndex = this.tabs.findIndex(tab => tab === newValue)
+          this.$nextTick(() => {
+            this.activeTabIndex = activeTabIndex !== -1 ? activeTabIndex : 0
+          })
+        }
+      }
+    },
+    tabs: {
+      immediate: true,
+      handler (newValue) {
+        if (newValue.length && !this.activeTab) {
+          this.activeTabIndex = 0
+        }
+      }
+    }
+  },
   methods: {
-    handleTabClick(tab) {
+    handleTabClick(tab: string) {
       this.$emit('on-tab-clicked', tab)
     }
   }
