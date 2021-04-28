@@ -11,14 +11,14 @@
     }">
       <svg viewBox="0 0 9 11">
         <defs>
-          <linearGradient id="loaderGradient" x1="0" x2="1" y1="0" y2="0">
+          <linearGradient :id="`loaderGradient${rand}`" x1="0" x2="1" y1="0" y2="0">
             <stop offset="0%" stop-color="rgb(247, 247, 247)" stop-opacity="0"/>
             <stop offset="50%" stop-color="#FFF" stop-opacity=".5"/>
             <stop offset="100%" stop-color="rgb(247, 247, 247)" stop-opacity="0"/>
           </linearGradient>
         </defs>
         <rect height="100%" width="100%" x="0" y="0" fill="#F7F7F7"></rect>
-        <rect class="placeholder-image__loader" height="100%" width="100%" x="0" y="0" fill="url(#loaderGradient)"></rect>
+        <rect class="placeholder-image__loader" height="100%" width="100%" x="0" y="0" :fill="`url(#loaderGradient${rand})`"></rect>
       </svg>
   </div>
   <img
@@ -47,10 +47,12 @@ export default Vue.extend({
       isHidden: Boolean,
       isImageLoaded: Boolean,
       loadingImage: HTMLElement | null
+      rand: number
     } = {
       isImageLoaded: false,
       isHidden: true,
-      loadingImage: null
+      loadingImage: null,
+      rand: (Math.random() * 1000).toFixed()
     }
     return data
   },

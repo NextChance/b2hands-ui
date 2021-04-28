@@ -49,7 +49,7 @@ export const generateLoaderImage = () => {
     loader.setAttribute('y', '0')
     loader.setAttribute('height', '100%')
     loader.setAttribute('width', '100%')
-    loader.setAttribute('class', 'placeholder-image__loader test')
+    loader.setAttribute('class', 'placeholder-image__loader')
     loader.setAttribute('fill', 'url(#loaderGradient)')
     return {
         defs,
