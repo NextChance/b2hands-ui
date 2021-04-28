@@ -23,7 +23,8 @@
         :readonly="isReadonly"
         :placeholder="placeholder"
         class="ui-search-input__input"
-        @input="handleInputFocus"
+        @focus="handleInputFocus"
+        @blur="handleBlur"
         @keyup.enter="handleSearch"
       />
       <button
@@ -99,15 +100,22 @@ export default Vue.extend({
   methods: {
     handleClickDelete(): void {
       this.searchIsFocused = false
-      this.textValue = ''
-      this.$nextTick(() => {
-        (this.$refs.searchInput as HTMLElement).focus()
-      })
+      this.textValue = '';
+      (this.$refs.searchInput as HTMLElement).focus()
       this.$emit('on-clear-input')
     },
 
     handleInputFocus(): void {
       this.searchIsFocused = true
+      this.$emit('on-focus-input')
+    },
+
+    handleBlur(): void {
+      setTimeout(() => {
+        if (!document.activeElement?.isEqualNode(this.$refs.searchInput as HTMLElement)) {
+          this.$emit('on-blur-input')
+        }
+      }, 250)
     },
 
     handleSearch(ev: Event): void {
