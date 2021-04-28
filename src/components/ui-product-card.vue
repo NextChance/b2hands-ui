@@ -129,7 +129,7 @@ export default Vue.extend({
       @include ellipsis(2);
 
       color: $content-1;
-      height: $spacing-size-7;
+      max-height: $spacing-size-7;
     }
 
     &__complementary {
