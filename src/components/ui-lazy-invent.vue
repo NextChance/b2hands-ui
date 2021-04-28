@@ -47,7 +47,7 @@ export default Vue.extend({
       isHidden: Boolean,
       isImageLoaded: Boolean,
       loadingImage: HTMLElement | null
-      rand: number
+      rand: string
     } = {
       isImageLoaded: false,
       isHidden: true,
