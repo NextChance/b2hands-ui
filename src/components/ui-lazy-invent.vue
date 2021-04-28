@@ -10,7 +10,15 @@
       once: true
     }">
       <svg viewBox="0 0 9 11">
+        <defs>
+          <linearGradient id="loaderGradient" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0%" stop-color="rgb(247, 247, 247)" stop-opacity="0"/>
+            <stop offset="50%" stop-color="#FFF" stop-opacity=".5"/>
+            <stop offset="100%" stop-color="rgb(247, 247, 247)" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
         <rect height="100%" width="100%" x="0" y="0" fill="#F7F7F7"></rect>
+        <rect class="placeholder-image__loader" height="100%" width="100%" x="0" y="0" fill="url(#loaderGradient)"></rect>
       </svg>
   </div>
   <img
@@ -155,6 +163,16 @@ export default Vue.extend({
         position: absolute;
       }
     }
+  }
+}
+.placeholder-image {
+  &--loading {
+    height: 100%;
+    width: 100%;
+  }
+
+  &__loader {
+    animation: progress 1s ease-in-out infinite;
   }
 }
 </style>
