@@ -35,7 +35,7 @@ export const generateLoaderImage = () => {
     const stop2 = document.createElementNS('http://www.w3.org/2000/svg', 'stop')
     stop2.setAttribute('offset', '50%')
     stop2.setAttribute('stop-color', 'white')
-    stop2.setAttribute('stop-opacity', '.5')
+    stop2.setAttribute('stop-opacity', '0.5')
     const stop3 = document.createElementNS('http://www.w3.org/2000/svg', 'stop')
     stop3.setAttribute('offset', '100%')
     stop3.setAttribute('stop-color', 'rgb(247, 247, 247)')
