@@ -1,9 +1,17 @@
 <template>
-  <component :is="href ? 'nuxt-link' : 'div'"
+  <div
     class="ui-product-card"
-    :class="{ 'ui-product-card--skeleton': !product }"
+    :class="{
+      'ui-product-card--skeleton': !product,
+      'ui-product-card--with-cover-link': href
+    }"
     :to="href || ''"
   >
+    <a
+      v-if="href"
+      :href="href"
+      class="ui-product-card__cover-link"
+    ></a>
     <div class="ui-product-card__media">
       <ui-lazy-invent
         class="ui-product-card__media__image-container"
@@ -25,7 +33,7 @@
         <a
           :href="eyeUrl"
           class="nav-actions__icons"
-          @click.prevent.stop="handleEyeIcon($event)"
+          @click="handleEyeIcon($event)"
         >
           <i class="b2i-eye"></i>
         </a>
@@ -46,7 +54,7 @@
         <span class="final-price">{{ product && product.salePrice }}</span>
       </div>
     </div>
-  </component>
+  </div>
 </template>
 <script lang="ts">
 import Vue from 'vue'
@@ -149,6 +157,28 @@ export default Vue.extend({
         color: $content-1;
       }
     }
+  }
+
+  &--with-cover-link {
+    position: relative;
+
+    #{$ui-product-card}__media {
+      pointer-events: none;
+
+      /deep/ .nav-actions {
+        &, &__icons {
+          pointer-events: all;
+        }
+      }
+    }
+  }
+
+  &__cover-link {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
   }
 
   &--skeleton {
