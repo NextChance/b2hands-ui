@@ -13,7 +13,7 @@
         <defs>
           <linearGradient :id="`loaderGradient${rand}`" x1="0" x2="1" y1="0" y2="0">
             <stop offset="0%" stop-color="rgb(247, 247, 247)" stop-opacity="0"/>
-            <stop offset="50%" stop-color="#FFF" stop-opacity=".5"/>
+            <stop offset="50%" stop-color="#FFF" stop-opacity="0.5"/>
             <stop offset="100%" stop-color="rgb(247, 247, 247)" stop-opacity="0"/>
           </linearGradient>
         </defs>
