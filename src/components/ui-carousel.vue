@@ -128,7 +128,6 @@ export default Vue.extend({
     },
 
     handleEyeIcon ($event: Event, imageIndex: number): void {
-      $event.preventDefault()
       this.$emit('on-click-eye-icon', imageIndex)
     },
 
