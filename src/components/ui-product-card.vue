@@ -3,15 +3,10 @@
     class="ui-product-card"
     :class="{
       'ui-product-card--skeleton': !product,
-      'ui-product-card--with-cover-link': href
+      'ui-product-card--with-cover-link': $slots['cover-link']
     }"
-    :to="href || ''"
   >
-    <a
-      v-if="href"
-      :href="href"
-      class="ui-product-card__cover-link"
-    ></a>
+    <slot class="ui-product-card__cover-link" name='cover-link'></slot>
     <div class="ui-product-card__media">
       <ui-lazy-invent
         class="ui-product-card__media__image-container"
@@ -30,13 +25,7 @@
         :ref="`nav-actions`"
         class="nav-actions"
       >
-        <a
-          :href="eyeUrl"
-          class="nav-actions__icons"
-          @click="handleEyeIcon($event)"
-        >
-          <i class="b2i-eye"></i>
-        </a>
+        <slot name='card-action'></slot>
       </div>
     </div>
     <div class="ui-product-card__info">
@@ -69,19 +58,11 @@ export default Vue.extend({
     UiLazyInvent
   },
   props: {
-    href: {
-      type: String,
-      default: ''
-    },
     product: {
       type: Object as () => Product,
       default: {}
     },
     labelText: {
-      type: String,
-      default: ''
-    },
-    eyeUrl: {
       type: String,
       default: ''
     }
@@ -99,10 +80,6 @@ export default Vue.extend({
     }
   },
   methods: {
-    handleEyeIcon (ev: Event): void {
-      this.$emit('on-click-eye-icon')
-    },
-
     onImageError (refName: string): void {
       const element = this.$refs[refName] as HTMLElement
       element.classList.add('nav-actions--error')

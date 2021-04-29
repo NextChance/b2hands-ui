@@ -50,13 +50,7 @@
           </div>
           <div class="nav-actions"
                ref="image-actions">
-            <a
-              :href="getUrlEyeIcon(url, index)"
-              class="nav-actions__icons"
-              @click="handleEyeIcon($event, index)"
-            >
-              <i class="b2i-eye"></i>
-            </a>
+            <slot name='carousel-action' v-bind:index="index"></slot>
           </div>
         </li>
       </ul>
@@ -69,13 +63,7 @@
     </div>
     <div class="nav-actions nav-actions--mobile"
          ref="image-actions">
-      <a
-        :href="getUrlEyeIcon(url, 0)"
-        class="nav-actions__icons"
-        @click="handleEyeIcon($event, 0)"
-      >
-        <i class="b2i-eye"></i>
-      </a>
+      <slot name='carousel-action' v-bind:index="0"></slot>
     </div>
   </div>
 </template>
@@ -123,14 +111,6 @@ export default Vue.extend({
     }
   },
   methods: {
-    getUrlEyeIcon (url: string, index: number) {
-      return url.replace('void', `${index}`)
-    },
-
-    handleEyeIcon ($event: Event, imageIndex: number): void {
-      this.$emit('on-click-eye-icon', imageIndex)
-    },
-
     onImageLoaded (index: number): void {
       if( index===0 ) {
         this.isFirstImageLoaded = true

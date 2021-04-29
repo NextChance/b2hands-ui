@@ -19,17 +19,5 @@ describe('UiProductCard', () => {
   })
 
   describe('Methods', () => {
-    let wrapper
-    const event = { preventDefault: jest.fn() }
-    describe('handleEyeIcon', () => {
-      beforeEach(() => {
-        wrapper = shallowMount(UiProductCard, componentConfig)
-        jest.spyOn(event, 'preventDefault')
-        wrapper.vm.handleEyeIcon(event)
-      })
-      it('should emit the event on-click-eye-icon', () => {
-        expect(wrapper.emitted('on-click-eye-icon')).toBeTruthy()
-      })
-    })
   })
 })
