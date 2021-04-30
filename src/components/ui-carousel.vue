@@ -195,6 +195,8 @@ export default Vue.extend({
     }
 
     &__image {
+      display: flex;
+      justify-content: center;
       height: inherit;
       max-width: 100vw;
       min-height: 100%;

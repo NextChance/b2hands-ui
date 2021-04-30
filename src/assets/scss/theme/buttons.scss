@@ -14,6 +14,7 @@
       &-disabled {
         &,
         &:hover {
+          pointer-events: none;
           background-color: $black-20;
           border-color: $black-20;
           color: $black-50;
@@ -24,6 +25,7 @@
     &-disabled {
       &,
       &:hover {
+        pointer-events: none;
         color: $black-50;
         border-color: $black-50;
       }

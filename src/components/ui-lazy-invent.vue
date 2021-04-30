@@ -116,13 +116,14 @@ export default Vue.extend({
       if (isVisible) {
         this.isHidden = false
         this.loadingImage = addSiblingNodeWithLoadingImage(this.$refs.visibilityPlaceholder as HTMLElement)
-        this.loadingImage?.classList.add('lazy-image__loading')
+        this.loadingImage?.classList.add('lazy-image__loading');
+        (this.$refs.visibilityPlaceholder as HTMLElement).classList.add('lazy-image--hide')
       }
     },
     onImageLoaded(): void {
       this.loadingImage?.classList.add('lazy-image__loading--loaded')
+      this.isImageLoaded = true
       setTimeout(() => {
-        this.isImageLoaded = true
         this.loadingImage?.remove()
       }, 350)
       this.$emit('on-image-loaded', this.$refs.main)
@@ -155,13 +156,27 @@ export default Vue.extend({
     opacity: 1;
     position: static;
     z-index: 1;
-  }
 
-  /deep/ {
-    ~ #{$lazy-image}__loading {
-      transition: opacity .3s ease-in;
-      @include text-skeleton;
+    /deep/ {
+      ~ #{$lazy-image}__loading {
+        position: absolute;
+        top: 0;
+        opacity: 0;
+      }
     }
   }
+
+  &--hide {
+    position: absolute;
+  }
+
+
+}
+</style>
+
+<style lang="scss">
+.lazy-image__loading {
+  @include text-skeleton;
+  transition: opacity .3s ease-in;
 }
 </style>
