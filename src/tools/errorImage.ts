@@ -61,9 +61,6 @@ export const addSiblingNodeWithLoadingImage = (nodeElement: HTMLElement) => {
     const loadingImage: HTMLElement = document.createElement('div')
     loadingImage.classList.add('placeholder-image', 'placeholder-image--loading')
     const svg = createPlaceholderImage()
-    const { defs, loader } = generateLoaderImage()
-    svg.appendChild(defs)
-    svg.appendChild(loader)
     loadingImage.appendChild(svg)
     nodeElement.parentElement?.appendChild(loadingImage)
     return loadingImage

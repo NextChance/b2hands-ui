@@ -160,14 +160,7 @@ export default Vue.extend({
   /deep/ {
     ~ #{$lazy-image}__loading {
       transition: opacity .3s ease-in;
-      &--loaded {
-        bottom: 0;
-        left: 0;
-        opacity: 0;
-        position: absolute;
-        top: 0;
-        right: 0;
-      }
+      @include text-skeleton;
     }
   }
 }
