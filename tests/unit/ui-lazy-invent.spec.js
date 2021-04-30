@@ -78,7 +78,9 @@ describe('UiLazyInvent', () => {
         })
 
         it('should set isImageLoaded to true', () => {
-          expect(wrapper.vm.isImageLoaded).toBeTruthy()
+          setTimeout(()=> {
+            expect(wrapper.vm.isImageLoaded).toBeTruthy()
+          }, 400)
         })
 
         it('should set laoded class to loadingImage', () => {
