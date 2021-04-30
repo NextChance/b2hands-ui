@@ -120,14 +120,14 @@ export default Vue.extend({
       }
     },
     onImageLoaded(): void {
-      this.isImageLoaded = true
       this.loadingImage?.classList.add('lazy-image__loading--loaded')
       setTimeout(() => {
+        this.isImageLoaded = true
         this.loadingImage?.remove()
-      }, 10)
+      }, 350)
       this.$emit('on-image-loaded', this.$refs.main)
     },
-    onImageError(evt: Event) {
+    onImageError(evt: Event): void {
       replaceNodeWithErrorImage(evt.currentTarget as HTMLElement)
       this.loadingImage?.remove()
       this.$emit('on-image-error')
@@ -159,9 +159,14 @@ export default Vue.extend({
 
   /deep/ {
     ~ #{$lazy-image}__loading {
-
+      transition: opacity .3s ease-in;
       &--loaded {
+        bottom: 0;
+        left: 0;
+        opacity: 0;
         position: absolute;
+        top: 0;
+        right: 0;
       }
     }
   }
