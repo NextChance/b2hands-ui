@@ -26,6 +26,12 @@
   text-transform: none;
 }
 
+.b2i-cancel {
+  &:before {
+    content: $b2i-cancel;
+  }
+}
+
 .b2i-plus {
   &::before {
     content: $b2i-plus;
