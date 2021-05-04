@@ -220,6 +220,15 @@ export default Vue.extend({
     &__gallery {
       @include affrodance-velo;
 
+      &::after {
+        display: block;
+        height: 100%;
+        position: sticky;
+        right: initial;
+        top: initial;
+        width: 100%;
+      }
+
       background-color: #fdfdfd;
       width: 100%;
 
@@ -295,6 +304,7 @@ export default Vue.extend({
       }
 
       &__image {
+        display: block;
         width: 100%;
       }
 
