@@ -29,18 +29,21 @@
       </div>
     </div>
     <div class="ui-product-card__info">
-      <div class="ui-product-card__info__title">{{ product && product.name }}
-      </div>
+      <div class="ui-product-card__info__title">{{ product && product.name }}</div>
       <div class="ui-product-card__info__complementary">
-        <span class="merchant">{{ product && product.merchantName }}</span>
         <span
-          v-if="product && product.brand && product.merchantName !== product.brand"
-          class="brand"> - {{ product.brand }}</span>
+          v-if="!product || product.brand"
+          class="ui-product-card__info__brand">{{ product && product.brand }}</span>
+        <span
+          v-if="areBrandAndMerchantDistinct && product.merchantName"
+          class="ui-product-card__info__merchant">
+          {{ `${product.brand ? '- ' : ''}${product.merchantName}` }}
+        </span>
       </div>
       <div class="ui-product-card__info__complementary">
         <span v-if="product && product.fullPrice && product.salePrice !== product.fullPrice"
-              class="full-price">{{ product.fullPrice }}</span>
-        <span class="final-price">{{ product && product.salePrice }}</span>
+              class="ui-product-card__info__full-price">{{ product.fullPrice }}</span>
+        <span class="ui-product-card__info__final-price">{{ product && product.salePrice }}</span>
       </div>
     </div>
   </div>
@@ -77,6 +80,11 @@ export default Vue.extend({
       return this.product?.discountPercentage
         ? `${(this.product.discountPercentage * 100).toFixed(0)}%`
         : ''
+    },
+    areBrandAndMerchantDistinct (): boolean {
+      return !!this.product &&
+        !!this.product.merchantName &&
+        this.product.brand !== this.product.merchantName
     }
   },
   methods: {
@@ -114,25 +122,23 @@ export default Vue.extend({
       max-height: $spacing-size-7;
     }
 
-    &__complementary {
-      .merchant,
-      .brand {
-        @include detail('upper');
+    &__merchant,
+    &__brand {
+      @include detail('upper');
 
-        color: $content-3;
-      }
+      color: $content-3;
+    }
 
-      .full-price {
-        @include detail('strike');
+    &__full-price {
+      @include detail('strike');
 
-        color: $content-3;
-      }
+      color: $content-3;
+    }
 
-      .final-price {
-        @include headers('s');
+    &__final-price {
+      @include headers('s');
 
-        color: $content-1;
-      }
+      color: $content-1;
     }
   }
 
