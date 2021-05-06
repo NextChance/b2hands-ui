@@ -22,7 +22,8 @@
     <div
       class="ui-carousel__gallery col-12--xs col-10--s"
       :class="{
-        'ui-carousel__gallery--one-image': items.length === 1
+        'ui-carousel__gallery--one-image': items.length === 1,
+        'ui-carousel__gallery--active': isAnyImageLoaded
       }"
     >
       <ul class="ui-carousel__gallery__list">
@@ -82,7 +83,8 @@ export default Vue.extend({
   name: 'UiCarousel',
   data() {
     return {
-      isFirstImageLoaded: false
+      isFirstImageLoaded: false,
+      isAnyImageLoaded: false
     }
   },
   components: {
@@ -112,6 +114,7 @@ export default Vue.extend({
   },
   methods: {
     onImageLoaded (index: number): void {
+      this.isAnyImageLoaded = true
       if( index===0 ) {
         this.isFirstImageLoaded = true
       }
@@ -143,10 +146,14 @@ export default Vue.extend({
 
     -webkit-transform: translateZ(0); // iOS hack. Don't remove
     height: 100%;
-    overflow-x: scroll;
+    overflow-x: hidden;
     overflow-y: hidden;
     scroll-behavior: smooth;
     scroll-snap-type: x;
+
+    &--active {
+      overflow-x: scroll;
+    }
 
     &--one-image {
       overflow-x: hidden;
@@ -210,6 +217,7 @@ export default Vue.extend({
     /deep/ {
       .placeholder-image {
         height: 100%;
+        width: initial;
 
         svg {
           height: 100%;
