@@ -1,8 +1,7 @@
-@mixin text-skeleton {
+@mixin skeleton {
   $color-highlight: lighten($black-10, 3%);
 
   background: $black-10;
-  margin-bottom: $spacing-size-2;
   overflow: hidden;
   position: relative;
 
@@ -16,4 +15,13 @@
     top: 0;
     width: 100%;
   }
+}
+
+@mixin text-skeleton {
+  @include skeleton;
+  margin-bottom: $spacing-size-2;
+}
+
+@mixin box-skeleton {
+  @include skeleton;
 }
