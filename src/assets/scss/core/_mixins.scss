@@ -254,11 +254,27 @@
         margin-top: map-get($static-element-margin, $lvl);
 
         &::before {
-          @include static-generator-styles(map-get($static-counter-sizes, $lvl));
+          display: none;
+          @media (min-width: $breakpoint-s) {
+            @include static-generator-styles(map-get($static-counter-sizes, $lvl));
 
-          content: $counter-content;
-          padding-right: $counter-spacing;
+            display: block;
+            content: $counter-content;
+            padding-right: $counter-spacing;
+          }
         }
+
+        @media (max-width: $breakpoint-s - 1px) {
+          & #{$selector}__element__content {
+            > *:first-child:before {
+              @include static-generator-styles(map-get($static-counter-sizes, $lvl));
+              color: rebeccapurple;
+              content: $counter-content;
+              padding-right: $counter-spacing;
+            }
+          }
+        }
+
       }
     }
   }
