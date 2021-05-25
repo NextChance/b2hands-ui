@@ -176,7 +176,7 @@ export default Vue.extend({
 
 <style lang="scss">
 .lazy-image__loading {
-  @include text-skeleton;
+  @include box-skeleton;
   transition: opacity .3s ease-in;
 }
 </style>

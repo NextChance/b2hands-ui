@@ -20,8 +20,13 @@
         v-model="textValue"
         :disabled="disabled"
         :type="type"
+        enterKeyHint="search"
+        autocapitalize="off"
+        autocomplete="off"
+        autocorrect="off"
         :readonly="isReadonly"
         :placeholder="placeholder"
+        :maxlength='limitCharacter'
         class="ui-search-input__input"
         @focus="handleInputFocus"
         @blur="handleBlur"
@@ -33,7 +38,7 @@
         aria-label="Clear"
         @click="handleClickDelete"
       >
-        <i class="b2i-close ui-search-input__icon-right__icon"></i>
+        <i class="b2i-cancel ui-search-input__icon-right__icon"></i>
       </button>
     </div>
   </div>
@@ -76,6 +81,10 @@ export default Vue.extend({
     hasAutoFocus: {
       type: Boolean,
       default: false
+    },
+    limitCharacter: {
+      type: String,
+      default: ''
     }
   },
   data() {
@@ -113,6 +122,7 @@ export default Vue.extend({
     handleBlur(): void {
       setTimeout(() => {
         if (!document.activeElement?.isEqualNode(this.$refs.searchInput as HTMLElement)) {
+          this.searchIsFocused = false
           this.$emit('on-blur-input')
         }
       }, 250)
@@ -178,7 +188,9 @@ export default Vue.extend({
     transform: translateY(-50%);
 
     &__icon {
-      font-size: $font-size-1;
+      color: $black-60;
+      display: block;
+      font-size: $font-size-4;
     }
   }
 }
