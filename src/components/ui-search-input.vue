@@ -26,6 +26,7 @@
         autocorrect="off"
         :readonly="isReadonly"
         :placeholder="placeholder"
+        :maxlength='limitCharacter'
         class="ui-search-input__input"
         @focus="handleInputFocus"
         @blur="handleBlur"
@@ -80,6 +81,10 @@ export default Vue.extend({
     hasAutoFocus: {
       type: Boolean,
       default: false
+    },
+    limitCharacter: {
+      type: String,
+      default: ''
     }
   },
   data() {
