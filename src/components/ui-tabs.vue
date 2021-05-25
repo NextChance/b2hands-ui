@@ -9,7 +9,7 @@
         :class="['ui-tabs__element', {'ui-tabs__element--active': idx === activeTabIndex}]"
         ref="uiTab"
         @click="handleTabClick(tab)"
-      >{{tab}}</li>
+      >{{tab.value}}</li>
     </ul>
     <div
       class="ui-tabs__marker"
@@ -21,15 +21,16 @@
 <script lang="ts">
 import Vue from 'vue'
 import AnyObject from '../types/AnyObject'
+import { UiTab } from '../types/Components'
 
 export default Vue.extend({
   name: 'ui-tabs',
   props: {
     tabs: {
       type: Array,
-      default: () => []
+      default: (): Array<UiTab> => []
     },
-    activeTab: {
+    activeTabId: {
       type: String,
       default: ''
     },
@@ -62,11 +63,11 @@ export default Vue.extend({
     }
   },
   watch: {
-    activeTab: {
+    activeTabId: {
       immediate: true,
       handler (newValue) {
         if (newValue) {
-          const activeTabIndex = this.tabs.findIndex(tab => tab === newValue)
+          const activeTabIndex = this.tabs.findIndex(tab => (tab as UiTab).id === newValue)
           this.$nextTick(() => {
             this.activeTabIndex = activeTabIndex !== -1 ? activeTabIndex : 0
           })
@@ -76,7 +77,7 @@ export default Vue.extend({
     tabs: {
       immediate: true,
       handler (newValue) {
-        if (newValue.length && !this.activeTab) {
+        if (newValue.length && !this.activeTabId) {
           this.activeTabIndex = 0
         }
       }
