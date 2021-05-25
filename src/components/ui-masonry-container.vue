@@ -9,8 +9,8 @@
       class="masonry__item">
       <ui-lazy-invent
         class="ui-carousel__thumbnails__image"
-        :alt="`${image.alt}`"
-        :src="image.src"
+        :alt="`${image.title}`"
+        :src="image.url"
         sizes="5.6vw"
         @on-image-loaded="onImageLoaded(idx)"
       ></ui-lazy-invent>
@@ -48,8 +48,11 @@ export default Vue.extend({
   methods: {
     resizeGridItem (item: HTMLElement): void {
       // const rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'))
-      const rowSpan = Math.floor((item.children[0].getBoundingClientRect().height + this.itemGap) / (this.rowHeight))
-      item.style.gridRowEnd = 'span ' + rowSpan
+      const itemHeight = item.children[0].getBoundingClientRect().height
+      if (itemHeight) {
+        const rowSpan = Math.floor((itemHeight + this.itemGap) / (this.rowHeight))
+        item.style.gridRowEnd = 'span ' + rowSpan
+      }
     },
     resizeAllGridItems (): void {
       this.debounceTimer = setTimeout(() => {
@@ -57,7 +60,7 @@ export default Vue.extend({
           clearTimeout(this.debounceTimer)
         }
         this._resizeAllGridItems()
-      }, 1000)
+      }, 0)
     },
     _resizeAllGridItems () {
       if (this.grid) {
@@ -90,18 +93,50 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-$itemGap: 10px;
+$itemGap: 8px;
 
 .masonry {
   display: grid;
   grid-gap: 0 $itemGap;
-  grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
-  grid-auto-rows: 10px;
+  //grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 20px;
 
   &__item {
     margin-bottom: $itemGap;
     position: relative;
     overflow: hidden;
+    grid-row-end: span 11;
+
+    /deep/ .placeholder-image {
+      height: unset;
+    }
+  }
+
+  @media (min-width: $breakpoint-s) {
+    $itemGap: 16px;
+
+    grid-gap: 0 $itemGap;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    &__item {
+      margin-bottom: $itemGap;
+      grid-row-end: span 10;
+    }
+  }
+
+  @media (min-width: $breakpoint-m) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    &__item {
+      grid-row-end: span 7;
+    }
+  }
+
+  @media (min-width: $breakpoint-l) {
+    &__item {
+      grid-row-end: span 9;
+    }
   }
 }
 </style>

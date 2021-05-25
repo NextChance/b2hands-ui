@@ -41,7 +41,8 @@ export default Vue.extend({
   },
   data () {
     return {
-      activeTabIndex: -1
+      activeTabIndex: -1,
+      windowScreenWidth: 0
     }
   },
   computed: {
@@ -49,12 +50,14 @@ export default Vue.extend({
       if (this.$refs.uiTab && Array.isArray(this.$refs.uiTab)) {
         const activeTabRef: HTMLElement = this.$refs.uiTab[this.activeTabIndex] as HTMLElement
         return {
+          windowScreenWidth: this.windowScreenWidth,
           index: this.activeTabIndex,
           left: activeTabRef.offsetLeft,
           width: activeTabRef.clientWidth
         }
       } else {
         return {
+          windowScreenWidth: this.windowScreenWidth,
           index: this.activeTabIndex,
           left: 0,
           width: 0
@@ -86,7 +89,16 @@ export default Vue.extend({
   methods: {
     handleTabClick(tab: string) {
       this.$emit('on-tab-clicked', tab)
+    },
+    updateWindowWidth() {
+      this.windowScreenWidth = window.innerWidth
     }
+  },
+  mounted() {
+    window.addEventListener('resize', this.updateWindowWidth)
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.updateWindowWidth)
   }
 })
 </script>
