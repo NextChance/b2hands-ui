@@ -11,7 +11,6 @@
         class="ui-carousel__thumbnails__image"
         :alt="`${image.title}`"
         :src="image.url"
-        sizes="5.6vw"
         @on-image-loaded="onImageLoaded(idx)"
       ></ui-lazy-invent>
     </li>
