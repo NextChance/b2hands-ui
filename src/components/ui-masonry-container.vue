@@ -6,7 +6,9 @@
       v-for="(image, idx) in images"
       :key="`masonry-image${idx}`"
       ref="masonryElement"
-      class="masonry__item">
+      class="masonry__item"
+      @click="onItemClicked(image)"
+    >
       <ui-lazy-invent
         class="ui-carousel__thumbnails__image"
         :alt="`${image.title}`"
@@ -20,6 +22,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import UiLazyInvent from './ui-lazy-invent.vue'
+import { DiscoveryImage } from '../types/Image'
 
 export default Vue.extend({
   data () {
@@ -53,6 +56,7 @@ export default Vue.extend({
         item.style.gridRowEnd = 'span ' + rowSpan
       }
     },
+
     resizeAllGridItems (): void {
       this.debounceTimer = setTimeout(() => {
         if (this.debounceTimer) {
@@ -61,6 +65,7 @@ export default Vue.extend({
         this._resizeAllGridItems()
       }, 0)
     },
+
     _resizeAllGridItems () {
       if (this.grid) {
         this.rowHeight = parseInt(window.getComputedStyle(this.grid).getPropertyValue('grid-auto-rows'))
@@ -70,9 +75,14 @@ export default Vue.extend({
         this.resizeGridItem(masonryElement)
       })
     },
+
     onImageLoaded (index: number) {
       const masonryElements = this.$refs.masonryElement as [HTMLElement]
       this.resizeGridItem(masonryElements[index])
+    },
+
+    onItemClicked (item: DiscoveryImage) {
+      this.$emit('onItemClicked', item)
     }
   },
 
@@ -99,7 +109,7 @@ $itemGap: 8px;
   grid-gap: 0 $itemGap;
   //grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
   grid-template-columns: 1fr 1fr;
-  grid-auto-rows: 20px;
+  grid-auto-rows: 25px;
 
   &__item {
     margin-bottom: $itemGap;
