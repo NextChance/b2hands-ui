@@ -121,7 +121,10 @@ export default Vue.extend({
     },
 
     onImageError (refIndex: number): void {
-      (this.$refs['image-actions'] as HTMLElement[])[refIndex].classList.add('nav-actions--error')
+      const element = (this.$refs['image-actions'] as HTMLElement[])[refIndex]
+      if (element) {
+        element.classList.add('nav-actions--error')
+      }
     },
 
     getPosition($event: Event, id: string): void {
