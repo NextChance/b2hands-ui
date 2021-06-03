@@ -120,14 +120,18 @@ export default Vue.extend({
       @include ellipsis(2);
 
       color: $content-1;
+      margin-bottom: $spacing-size-1;
       max-height: $spacing-size-7;
+    }
+
+    &__complementary {
+      @include detail('upper');
+
+      color: $content-3;
     }
 
     &__merchant,
     &__brand {
-      @include detail('upper');
-
-      color: $content-3;
     }
 
     &__full-price {
