@@ -13,7 +13,9 @@
         class="ui-carousel__thumbnails__image"
         :alt="`${image.title}`"
         :src="image.url"
-        @on-image-loaded="onImageLoaded(idx)"
+        :loadingHeight="image.height"
+        :loadingWidth="image.width"
+        @on-image-loaded="onImageLoaded($event, idx)"
       ></ui-lazy-invent>
     </li>
   </ul>
@@ -52,6 +54,7 @@ export default Vue.extend({
       // const rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'))
       const itemHeight = item.children[0].getBoundingClientRect().height
       if (itemHeight) {
+        console.log('resizeGridItem', itemHeight)
         const rowSpan = Math.floor((itemHeight + this.itemGap) / (this.rowHeight))
         item.style.gridRowEnd = 'span ' + rowSpan
       }
@@ -76,8 +79,9 @@ export default Vue.extend({
       })
     },
 
-    onImageLoaded (index: number) {
+    onImageLoaded (image: HTMLImageElement,index: number) {
       const masonryElements = this.$refs.masonryElement as [HTMLElement]
+      this.$emit('onImageLoaded', { image, index })
       this.resizeGridItem(masonryElements[index])
     },
 

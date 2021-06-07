@@ -9,7 +9,7 @@
       },
       once: true
     }">
-      <svg viewBox="0 0 9 11">
+      <svg viewBox="0 0 9 11" :height="loadingHeight" :width="loadingWidth">
         <defs>
           <linearGradient :id="`loaderGradient${rand}`" x1="0" x2="1" y1="0" y2="0">
             <stop offset="0%" stop-color="rgb(247, 247, 247)" stop-opacity="0"/>
@@ -98,6 +98,20 @@ export default Vue.extend({
     isErrorForced: {
       type: Boolean,
       default: false
+    },
+    /**
+     * Predefined image height to show while loading
+     */
+    loadingHeight: {
+      type: Number,
+      default: 0
+    },
+    /**
+     * Predefined image width to show while loading
+     */
+    loadingWidth: {
+      type: Number,
+      default: 0
     }
   },
   watch: {
@@ -117,6 +131,10 @@ export default Vue.extend({
         this.isHidden = false
         this.loadingImage = addSiblingNodeWithLoadingImage(this.$refs.visibilityPlaceholder as HTMLElement)
         this.loadingImage?.classList.add('lazy-image__loading');
+        if (this.loadingHeight && this.loadingWidth) {
+          this.loadingImage.height = this.loadingHeight
+          this.loadingImage.width = this.loadingWidth
+        }
         (this.$refs.visibilityPlaceholder as HTMLElement).classList.add('lazy-image--hide')
       }
     },
