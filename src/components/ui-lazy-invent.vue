@@ -1,7 +1,9 @@
 <template>
   <div v-if="isHidden || delayLoad"
        ref="visibilityPlaceholder"
-       class="placeholder-image placeholder-image--loading"
+       class="placeholder-image placeholder-image--loading tete"
+       :height="`${loadingHeight}px`"
+       :width="`${loadingWidth}px`"
        v-observe-visibility="{
       callback: onVisibilityChanged,
       intersection: {
@@ -9,7 +11,7 @@
       },
       once: true
     }">
-      <svg viewBox="0 0 9 11" :height="loadingHeight" :width="loadingWidth">
+      <svg viewBox="0 0 9 11">
         <defs>
           <linearGradient :id="`loaderGradient${rand}`" x1="0" x2="1" y1="0" y2="0">
             <stop offset="0%" stop-color="rgb(247, 247, 247)" stop-opacity="0"/>
@@ -132,8 +134,8 @@ export default Vue.extend({
         this.loadingImage = addSiblingNodeWithLoadingImage(this.$refs.visibilityPlaceholder as HTMLElement)
         this.loadingImage?.classList.add('lazy-image__loading');
         if (this.loadingHeight && this.loadingWidth) {
-          this.loadingImage.height = this.loadingHeight
-          this.loadingImage.width = this.loadingWidth
+          this.loadingImage.style.height = this.loadingHeight
+          this.loadingImage.style.width = this.loadingWidth
         }
         (this.$refs.visibilityPlaceholder as HTMLElement).classList.add('lazy-image--hide')
       }
