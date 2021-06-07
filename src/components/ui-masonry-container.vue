@@ -112,6 +112,7 @@ $itemGap: 8px;
   grid-auto-rows: 25px;
 
   &__item {
+    cursor: pointer;
     margin-bottom: $itemGap;
     position: relative;
     overflow: hidden;
