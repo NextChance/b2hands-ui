@@ -198,15 +198,13 @@ export default class UiSliderInput extends Vue {
     if (e.dataTransfer) {
       e.dataTransfer.setData('application/node type', 'this')
       const dragImg = document.getElementById('drag-dot-placeholder')
-      e.dataTransfer.setDragImage(dragImg, 0, 0)
+      if (dragImg) {
+        e.dataTransfer.setDragImage(dragImg, 0, 0)
+      }
     }
   }
 
   dragOverHandler (e: DragEvent | Touch) {
-    if (e.dataTransfer) {
-      e.dataTransfer.dropEffect = 'move'
-    }
-
     if (e.clientX && this.dragX !== e.clientX && this.isDragging) {
       this.dragX = e.clientX
       const dragOffset = e.clientX - this.trackLeftPosition
