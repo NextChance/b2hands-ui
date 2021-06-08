@@ -7,9 +7,11 @@
       :key="`masonry-image${idx}`"
       ref="masonryElement"
       class="masonry__item"
+      :class="{'masonry__item--skeleton': !image.url}"
       @click="onItemClicked(image)"
     >
       <ui-lazy-invent
+        v-if="image.url"
         class="ui-carousel__thumbnails__image"
         :alt="`${image.title}`"
         :src="image.url"
@@ -121,6 +123,10 @@ $itemGap: 8px;
     position: relative;
     overflow: hidden;
     grid-row-end: span 11;
+
+    &--skeleton {
+      @include box-skeleton;
+    }
 
     /deep/ .placeholder-image {
       height: unset;
