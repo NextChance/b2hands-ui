@@ -42,14 +42,13 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
 import AnyObject from '../types/AnyObject'
 import { UiTab } from '../types/Components'
 import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 
 @Component
 export default class UiTabs extends Vue {
-  container: Vue | Element | null = null
+  container: HTMLElement | null = null
   activeTabIndex: number = -1
   windowScreenWidth: number = 0
   isMinScroll: boolean = false
@@ -80,7 +79,7 @@ export default class UiTabs extends Vue {
   }
 
   @Watch('activeTabId', { immediate: true })
-  onActiveTabIdChanged(newValue) {
+  onActiveTabIdChanged(newValue: string) {
     if (newValue) {
       const activeTabIndex = this.tabs.findIndex(tab => (tab as UiTab).id === newValue)
       this.$nextTick(() => {
@@ -90,7 +89,7 @@ export default class UiTabs extends Vue {
   }
 
   @Watch('tabs', { immediate: true })
-  onTabsChanged (newValue) {
+  onTabsChanged (newValue: Array<UiTab>) {
     if (newValue) {
       if (newValue.length && !this.activeTabId) {
         this.activeTabIndex = 0
@@ -102,18 +101,18 @@ export default class UiTabs extends Vue {
     this.$emit('on-tab-clicked', tab)
   }
 
-  onWindowResize() {
+  onWindowResize (): void {
     this.windowScreenWidth = window.innerWidth
     const { maxTranslation, hasSlideNavigation } = this.getCarouselSizing()
     this.setScrollStatus(
       maxTranslation,
       hasSlideNavigation,
-      this.container.scrollLeft
+      this.container?.scrollLeft || 0
     )
   }
 
   getCarouselSizing () {
-    const containerWidth = this.container && this.container.offsetWidth
+    const containerWidth = this.container && this.container.offsetWidth || 0
     const maxTranslation = this.container
       ? this.container.scrollWidth - containerWidth
       : 0
@@ -131,11 +130,11 @@ export default class UiTabs extends Vue {
     this.setScrollStatus(
       maxTranslation,
       hasSlideNavigation,
-      this.container.scrollLeft
+      this.container?.scrollLeft || 0
     )
   }
 
-  setScrollStatus(maxTranslation, hasSlideNavigation, scrollPosition) {
+  setScrollStatus(maxTranslation: number, hasSlideNavigation: boolean, scrollPosition: number) {
     this.hasSlideNavigation = hasSlideNavigation
     this.isMaxScroll = scrollPosition === maxTranslation
     this.isMinScroll = scrollPosition === 0
@@ -148,10 +147,12 @@ export default class UiTabs extends Vue {
       maxTranslation,
       hasSlideNavigation
     } = this.getCarouselSizing()
-    scrollPosition = this.container.scrollLeft + containerWidth
+    scrollPosition = (this.container?.scrollLeft || 0) + containerWidth
     scrollPosition =
       scrollPosition > maxTranslation ? maxTranslation : scrollPosition
-    this.container.scrollLeft = scrollPosition
+    if (this.container) {
+      this.container.scrollLeft = scrollPosition
+    }
     this.setScrollStatus(maxTranslation, hasSlideNavigation, scrollPosition)
   }
 
@@ -162,27 +163,33 @@ export default class UiTabs extends Vue {
       maxTranslation,
       hasSlideNavigation
     } = this.getCarouselSizing()
-    scrollPosition = this.container.scrollLeft - containerWidth
+    scrollPosition = (this.container?.scrollLeft || 0) - containerWidth
     scrollPosition = scrollPosition < 0 ? 0 : scrollPosition
-    this.container.scrollLeft = scrollPosition
+    if (this.container) {
+      this.container.scrollLeft = scrollPosition
+    }
     this.setScrollStatus(maxTranslation, hasSlideNavigation, scrollPosition)
   }
 
   mounted () {
-    this.container = this.$refs.tabContainer
+    this.container = (this.$refs.tabContainer as HTMLElement)
     const { maxTranslation, hasSlideNavigation } = this.getCarouselSizing()
+    // @ts-ignore
     window.addEventListener('resize', this.onWindowResize)
     this.container.addEventListener('scroll', this.setArrowStatus)
     this.setScrollStatus(
       maxTranslation,
       hasSlideNavigation,
-      this.container.scrollLeft
+      this.container.scrollLeft || 0
     )
   }
 
   destroyed () {
+    // @ts-ignore
     window.removeEventListener('resize', this.onWindowResize)
-    this.container.removeEventListener('scroll', this.setArrowStatus)
+    if (this.container) {
+      this.container.removeEventListener('scroll', this.setArrowStatus)
+    }
   }
 }
 </script>
