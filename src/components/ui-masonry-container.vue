@@ -54,7 +54,6 @@ export default Vue.extend({
       // const rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'))
       const itemHeight = item.children[0].getBoundingClientRect().height
       if (itemHeight) {
-        console.log('resizeGridItem', itemHeight)
         const rowSpan = Math.floor((itemHeight + this.itemGap) / (this.rowHeight))
         item.style.gridRowEnd = 'span ' + rowSpan
       }

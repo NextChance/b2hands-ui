@@ -134,8 +134,8 @@ export default Vue.extend({
         this.loadingImage = addSiblingNodeWithLoadingImage(this.$refs.visibilityPlaceholder as HTMLElement)
         this.loadingImage?.classList.add('lazy-image__loading');
         if (this.loadingHeight && this.loadingWidth) {
-          this.loadingImage.style.height = this.loadingHeight
-          this.loadingImage.style.width = this.loadingWidth
+          this.loadingImage.style.height = `${this.loadingHeight}px`
+          this.loadingImage.style.width = `${this.loadingWidth}px`
         }
         (this.$refs.visibilityPlaceholder as HTMLElement).classList.add('lazy-image--hide')
       }
