@@ -259,12 +259,8 @@ export default class UiSliderInput extends Vue {
 </script>
 
 <style scoped lang="scss">
-$color-coral: #fa5a5a;
-$color-stone: #d8d8d8;
-$color-white: #ffffff;
-$color-gray:  #aaaaaa;
-$triggerBorder: 3;
-$triggerSize: 18;
+$triggerBorder: 0;
+$triggerSize: 24;
 $triggerBounds: (2 * $triggerBorder) + $triggerSize;
 
 .nc-slider {
@@ -279,11 +275,11 @@ $triggerBounds: (2 * $triggerBorder) + $triggerSize;
     pointer-events: none;
     #{$slider}__selected{
       &-track{
-        background-color: $color-gray;
+        background-color: $black-30;
       }
     }
     #{$slider}__trigger{
-      border-color: $color-gray;
+      border-color: $black-30;
     }
   }
 
@@ -305,7 +301,6 @@ $triggerBounds: (2 * $triggerBorder) + $triggerSize;
   &__total-track,
   &__selected-track {
     bottom: 0;
-    height: $triggerBorder + 1px;
     left: 0;
     margin: auto;
     position: absolute;
@@ -313,17 +308,19 @@ $triggerBounds: (2 * $triggerBorder) + $triggerSize;
   }
 
   &__total-track {
-    background-color: $color-stone;
+    border: 1px solid $black-30;
+    border-radius: 1px;
+    height: 0;
     right: 0;
   }
 
   &__selected-track {
-    background-color: $color-coral;
+    background-color: $black-100;
+    height: 2px;
   }
 
   &__trigger {
-    background-color: $color-white;
-    border: $triggerBorder + 0px solid $color-coral;
+    background-color: $black-100;
     bottom: 0;
     border-radius: 50%;
     cursor: pointer;
@@ -336,7 +333,7 @@ $triggerBounds: (2 * $triggerBorder) + $triggerSize;
   }
 
   &__label {
-    color: #272727;
+    color: $black-100;
     font-family: 'Circular-Book', sans-serif;
     font-size: 12px;
     margin-top: 8px;
