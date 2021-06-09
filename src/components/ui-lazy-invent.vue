@@ -1,7 +1,9 @@
 <template>
   <div v-if="isHidden || delayLoad"
        ref="visibilityPlaceholder"
-       class="placeholder-image placeholder-image--loading"
+       class="placeholder-image placeholder-image--loading tete"
+       :height="`${loadingHeight}px`"
+       :width="`${loadingWidth}px`"
        v-observe-visibility="{
       callback: onVisibilityChanged,
       intersection: {
@@ -98,6 +100,20 @@ export default Vue.extend({
     isErrorForced: {
       type: Boolean,
       default: false
+    },
+    /**
+     * Predefined image height to show while loading
+     */
+    loadingHeight: {
+      type: Number,
+      default: 0
+    },
+    /**
+     * Predefined image width to show while loading
+     */
+    loadingWidth: {
+      type: Number,
+      default: 0
     }
   },
   watch: {
@@ -117,6 +133,10 @@ export default Vue.extend({
         this.isHidden = false
         this.loadingImage = addSiblingNodeWithLoadingImage(this.$refs.visibilityPlaceholder as HTMLElement)
         this.loadingImage?.classList.add('lazy-image__loading');
+        if (this.loadingHeight && this.loadingWidth) {
+          this.loadingImage.style.height = `${this.loadingHeight}px`
+          this.loadingImage.style.width = `${this.loadingWidth}px`
+        }
         (this.$refs.visibilityPlaceholder as HTMLElement).classList.add('lazy-image--hide')
       }
     },

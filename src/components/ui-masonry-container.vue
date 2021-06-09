@@ -7,13 +7,17 @@
       :key="`masonry-image${idx}`"
       ref="masonryElement"
       class="masonry__item"
+      :class="{'masonry__item--skeleton': !image.url}"
       @click="onItemClicked(image)"
     >
       <ui-lazy-invent
+        v-if="image.url"
         class="ui-carousel__thumbnails__image"
         :alt="`${image.title}`"
         :src="image.url"
-        @on-image-loaded="onImageLoaded(idx)"
+        :loadingHeight="image.height"
+        :loadingWidth="image.width"
+        @on-image-loaded="onImageLoaded($event, idx)"
       ></ui-lazy-invent>
     </li>
   </ul>
@@ -76,8 +80,9 @@ export default Vue.extend({
       })
     },
 
-    onImageLoaded (index: number) {
+    onImageLoaded (image: HTMLImageElement,index: number) {
       const masonryElements = this.$refs.masonryElement as [HTMLElement]
+      this.$emit('onImageLoaded', { image, index })
       this.resizeGridItem(masonryElements[index])
     },
 
@@ -112,10 +117,15 @@ $itemGap: 8px;
   grid-auto-rows: 25px;
 
   &__item {
+    cursor: pointer;
     margin-bottom: $itemGap;
     position: relative;
     overflow: hidden;
     grid-row-end: span 11;
+
+    &--skeleton {
+      @include box-skeleton;
+    }
 
     /deep/ .placeholder-image {
       height: unset;
