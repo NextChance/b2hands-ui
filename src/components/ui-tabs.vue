@@ -241,6 +241,7 @@ export default class UiTabs extends Vue {
   }
 
   &__element {
+    @include body('s');
     color: $black-60;
     cursor: pointer;
     padding: $spacing-size-3 $spacing-size-4;
