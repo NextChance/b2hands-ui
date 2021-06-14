@@ -13,6 +13,7 @@
         :src="firstImage.src"
         :srcset="firstImage.srcSets"
         :alt="firstImage.alt"
+        :sizes="sizes"
         @on-image-error="onImageError(`nav-actions`)"
       />
       <div
@@ -66,6 +67,10 @@ export default Vue.extend({
       default: {}
     },
     labelText: {
+      type: String,
+      default: ''
+    },
+    sizes: {
       type: String,
       default: ''
     }
