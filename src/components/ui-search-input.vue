@@ -33,7 +33,7 @@
         @keyup.enter="handleSearch"
       />
       <button
-        v-if="searchIsFocused || value"
+        v-show="searchIsFocused || value"
         class="ui-search-input__icon-right"
         aria-label="Clear"
         @click="handleClickDelete"
