@@ -161,11 +161,13 @@
 }
 
 //ellipsis
+//noinspection Stylelint
 @mixin ellipsis($lines) {
   box-orient: vertical;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
+  box-orient: vertical;
+  display: box;
   -webkit-line-clamp: $lines;
+  max-height: $lines + 0em;
   overflow: hidden;
   text-overflow: ellipsis;
   word-break: break-word;
@@ -258,16 +260,17 @@
           @media (min-width: $breakpoint-s) {
             @include static-generator-styles(map-get($static-counter-sizes, $lvl));
 
-            display: block;
             content: $counter-content;
+            display: block;
             padding-right: $counter-spacing;
           }
         }
 
         @media (max-width: $breakpoint-s - 1px) {
           & #{$selector}__element__content {
-            > *:first-child:before {
+            > *:first-child::before {
               @include static-generator-styles(map-get($static-counter-sizes, $lvl));
+
               color: rebeccapurple;
               content: $counter-content;
               padding-right: $counter-spacing;
