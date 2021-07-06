@@ -137,6 +137,7 @@ export default Vue.extend({
 
     &__merchant,
     &__brand {
+      @include ellipsis(2);
     }
 
     &__full-price {
