@@ -271,7 +271,6 @@
             > *:first-child::before {
               @include static-generator-styles(map-get($static-counter-sizes, $lvl));
 
-              color: rebeccapurple;
               content: $counter-content;
               padding-right: $counter-spacing;
             }
