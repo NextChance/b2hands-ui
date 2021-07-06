@@ -87,7 +87,6 @@ export default class UiTabs extends Vue {
 
         const tabsRef = this.$refs.uiTab as Array<any>
         if (tabsRef) {
-          console.log('inside')
           const activeTabRef: HTMLElement = tabsRef[this.activeTabIndex] as HTMLElement
           const tabContainer: HTMLElement = this.$refs.tabContainer as HTMLElement
           const gapOffset = 12
