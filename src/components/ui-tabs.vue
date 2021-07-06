@@ -85,8 +85,9 @@ export default class UiTabs extends Vue {
       this.$nextTick(() => {
         this.activeTabIndex = activeTabIndex !== -1 ? activeTabIndex : 0
 
-        const activeTabRef: HTMLElement = this.$refs.uiTab[this.activeTabIndex] as HTMLElement
-        const tabContainter: HTMLElement = this.$refs.tabContainer
+        const tabsRef = this.$refs.uiTab as Array<any>
+        const activeTabRef: HTMLElement = tabsRef[this.activeTabIndex] as HTMLElement
+        const tabContainter: HTMLElement = this.$refs.tabContainer as HTMLElement
         const gapOffset = 12
         tabContainter.scrollLeft = activeTabRef.offsetLeft - tabContainter.offsetWidth + activeTabRef.offsetWidth + gapOffset
       })
