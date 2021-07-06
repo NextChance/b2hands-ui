@@ -86,10 +86,15 @@ export default class UiTabs extends Vue {
         this.activeTabIndex = activeTabIndex !== -1 ? activeTabIndex : 0
 
         const tabsRef = this.$refs.uiTab as Array<any>
-        const activeTabRef: HTMLElement = tabsRef[this.activeTabIndex] as HTMLElement
-        const tabContainter: HTMLElement = this.$refs.tabContainer as HTMLElement
-        const gapOffset = 12
-        tabContainter.scrollLeft = activeTabRef.offsetLeft - tabContainter.offsetWidth + activeTabRef.offsetWidth + gapOffset
+        if (tabsRef) {
+          console.log('inside')
+          const activeTabRef: HTMLElement = tabsRef[this.activeTabIndex] as HTMLElement
+          const tabContainer: HTMLElement = this.$refs.tabContainer as HTMLElement
+          const gapOffset = 12
+          setTimeout(() => {
+            tabContainer.scrollLeft = activeTabRef.offsetLeft - tabContainer.offsetWidth + activeTabRef.offsetWidth + gapOffset
+          }, 100)
+        }
       })
     }
   }
@@ -188,11 +193,6 @@ export default class UiTabs extends Vue {
       hasSlideNavigation,
       this.container.scrollLeft || 0
     )
-
-    console.log('this.activeTabIndex', this.activeTabIndex)
-    if (this.activeTabIndex >= 0) {
-
-    }
   }
 
   destroyed () {
