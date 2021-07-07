@@ -165,7 +165,7 @@
 @mixin ellipsis($lines) {
   box-orient: vertical;
   box-orient: vertical;
-  display: box;
+  display: -webkit-box;
   -webkit-line-clamp: $lines;
   max-height: $lines + 0em;
   overflow: hidden;
