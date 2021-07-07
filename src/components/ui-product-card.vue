@@ -32,14 +32,7 @@
     <div class="ui-product-card__info">
       <div class="ui-product-card__info__title">{{ product && product.name }}</div>
       <div class="ui-product-card__info__complementary">
-        <span
-          v-if="!product || product.brand"
-          class="ui-product-card__info__brand">{{ product && product.brand }}</span>
-        <span
-          v-if="areBrandAndMerchantDistinct && product.merchantName"
-          class="ui-product-card__info__merchant">
-          {{ `${product.brand ? '- ' : ''}${product.merchantName}` }}
-        </span>
+        <span class="ui-product-card__info__brand-merchant">{{ brandAndMerchantLabel }}</span>
       </div>
       <div class="ui-product-card__info__complementary">
         <span v-if="product && product.fullPrice && product.salePrice !== product.fullPrice"
@@ -86,10 +79,14 @@ export default Vue.extend({
         ? `${(this.product.discountPercentage * 100).toFixed(0)}%`
         : ''
     },
-    areBrandAndMerchantDistinct (): boolean {
-      return !!this.product &&
-        !!this.product.merchantName &&
-        this.product.brand !== this.product.merchantName
+    brandAndMerchantLabel (): string {
+      return (this.product
+        ? this.product.brand
+          ? this.product.brand !== this.product.merchantName
+            ? `${this.product.brand} - ${this.product.merchantName}`
+            : this.product.brand
+          : this.product.merchantName
+        : '') || ''
     }
   },
   methods: {
@@ -122,7 +119,7 @@ export default Vue.extend({
 
     &__title {
       @include body('s');
-      @include ellipsis(2);
+      @include ellipsis(2, $line-height-1);
 
       color: $content-1;
       margin-bottom: $spacing-size-1;
@@ -135,9 +132,8 @@ export default Vue.extend({
       color: $content-3;
     }
 
-    &__merchant,
-    &__brand {
-      @include ellipsis(2);
+    &__brand-merchant {
+      @include ellipsis(1, $line-height-1);
     }
 
     &__full-price {

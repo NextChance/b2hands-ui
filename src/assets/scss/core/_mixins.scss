@@ -162,12 +162,12 @@
 
 //ellipsis
 //noinspection Stylelint
-@mixin ellipsis($lines) {
+@mixin ellipsis($lines, $lineHeight: 1rem) {
   box-orient: vertical;
-  box-orient: vertical;
+  -webkit-box-orient: vertical;
   display: -webkit-box;
   -webkit-line-clamp: $lines;
-  max-height: $lines + 0em;
+  max-height: ($lines * $lineHeight);
   overflow: hidden;
   text-overflow: ellipsis;
   word-break: break-word;
