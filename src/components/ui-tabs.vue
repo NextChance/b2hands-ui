@@ -79,7 +79,7 @@ export default class UiTabs extends Vue {
   }
 
   @Watch('activeTabId', { immediate: true })
-  onActiveTabIdChanged(newValue: string) {
+  onActiveTabIdChanged(newValue: string, oldValue: string | undefined) {
     if (newValue) {
       const activeTabIndex = this.tabs.findIndex(tab => (tab as UiTab).id === newValue)
       this.$nextTick(() => {
@@ -90,8 +90,10 @@ export default class UiTabs extends Vue {
           const activeTabRef: HTMLElement = tabsRef[this.activeTabIndex] as HTMLElement
           const tabContainer: HTMLElement = this.$refs.tabContainer as HTMLElement
           const gapOffset = 12
+          tabContainer.style.scrollBehavior = !oldValue ? 'unset' : 'smooth'
+          tabContainer.scrollLeft = activeTabRef.offsetLeft - tabContainer.offsetWidth + activeTabRef.offsetWidth + gapOffset
           setTimeout(() => {
-            tabContainer.scrollLeft = activeTabRef.offsetLeft - tabContainer.offsetWidth + activeTabRef.offsetWidth + gapOffset
+            tabContainer.style.scrollBehavior = 'smooth'
           }, 100)
         }
       })
