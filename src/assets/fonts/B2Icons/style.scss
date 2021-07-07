@@ -6,8 +6,8 @@
   font-style: normal;
   font-weight: normal;
   src:
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?acshmk') format('truetype'),
-    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?acshmk') format('woff');
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?92ire0') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?92ire0') format('woff');
 }
 
 [class^='b2i-'],
@@ -24,6 +24,12 @@
   line-height: 1;
   speak: never;
   text-transform: none;
+}
+
+.b2i-search-similars {
+  &:before {
+    content: $b2i-search-similars;
+  }
 }
 
 .b2i-cancel {
