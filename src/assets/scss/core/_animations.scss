@@ -17,3 +17,36 @@
     transform: translate(100%, 0);
   }
 }
+
+@keyframes navActionIconExpand {
+  0% {
+    max-width: $font-size-9;
+  }
+
+  16.67% {
+    max-width: 22rem;
+  }
+
+  100% {
+    max-width: 22rem;
+  }
+}
+
+
+@keyframes navActionShowText {
+  0% {
+    opacity: 0;
+  }
+
+  18.8% {
+    opacity: 0;
+  }
+
+  35.57% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
