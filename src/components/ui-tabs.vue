@@ -244,6 +244,7 @@ export default class UiTabs extends Vue {
     #{$uiTabs}__element {
       flex-shrink: 0;
       flex-grow: 1;
+      white-space: nowrap;
     }
   }
 
