@@ -17,6 +17,7 @@
   cursor: pointer;
   padding: $spacing-size-2 $spacing-size-4;
   transition: color .2s, background-color .2s;
+  white-space: nowrap;
 
   & + & {
     margin-left: $spacing-size-2;
