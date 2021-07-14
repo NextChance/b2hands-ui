@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 export default interface Image {
   src: string
   srcset?: string
@@ -7,4 +8,5 @@ export default interface Image {
 export interface DiscoveryImage {
   url: string
   title: string
+  original_url: string
 }
