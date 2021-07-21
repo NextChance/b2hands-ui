@@ -13,7 +13,7 @@
       class="ui-radio__button"
       :value="value"
       :checked="isChecked"
-      @change="onChange"
+      @change="onChange(value)"
     ><label
       v-if="label"
       class="ui-radio__label"
@@ -42,7 +42,7 @@ export default Vue.extend({
      * Sets input value
      */
     value: {
-      type: String,
+      type: String || Number,
       default: ''
     },
     /**
@@ -71,14 +71,14 @@ export default Vue.extend({
     /**
      * Close modal
      */
-    onChange($event: Event): void {
+    onChange(value: string|number): void {
       /**
        * Close event
        *
        * @event on-change
        */
       if (!this.isDisabled) {
-        this.$emit('change', ($event.currentTarget as HTMLInputElement)?.value)
+        this.$emit('change', value)
       }
     }
   }
