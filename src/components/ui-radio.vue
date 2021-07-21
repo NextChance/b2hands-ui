@@ -7,9 +7,9 @@
     }"
   >
     <input
-      :id="name || id"
+      :id="id"
       type="radio"
-      :name="name || id"
+      :name="name"
       class="ui-radio__button"
       :value="value"
       :checked="isChecked"
@@ -17,7 +17,7 @@
     ><label
       v-if="label"
       class="ui-radio__label"
-      :for="name || id">{{label}}</label>
+      :for="id">{{label}}</label>
   </div>
 </template>
 
