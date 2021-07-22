@@ -11,6 +11,7 @@
       <svg
         v-if="activeBound"
         class="image-search__selected-mark"
+        :viewBox="`0 0 ${imageSize.height} ${imageSize.width}`"
         :height="imageSize.height"
         :width="imageSize.width"
       >
