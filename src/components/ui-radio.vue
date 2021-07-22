@@ -42,7 +42,7 @@ export default Vue.extend({
      * Sets input value
      */
     value: {
-      type: String || Number,
+      type: [String, Number],
       default: ''
     },
     /**
