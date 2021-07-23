@@ -125,8 +125,11 @@ export default Vue.extend({
     }
   },
   watch: {
-    activeProductReference () {
-      this.showBound = true
+    activeProductReference: {
+      immediate: true,
+      handler() {
+        this.showBound = true
+      }
     }
   },
   computed: {
