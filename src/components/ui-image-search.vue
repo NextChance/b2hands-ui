@@ -45,9 +45,10 @@
           height="100%"
           width="100%"
           fill="#191919"
-          mask="url(#selection)"
+          :mask="showBound ? 'url(#selection)': ''"
         />
         <use
+          v-if="showBound"
           xlink:href="#bound_selected"
           fill="transparent"
           stroke="white"
@@ -101,7 +102,8 @@ export default Vue.extend({
         width: '100%'
       },
       isImageLoaded: false,
-      isImageMoreLandscape: false
+      isImageMoreLandscape: false,
+      showBound: false
     }
   },
   props:{
@@ -122,6 +124,11 @@ export default Vue.extend({
       default: false
     }
   },
+  watch: {
+    activeProductReference () {
+      this.showBound = true
+    }
+  },
   computed: {
     activeBound() {
       return this.bounds.find((bound: Bound) => bound.product_search_reference === this.activeProductReference)
@@ -129,6 +136,7 @@ export default Vue.extend({
   },
   methods: {
     onSelectBound(bound: Bound): void {
+      this.showBound = false
       this.$emit('on-select-bound', bound)
     },
     onImageLoaded(image: HTMLImageElement) {
