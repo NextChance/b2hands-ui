@@ -169,9 +169,9 @@ export default Vue.extend({
       opacity: .4;
     }
 
-    &__bound {
-      transition: transform .3s, height .3s, width .3s;
-    }
+    //&__bound {
+    //  transition: transform .3s, height .3s, width .3s;
+    //}
   }
 
   &__original {
@@ -206,7 +206,7 @@ export default Vue.extend({
     position: absolute;
     transform: scale(1);
     transform-origin: center;
-    transition: transform .2s;
+    //transition: transform .2s;
     width: $spacing-size-7;
     z-index: 1;
 
