@@ -128,9 +128,16 @@ export default Vue.extend({
     activeProductReference: {
       immediate: true,
       handler() {
-        this.$nextTick(() => {
-          this.showBound = true
-        })
+        if (document) {
+          const html = document.getElementsByTagName('html')[0]
+          const scrollTop = html.scrollTop
+          html.scrollTop = html.scrollTop + 1
+
+          setTimeout(() => {
+            // this.showBound = true
+            html.scrollTop = scrollTop
+          }, 0)
+        }
       }
     }
   },
@@ -141,7 +148,7 @@ export default Vue.extend({
   },
   methods: {
     onSelectBound(bound: Bound): void {
-      this.showBound = false
+      // this.showBound = false
       this.$emit('on-select-bound', bound)
     },
     onImageLoaded(image: HTMLImageElement) {
