@@ -103,7 +103,7 @@ export default Vue.extend({
       },
       isImageLoaded: false,
       isImageMoreLandscape: false,
-      showBound: false
+      showBound: true
     }
   },
   props:{
