@@ -157,6 +157,8 @@ export default Vue.extend({
       this.$emit('on-select-bound', bound)
     },
     onImageLoaded(image: HTMLImageElement) {
+      console.log('image.naturalWidth', image.naturalWidth)
+      console.log('image.naturalHeight', image.naturalHeight)
       const imageAspectRatio = image.naturalWidth / image.naturalHeight
       const containerMaxAspectRatio = 0.9
       const isImageMoreLandscape = imageAspectRatio > containerMaxAspectRatio
