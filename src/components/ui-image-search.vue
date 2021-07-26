@@ -89,12 +89,22 @@ import UiLazyInvent from './ui-lazy-invent.vue'
 import Image from '../types/Image'
 import Bound from '../types/Bound'
 
+interface Data {
+  imageSize: {
+    height: string
+    width: string
+  }
+  isImageLoaded: boolean
+  isImageMoreLandscape: boolean
+  viewBox: null | string
+}
+
 export default Vue.extend({
   name: 'ui-image-search',
   components: {
     UiLazyInvent
   },
-  data() {
+  data(): Data {
     return {
       imageSize: {
         height: '100%',
