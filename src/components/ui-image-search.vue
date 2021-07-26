@@ -11,7 +11,7 @@
       <svg
         v-if="activeBound"
         class="image-search__selected-mark"
-        :viewBox="`0 0 ${imageSize.height} ${imageSize.width}`"
+        :viewBox="viewBox"
         :height="imageSize.height"
         :width="imageSize.width"
       >
@@ -45,10 +45,9 @@
           height="100%"
           width="100%"
           fill="#191919"
-          :mask="showBound ? 'url(#selection)': ''"
+          mask="url(#selection)"
         />
         <use
-          v-if="showBound"
           xlink:href="#bound_selected"
           fill="transparent"
           stroke="white"
@@ -103,7 +102,7 @@ export default Vue.extend({
       },
       isImageLoaded: false,
       isImageMoreLandscape: false,
-      showBound: true
+      viewBox: null
     }
   },
   props:{
@@ -128,13 +127,13 @@ export default Vue.extend({
     activeProductReference: {
       immediate: true,
       handler() {
-        if (document) {
-          const html = document.getElementsByTagName('html')[0]
+        const html = process.client ? document.getElementsByTagName('html')[0] : null
+
+        if (html && html.offsetWidth < 768) {
           const scrollTop = html.scrollTop
           html.scrollTop = html.scrollTop + 1
 
           setTimeout(() => {
-            // this.showBound = true
             html.scrollTop = scrollTop
           }, 0)
         }
@@ -147,19 +146,36 @@ export default Vue.extend({
     }
   },
   methods: {
+    getViewboxMeasure (offsetWidth: number, measure: string) {
+      return offsetWidth * (parseFloat(measure.slice(0, -2)))
+    },
     onSelectBound(bound: Bound): void {
-      // this.showBound = false
       this.$emit('on-select-bound', bound)
     },
     onImageLoaded(image: HTMLImageElement) {
       const imageAspectRatio = image.naturalWidth / image.naturalHeight
       const containerMaxAspectRatio = 0.9
       const isImageMoreLandscape = imageAspectRatio > containerMaxAspectRatio
+      const html = process.client ? document.getElementsByTagName('html')[0] : null
 
       this.isImageLoaded = true
-      this.imageSize = {
-        height: isImageMoreLandscape ? '100%' : '90vw',
-        width: isImageMoreLandscape ? '100%' : `${90 * imageAspectRatio}vw`
+
+      if (isImageMoreLandscape) {
+        this.imageSize = {
+          height: '100%',
+          width: '100%'
+        }
+        if (html) {
+          this.viewBox = `0 0 ${html.offsetWidth} ${html.offsetWidth}`
+        }
+      } else {
+        this.imageSize = {
+          height: '90vw',
+          width: `${90 * imageAspectRatio}vw`
+        }
+        if (html) {
+          this.viewBox = `0 0 ${this.getViewboxMeasure(html.offsetWidth, this.imageSize.height)} ${this.getViewboxMeasure(html.offsetWidth, this.imageSize.width)}`
+        }
       }
     }
   }
