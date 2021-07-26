@@ -1,5 +1,6 @@
 <template>
   <div class="image-search">
+    <span>1</span>
     <ui-lazy-invent
       :src="image.src"
       :srcset="image.srcset"
@@ -128,7 +129,9 @@ export default Vue.extend({
     activeProductReference: {
       immediate: true,
       handler() {
-        this.showBound = true
+        setTimeout(() => {
+          this.showBound = true
+        }, 100)
       }
     }
   },
