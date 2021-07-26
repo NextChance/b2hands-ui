@@ -11,7 +11,6 @@
       <svg
         v-if="activeBound"
         class="image-search__selected-mark"
-        :viewBox="viewBox"
         :height="imageSize.height"
         :width="imageSize.width"
       >
@@ -89,30 +88,19 @@ import UiLazyInvent from './ui-lazy-invent.vue'
 import Image from '../types/Image'
 import Bound from '../types/Bound'
 
-interface Data {
-  imageSize: {
-    height: string
-    width: string
-  }
-  isImageLoaded: boolean
-  isImageMoreLandscape: boolean
-  viewBox: null | string
-}
-
 export default Vue.extend({
   name: 'ui-image-search',
   components: {
     UiLazyInvent
   },
-  data(): Data {
+  data() {
     return {
       imageSize: {
         height: '100%',
         width: '100%'
       },
       isImageLoaded: false,
-      isImageMoreLandscape: false,
-      viewBox: null
+      isImageMoreLandscape: false
     }
   },
   props:{
@@ -156,9 +144,6 @@ export default Vue.extend({
     }
   },
   methods: {
-    getViewboxMeasure (offsetWidth: number, measure: string) {
-      return offsetWidth * (parseFloat(measure.slice(0, -2)))
-    },
     onSelectBound(bound: Bound): void {
       this.$emit('on-select-bound', bound)
     },
@@ -166,26 +151,12 @@ export default Vue.extend({
       const imageAspectRatio = image.naturalWidth / image.naturalHeight
       const containerMaxAspectRatio = 0.9
       const isImageMoreLandscape = imageAspectRatio > containerMaxAspectRatio
-      const html = process.client ? document.getElementsByTagName('html')[0] : null
 
       this.isImageLoaded = true
 
-      if (isImageMoreLandscape) {
-        this.imageSize = {
-          height: '100%',
-          width: '100%'
-        }
-        if (html) {
-          this.viewBox = `0 0 ${html.offsetWidth} ${html.offsetWidth}`
-        }
-      } else {
-        this.imageSize = {
-          height: '90vw',
-          width: `${90 * imageAspectRatio}vw`
-        }
-        if (html) {
-          this.viewBox = `0 0 ${this.getViewboxMeasure(html.offsetWidth, this.imageSize.height)} ${this.getViewboxMeasure(html.offsetWidth, this.imageSize.width)}`
-        }
+      this.imageSize = {
+        height: isImageMoreLandscape ? '100%' : '90vw',
+        width: isImageMoreLandscape ? '100%' : `${90 * imageAspectRatio}vw`
       }
     }
   }
