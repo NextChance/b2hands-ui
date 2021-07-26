@@ -157,8 +157,6 @@ export default Vue.extend({
       this.$emit('on-select-bound', bound)
     },
     onImageLoaded(image: HTMLImageElement) {
-      console.log('image.naturalWidth', image.naturalWidth)
-      console.log('image.naturalHeight', image.naturalHeight)
       const imageAspectRatio = image.naturalWidth / image.naturalHeight
       const containerMaxAspectRatio = 0.9
       const isImageMoreLandscape = imageAspectRatio > containerMaxAspectRatio
@@ -169,10 +167,11 @@ export default Vue.extend({
         width: isImageMoreLandscape ? '100%' : `${90 * imageAspectRatio}vw`
       }
 
+      const imageWidth = image.naturalWidth * (process.client ? window.devicePixelRatio : 1)
       if (isImageMoreLandscape) {
-        this.viewBox = `0 0 ${image.naturalWidth} ${image.naturalWidth}`
+        this.viewBox = `0 0 ${imageWidth} ${imageWidth}`
       } else {
-        this.viewBox = `0 0 ${image.naturalWidth * imageAspectRatio} ${image.naturalWidth}`
+        this.viewBox = `0 0 ${imageWidth * imageAspectRatio} ${imageWidth}`
       }
     }
   }
