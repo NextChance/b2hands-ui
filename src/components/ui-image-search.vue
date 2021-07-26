@@ -44,9 +44,10 @@
           height="100%"
           width="100%"
           fill="#191919"
-          mask="url(#selection)"
+          :mask="showBound ? 'url(#selection)': ''"
         />
         <use
+          v-if="showBound"
           xlink:href="#bound_selected"
           fill="transparent"
           stroke="white"
@@ -100,7 +101,8 @@ export default Vue.extend({
         width: '100%'
       },
       isImageLoaded: false,
-      isImageMoreLandscape: false
+      isImageMoreLandscape: false,
+      showBound: false
     }
   },
   props:{
@@ -125,16 +127,9 @@ export default Vue.extend({
     activeProductReference: {
       immediate: true,
       handler() {
-        const html = process.client ? document.getElementsByTagName('html')[0] : null
-
-        if (html && html.offsetWidth < 768) {
-          const scrollTop = html.scrollTop
-          html.scrollTop = html.scrollTop + 1
-
-          setTimeout(() => {
-            html.scrollTop = scrollTop
-          }, 0)
-        }
+        setTimeout(() => {
+          this.showBound = true
+        }, 100)
       }
     }
   },
@@ -145,6 +140,7 @@ export default Vue.extend({
   },
   methods: {
     onSelectBound(bound: Bound): void {
+      this.showBound = false
       this.$emit('on-select-bound', bound)
     },
     onImageLoaded(image: HTMLImageElement) {
@@ -153,7 +149,6 @@ export default Vue.extend({
       const isImageMoreLandscape = imageAspectRatio > containerMaxAspectRatio
 
       this.isImageLoaded = true
-
       this.imageSize = {
         height: isImageMoreLandscape ? '100%' : '90vw',
         width: isImageMoreLandscape ? '100%' : `${90 * imageAspectRatio}vw`
