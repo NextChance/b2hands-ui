@@ -45,10 +45,9 @@
           height="100%"
           width="100%"
           fill="#191919"
-          :mask="showBound ? 'url(#selection)': ''"
+          mask="url(#selection)"
         />
         <use
-          v-if="showBound"
           xlink:href="#bound_selected"
           fill="transparent"
           stroke="white"
@@ -97,7 +96,6 @@ interface Data {
   },
   isImageLoaded: boolean
   isImageMoreLandscape: boolean
-  showBound: boolean
   viewBox: string | null
 }
 
@@ -114,7 +112,6 @@ export default Vue.extend({
       },
       isImageLoaded: false,
       isImageMoreLandscape: false,
-      showBound: false,
       viewBox: null
     }
   },
@@ -141,7 +138,6 @@ export default Vue.extend({
       immediate: true,
       handler() {
         setTimeout(() => {
-          this.showBound = true
         }, 100)
       }
     }
@@ -153,7 +149,6 @@ export default Vue.extend({
   },
   methods: {
     onSelectBound(bound: Bound): void {
-      this.showBound = false
       this.$emit('on-select-bound', bound)
     },
     onImageLoaded(image: HTMLImageElement) {
