@@ -13,6 +13,7 @@
         class="image-search__selected-mark"
         :height="imageSize.height"
         :width="imageSize.width"
+        :viewBox="viewBox"
       >
         <defs>
           <rect
@@ -89,12 +90,23 @@ import UiLazyInvent from './ui-lazy-invent.vue'
 import Image from '../types/Image'
 import Bound from '../types/Bound'
 
+interface Data {
+  imageSize: {
+    height: string
+    width: string
+  },
+  isImageLoaded: boolean
+  isImageMoreLandscape: boolean
+  showBound: boolean
+  viewBox: string | null
+}
+
 export default Vue.extend({
   name: 'ui-image-search',
   components: {
     UiLazyInvent
   },
-  data() {
+  data(): Data {
     return {
       imageSize: {
         height: '100%',
@@ -102,7 +114,8 @@ export default Vue.extend({
       },
       isImageLoaded: false,
       isImageMoreLandscape: false,
-      showBound: false
+      showBound: false,
+      viewBox: null
     }
   },
   props:{
@@ -152,6 +165,12 @@ export default Vue.extend({
       this.imageSize = {
         height: isImageMoreLandscape ? '100%' : '90vw',
         width: isImageMoreLandscape ? '100%' : `${90 * imageAspectRatio}vw`
+      }
+
+      if (isImageMoreLandscape) {
+        this.viewBox = `0 0 ${image.naturalWidth} ${image.naturalWidth}`
+      } else {
+        this.viewBox = `0 0 ${image.naturalWidth * imageAspectRatio} ${image.naturalWidth}`
       }
     }
   }
