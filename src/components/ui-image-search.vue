@@ -13,7 +13,6 @@
         class="image-search__selected-mark"
         :height="imageSize.height"
         :width="imageSize.width"
-        :viewBox="viewBox"
       >
         <defs>
           <rect
@@ -45,9 +44,10 @@
           height="100%"
           width="100%"
           fill="#191919"
-          mask="url(#selection)"
+          :mask="showBound ? 'url(#selection)': ''"
         />
         <use
+          v-if="showBound"
           xlink:href="#bound_selected"
           fill="transparent"
           stroke="white"
@@ -96,7 +96,7 @@ interface Data {
   },
   isImageLoaded: boolean
   isImageMoreLandscape: boolean
-  viewBox: string | null
+  showBound: boolean
 }
 
 export default Vue.extend({
@@ -112,7 +112,7 @@ export default Vue.extend({
       },
       isImageLoaded: false,
       isImageMoreLandscape: false,
-      viewBox: null
+      showBound: false
     }
   },
   props:{
@@ -138,6 +138,7 @@ export default Vue.extend({
       immediate: true,
       handler() {
         setTimeout(() => {
+          this.showBound = true
         }, 100)
       }
     }
@@ -149,6 +150,7 @@ export default Vue.extend({
   },
   methods: {
     onSelectBound(bound: Bound): void {
+      this.showBound = false
       this.$emit('on-select-bound', bound)
     },
     onImageLoaded(image: HTMLImageElement) {
@@ -160,13 +162,6 @@ export default Vue.extend({
       this.imageSize = {
         height: isImageMoreLandscape ? '100%' : '90vw',
         width: isImageMoreLandscape ? '100%' : `${90 * imageAspectRatio}vw`
-      }
-
-      const imageWidth = image.naturalWidth * (process.client ? window.devicePixelRatio : 1)
-      if (isImageMoreLandscape) {
-        this.viewBox = `0 0 ${imageWidth} ${imageWidth}`
-      } else {
-        this.viewBox = `0 0 ${imageWidth * imageAspectRatio} ${imageWidth}`
       }
     }
   }
