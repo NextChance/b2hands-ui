@@ -218,9 +218,10 @@ export default class UiTabs extends Vue {
   position: relative;
 
   *::-webkit-scrollbar {
-    width: 0px;
-    display: none;
+    -webkit-appearance: none;
     background: transparent; /* make scrollbar transparent */
+    display: none;
+    width: 0px;
   }
 
   &--scrollable {
@@ -232,8 +233,9 @@ export default class UiTabs extends Vue {
     -ms-overflow-style: none;  /* IE 10+ */
 
     &::-webkit-scrollbar {
-      height: 0px;
+      -webkit-appearance: none;
       background: transparent; /* Chrome/Safari/Webkit */
+      height: 0px;
     }
 
 
