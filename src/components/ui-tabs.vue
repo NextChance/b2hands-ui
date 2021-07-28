@@ -221,6 +221,7 @@ export default class UiTabs extends Vue {
     -webkit-appearance: none;
     background: transparent; /* make scrollbar transparent */
     display: none;
+    height: 0px;
     width: 0px;
   }
 
@@ -236,6 +237,7 @@ export default class UiTabs extends Vue {
       -webkit-appearance: none;
       background: transparent; /* Chrome/Safari/Webkit */
       height: 0px;
+      width: 0;
     }
 
 
