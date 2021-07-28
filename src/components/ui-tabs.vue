@@ -236,6 +236,7 @@ export default class UiTabs extends Vue {
     &::-webkit-scrollbar {
       -webkit-appearance: none;
       background: transparent; /* Chrome/Safari/Webkit */
+      display: none;
       height: 0px;
       width: 0;
     }
