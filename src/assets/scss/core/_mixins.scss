@@ -84,11 +84,12 @@
   @if ($type == 'upper') {
     font-size: $font-size-1;
     text-transform: uppercase;
-  } @else if ($type == 'strike') {
+  } @else if ($type == 'xs') {
     font-size: $font-size-1;
-    text-decoration: line-through;
+    line-height: $font-size-2;
   } @else {
     font-size: $font-size-2;
+    line-height: $base-unit;
   }
 }
 
