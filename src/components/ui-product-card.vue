@@ -123,7 +123,6 @@ export default Vue.extend({
 
       color: $content-1;
       margin-bottom: $spacing-size-1;
-      max-height: $spacing-size-7;
     }
 
     &__complementary {
