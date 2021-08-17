@@ -136,9 +136,10 @@ export default Vue.extend({
     }
 
     &__full-price {
-      @include detail('strike');
+      @include detail('xs');
 
       color: $content-3;
+      text-decoration: line-through;
     }
 
     &__final-price {
