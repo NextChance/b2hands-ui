@@ -26,6 +26,30 @@
   text-transform: none;
 }
 
+.b2i-home {
+  &:before {
+    content: $b2i-home;
+  }
+
+  &--active {
+    &:before {
+      content: $b2i-home-active;
+    }
+  }
+}
+
+.b2i-discovery {
+  &:before {
+    content: $b2i-discovery;
+  }
+
+  &--active {
+    &:before {
+      content: $b2i-discovery-active;
+    }
+  }
+}
+
 .b2i-search-similars {
   &:before {
     content: $b2i-search-similars;
@@ -95,6 +119,12 @@
 .b2i-search {
   &::before {
     content: $b2i-search;
+  }
+
+  &--active {
+    &:before {
+      content: $b2i-search-active;
+    }
   }
 }
 
