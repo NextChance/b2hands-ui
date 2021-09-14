@@ -54,11 +54,7 @@
       </div>
       <template v-if="isImageLoaded && !isErrorForced">
         <ol
-          :class="['ui-influencer-card__bound-list']"
-          :style="{
-            height: imageSize.height,
-            width: imageSize.width
-          }"
+          class="ui-influencer-card__bound-list"
         >
           <li
             v-for="(bound, key) in bounds"
@@ -87,12 +83,7 @@ import Profile from '../types/Profile'
 import Bound from '../types/Bound'
 import Image from '../types/Image'
 interface Data {
-  imageSize: {
-    height: string
-    width: string
-  }
   isImageLoaded: boolean
-  isImageMoreLandscape: boolean
   isVisible: boolean
   isReady: boolean
   showAnimationElements: boolean
@@ -101,7 +92,8 @@ interface Data {
   isFirstTime: boolean
   hasClicked: boolean
   isAnimating: boolean
-  delayAnimationTimeOut: ReturnType<typeof setTimeout>
+  delayAnimationIn: ReturnType<typeof setTimeout>
+  delayAnimationOut: ReturnType<typeof setTimeout>
 }
 
 export default Vue.extend({
@@ -143,11 +135,6 @@ export default Vue.extend({
   },
   data(): Data {
     return {
-      imageSize: {
-        height: '100%',
-        width: '100%'
-      },
-      isImageMoreLandscape: false,
       isImageLoaded: false,
       isVisible: false,
       isReady: false,
@@ -157,7 +144,8 @@ export default Vue.extend({
       isFirstTime: false,
       hasClicked: false,
       isAnimating: false,
-      delayAnimationTimeOut: setTimeout(() => {}, 0)
+      delayAnimationIn: setTimeout(() => {}, 0),
+      delayAnimationOut: setTimeout(() => {}, 0)
     }
   },
   methods: {
@@ -177,21 +165,20 @@ export default Vue.extend({
     onVisibilityChanged(isVisible: boolean): void {
       this.isVisible = isVisible
       if (isVisible) {
-        this.delayAnimationTimeOut = setTimeout(() => {
-          this.isAnimatedElementVisible = true
-          this.showAnimationElements = true
-          this.hideAnimationElements = false
-        }, 1000)
+        if (!this.isAnimating && !this.isAnimatedElementVisible) {
+          this.delayAnimationIn = setTimeout(() => {
+            this.showAnimationElements = true
+          }, 1000)
+        }
       } else {
-        clearTimeout(this.delayAnimationTimeOut)
-        if (this.showAnimationElements) {
+        clearTimeout(this.delayAnimationIn)
+        clearTimeout(this.delayAnimationOut)
+        if (!this.isAnimating && this.isAnimatedElementVisible) {
           this.hideAnimationElements = true
         }
         this.showAnimationElements = false
-        this.isAnimatedElementVisible = false
         this.hasClicked = false
       }
-      console.log(`>${this.profile.name} is visible`, this.isVisible)
     },
 
     onSelectBound(bound: Bound): void {
@@ -201,15 +188,16 @@ export default Vue.extend({
     onClickImage(): void {
       this.hasClicked = true
       if (!this.isAnimating) {
-        this.showAnimationElements = !this.showAnimationElements
-        this.hideAnimationElements = !this.hideAnimationElements
-        this.isAnimatedElementVisible = !this.isAnimatedElementVisible
+        if (this.isAnimatedElementVisible) {
+          this.hideAnimationElements = true
+        } else {
+          this.showAnimationElements = true
+        }
       }
     },
 
     onClickIcon($event: MouseEvent): void {
       $event.preventDefault()
-      //¿enviamos algun id o similar?
       this.$emit('click', $event)
     },
 
@@ -217,19 +205,24 @@ export default Vue.extend({
       this.isAnimating = true
     },
 
-    onIconAnimationEnd(ev) {
-      const isParent = ev.currentTarget.id === 'icons'
+    onIconAnimationEnd(ev: AnimationEvent) {
+      const isParent = (ev.target as HTMLElement).id === 'icons'
+
       if (isParent) {
         this.isAnimating = false
-        if (this.isAnimatedElementVisible && !this.hasClicked) {
-          console.log('>>this.isAnimatedElementVisible', this.isAnimatedElementVisible, this.profile.name)
-          console.log('>>this.hasClicked', this.hasClicked)
+
+        if (!this.isAnimatedElementVisible) {
           this.showAnimationElements = false
-          this.hideAnimationElements = true
-          this.isAnimatedElementVisible = false
+          this.isAnimatedElementVisible = true
+
+          if (!this.hasClicked) {
+            this.delayAnimationOut = setTimeout(() => {
+              this.hideAnimationElements = true
+            }, 2000)
+          }
         } else {
-          console.log('>> NO SE CUMPLE this.isAnimatedElementVisible && !this.hasClicked')
           this.hideAnimationElements = false
+          this.isAnimatedElementVisible = false
         }
       }
     }
@@ -241,12 +234,18 @@ export default Vue.extend({
 .ui-influencer-card {
   $uiInfluencerCard: &;
   padding-top: $spacing-size-3;
+
   &__media {
     height: 100%;
     object-fit: contain;
     position: relative;
     width: 100%;
+
+    &__image-container {
+      display: block;
+    }
   }
+
   &__selected-mark {
     bottom: 0;
     left: 0;
@@ -259,14 +258,17 @@ export default Vue.extend({
       opacity: 0.4;
     }
   }
+
   &__bound-list {
     bottom: 0;
+    height: 100%;
     left: 0;
     margin: auto;
     opacity: 0;
     position: absolute;
     right: 0;
     top: 0;
+    width: 100%;
   }
 
   &__bound {
@@ -332,7 +334,6 @@ export default Vue.extend({
       &__text {
         @include body('s');
         display: block;
-        opacity: 0;
         padding-left: $padding;
         padding-right: $padding;
         white-space: nowrap;
@@ -353,6 +354,7 @@ export default Vue.extend({
           border-radius: 1rem;
           max-width: 22rem;
           width: initial;
+
           &__text {
             opacity: 1;
           }
@@ -361,11 +363,6 @@ export default Vue.extend({
     }
 
     &--hidden {
-      /deep/ {
-        .ui-profile-header__info__main-text {
-          color:red;
-        }
-      }
       #{$uiInfluencerCard} {
         &__bound-list {
           opacity: 0;
@@ -386,33 +383,30 @@ export default Vue.extend({
     &--show-animation {
       #{$uiInfluencerCard} {
         &__bound-list {
-          animation: displayBounds 1000ms linear;
+          animation: displayBounds 425ms linear;
         }
       }
       .nav-actions {
         &__icons {
-          animation: fabActionIconExpand 1000ms ease-in-out;
+          animation: fabActionIconExpand 425ms ease-out;
           &__text {
-            animation: favActionShowText 1000ms ease-in-out;
+            animation: favActionShowText 200ms ease-out 225ms;
           }
         }
       }
     }
 
     &--hide-animation {
-      /deep/ .ui-profile-header__info__secondary-text {
-        color:green;
-      }
       #{$uiInfluencerCard} {
         &__bound-list {
-          animation: hideBounds 1000ms linear;
+          animation: hideBounds 425ms linear;
         }
       }
       .nav-actions {
         &__icons {
-          animation: favActionIconContract 1000ms ease-in-out;
+          animation: favActionIconContract 200ms ease-out 225ms;
           &__text {
-            animation: favActionHideText 1000ms ease-in-out;
+            animation: favActionHideText 425ms ease-out;
           }
         }
       }
@@ -424,19 +418,11 @@ export default Vue.extend({
   0% {
     max-width: $font-size-9;
   }
-
-  100% {
+  47% {
     max-width: 22rem;
   }
-}
-
-@keyframes favActionIconContract {
-  0% {
-    max-width: 22rem;
-  }
-
   100% {
-    max-width: $font-size-9;
+    max-width: 22rem;
   }
 }
 
@@ -444,39 +430,8 @@ export default Vue.extend({
   0% {
     opacity: 0;
   }
-
-  15% {
-    opacity: 0;
-  }
-
-  25% {
-    opacity: 0;
-  }
-
-  65% {
-    opacity: 1;
-  }
-
   100% {
     opacity: 1;
-  }
-}
-
-@keyframes favActionHideText {
-  0% {
-    opacity: 1;
-  }
-
-  25% {
-    opacity: 1;
-  }
-
-  75% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 0;
   }
 }
 
@@ -484,14 +439,41 @@ export default Vue.extend({
   0% {
     opacity: 0;
   }
+  47% {
+    opacity: .5;
+  }
   100% {
     opacity: 1;
+  }
+}
+
+@keyframes favActionIconContract {
+  0% {
+    max-width: 22rem;
+  }
+  100% {
+    max-width: $font-size-9;
+  }
+}
+
+@keyframes favActionHideText {
+  0% {
+    opacity: 1;
+  }
+  47% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
   }
 }
 
 @keyframes hideBounds {
   0% {
     opacity: 1;
+  }
+  47% {
+    opacity: .5;
   }
   100% {
     opacity: 0;
