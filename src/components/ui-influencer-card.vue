@@ -1,11 +1,5 @@
 <template>
   <div
-    v-observe-visibility="{
-      callback: onVisibilityChanged,
-      intersection: {
-        threshold: 0.9
-      }
-    }"
     class="ui-influencer-card"
     :class="[
       isAnimatedElementVisible
@@ -54,6 +48,12 @@
       </div>
       <template v-if="isImageLoaded && !isErrorForced">
         <ol
+          v-observe-visibility="{
+            callback: onVisibilityChanged,
+            intersection: {
+              threshold: 0.9
+            }
+          }"
           class="ui-influencer-card__bound-list"
         >
           <li
@@ -300,21 +300,25 @@ export default Vue.extend({
   }
   @media (min-width: $breakpoint-s) {
     $size: $spacing-size-8;
+
     &__bound-list {
       height: 100% !important;
       width: 100% !important;
     }
+
     &__bound {
       margin-left: -1 * $size / 2;
       margin-top: -1 * $size / 2;
       height: $size;
       width: $size;
+
       .bound-dot {
         height: $spacing-size-4;
         width: $spacing-size-4;
       }
     }
   }
+
   .nav-actions {
     &__icons {
       $navActionIcons: &;
@@ -349,6 +353,7 @@ export default Vue.extend({
           opacity: 1;
         }
       }
+
       .nav-actions {
         &__icons {
           border-radius: 1rem;
@@ -373,6 +378,7 @@ export default Vue.extend({
           border-radius: 1rem;
           max-width: $font-size-9;
           width: initial;
+
           &__text {
             opacity: 0;
           }
@@ -389,6 +395,7 @@ export default Vue.extend({
       .nav-actions {
         &__icons {
           animation: fabActionIconExpand 425ms ease-out;
+
           &__text {
             animation: favActionShowText 200ms ease-out 225ms;
           }
@@ -405,6 +412,7 @@ export default Vue.extend({
       .nav-actions {
         &__icons {
           animation: favActionIconContract 200ms ease-out 225ms;
+
           &__text {
             animation: favActionHideText 425ms ease-out;
           }
