@@ -71,7 +71,7 @@
           }"
           @click="onSelectBound(bound)"
         >
-          <i class="b2i-plus"></i>
+          <span class="bound-dot"></span>
         </li>
       </ol>
     </template>
@@ -211,24 +211,31 @@ export default Vue.extend({
   }
 
   &__bound {
+    $size: 28px;
     align-items: center;
-    background-color: rgba($white, 0.4);
-    border: 2px solid $white;
+    background-color: rgba($background-inverse, 0.16);
     border-radius: 50%;
-    color: $white;
+    color: $background-inverse;
     cursor: pointer;
     display: flex;
+    height: $size;
     font-size: $font-size-3;
-    height: $spacing-size-7;
     justify-content: center;
-    margin-left: -1 * $spacing-size-7 / 2;
-    margin-top: -1 * $spacing-size-7 / 2;
+    margin-left: -1 * $size / 2;
+    margin-top: -1 * $size / 2;
     position: absolute;
     transform: scale(1);
     transform-origin: center;
     //transition: transform .2s;
     width: $spacing-size-7;
     z-index: 1;
+    .bound-dot {
+      display: block;
+      background: $background-1;
+      height: $spacing-size-3;
+      width: $spacing-size-3;
+      border-radius: 50%;
+    }
 
     &--selected {
       transform: scale(0);
@@ -246,10 +253,23 @@ export default Vue.extend({
   }
 
   @media (min-width: $breakpoint-s) {
+    $size: $spacing-size-8;
     &__selected-mark,
     &__bound-list {
       height: 100% !important;
       width: 100% !important;
+    }
+
+    &__bound {
+      margin-left: -1 * $size / 2;
+      margin-top: -1 * $size / 2;
+      height: $size;
+      width: $size;
+
+      .bound-dot {
+        height: $spacing-size-4;
+        width: $spacing-size-4;
+      }
     }
   }
 }
