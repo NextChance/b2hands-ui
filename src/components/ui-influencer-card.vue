@@ -236,8 +236,8 @@ export default Vue.extend({
   padding-top: $spacing-size-3;
 
   &__media {
+    @include affrodance-velo;
     align-items: center;
-    display: flex;
     height: 100%;
     overflow: hidden;
     position: relative;
