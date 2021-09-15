@@ -1,7 +1,7 @@
 <template>
   <div v-if="isHidden || delayLoad"
        ref="visibilityPlaceholder"
-       class="placeholder-image placeholder-image--loading tete"
+       class="placeholder-image placeholder-image--loading"
        :height="`${loadingHeight}px`"
        :width="`${loadingWidth}px`"
        v-observe-visibility="{

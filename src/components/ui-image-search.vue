@@ -4,9 +4,10 @@
       :src="image.src"
       :srcset="image.srcset"
       :alt="image.alt"
-      :isErrorForced="isErrorForced"
+      :is-error-forced="isErrorForced"
       class="image-search__original"
-      @on-image-loaded="onImageLoaded"/>
+      @on-image-loaded="onImageLoaded"
+    />
     <template v-if="isImageLoaded && !isErrorForced">
       <svg
         v-if="activeBound"
@@ -23,20 +24,13 @@
             :height="`${100 * activeBound.height}%`"
             :width="`${100 * activeBound.width}%`"
             rx="15"
-            :style="`transform: translate(${100 * activeBound.left}%, ${100 * activeBound.top}%)`"
+            :style="`transform: translate(${100 * activeBound.left}%, ${
+              100 * activeBound.top
+            }%)`"
           />
-          <mask
-            id="selection"
-          >
-            <rect
-              height="100%"
-              width="100%"
-              fill="white"
-            />
-            <use
-              xlink:href="#bound_selected"
-              fill="black"
-            ></use>
+          <mask id="selection">
+            <rect height="100%" width="100%" fill="white" />
+            <use xlink:href="#bound_selected" fill="black"></use>
           </mask>
         </defs>
         <rect
@@ -44,7 +38,7 @@
           height="100%"
           width="100%"
           fill="#191919"
-          :mask="showBound ? 'url(#selection)': ''"
+          :mask="showBound ? 'url(#selection)' : ''"
         />
         <use
           v-if="showBound"
@@ -57,26 +51,27 @@
       <ol
         class="image-search__bound-list"
         :style="{
-        height: imageSize.height,
-        width: imageSize.width
-      }"
+          height: imageSize.height,
+          width: imageSize.width
+        }"
       >
         <li
           v-for="(bound, key) in bounds"
           :key="`bound-selector-${key}`"
           :class="[
-          'image-search__bound',
-          {
-            'image-search__bound--selected': activeProductReference === bound.product_search_reference
-          }
-        ]"
+            'image-search__bound',
+            {
+              'image-search__bound--selected':
+                activeProductReference === bound.product_search_reference
+            }
+          ]"
           :style="{
-          top: `${100 * (bound.top + (bound.height / 2))}%`,
-          left: `${100 * (bound.left + (bound.width / 2))}%`
-        }"
+            top: `${100 * (bound.top + bound.height / 2)}%`,
+            left: `${100 * (bound.left + bound.width / 2)}%`
+          }"
           @click="onSelectBound(bound)"
         >
-          <i class="b2i-plus"></i>
+          <span class="bound-dot"></span>
         </li>
       </ol>
     </template>
@@ -93,31 +88,20 @@ interface Data {
   imageSize: {
     height: string
     width: string
-  },
+  }
   isImageLoaded: boolean
   isImageMoreLandscape: boolean
   showBound: boolean
 }
 
 export default Vue.extend({
-  name: 'ui-image-search',
+  name: 'UiImageSearch',
   components: {
     UiLazyInvent
   },
-  data(): Data {
-    return {
-      imageSize: {
-        height: '100%',
-        width: '100%'
-      },
-      isImageLoaded: false,
-      isImageMoreLandscape: false,
-      showBound: false
-    }
-  },
-  props:{
+  props: {
     image: {
-      type: Image,
+      type: Object as () => Image,
       default: null
     },
     bounds: {
@@ -133,6 +117,25 @@ export default Vue.extend({
       default: false
     }
   },
+  data(): Data {
+    return {
+      imageSize: {
+        height: '100%',
+        width: '100%'
+      },
+      isImageLoaded: false,
+      isImageMoreLandscape: false,
+      showBound: false
+    }
+  },
+  computed: {
+    activeBound() {
+      return this.bounds.find(
+        (bound: Bound) =>
+          bound.product_search_reference === this.activeProductReference
+      )
+    }
+  },
   watch: {
     activeProductReference: {
       immediate: true,
@@ -141,11 +144,6 @@ export default Vue.extend({
           this.showBound = true
         }, 100)
       }
-    }
-  },
-  computed: {
-    activeBound() {
-      return this.bounds.find((bound: Bound) => bound.product_search_reference === this.activeProductReference)
     }
   },
   methods: {
@@ -188,7 +186,7 @@ export default Vue.extend({
     top: 0;
 
     &__veil {
-      opacity: .4;
+      opacity: 0.4;
     }
 
     //&__bound {
@@ -213,24 +211,31 @@ export default Vue.extend({
   }
 
   &__bound {
+    $size: 28px;
     align-items: center;
-    background-color: rgba($white, .4);
-    border: 2px solid $white;
+    background-color: rgba($background-inverse, 0.16);
     border-radius: 50%;
-    color: $white;
+    color: $background-inverse;
     cursor: pointer;
     display: flex;
+    height: $size;
     font-size: $font-size-3;
-    height: $spacing-size-7;
     justify-content: center;
-    margin-left: -1 * $spacing-size-7 /2;
-    margin-top: -1 * $spacing-size-7 /2;
+    margin-left: -1 * $size / 2;
+    margin-top: -1 * $size / 2;
     position: absolute;
     transform: scale(1);
     transform-origin: center;
     //transition: transform .2s;
     width: $spacing-size-7;
     z-index: 1;
+    .bound-dot {
+      display: block;
+      background: $background-1;
+      height: $spacing-size-3;
+      width: $spacing-size-3;
+      border-radius: 50%;
+    }
 
     &--selected {
       transform: scale(0);
@@ -247,12 +252,24 @@ export default Vue.extend({
     }
   }
 
-
   @media (min-width: $breakpoint-s) {
+    $size: $spacing-size-8;
     &__selected-mark,
     &__bound-list {
       height: 100% !important;
       width: 100% !important;
+    }
+
+    &__bound {
+      margin-left: -1 * $size / 2;
+      margin-top: -1 * $size / 2;
+      height: $size;
+      width: $size;
+
+      .bound-dot {
+        height: $spacing-size-4;
+        width: $spacing-size-4;
+      }
     }
   }
 }
