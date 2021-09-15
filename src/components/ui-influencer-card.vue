@@ -186,12 +186,14 @@ export default Vue.extend({
     },
 
     onClickImage(): void {
-      this.hasClicked = true
-      if (!this.isAnimating) {
-        if (this.isAnimatedElementVisible) {
-          this.hideAnimationElements = true
-        } else {
-          this.showAnimationElements = true
+      if (this.isImageLoaded) {
+        this.hasClicked = true
+        if (!this.isAnimating) {
+          if (this.isAnimatedElementVisible) {
+            this.hideAnimationElements = true
+          } else {
+            this.showAnimationElements = true
+          }
         }
       }
     },
@@ -394,15 +396,15 @@ export default Vue.extend({
     &--show-animation {
       #{$uiInfluencerCard} {
         &__bound-list {
-          animation: displayBounds 425ms linear;
+          animation: displayBounds 504ms linear;
         }
       }
       .nav-actions {
         &__icons {
-          animation: fabActionIconExpand 425ms ease-out;
+          animation: fabActionIconExpand 504ms ease-out;
 
           &__text {
-            animation: favActionShowText 200ms ease-out 225ms;
+            animation: favActionShowText 237ms ease-out 267ms;
           }
         }
       }
@@ -411,15 +413,15 @@ export default Vue.extend({
     &--hide-animation {
       #{$uiInfluencerCard} {
         &__bound-list {
-          animation: hideBounds 425ms linear;
+          animation: hideBounds 504ms linear;
         }
       }
       .nav-actions {
         &__icons {
-          animation: favActionIconContract 200ms ease-out 225ms;
+          animation: favActionIconContract 237ms ease-out 267ms;
 
           &__text {
-            animation: favActionHideText 425ms ease-out;
+            animation: favActionHideText 504ms ease-out;
           }
         }
       }

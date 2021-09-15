@@ -58,7 +58,7 @@ const profiles = [
 
 const postImage = {
   src:
-    'http://localhost:6006/iframe.html?id=ui-influencer-card--influencer-card-list&viewMode=storyhttps://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg',
+    'https://deelay.me/1000/https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg',
   srcset:
     'https://deelay.me/1000/https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 160w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 320w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 480w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 640w, https://deelay.me/1000/https://m.tribuneindia.com/2013/20130210/spectrum/wellbeing3.jpg 960w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 1440w',
   alt: 'foto de perfil de influencer name'
