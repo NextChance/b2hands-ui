@@ -13,7 +13,7 @@ const profile = {
     src:
       'https://thumbnails-dev.nc43tech.com/eyJmb3JtYXQiOiJqcGVnIiwiaW1hZ2VVcmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2Fzc2V0cy1kZXYubmM0M3RlY2guY29tL2luZmx1ZW5jZXJzL2QzZTNhOGZkLTgxMWEtNDI0Ny05Y2VjLTkwYTYyNTMyNDg1Ny82MGEyZjA3ZC0wMDQwLTQxZGQtODYxNy03M2RlZDk1NWQ2N2QiLCJ3aWR0aCI6MTYwfQ==',
     srcsets:
-      'https://thumbnails-dev.nc43tech.com/eyJmb3JtYXQiOiJqcGVnIiwiaW1hZ2VVcmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2Fzc2V0cy1kZXYubmM0M3RlY2guY29tL2luZmx1ZW5jZXJzL2QzZTNhOGZkLTgxMWEtNDI0Ny05Y2VjLTkwYTYyNTMyNDg1Ny82MGEyZjA3ZC0wMDQwLTQxZGQtODYxNy03M2RlZDk1NWQ2N2QiLCJ3aWR0aCI6MTYwfQ==',
+      'https://thumbnails-dev.nc43tech.com/eyJmb3JtYXQiOiJqcGVnIiwiaW1hZ2VVcmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2Fzc2V0cy1kZXYubmM0M3RlY2guY29tL2luZmx1ZW5jZXJzL2QzZTNhOGZkLTgxMWEtNDI0Ny05Y2VjLTkwYTYyNTMyNDg1Ny82MGEyZjA3ZC0wMDQwLTQxZGQtODYxNy03M2RlZDk1NWQ2N2QiLCJ3aWR0aCI6MTYwfQ=='
   },
   url: '',
   alt: 'foto de perfil de influencer name',
@@ -26,7 +26,7 @@ const profiles = [
       src:
         'https://thumbnails-dev.nc43tech.com/eyJmb3JtYXQiOiJqcGVnIiwiaW1hZ2VVcmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2Fzc2V0cy1kZXYubmM0M3RlY2guY29tL2luZmx1ZW5jZXJzL2QzZTNhOGZkLTgxMWEtNDI0Ny05Y2VjLTkwYTYyNTMyNDg1Ny82MGEyZjA3ZC0wMDQwLTQxZGQtODYxNy03M2RlZDk1NWQ2N2QiLCJ3aWR0aCI6MTYwfQ==',
       srcsets:
-        'https://thumbnails-dev.nc43tech.com/eyJmb3JtYXQiOiJqcGVnIiwiaW1hZ2VVcmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2Fzc2V0cy1kZXYubmM0M3RlY2guY29tL2luZmx1ZW5jZXJzL2QzZTNhOGZkLTgxMWEtNDI0Ny05Y2VjLTkwYTYyNTMyNDg1Ny82MGEyZjA3ZC0wMDQwLTQxZGQtODYxNy03M2RlZDk1NWQ2N2QiLCJ3aWR0aCI6MTYwfQ==',
+        'https://thumbnails-dev.nc43tech.com/eyJmb3JtYXQiOiJqcGVnIiwiaW1hZ2VVcmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2Fzc2V0cy1kZXYubmM0M3RlY2guY29tL2luZmx1ZW5jZXJzL2QzZTNhOGZkLTgxMWEtNDI0Ny05Y2VjLTkwYTYyNTMyNDg1Ny82MGEyZjA3ZC0wMDQwLTQxZGQtODYxNy03M2RlZDk1NWQ2N2QiLCJ3aWR0aCI6MTYwfQ=='
     },
     url: '',
     alt: 'foto de perfil de influencer name ',
@@ -37,7 +37,7 @@ const profiles = [
       src:
         'https://thumbnails-dev.nc43tech.com/eyJmb3JtYXQiOiJqcGVnIiwiaW1hZ2VVcmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2Fzc2V0cy1kZXYubmM0M3RlY2guY29tL2luZmx1ZW5jZXJzL2QzZTNhOGZkLTgxMWEtNDI0Ny05Y2VjLTkwYTYyNTMyNDg1Ny82MGEyZjA3ZC0wMDQwLTQxZGQtODYxNy03M2RlZDk1NWQ2N2QiLCJ3aWR0aCI6MTYwfQ==',
       srcsets:
-        'https://thumbnails-dev.nc43tech.com/eyJmb3JtYXQiOiJqcGVnIiwiaW1hZ2VVcmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2Fzc2V0cy1kZXYubmM0M3RlY2guY29tL2luZmx1ZW5jZXJzL2QzZTNhOGZkLTgxMWEtNDI0Ny05Y2VjLTkwYTYyNTMyNDg1Ny82MGEyZjA3ZC0wMDQwLTQxZGQtODYxNy03M2RlZDk1NWQ2N2QiLCJ3aWR0aCI6MTYwfQ==',
+        'https://thumbnails-dev.nc43tech.com/eyJmb3JtYXQiOiJqcGVnIiwiaW1hZ2VVcmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2Fzc2V0cy1kZXYubmM0M3RlY2guY29tL2luZmx1ZW5jZXJzL2QzZTNhOGZkLTgxMWEtNDI0Ny05Y2VjLTkwYTYyNTMyNDg1Ny82MGEyZjA3ZC0wMDQwLTQxZGQtODYxNy03M2RlZDk1NWQ2N2QiLCJ3aWR0aCI6MTYwfQ=='
     },
     url: '',
     alt: 'foto de perfil de influencer name 2',
@@ -48,7 +48,7 @@ const profiles = [
       src:
         'https://thumbnails-dev.nc43tech.com/eyJmb3JtYXQiOiJqcGVnIiwiaW1hZ2VVcmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2Fzc2V0cy1kZXYubmM0M3RlY2guY29tL2luZmx1ZW5jZXJzL2QzZTNhOGZkLTgxMWEtNDI0Ny05Y2VjLTkwYTYyNTMyNDg1Ny82MGEyZjA3ZC0wMDQwLTQxZGQtODYxNy03M2RlZDk1NWQ2N2QiLCJ3aWR0aCI6MTYwfQ==',
       srcsets:
-        'https://thumbnails-dev.nc43tech.com/eyJmb3JtYXQiOiJqcGVnIiwiaW1hZ2VVcmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2Fzc2V0cy1kZXYubmM0M3RlY2guY29tL2luZmx1ZW5jZXJzL2QzZTNhOGZkLTgxMWEtNDI0Ny05Y2VjLTkwYTYyNTMyNDg1Ny82MGEyZjA3ZC0wMDQwLTQxZGQtODYxNy03M2RlZDk1NWQ2N2QiLCJ3aWR0aCI6MTYwfQ==',
+        'https://thumbnails-dev.nc43tech.com/eyJmb3JtYXQiOiJqcGVnIiwiaW1hZ2VVcmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2Fzc2V0cy1kZXYubmM0M3RlY2guY29tL2luZmx1ZW5jZXJzL2QzZTNhOGZkLTgxMWEtNDI0Ny05Y2VjLTkwYTYyNTMyNDg1Ny82MGEyZjA3ZC0wMDQwLTQxZGQtODYxNy03M2RlZDk1NWQ2N2QiLCJ3aWR0aCI6MTYwfQ=='
     },
     url: '',
     alt: 'foto de perfil de influencer name 3',
@@ -58,18 +58,18 @@ const profiles = [
 
 const postImage = {
   src:
-    'https://deelay.me/1000/https://m.tribuneindia.com/2013/20130210/spectrum/wellbeing3.jpg',
+    'http://localhost:6006/iframe.html?id=ui-influencer-card--influencer-card-list&viewMode=storyhttps://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg',
   srcset:
-    'https://deelay.me/1000/https://m.tribuneindia.com/2013/20130210/spectrum/wellbeing3.jpg 160w, https://deelay.me/1000/https://m.tribuneindia.com/2013/20130210/spectrum/wellbeing3.jpg 320w, https://deelay.me/1000/https://m.tribuneindia.com/2013/20130210/spectrum/wellbeing3.jpg 480w, https://deelay.me/1000/https://m.tribuneindia.com/2013/20130210/spectrum/wellbeing3.jpg 640w, https://deelay.me/1000/https://m.tribuneindia.com/2013/20130210/spectrum/wellbeing3.jpg 960w, https://deelay.me/1000/https://m.tribuneindia.com/2013/20130210/spectrum/wellbeing3.jpg 1440w',
+    'https://deelay.me/1000/https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 160w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 320w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 480w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 640w, https://deelay.me/1000/https://m.tribuneindia.com/2013/20130210/spectrum/wellbeing3.jpg 960w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 1440w',
   alt: 'foto de perfil de influencer name'
 }
 
 const postImages = [
   {
     src:
-      'https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg',
+      'https://deelay.me/1000/https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg',
     srcset:
-      'https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 160w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 320w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 480w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 640w, https://deelay.me/1000/https://m.tribuneindia.com/2013/20130210/spectrum/wellbeing3.jpg 960w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 1440w',
+      'https://deelay.me/1000/https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 160w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 320w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 480w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 640w, https://deelay.me/1000/https://m.tribuneindia.com/2013/20130210/spectrum/wellbeing3.jpg 960w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 1440w',
     alt: 'foto de perfil de influencer name'
   },
   {

@@ -236,13 +236,18 @@ export default Vue.extend({
   padding-top: $spacing-size-3;
 
   &__media {
+    align-items: center;
+    display: flex;
     height: 100%;
-    object-fit: contain;
+    overflow: hidden;
     position: relative;
     width: 100%;
 
     &__image-container {
       display: block;
+      height: 100%;
+      object-fit: contain;
+      width: 100%;
     }
   }
 
