@@ -57,11 +57,10 @@ export default Vue.extend({
   z-index: map-get($zindex, modal);
 
   &__icon {
+    display: none;
     font-size: $spacing-size-3;
     cursor: pointer;
-    left: $spacing-size-6;
     position: absolute;
-    top: $spacing-size-6;
 
     &::before {
       content: '\e90d';
@@ -70,8 +69,6 @@ export default Vue.extend({
 
   &__content {
     box-sizing: border-box;
-    padding-left: $spacing-size-8;
-    padding-top: $spacing-size-3;
   }
 
   @media (min-width: $breakpoint-s) {
@@ -79,24 +76,11 @@ export default Vue.extend({
       box-sizing: border-box;
       display: flex;
       justify-content: flex-end;
-      margin-bottom: $spacing-size-13;
-      margin-top: $spacing-size-6;
     }
 
     &__content {
       padding-left: unset;
       padding-top: unset;
-    }
-
-    &__icon {
-      left: unset;
-      margin-right: $spacing-size-1;
-      position: static;
-      top: unset;
-
-      &::before {
-        content: '\e909';
-      }
     }
   }
 }
