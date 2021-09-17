@@ -2,7 +2,7 @@
 export default interface Image {
   src: string
   srcset?: string
-  alt: string
+  alt?: string
 }
 
 export interface DiscoveryImage {

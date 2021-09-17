@@ -2,8 +2,8 @@
   <div class="ui-profile-header">
     <div class="ui-profile-header__image">
       <ui-lazy-invent
-        :src="profileImage.src"
-        :srcset="profileImage.srcSets"
+        :src="profileImage.smallest"
+        :srcset="profileImage.srcSet"
         :alt="alt"
         @on-image-error="onImageError(`nav-actions`)"
       />
@@ -44,6 +44,7 @@
 import Vue from 'vue'
 import UiLazyInvent from './ui-lazy-invent.vue'
 import Image from '../types/Image'
+import { ProfileImgUI } from '@/types/Profile'
 
 export default Vue.extend({
   name: 'UiProfileHeader',
@@ -52,8 +53,8 @@ export default Vue.extend({
   },
   props: {
     profileImage: {
-      type: Object as () => Image,
-      default: {}
+      type: Object as () => ProfileImgUI,
+      default: () => ({})
     },
     alt: {
       type: String,
@@ -93,6 +94,7 @@ export default Vue.extend({
     border-radius: 50%;
     height: $spacing-size-7;
     margin-right: $spacing-size-2;
+    position: relative;
     overflow: hidden;
     width: $spacing-size-7;
   }

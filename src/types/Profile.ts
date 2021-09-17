@@ -1,11 +1,13 @@
 export default interface Profile {
-  image: ProfileImgUI
+  imageSet: ProfileImgUI
   name: string
   url: string
   alt: string
+  instagram_handler: string
 }
 
 export interface ProfileImgUI {
-  src: string
-  srcSets: string
+  url: string
+  srcSet: string
+  smallest: string
 }

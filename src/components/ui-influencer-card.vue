@@ -12,9 +12,9 @@
     ]"
   >
     <ui-profile-header
-      :profile-image="profile.image"
-      :alt="profile.alt"
-      :user-name="profile.name"
+      :profile-image="profile.imageSet"
+      :alt="profile.name"
+      :user-name="profile.instagram_handler"
       :secondary-info="date"
       @on-more-options-clicked="onMoreOptionsClicked"
       @on-image-loaded="onImageLoaded"
@@ -22,9 +22,9 @@
     <div class="ui-influencer-card__media" @click="onClickImage">
       <ui-lazy-invent
         class="ui-influencer-card__media__image-container"
-        :src="postImage.src"
-        :srcset="postImage.srcSets"
-        :alt="postImage.alt"
+        :src="postImage.url"
+        :srcset="postImage.srcSet"
+        :alt="description"
         :sizes="sizes"
         :is-error-forced="isErrorForced"
         @on-image-loaded="onImageLoaded"
@@ -64,7 +64,7 @@
               top: `${100 * (bound.top + bound.height / 2)}%`,
               left: `${100 * (bound.left + bound.width / 2)}%`
             }"
-            @click="onSelectBound(bound)"
+            @click="onSelectBound(key)"
           >
             <span class="bound-dot"></span>
           </li>
@@ -79,7 +79,7 @@
 import Vue, { PropType } from 'vue'
 import uiProfileHeader from './ui-profile-header.vue'
 import UiLazyInvent from './ui-lazy-invent.vue'
-import Profile from '../types/Profile'
+import Profile, { ProfileImgUI } from '../types/Profile'
 import Bound from '../types/Bound'
 import Image from '../types/Image'
 interface Data {
@@ -102,11 +102,11 @@ export default Vue.extend({
   props: {
     profile: {
       type: Object as () => Profile,
-      default: {}
+      default: () => ({})
     },
     postImage: {
-      type: Object as () => Image,
-      default: {}
+      type: Object as () => ProfileImgUI,
+      default: () => ({})
     },
     description: {
       type: String,
@@ -118,7 +118,7 @@ export default Vue.extend({
     },
     bounds: {
       type: Array as PropType<Array<Bound>>,
-      default: []
+      default: () => ([])
     },
     sizes: {
       type: String,
@@ -181,7 +181,7 @@ export default Vue.extend({
       }
     },
 
-    onSelectBound(bound: Bound): void {
+    onSelectBound(bound: number): void {
       this.$emit('on-select-bound', bound)
     },
 
@@ -296,7 +296,7 @@ export default Vue.extend({
     transform-origin: center;
     //transition: transform .2s;
     width: $size;
-    z-index: 1;
+    z-index: map-get($zindex, actions-icons);
     .bound-dot {
       display: block;
       background: $background-1;
