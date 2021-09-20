@@ -114,7 +114,7 @@ export default Vue.extend({
     &__secondary-text {
       display: block;
     }
-    &__secondary-text {@l
+    &__secondary-text {
       color: $content-3;
       @include detail('xs');
     }
