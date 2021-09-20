@@ -8,81 +8,64 @@ export default {
   component: UiInfluencerCard
 }
 
-const profile = {
-  image: {
-    src:
-      'https://thumbnails-dev.nc43tech.com/eyJmb3JtYXQiOiJqcGVnIiwiaW1hZ2VVcmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2Fzc2V0cy1kZXYubmM0M3RlY2guY29tL2luZmx1ZW5jZXJzL2QzZTNhOGZkLTgxMWEtNDI0Ny05Y2VjLTkwYTYyNTMyNDg1Ny82MGEyZjA3ZC0wMDQwLTQxZGQtODYxNy03M2RlZDk1NWQ2N2QiLCJ3aWR0aCI6MTYwfQ==',
-    srcsets:
-      'https://thumbnails-dev.nc43tech.com/eyJmb3JtYXQiOiJqcGVnIiwiaW1hZ2VVcmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2Fzc2V0cy1kZXYubmM0M3RlY2guY29tL2luZmx1ZW5jZXJzL2QzZTNhOGZkLTgxMWEtNDI0Ny05Y2VjLTkwYTYyNTMyNDg1Ny82MGEyZjA3ZC0wMDQwLTQxZGQtODYxNy03M2RlZDk1NWQ2N2QiLCJ3aWR0aCI6MTYwfQ=='
-  },
-  url: '',
-  alt: 'foto de perfil de influencer name',
-  name: 'influencer name'
-}
-
 const profiles = [
   {
-    image: {
-      src:
+    imageSet: {
+      smallest:
         'https://thumbnails-dev.nc43tech.com/eyJmb3JtYXQiOiJqcGVnIiwiaW1hZ2VVcmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2Fzc2V0cy1kZXYubmM0M3RlY2guY29tL2luZmx1ZW5jZXJzL2QzZTNhOGZkLTgxMWEtNDI0Ny05Y2VjLTkwYTYyNTMyNDg1Ny82MGEyZjA3ZC0wMDQwLTQxZGQtODYxNy03M2RlZDk1NWQ2N2QiLCJ3aWR0aCI6MTYwfQ==',
-      srcsets:
-        'https://thumbnails-dev.nc43tech.com/eyJmb3JtYXQiOiJqcGVnIiwiaW1hZ2VVcmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2Fzc2V0cy1kZXYubmM0M3RlY2guY29tL2luZmx1ZW5jZXJzL2QzZTNhOGZkLTgxMWEtNDI0Ny05Y2VjLTkwYTYyNTMyNDg1Ny82MGEyZjA3ZC0wMDQwLTQxZGQtODYxNy03M2RlZDk1NWQ2N2QiLCJ3aWR0aCI6MTYwfQ=='
+      srcSet:
+        'https://thumbnails-dev.nc43tech.com/eyJmb3JtYXQiOiJqcGVnIiwiaW1hZ2VVcmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2Fzc2V0cy1kZXYubmM0M3RlY2guY29tL2luZmx1ZW5jZXJzL2QzZTNhOGZkLTgxMWEtNDI0Ny05Y2VjLTkwYTYyNTMyNDg1Ny82MGEyZjA3ZC0wMDQwLTQxZGQtODYxNy03M2RlZDk1NWQ2N2QiLCJ3aWR0aCI6MTYwfQ==',
     },
     url: '',
     alt: 'foto de perfil de influencer name ',
-    name: 'influencer name'
+    name: 'influencer name',
+    instagram_handler: 'InstagramNameInstagramNameInstagramNameInstagramNameInstagramNameInstagramNameInstagramName'
   },
   {
-    image: {
-      src:
+    imageSet: {
+      smallest:
         'https://thumbnails-dev.nc43tech.com/eyJmb3JtYXQiOiJqcGVnIiwiaW1hZ2VVcmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2Fzc2V0cy1kZXYubmM0M3RlY2guY29tL2luZmx1ZW5jZXJzL2QzZTNhOGZkLTgxMWEtNDI0Ny05Y2VjLTkwYTYyNTMyNDg1Ny82MGEyZjA3ZC0wMDQwLTQxZGQtODYxNy03M2RlZDk1NWQ2N2QiLCJ3aWR0aCI6MTYwfQ==',
-      srcsets:
-        'https://thumbnails-dev.nc43tech.com/eyJmb3JtYXQiOiJqcGVnIiwiaW1hZ2VVcmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2Fzc2V0cy1kZXYubmM0M3RlY2guY29tL2luZmx1ZW5jZXJzL2QzZTNhOGZkLTgxMWEtNDI0Ny05Y2VjLTkwYTYyNTMyNDg1Ny82MGEyZjA3ZC0wMDQwLTQxZGQtODYxNy03M2RlZDk1NWQ2N2QiLCJ3aWR0aCI6MTYwfQ=='
+      srcSet:
+        'https://thumbnails-dev.nc43tech.com/eyJmb3JtYXQiOiJqcGVnIiwiaW1hZ2VVcmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2Fzc2V0cy1kZXYubmM0M3RlY2guY29tL2luZmx1ZW5jZXJzL2QzZTNhOGZkLTgxMWEtNDI0Ny05Y2VjLTkwYTYyNTMyNDg1Ny82MGEyZjA3ZC0wMDQwLTQxZGQtODYxNy03M2RlZDk1NWQ2N2QiLCJ3aWR0aCI6MTYwfQ==',
     },
     url: '',
     alt: 'foto de perfil de influencer name 2',
-    name: 'influencer name 2'
+    name: 'influencer name 2',
+    instagram_handler: 'InstagramName2'
   },
   {
-    image: {
-      src:
+    imageSet: {
+      smallest:
         'https://thumbnails-dev.nc43tech.com/eyJmb3JtYXQiOiJqcGVnIiwiaW1hZ2VVcmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2Fzc2V0cy1kZXYubmM0M3RlY2guY29tL2luZmx1ZW5jZXJzL2QzZTNhOGZkLTgxMWEtNDI0Ny05Y2VjLTkwYTYyNTMyNDg1Ny82MGEyZjA3ZC0wMDQwLTQxZGQtODYxNy03M2RlZDk1NWQ2N2QiLCJ3aWR0aCI6MTYwfQ==',
-      srcsets:
-        'https://thumbnails-dev.nc43tech.com/eyJmb3JtYXQiOiJqcGVnIiwiaW1hZ2VVcmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2Fzc2V0cy1kZXYubmM0M3RlY2guY29tL2luZmx1ZW5jZXJzL2QzZTNhOGZkLTgxMWEtNDI0Ny05Y2VjLTkwYTYyNTMyNDg1Ny82MGEyZjA3ZC0wMDQwLTQxZGQtODYxNy03M2RlZDk1NWQ2N2QiLCJ3aWR0aCI6MTYwfQ=='
+      srcSet:
+        'https://thumbnails-dev.nc43tech.com/eyJmb3JtYXQiOiJqcGVnIiwiaW1hZ2VVcmwiOiJodHRwczovL3MzLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tL2Fzc2V0cy1kZXYubmM0M3RlY2guY29tL2luZmx1ZW5jZXJzL2QzZTNhOGZkLTgxMWEtNDI0Ny05Y2VjLTkwYTYyNTMyNDg1Ny82MGEyZjA3ZC0wMDQwLTQxZGQtODYxNy03M2RlZDk1NWQ2N2QiLCJ3aWR0aCI6MTYwfQ==',
     },
     url: '',
     alt: 'foto de perfil de influencer name 3',
-    name: 'influencer name 3'
+    name: 'influencer name 3',
+    instagram_handler: 'InstagramName3'
   }
 ]
 
-const postImage = {
-  src:
-    'https://deelay.me/1000/https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg',
-  srcset:
-    'https://deelay.me/1000/https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 160w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 320w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 480w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 640w, https://deelay.me/1000/https://m.tribuneindia.com/2013/20130210/spectrum/wellbeing3.jpg 960w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 1440w',
-  alt: 'foto de perfil de influencer name'
-}
-
 const postImages = [
   {
-    src:
-      'https://deelay.me/1000/https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg',
-    srcset:
-      'https://deelay.me/1000/https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 160w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 320w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 480w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 640w, https://deelay.me/1000/https://m.tribuneindia.com/2013/20130210/spectrum/wellbeing3.jpg 960w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 1440w',
+    url:
+      'https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg',
+    srcSet:
+      'https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 160w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 320w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 480w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 640w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 960w, https://e00-elmundo.uecdn.es/assets/multimedia/imagenes/2021/08/20/16294690912004.jpg 1440w',
     alt: 'foto de perfil de influencer name'
   },
   {
-    src:
+    url:
       'https://deelay.me/1000/https://m.tribuneindia.com/2013/20130210/spectrum/wellbeing3.jpg',
-    srcset:
+    srcSet:
       'https://deelay.me/1000/https://m.tribuneindia.com/2013/20130210/spectrum/wellbeing3.jpg 160w, https://deelay.me/1000/https://m.tribuneindia.com/2013/20130210/spectrum/wellbeing3.jpg 320w, https://deelay.me/1000/https://m.tribuneindia.com/2013/20130210/spectrum/wellbeing3.jpg 480w, https://deelay.me/1000/https://m.tribuneindia.com/2013/20130210/spectrum/wellbeing3.jpg 640w, https://deelay.me/1000/https://m.tribuneindia.com/2013/20130210/spectrum/wellbeing3.jpg 960w, https://deelay.me/1000/https://m.tribuneindia.com/2013/20130210/spectrum/wellbeing3.jpg 1440w',
     alt: 'foto de perfil de influencer name'
   },
   {
-    src:
+    url:
       'https://flandecoco.net/wp-content/uploads/2020/06/Blog-influencers.jpg',
-    srcset:
+    srcSet:
       'https://flandecoco.net/wp-content/uploads/2020/06/Blog-influencers.jpg 160w, https://flandecoco.net/wp-content/uploads/2020/06/Blog-influencers.jpg 320w, https://flandecoco.net/wp-content/uploads/2020/06/Blog-influencers.jpg 480w, https://flandecoco.net/wp-content/uploads/2020/06/Blog-influencers.jpg 640w, https://flandecoco.net/wp-content/uploads/2020/06/Blog-influencers.jpg 960w, https://flandecoco.net/wp-content/uploads/2020/06/Blog-influencers.jpg 1440w',
     alt: 'foto de perfil de influencer name'
   }
@@ -116,7 +99,7 @@ export const influencerCardBasic = () => ({
   components: { UiInfluencerCard },
   data() {
     return {
-      profile,
+      profiles,
       postImage,
       date: '30 de Junio',
       bounds
@@ -125,8 +108,8 @@ export const influencerCardBasic = () => ({
   template: `
   <div class="story-ui-influencer-card-container">
     <ui-influencer-card
-      :profile="profile"
-      :post-image="postImage"
+      :profile="profiles[0]"
+      :post-image="postImages[0]"
       :date="date"
       :bounds="bounds"
       action-text="Ver similares"

@@ -94,6 +94,7 @@ export default Vue.extend({
     border-radius: 50%;
     height: $spacing-size-7;
     margin-right: $spacing-size-2;
+    min-width: $spacing-size-7;
     position: relative;
     overflow: hidden;
     width: $spacing-size-7;
@@ -103,11 +104,16 @@ export default Vue.extend({
     color: $content-1;
     flex-grow: 2;
     font-size: $font-size-3;
+    &__main-text {
+      @include ellipsis(1, $line-height-1);
+      line-height: $line-height-1;
+      padding-right: $spacing-size-3;
+    }
     &__main-text,
     &__secondary-text {
       display: block;
     }
-    &__secondary-text {
+    &__secondary-text {@l
       color: $content-3;
       @include detail('xs');
     }
