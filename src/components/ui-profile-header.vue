@@ -23,6 +23,7 @@
           'ui-profile-header__info__secondary-text--skeleton':
             !secondaryInfo || secondaryInfo === ''
         }"
+        v-if="secondaryInfo !== ''"
       >
         {{ secondaryInfo }}
       </div>
@@ -43,8 +44,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import UiLazyInvent from './ui-lazy-invent.vue'
-import Image from '../types/Image'
-import { ProfileImgUI } from '@/types/Profile'
+import { ProfileImgUI } from '../types/Profile'
 
 export default Vue.extend({
   name: 'UiProfileHeader',
@@ -70,7 +70,7 @@ export default Vue.extend({
     },
     moreOptions: {
       type: String,
-      default: 'More Options'
+      default: ''
     }
   },
   methods: {
@@ -94,6 +94,7 @@ export default Vue.extend({
     border-radius: 50%;
     height: $spacing-size-7;
     margin-right: $spacing-size-2;
+    min-width: $spacing-size-7;
     position: relative;
     overflow: hidden;
     width: $spacing-size-7;
@@ -103,6 +104,11 @@ export default Vue.extend({
     color: $content-1;
     flex-grow: 2;
     font-size: $font-size-3;
+    &__main-text {
+      @include ellipsis(1, $line-height-1);
+      line-height: $line-height-1;
+      padding-right: $spacing-size-3;
+    }
     &__main-text,
     &__secondary-text {
       display: block;
