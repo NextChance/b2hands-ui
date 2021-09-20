@@ -23,6 +23,7 @@
           'ui-profile-header__info__secondary-text--skeleton':
             !secondaryInfo || secondaryInfo === ''
         }"
+        v-if="secondaryInfo !== ''"
       >
         {{ secondaryInfo }}
       </div>
@@ -70,7 +71,7 @@ export default Vue.extend({
     },
     moreOptions: {
       type: String,
-      default: 'More Options'
+      default: ''
     }
   },
   methods: {

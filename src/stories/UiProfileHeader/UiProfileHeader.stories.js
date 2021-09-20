@@ -34,3 +34,23 @@ export const UiProfileHeaderBasic = () => ({
   </div>`,
   methods: { onClickMoreOptions: action('open modal') }
 })
+
+export const UiProfileHeaderBasicNoDate = () => ({
+  components: { UiProfileHeader },
+  data() {
+    return {
+      imageSet
+    }
+  },
+  template: `
+    <div class="story-ui-profile-header-container">
+    <ui-profile-header
+      class="biggerAvatar"
+      :profile-image="imageSet"
+      alt="user alt"
+      user-name ="userName"
+      @on-more-options-clicked="onClickMoreOptions"
+    />
+  </div>`,
+  methods: { onClickMoreOptions: action('open modal') }
+})

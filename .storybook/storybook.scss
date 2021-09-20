@@ -107,6 +107,22 @@ a {
   }
 }
 
+.story-ui-profile-header-container {
+  max-width: 596px;
+  margin: auto;
+  .biggerAvatar {
+    .ui-profile-header {
+      &__image {
+        height: $spacing-size-12;
+        margin-right: $spacing-size-4;
+        max-height: $spacing-size-12;
+        width: $spacing-size-12;
+      }
+    }
+  }
+}
+
+
 .story-ui-influencer-card-container {
   max-width: 596px;
   margin: auto;
