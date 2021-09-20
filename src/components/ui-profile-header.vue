@@ -44,7 +44,6 @@
 <script lang="ts">
 import Vue from 'vue'
 import UiLazyInvent from './ui-lazy-invent.vue'
-import Image from '../types/Image'
 import { ProfileImgUI } from '../types/Profile'
 
 export default Vue.extend({
