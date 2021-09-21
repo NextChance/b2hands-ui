@@ -123,6 +123,8 @@ export default Vue.extend({
     &__link {
       display: flex;
       width: $spacing-size-5;
+      height: $spacing-size-5;
+      align-items: center;
       > .dots {
         background-color: $black-100;
         border-radius: 50%;
