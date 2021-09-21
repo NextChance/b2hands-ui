@@ -235,6 +235,7 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .ui-influencer-card {
   $uiInfluencerCard: &;
+  border: 1px solid $black-20;
   padding-top: $spacing-size-3;
 
   &__media {
