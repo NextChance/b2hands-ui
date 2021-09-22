@@ -16,7 +16,9 @@
       :alt="profile.name"
       :user-name="profile.instagram_handler"
       :secondary-info="date"
+      :profile-route="profileRoute"
       @on-more-options-clicked="onMoreOptionsClicked"
+      @on-profile-clicked="onProfileClicked"
       @on-image-loaded="onImageLoaded"
     />
     <div class="ui-influencer-card__media" @click="onClickImage">
@@ -131,6 +133,10 @@ export default Vue.extend({
     actionText: {
       type: String,
       default: ''
+    },
+    profileRoute: {
+      type: String,
+      default: ''
     }
   },
   data(): Data {
@@ -151,6 +157,10 @@ export default Vue.extend({
   methods: {
     onMoreOptionsClicked(): void {
       this.$emit('open-more-options')
+    },
+
+    onProfileClicked(): void {
+      this.$emit('navigate-to-profile')
     },
 
     onImageError(refName: string): void {

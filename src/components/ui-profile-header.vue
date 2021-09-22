@@ -1,33 +1,39 @@
 <template>
   <div class="ui-profile-header">
-    <div class="ui-profile-header__image">
-      <ui-lazy-invent
-        :src="profileImage.smallest"
-        :srcset="profileImage.srcSet"
-        :alt="alt"
-        @on-image-error="onImageError(`nav-actions`)"
-      />
-    </div>
-    <div class="ui-profile-header__info">
-      <div
-        class="ui-profile-header__info__main-text"
-        :class="{
+    <a
+      class="ui-profile-header__link"
+      @click.capture="onClickProfile($event)"
+      :href="profileRoute"
+    >
+      <div class="ui-profile-header__image">
+        <ui-lazy-invent
+          :src="profileImage.smallest"
+          :srcset="profileImage.srcSet"
+          :alt="alt"
+          @on-image-error="onImageError(`nav-actions`)"
+        />
+      </div>
+      <div class="ui-profile-header__info">
+        <div
+          class="ui-profile-header__info__main-text"
+          :class="{
           'ui-profile-header__info__main-text--skeleton':
             !userName || userName === ''
         }"
         >{{ userName }}</div
-      >
-      <div
-        class="ui-profile-header__info__secondary-text"
-        :class="{
+        >
+        <div
+          class="ui-profile-header__info__secondary-text"
+          :class="{
           'ui-profile-header__info__secondary-text--skeleton':
             !secondaryInfo || secondaryInfo === ''
         }"
-        v-if="secondaryInfo !== ''"
-      >
-        {{ secondaryInfo }}
+          v-if="secondaryInfo !== ''"
+        >
+          {{ secondaryInfo }}
+        </div>
       </div>
-    </div>
+    </a>
     <div class="ui-profile-header__more-options">
       <a
         href="#"
@@ -71,12 +77,20 @@ export default Vue.extend({
     moreOptions: {
       type: String,
       default: ''
+    },
+    profileRoute: {
+      type: String,
+      default: ''
     }
   },
   methods: {
     handleMoreOptions(event: Event): void {
       event.preventDefault()
       this.$emit('on-more-options-clicked')
+    },
+    onClickProfile(event: Event): void {
+      event.preventDefault()
+      this.$emit('on-profile-clicked')
     }
   }
 })
@@ -90,6 +104,10 @@ export default Vue.extend({
   justify-content: space-between;
   padding: $spacing-size-2;
   width: 100%;
+  &__link {
+    display: flex;
+  }
+
   &__image {
     border-radius: 50%;
     height: $spacing-size-7;
