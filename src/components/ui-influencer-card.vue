@@ -187,6 +187,9 @@ export default Vue.extend({
 
     onClickImage(): void {
       if (this.isImageLoaded) {
+        clearTimeout(this.delayAnimationIn)
+        clearTimeout(this.delayAnimationOut)
+
         this.hasClicked = true
         if (!this.isAnimating) {
           if (this.isAnimatedElementVisible) {
@@ -194,6 +197,8 @@ export default Vue.extend({
           } else {
             this.showAnimationElements = true
           }
+        } else {
+          this.isAnimating = false
         }
       }
     },
@@ -203,8 +208,12 @@ export default Vue.extend({
       this.$emit('click', $event)
     },
 
-    onIconAnimationStart() {
-      this.isAnimating = true
+    onIconAnimationStart(ev: AnimationEvent) {
+      const isParent = (ev.target as HTMLElement).id === 'icons'
+      if (isParent) {
+        this.isAnimating = true
+      }
+
     },
 
     onIconAnimationEnd(ev: AnimationEvent) {
@@ -218,6 +227,7 @@ export default Vue.extend({
           this.isAnimatedElementVisible = true
 
           if (!this.hasClicked) {
+            this.isAnimating = true
             this.delayAnimationOut = setTimeout(() => {
               this.hideAnimationElements = true
             }, 2000)
@@ -226,6 +236,8 @@ export default Vue.extend({
           this.hideAnimationElements = false
           this.isAnimatedElementVisible = false
         }
+
+        this.hasClicked = false
       }
     }
   }
@@ -235,7 +247,6 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .ui-influencer-card {
   $uiInfluencerCard: &;
-  border: 1px solid $black-20;
   padding-top: $spacing-size-3;
 
   &__media {
@@ -307,6 +318,7 @@ export default Vue.extend({
     }
   }
   @media (min-width: $breakpoint-s) {
+    border: 1px solid $black-20;
     $size: $spacing-size-8;
 
     &__bound-list {
