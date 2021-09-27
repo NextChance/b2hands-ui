@@ -1,5 +1,5 @@
 <template>
-  <div v-if="isHidden || delayLoad"
+  <div v-if="!forceImageLoad && (isHidden || delayLoad)"
        ref="visibilityPlaceholder"
        class="placeholder-image placeholder-image--loading"
        :height="`${loadingHeight}px`"
@@ -114,6 +114,10 @@ export default Vue.extend({
     loadingWidth: {
       type: Number,
       default: 0
+    },
+    forceImageLoad: {
+      type: Boolean,
+      default: false
     }
   },
   watch: {
@@ -138,6 +142,7 @@ export default Vue.extend({
           this.loadingImage.style.width = `${this.loadingWidth}px`
         }
         (this.$refs.visibilityPlaceholder as HTMLElement).classList.add('lazy-image--hide')
+        this.$emit('image-visible')
       }
     },
     onImageLoaded(): void {

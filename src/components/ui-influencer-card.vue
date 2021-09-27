@@ -12,6 +12,7 @@
     ]"
   >
     <ui-profile-header
+      :class="{'ui-influencer-card--hidden': forceImageLoad && !isImageLoaded }"
       :profile-image="profile.imageSet"
       :alt="profile.name"
       :user-name="profile.instagram_handler"
@@ -19,7 +20,6 @@
       :profile-route="profileRoute"
       @on-more-options-clicked="onMoreOptionsClicked"
       @on-profile-clicked="onProfileClicked"
-      @on-image-loaded="onImageLoaded"
     />
     <div class="ui-influencer-card__media" @click="onClickImage">
       <ui-lazy-invent
@@ -29,6 +29,8 @@
         :alt="description"
         :sizes="sizes"
         :is-error-forced="isErrorForced"
+        :force-image-load="forceImageLoad"
+        @image-visible="onImageVisible"
         @on-image-loaded="onImageLoaded"
         @on-image-error="onImageError(`nav-actions`)"
       />
@@ -137,6 +139,10 @@ export default Vue.extend({
     profileRoute: {
       type: String,
       default: ''
+    },
+    forceImageLoad: {
+      type: Boolean,
+      default: false
     }
   },
   data(): Data {
@@ -151,7 +157,7 @@ export default Vue.extend({
       hasClicked: false,
       isAnimating: false,
       delayAnimationIn: setTimeout(() => {}, 0),
-      delayAnimationOut: setTimeout(() => {}, 0)
+      delayAnimationOut: setTimeout(() => {}, 0),
     }
   },
   methods: {
@@ -161,6 +167,10 @@ export default Vue.extend({
 
     onProfileClicked(): void {
       this.$emit('navigate-to-profile')
+    },
+
+    onImageVisible(): void {
+      this.$emit('image-visible')
     },
 
     onImageError(refName: string): void {
@@ -260,6 +270,10 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .ui-influencer-card {
   $uiInfluencerCard: &;
+
+  &--hidden {
+    opacity: 0;
+  }
 
   &__media {
     @include affrodance-velo;
