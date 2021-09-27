@@ -188,6 +188,7 @@ export default Vue.extend({
         }
         this.showAnimationElements = false
         this.hasClicked = false
+        this.delayAnimationOut = 0
       }
     },
 
@@ -197,11 +198,8 @@ export default Vue.extend({
 
     onClickImage(): void {
       if (this.isImageLoaded) {
-        clearTimeout(this.delayAnimationIn)
-        clearTimeout(this.delayAnimationOut)
-
         this.hasClicked = true
-        if (!this.isAnimating) {
+        if (!this.isAnimating && !this.delayAnimationOut) {
           if (this.isAnimatedElementVisible) {
             this.hideAnimationElements = true
           } else {
@@ -210,6 +208,11 @@ export default Vue.extend({
         } else {
           this.isAnimating = false
         }
+
+        clearTimeout(this.delayAnimationIn)
+        clearTimeout(this.delayAnimationOut)
+
+        this.delayAnimationOut = 0
       }
     },
 
@@ -237,9 +240,9 @@ export default Vue.extend({
           this.isAnimatedElementVisible = true
 
           if (!this.hasClicked) {
-            this.isAnimating = true
             this.delayAnimationOut = setTimeout(() => {
               this.hideAnimationElements = true
+              this.delayAnimationOut = 0
             }, 2000)
           }
         } else {
@@ -257,7 +260,6 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .ui-influencer-card {
   $uiInfluencerCard: &;
-  padding-top: $spacing-size-3;
 
   &__media {
     @include affrodance-velo;
