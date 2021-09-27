@@ -95,7 +95,7 @@ interface Data {
   hasClicked: boolean
   isAnimating: boolean
   delayAnimationIn: ReturnType<typeof setTimeout>
-  delayAnimationOut: ReturnType<typeof setTimeout>
+  delayAnimationOut: ReturnType<typeof setTimeout> | number
 }
 
 export default Vue.extend({
@@ -182,7 +182,7 @@ export default Vue.extend({
         }
       } else {
         clearTimeout(this.delayAnimationIn)
-        clearTimeout(this.delayAnimationOut)
+        clearTimeout(this.delayAnimationOut as ReturnType<typeof setTimeout>)
         if (!this.isAnimating && this.isAnimatedElementVisible) {
           this.hideAnimationElements = true
         }
@@ -210,7 +210,7 @@ export default Vue.extend({
         }
 
         clearTimeout(this.delayAnimationIn)
-        clearTimeout(this.delayAnimationOut)
+        clearTimeout(this.delayAnimationOut as ReturnType<typeof setTimeout>)
 
         this.delayAnimationOut = 0
       }
