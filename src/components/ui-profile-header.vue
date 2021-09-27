@@ -105,6 +105,7 @@ export default Vue.extend({
   padding: $spacing-size-2;
   width: 100%;
   &__link {
+    align-items: center;
     display: flex;
   }
 
