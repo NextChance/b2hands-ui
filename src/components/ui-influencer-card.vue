@@ -7,12 +7,12 @@
         : 'animated-elements--hidden',
       {
         'animated-elements--show-animation': showAnimationElements,
-        'animated-elements--hide-animation': hideAnimationElements
+        'animated-elements--hide-animation': hideAnimationElements,
+        'ui-influencer-card--hidden': forceImageLoad && !isImageLoaded
       }
     ]"
   >
     <ui-profile-header
-      :class="{'ui-influencer-card--hidden': forceImageLoad && !isImageLoaded }"
       :profile-image="profile.imageSet"
       :alt="profile.name"
       :user-name="profile.instagram_handler"
