@@ -161,28 +161,28 @@ export default Vue.extend({
     }
   },
   methods: {
-    onMoreOptionsClicked(): void {
+    onMoreOptionsClicked (): void {
       this.$emit('open-more-options')
     },
 
-    onProfileClicked(): void {
+    onProfileClicked (): void {
       this.$emit('navigate-to-profile')
     },
 
-    onImageVisible(): void {
+    onImageVisible (): void {
       this.$emit('image-visible')
     },
 
-    onImageError(refName: string): void {
+    onImageError (refName: string): void {
       const element = this.$refs[refName] as HTMLElement
       element.classList.add('nav-actions--error')
     },
 
-    onImageLoaded(): void {
+    onImageLoaded (): void {
       this.isImageLoaded = true
     },
 
-    onVisibilityChanged(isVisible: boolean): void {
+    onVisibilityChanged (isVisible: boolean): void {
       this.isVisible = isVisible
       if (isVisible) {
         if (!this.isAnimating && !this.isAnimatedElementVisible) {
@@ -195,18 +195,43 @@ export default Vue.extend({
         clearTimeout(this.delayAnimationOut as ReturnType<typeof setTimeout>)
         if (!this.isAnimating && this.isAnimatedElementVisible) {
           this.hideAnimationElements = true
+          this.showAnimationElements = false
         }
-        this.showAnimationElements = false
         this.hasClicked = false
         this.delayAnimationOut = 0
       }
     },
 
-    onSelectBound(bound: number): void {
+    onIconAnimationEnd (ev: AnimationEvent): void {
+      const isParent = (ev.target as HTMLElement).id === 'icons'
+
+      if (isParent) {
+        this.isAnimating = false
+
+        if (!this.isAnimatedElementVisible) {
+          this.showAnimationElements = false
+          this.isAnimatedElementVisible = true
+
+          if (!this.hasClicked) {
+            this.delayAnimationOut = setTimeout(() => {
+              this.hideAnimationElements = true
+              this.delayAnimationOut = 0
+            }, this.isVisible ? 2000 : 0)
+          }
+        } else {
+          this.hideAnimationElements = false
+          this.isAnimatedElementVisible = false
+        }
+
+        this.hasClicked = false
+      }
+    },
+
+    onSelectBound (bound: number): void {
       this.$emit('on-select-bound', bound)
     },
 
-    onClickImage(): void {
+    onClickImage (): void {
       if (this.isImageLoaded) {
         this.hasClicked = true
         if (!this.isAnimating && !this.delayAnimationOut) {
@@ -226,42 +251,17 @@ export default Vue.extend({
       }
     },
 
-    onClickIcon($event: MouseEvent): void {
+    onClickIcon ($event: MouseEvent): void {
       $event.preventDefault()
       this.$emit('click', $event)
     },
 
-    onIconAnimationStart(ev: AnimationEvent) {
+    onIconAnimationStart (ev: AnimationEvent): void {
       const isParent = (ev.target as HTMLElement).id === 'icons'
       if (isParent) {
         this.isAnimating = true
       }
 
-    },
-
-    onIconAnimationEnd(ev: AnimationEvent) {
-      const isParent = (ev.target as HTMLElement).id === 'icons'
-
-      if (isParent) {
-        this.isAnimating = false
-
-        if (!this.isAnimatedElementVisible) {
-          this.showAnimationElements = false
-          this.isAnimatedElementVisible = true
-
-          if (!this.hasClicked) {
-            this.delayAnimationOut = setTimeout(() => {
-              this.hideAnimationElements = true
-              this.delayAnimationOut = 0
-            }, 2000)
-          }
-        } else {
-          this.hideAnimationElements = false
-          this.isAnimatedElementVisible = false
-        }
-
-        this.hasClicked = false
-      }
     }
   }
 })
