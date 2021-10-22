@@ -3,7 +3,7 @@ const rootPath = path.resolve(__dirname, '../src')
 
 module.exports = {
   stories: ['../src/stories/**/*.stories.@(js|jsx|ts|tsx)'],
-  addons: ['@storybook/addon-actions', '@storybook/addon-links', '@storybook/addon-viewport', '@storybook/addon-essentials'],
+  addons: ['@storybook/addon-actions', '@storybook/addon-links', '@storybook/addon-viewport', '@storybook/addon-essentials', 'storybook-dark-mode'],
   webpackFinal: async (config) => {
     config.module.rules.push({
       test: /\.scss$/,

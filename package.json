@@ -48,6 +48,7 @@
     "node-sass": "^5.0.0",
     "prettier": "^2.1.2",
     "sass-loader": "^10.1.1",
+    "storybook-dark-mode": "^1.0.8",
     "stylelint": "^13.7.2",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-sass-guidelines": "^7.1.0",
