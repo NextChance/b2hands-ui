@@ -18,6 +18,7 @@
       :user-name="profile.instagram_handler"
       :secondary-info="date"
       :profile-route="profileRoute"
+      has-profile-link
       @on-more-options-clicked="onMoreOptionsClicked"
       @on-profile-clicked="onProfileClicked"
     />
