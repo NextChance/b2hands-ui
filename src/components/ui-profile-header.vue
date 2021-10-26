@@ -2,7 +2,7 @@
   <div class="ui-profile-header">
     <component
       :is="hasProfileLink ? 'a' : 'span'"
-      :href="profileRoute"
+      :href="hasProfileLink ? profileRoute : null"
       class="ui-profile-header__link"
       @click.capture="onClickProfile($event)"
     >
