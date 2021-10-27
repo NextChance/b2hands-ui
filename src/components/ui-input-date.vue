@@ -15,7 +15,7 @@
       class="ui-input-date__datepicker"
       :max="max"
       :min="min"
-      @change='handleChangeDate'
+      @change="handleChangeDate"
     />
   </div>
 </template>
@@ -76,10 +76,11 @@ export default Vue.extend({
   methods: {
     formatDate(date: string): string {
       const d = new Date(date)
-      const month = d.toLocaleString('default', { month: 'long' })
-      const year = d.getFullYear()
-      const day = d.getDate()
-      return `${day} ${month} ${year}`
+      return d.toLocaleString(navigator.language || 'es', {
+        month: 'long',
+        day: '2-digit',
+        year: 'numeric'
+      })
     },
 
     handleChangeDate(): void {
