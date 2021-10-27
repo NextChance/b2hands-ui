@@ -47,6 +47,10 @@ export default Vue.extend({
     min: {
       type: String,
       default: ''
+    },
+    value: {
+      type: String,
+      default: ''
     }
   },
   data() {
@@ -59,6 +63,14 @@ export default Vue.extend({
       return this.selectedDate !== ''
         ? this.formatDate(this.selectedDate)
         : this.placeholder
+    }
+  },
+  watch: {
+    value: {
+      immediate: true,
+      handler(_value): void {
+        this.selectedDate = _value
+      }
     }
   },
   methods: {

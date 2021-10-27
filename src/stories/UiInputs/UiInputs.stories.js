@@ -16,3 +16,17 @@ export const datePickerBasic = () => ({
     </div>
   `
 })
+
+export const datePickerWithValue = () => ({
+  components: { UiInputDate },
+  template: `
+    <div class="story-ui-datepicker-container">
+      <ui-input-date
+        placeholder="Introduce una fecha"
+        min="2021-01-01"
+        max="2021-12-31"
+        value="2021-09-30"
+      />
+    </div>
+  `
+})
