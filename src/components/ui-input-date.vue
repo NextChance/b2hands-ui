@@ -49,7 +49,7 @@ export default Vue.extend({
       default: ''
     },
     value: {
-      type: String,
+      type: Number,
       default: ''
     }
   },
@@ -59,7 +59,7 @@ export default Vue.extend({
     }
   },
   computed: {
-    formattedDate(): string {
+    formattedDate (): string {
       return this.selectedDate !== ''
         ? this.formatDate(this.selectedDate)
         : this.placeholder
@@ -68,13 +68,15 @@ export default Vue.extend({
   watch: {
     value: {
       immediate: true,
-      handler(_value): void {
-        this.selectedDate = _value
+      handler (value): void {
+        if (value) {
+          this.selectedDate = new Date(value).toISOString().replace(/T.*/,'')
+        }
       }
     }
   },
   methods: {
-    formatDate(date: string): string {
+    formatDate (date: string): string {
       const d = new Date(date)
       return d.toLocaleString(navigator.language || 'es', {
         month: 'long',
@@ -83,8 +85,8 @@ export default Vue.extend({
       })
     },
 
-    handleChangeDate(): void {
-      this.$emit('change', this.selectedDate)
+    handleChangeDate (): void {
+      this.$emit('change', new Date(this.selectedDate).getTime())
     }
   }
 })
