@@ -1,9 +1,10 @@
 <template>
   <div class="ui-profile-header">
-    <a
+    <component
+      :is="hasProfileLink ? 'a' : 'span'"
+      :href="hasProfileLink ? profileRoute : null"
       class="ui-profile-header__link"
       @click.capture="onClickProfile($event)"
-      :href="profileRoute"
     >
       <div class="ui-profile-header__image">
         <ui-lazy-invent
@@ -33,7 +34,7 @@
           {{ secondaryInfo }}
         </div>
       </div>
-    </a>
+    </component>
     <div class="ui-profile-header__more-options">
       <a
         href="#"
@@ -81,6 +82,10 @@ export default Vue.extend({
     profileRoute: {
       type: String,
       default: ''
+    },
+    hasProfileLink: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
