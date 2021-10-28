@@ -11,7 +11,6 @@
           :src="profileImage.smallest"
           :srcset="profileImage.srcSet"
           :alt="alt"
-          @on-image-error="onImageError(`nav-actions`)"
         />
       </div>
       <div class="ui-profile-header__info">
