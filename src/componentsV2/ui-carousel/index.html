@@ -1,0 +1,68 @@
+<div class="ui-carousel col-container">
+  <ul class="ui-carousel__thumbnails col-2--s">
+    <li
+      v-for="(item, index) in items"
+      :key="`carousel-thumbnails-${index}`"
+      class="ui-carousel__thumbnails__item"
+    >
+      <a
+        @click='getPosition($event,`#image-${index}`)'
+        :href="`#image-${index}`">
+        <ui-lazy-invent
+          class="ui-carousel__thumbnails__image"
+          :alt="`thumbnails-${item.alt}`"
+          :src="item.src"
+          sizes="5.6vw"
+          :srcset="item.srcSets"
+        ></ui-lazy-invent>
+      </a>
+    </li>
+  </ul>
+  <div
+    class="ui-carousel__gallery col-12--xs col-10--s"
+    :class="{
+        'ui-carousel__gallery--one-image': items.length === 1,
+        'ui-carousel__gallery--active': isAnyImageLoaded
+      }"
+  >
+    <ul class="ui-carousel__gallery__list">
+      <li
+        v-for="(item, index) in items"
+        :id="`image-${index}`"
+        :key="`carousel-${index}`"
+        class="ui-carousel__gallery__item"
+      >
+        <ui-lazy-invent
+          class="ui-carousel__gallery__image"
+          :alt="item.alt"
+          :src="item.src"
+          :srcset="item.srcSets"
+          :delayLoad="!isFirstImageLoaded && index !== 0"
+          sizes="(max-width: 768px) 36.2vw, 90vw"
+          @on-image-loaded="onImageLoaded(index)"
+          @on-image-error="onImageError(index)"
+        ></ui-lazy-invent>
+        <div
+          v-if="extraContent"
+          class="ui-carousel__gallery__item__extra-content label-tag"
+        >
+          <span class="label-tag__content">{{ extraContent }}</span>
+        </div>
+        <div class="nav-actions"
+             ref="imageActions">
+          <slot name='carousel-action' v-bind:index="index"></slot>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div
+    v-if="extraContent"
+    class="ui-carousel__extra-content--mobile label-tag"
+  >
+    <span class="label-tag__content">{{ extraContent }}</span>
+  </div>
+  <div class="nav-actions nav-actions--mobile"
+       ref="image-actions">
+    <slot name='carousel-action' v-bind:index="0"></slot>
+  </div>
+</div>

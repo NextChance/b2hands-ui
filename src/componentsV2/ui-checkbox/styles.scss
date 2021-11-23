@@ -1,0 +1,105 @@
+.ui-checkbox {
+  $uiCheckbox: &;
+  $checkboxBorderThickness: $spacing-size-0;
+  $checkboxSize: $spacing-size-4 - (2 * $spacing-size-0);
+  $tickSpacing: $spacing-size-1;
+
+  line-height: $checkboxSize;
+  color: $black-100;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+
+  &:before {
+    border: 1px solid $black-50;
+    border-radius: 3px;
+    content: '';
+    display: block;
+    height: $checkboxSize;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: color .1s linear;
+    width: $checkboxSize;
+  }
+
+  &:after {
+    background-color: $black-50;
+    border-radius: 1px;
+    content: '';
+    display: block;
+    height: $checkboxSize;
+    left: $checkboxBorderThickness;
+    position: absolute;
+    top: $checkboxBorderThickness;
+    transform: scale(0);
+    transform-origin: center;
+    transition: background-color .1s linear, transform .1s linear;
+    width: $checkboxSize;
+  }
+
+  &--checked {
+    &:before {
+      border-color: $black-100;
+    }
+
+    &:after {
+      background-color: $black-100;
+      transform: scale(1);
+    }
+
+    #{$uiCheckbox}__sign {
+      transform: scale(1);
+    }
+  }
+
+  &--disabled {
+    &:before {
+      border-color: $black-50;
+    }
+
+    &:after {
+      background-color: $black-50;
+    }
+
+    #{$uiCheckbox}__label {
+      color: $black-50;
+    }
+  }
+
+  &--schrodinger {
+    &:after {
+      height: 2 * $checkboxBorderThickness;
+      left: ($tickSpacing / 2) + $checkboxBorderThickness;
+      top: ($checkboxSize / 2);
+      width: $checkboxSize - $tickSpacing;
+    }
+  }
+
+  &__button {
+    cursor: pointer;
+    height: $checkboxSize + (2 * $checkboxBorderThickness);
+    line-height: 1rem;
+    opacity: 0;
+    vertical-align: top;
+    width: $checkboxSize + (2 * $checkboxBorderThickness);
+  }
+
+  &__label {
+    @include body('s');
+    padding-left: $spacing-size-3 - (2 * $checkboxBorderThickness);
+    vertical-align: top;
+  }
+
+  &__sign {
+    color: $white;
+    font-size: $font-size-2;
+    left: (($checkboxSize - $font-size-2) / 2) + $checkboxBorderThickness;
+    position: absolute;
+    top: (($checkboxSize - $font-size-2) / 2) + $checkboxBorderThickness;
+    transform: scale(0);
+    transform-origin: center;
+    transition: transform .1s linear;
+    z-index: 1;
+  }
+}
