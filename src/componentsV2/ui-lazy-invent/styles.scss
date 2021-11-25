@@ -1,0 +1,4 @@
+.lazy-image__loading {
+  @include box-skeleton;
+  transition: opacity .3s ease-in;
+}
