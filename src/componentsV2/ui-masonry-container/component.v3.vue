@@ -3,8 +3,8 @@
 
 <script lang="ts">
 import { defineComponent, onMounted, onUnmounted, ref } from 'vue3'
-import UiLazyInvent from '*.vue'
-import { DiscoveryImage } from '@/types/Image'
+import UiLazyInvent from '../ui-lazy-invent/component.v3.vue'
+import { DiscoveryImage } from '@/external/types/Image'
 
 export default defineComponent({
   name: 'UiMasonryContainer',

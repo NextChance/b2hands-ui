@@ -10,7 +10,8 @@
     "coverage": "jest --coverage",
     "lint": "vue-cli-service lint",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "get-external": "node -e 'require(\"./bin/loadDependencies.js\").copy()'"
   },
   "dependencies": {
     "core-js": "^3.6.5",
@@ -57,7 +58,8 @@
     "ts-jest": "^26.4.1",
     "typescript": "~3.9.3",
     "vue-jest": "^3.0.4",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.11",
+    "web-utils": "https://github.com/NextChance/web-utils.git"
   },
   "eslintConfig": {
     "root": true,

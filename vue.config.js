@@ -1,6 +1,12 @@
+const path = require('path')
 module.exports = {
   assetsDir: 'assets/',
   publicPath: '/',
+  resolve: {
+    alias: {
+      '~': path.resolve(__dirname, 'src')
+    }
+  },
   css: {
     loaderOptions: {
       sass: {

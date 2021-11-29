@@ -3,7 +3,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { addSiblingNodeWithLoadingImage, replaceNodeWithErrorImage } from '@/tools/errorImage'
+import { addSiblingNodeWithLoadingImage, replaceNodeWithErrorImage } from '@/external/tools/errorImage'
 
 export default Vue.extend({
   name: 'ui-lazy-lazy-image',

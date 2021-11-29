@@ -3,7 +3,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import UiLazyInvent from '../ui-lazy-invent.vue'
+import UiLazyInvent from '../ui-lazy-invent/component.v2.vue'
 
 interface ImgItem {
   src: string

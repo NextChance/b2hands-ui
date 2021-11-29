@@ -2,9 +2,9 @@
 <style lang="scss" scoped src="./styles.scss"></style>
 
 <script lang="ts">
-import AnyObject from '../../types/AnyObject'
-import { UiTab } from '@/types/Components'
-import UiScrollableList from './ui-scrollable-list.vue'
+import AnyObject from '@/external/types/AnyObject'
+import { UiTab } from '@/external/types/Components'
+import UiScrollableList from '../ui-scrollable-list/component.v2.vue'
 import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 
 @Component({
