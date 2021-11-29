@@ -1,0 +1,14 @@
+<transition name='modal-fade'>
+  <div
+    v-if="isOpen"
+    class="modal"
+  >
+    <div class='modal__header wrapper--s'>
+      <i class="modal__icon b2i-modal" @click="handleClose"></i>
+    </div>
+    <div class="modal__content">
+      <!-- @slot Default slot for modal content -->
+      <slot />
+    </div>
+  </div>
+</transition>
