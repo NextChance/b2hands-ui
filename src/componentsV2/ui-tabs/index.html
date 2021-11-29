@@ -1,0 +1,19 @@
+<UiScrollableList
+  :class="['ui-tabs', {'ui-tabs--scrollable': hasScroll}]"
+  :has-scroll="hasScroll"
+  :forced-scroll="scrollOnList"
+>
+  <ul class="ui-tabs__list">
+    <li
+      v-for="(tab, idx) in tabs"
+      :key="`ui-tab--${idx}`"
+      :class="['ui-tabs__element', {'ui-tabs__element--active': idx === activeTabIndex}]"
+      ref="uiTab"
+      @click="handleTabClick(tab)"
+    >{{tab.value}}</li>
+  </ul>
+  <div
+    class="ui-tabs__marker"
+    :style="{ transform: `translateX(${markerProperties.left}px) scaleX(${markerProperties.width})`}"
+  ></div>
+</UiScrollableList>
