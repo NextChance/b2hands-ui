@@ -4,10 +4,12 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        additionalData: `@import "@/assets/scss/_index.scss";`
+        additionalData: `@import "@/assets/scss/_index.scss";`,
+        hoistUseStatements: true
       },
       scss: {
-        additionalData: `@import "@/assets/scss/_index.scss";`
+        additionalData: `@import "@/assets/scss/_index.scss";`,
+        hoistUseStatements: true
       }
     }
   }
