@@ -1,0 +1,77 @@
+.ui-scrollable-list {
+  $uiScrollableList: &;
+
+  &__container {
+    position: relative;
+  }
+  &--scrollable {
+    -webkit-transform: translateZ(0); // iOS hack. Don't remove
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+
+    &::-webkit-scrollbar {
+      -webkit-appearance: none;
+      background: transparent; /* Chrome/Safari/Webkit */
+      display: none;
+      height: 0px;
+      width: 0;
+    }
+  }
+
+  &__scroll-helper {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    width: $spacing-size-12;
+
+    &--prev {
+      background: linear-gradient(90deg, #FFFFFF 47.92%, rgba(255, 255, 255, 0) 100%);
+      left: 0;
+
+      #{$uiScrollableList}__button {
+        left: 0;
+      }
+    }
+
+    &--next {
+      background: linear-gradient(270deg, #FFFFFF 47.92%, rgba(255, 255, 255, 0) 100%);
+      right: 0;
+
+      #{$uiScrollableList}__button {
+        right: 0;
+      }
+    }
+  }
+
+  &__button {
+    background-color: transparent;
+    bottom: 0;
+    color: $black-60;
+    font-size: $font-size-2;
+    height: $font-size-2 + 2 * $spacing-size-1;
+    margin: auto 0;
+    padding: $spacing-size-1;
+    position: absolute;
+    top: 0;
+  }
+
+  @media (min-width: $breakpoint-s) {
+    &__scroll-helper {
+      display: block;
+    }
+  }
+}
+
+.fade-enter,
+.fade-leave-active {
+  opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .2s ease;
+}
