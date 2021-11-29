@@ -1,0 +1,73 @@
+.ui-tabs {
+  $uiTabs: &;
+
+  border-bottom: 1px solid $black-20;
+  position: relative;
+
+  *::-webkit-scrollbar {
+    -webkit-appearance: none;
+    background: transparent; /* make scrollbar transparent */
+    display: none;
+    height: 0px;
+    width: 0px;
+  }
+
+  &--scrollable {
+    #{$uiTabs}__list {
+      width: unset;
+    }
+
+    #{$uiTabs}__element {
+      flex-shrink: 0;
+      flex-grow: 1;
+      white-space: nowrap;
+    }
+  }
+
+  &__list {
+    display: flex;
+    width: 100%;
+  }
+
+  &__element {
+    @include body('s');
+    color: $black-60;
+    cursor: pointer;
+    padding: $spacing-size-3 $spacing-size-4;
+    text-align: center;
+    transition: color .2s ease-in;
+
+    &--active {
+      color: $black-100
+    }
+  }
+
+  &__marker {
+    background-color: $black-100;
+    bottom: 0;
+    height: 1px;
+    left: 0;
+    position: absolute;
+    transform-origin: left;
+    transition: transform .2s ease-in;
+    width: 1px;
+  }
+
+  &__button {
+    background-color: transparent;
+    bottom: 0;
+    color: $black-60;
+    font-size: $font-size-2;
+    height: $font-size-2 + 2 * $spacing-size-1;
+    margin: auto 0;
+    padding: $spacing-size-1;
+    position: absolute;
+    top: 0;
+  }
+
+  @media (min-width: $breakpoint-s) {
+    &__scroll-helper {
+      display: block;
+    }
+  }
+}

@@ -49,6 +49,8 @@ export default Vue.extend({
   background-color: $white;
   bottom: 0;
   color: $black-100;
+  display: flex;
+  flex-direction: column;
   left: 0;
   overflow: hidden;
   position: fixed;
@@ -69,6 +71,7 @@ export default Vue.extend({
 
   &__content {
     box-sizing: border-box;
+    flex-grow: 1;
   }
 
   @media (min-width: $breakpoint-s) {

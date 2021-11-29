@@ -3,7 +3,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from 'vue3'
-import UiLazyInvent from '../ui-lazy-invent.vue'
+import UiLazyInvent from '../ui-lazy-invent/component.v3.vue'
 
 interface ImgItem {
   src: string
@@ -47,14 +47,14 @@ export default defineComponent({
     const imageActions = ref(null)
 
     const onImageLoaded = (index: number): void => {
-      isAnyImageLoaded = true
+      isAnyImageLoaded.value = true
       if( index===0 ) {
-        isFirstImageLoaded = true
+        isFirstImageLoaded.value = true
       }
     }
 
     const onImageError = (refIndex: number): void => {
-      const element = (imageActions as HTMLElement[])[refIndex]
+      const element = (imageActions.value as HTMLElement[])[refIndex]
       if (element) {
         element.classList.add('nav-actions--error')
       }

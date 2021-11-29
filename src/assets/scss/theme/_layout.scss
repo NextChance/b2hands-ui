@@ -1,7 +1,7 @@
 .wrapper {
   margin: 0 auto;
   //max-width: 1200px;
-  max-width: (1208 / 16) + (2 * $spacing-size-4);
+  max-width: math.div(1208, 16) + (2 * $spacing-size-4);
   padding: 0 $spacing-size-4;
   width: 100%;
 
@@ -15,7 +15,7 @@
     @media (min-width: $breakpoint-s) {
       margin: 0 auto;
       //max-width: 1200px;
-      max-width: (1208 / 16) + (2 * $spacing-size-4);
+      max-width: math.div(1208, 16) + (2 * $spacing-size-4);
       padding: 0 $spacing-size-4;
       width: 100%;
     }

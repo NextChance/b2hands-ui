@@ -70,8 +70,8 @@
   &--schrodinger {
     &:after {
       height: 2 * $checkboxBorderThickness;
-      left: ($tickSpacing / 2) + $checkboxBorderThickness;
-      top: ($checkboxSize / 2);
+      left:  math.div($tickSpacing, 2) + $checkboxBorderThickness;
+      top:  math.div($checkboxSize, 2);
       width: $checkboxSize - $tickSpacing;
     }
   }
@@ -94,9 +94,9 @@
   &__sign {
     color: $white;
     font-size: $font-size-2;
-    left: (($checkboxSize - $font-size-2) / 2) + $checkboxBorderThickness;
+    left:  math.div(($checkboxSize - $font-size-2), 2) + $checkboxBorderThickness;
     position: absolute;
-    top: (($checkboxSize - $font-size-2) / 2) + $checkboxBorderThickness;
+    top:  math.div(($checkboxSize - $font-size-2), 2) + $checkboxBorderThickness;
     transform: scale(0);
     transform-origin: center;
     transition: transform .1s linear;

@@ -1,25 +1,4 @@
 <div
-  class="ui-checkbox"
-  :class="{
-      'ui-checkbox--checked': !!isChecked,
-      'ui-checkbox--disabled': !!isDisabled,
-      'ui-checkbox--schrodinger': !!isSchrodinger
-    }"
 >
-  <input
-    :id="name || id"
-    type="checkbox"
-    :name="name || id"
-    class="ui-checkbox__button"
-    :value="value"
-    :checked="isChecked"
-    @change="onChange"
-  ><label
-  v-if="label"
-  class="ui-checkbox__label"
-  :for="name || id"
->{{label}}</label
-><i
-  v-if="!isSchrodinger"
-  class="ui-checkbox__sign b2i-check"/>
+Hello world!!!
 </div>

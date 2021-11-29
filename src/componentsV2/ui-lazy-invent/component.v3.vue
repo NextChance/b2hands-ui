@@ -3,7 +3,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted} from 'vue3'
-import { addSiblingNodeWithLoadingImage, replaceNodeWithErrorImage } from '@/tools/errorImage'
+import { addSiblingNodeWithLoadingImage, replaceNodeWithErrorImage } from '@/external/tools/errorImage'
 
 export default defineComponent({
   name: 'ui-lazy-lazy-image',
