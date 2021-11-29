@@ -1,0 +1,44 @@
+<div class="ui-search-input accept-key-press">
+  <slot>
+    <button
+      id="searchButton"
+      aria-label="Search"
+      class="ui-search-input__icon-left"
+      @click="handleSearch"
+    >
+      <i class="b2i-search"></i>
+    </button>
+  </slot>
+  <div class="ui-search-input__container">
+    <label :for="id" :v-if="labelText" class="ui-search-input__label">
+      {{ labelText }}
+    </label>
+    <input
+      :id="id"
+      ref="searchInput"
+      v-model="textValue"
+      :disabled="disabled"
+      :type="type"
+      enterKeyHint="search"
+      autocapitalize="off"
+      autocomplete="off"
+      autocorrect="off"
+      :readonly="isReadonly"
+      :placeholder="placeholder"
+      :maxlength='limitCharacter'
+      class="ui-search-input__input"
+      @focus="handleInputFocus"
+      @blur="handleBlur"
+      @change="handleChange"
+      @keyup.enter="handleSearch"
+    />
+    <button
+      v-show="searchIsFocused || value"
+      class="ui-search-input__icon-right"
+      aria-label="Clear"
+      @click="handleClickDelete"
+    >
+      <i class="b2i-cancel ui-search-input__icon-right__icon"></i>
+    </button>
+  </div>
+</div>
