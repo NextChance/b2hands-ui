@@ -3,7 +3,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, nextTick, ref, watch } from 'vue3'
-import UiScrollableList from '@/componentsV2/ui-scrollable-list/component.v2.vue'
+import UiScrollableList from '../ui-scrollable-list/component.v3.vue'
 import { UiTab } from '@/external/types/Components'
 
 export default defineComponent({
