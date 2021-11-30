@@ -1,0 +1,48 @@
+
+<div class="ui-profile-header">
+  <component
+    :is="hasProfileLink ? 'a' : 'span'"
+    :href="hasProfileLink ? profileRoute : null"
+    class="ui-profile-header__link"
+    @click.capture="onClickProfile($event)"
+  >
+    <div class="ui-profile-header__image">
+      <ui-lazy-invent
+        :src="profileImage.smallest"
+        :srcset="profileImage.srcSet"
+        :alt="alt"
+      />
+    </div>
+    <div class="ui-profile-header__info">
+      <div
+        class="ui-profile-header__info__main-text"
+        :class="{
+        'ui-profile-header__info__main-text--skeleton':
+          !userName || userName === ''
+      }"
+      >{{ userName }}</div
+      >
+      <div
+        class="ui-profile-header__info__secondary-text"
+        :class="{
+        'ui-profile-header__info__secondary-text--skeleton':
+          !secondaryInfo || secondaryInfo === ''
+      }"
+        v-if="secondaryInfo !== ''"
+      >
+        {{ secondaryInfo }}
+      </div>
+    </div>
+  </component>
+  <div class="ui-profile-header__more-options">
+    <a
+      href="#"
+      class="ui-profile-header__more-options__link"
+      @click="handleMoreOptions"
+    >
+      <i class="dots">
+        {{ moreOptions }}
+      </i>
+    </a>
+  </div>
+</div>

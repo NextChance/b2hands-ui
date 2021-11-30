@@ -1,0 +1,19 @@
+<div class="ui-input-date">
+  <input
+    v-model="formattedDate"
+    type="text"
+    class="ui-input-date__placeholder"
+    :placeholder="placeholder"
+    :name="name"
+    :disabled="disabled"
+    :isReadonly="isReadonly"
+  />
+  <input
+    v-model="selectedDate"
+    type="date"
+    class="ui-input-date__datepicker"
+    :max="max"
+    :min="min"
+    @change="handleChangeDate"
+  />
+</div>
