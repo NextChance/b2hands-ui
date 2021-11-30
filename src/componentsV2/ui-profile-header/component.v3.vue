@@ -3,7 +3,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue3'
 import UiLazyInvent from '../ui-lazy-invent/component.v3.vue'
-import { ProfileImgUI } from '@/types/Profile'
+import { ProfileImgUI } from '@/external/types/Profile'
 
 export default defineComponent({
   name: 'UiProfileHeader',
@@ -42,7 +42,7 @@ export default defineComponent({
   },
   emits: ['click'],
   setup(props, { emit }) {
-
+    debugger
     const handleMoreOptions = (event: Event): void => {
       event.preventDefault()
       emit('on-more-options-clicked')
