@@ -26,11 +26,12 @@
         autocorrect="off"
         :readonly="isReadonly"
         :placeholder="placeholder"
-        :maxlength='limitCharacter'
+        :maxlength="limitCharacter"
         class="ui-search-input__input"
         @focus="handleInputFocus"
         @blur="handleBlur"
         @keyup.enter="handleSearch"
+        @input="handleInput"
       />
       <button
         v-show="searchIsFocused || value"
@@ -103,14 +104,16 @@ export default Vue.extend({
   },
   mounted() {
     if (this.hasAutoFocus) {
-      (this.$refs.searchInput as HTMLElement).focus()
+      const searchInput = this.$refs.searchInput as HTMLElement
+      searchInput.focus()
     }
   },
   methods: {
     handleClickDelete(): void {
+      const input = this.$refs.searchInput as HTMLElement
       this.searchIsFocused = false
-      this.textValue = '';
-      (this.$refs.searchInput as HTMLElement).focus()
+      this.textValue = ''
+      input.focus()
       this.$emit('on-clear-input')
     },
 
@@ -121,7 +124,11 @@ export default Vue.extend({
 
     handleBlur(): void {
       setTimeout(() => {
-        if (!document.activeElement?.isEqualNode(this.$refs.searchInput as HTMLElement)) {
+        if (
+          !document.activeElement?.isEqualNode(
+            this.$refs.searchInput as HTMLElement
+          )
+        ) {
           this.searchIsFocused = false
           this.$emit('on-blur-input')
         }
@@ -129,12 +136,23 @@ export default Vue.extend({
     },
 
     handleSearch(ev: Event): void {
-      const notEmpty = /([a-zA-Z0-9\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u017F]+)/
       ev.preventDefault()
-      if (notEmpty.test(this.textValue) && !emojiRegex().exec(this.textValue)) {
+      if (this.isValidateText(this.textValue)) {
         this.$emit('on-search-done', this.textValue)
         this.searchIsFocused = false
       }
+    },
+
+    handleInput(ev: Event): void {
+      ev.preventDefault()
+      if (this.isValidateText(this.textValue)) {
+        this.$emit('on-input-change', this.textValue)
+      }
+    },
+
+    isValidateText(text: string): boolean {
+      const notEmpty = /([a-zA-Z0-9\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u017F]+)/
+      return notEmpty.test(text) && !emojiRegex().exec(text)
     }
   }
 })
