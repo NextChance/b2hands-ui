@@ -1,5 +1,5 @@
 <template src="./index.html"></template>
-<style scoped lang="scss" src="./style.scss"></style>
+<style scoped lang="scss" src="./styles.scss"></style>
 <script lang="ts">
 import { computed, defineComponent, ref, watch } from 'vue3'
 export default defineComponent({
