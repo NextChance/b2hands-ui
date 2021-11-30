@@ -42,7 +42,6 @@ export default defineComponent({
   },
   emits: ['click'],
   setup(props, { emit }) {
-    debugger
     const handleMoreOptions = (event: Event): void => {
       event.preventDefault()
       emit('on-more-options-clicked')
