@@ -32,6 +32,7 @@
         @blur="handleBlur"
         @keyup.enter="handleSearch"
         @input="handleInput"
+        @change="handleChange"
       />
       <button
         v-show="searchIsFocused || value"
@@ -135,6 +136,11 @@ export default Vue.extend({
       }, 250)
     },
 
+    isValidateText(text: string): boolean {
+      const notEmpty = /([a-zA-Z0-9\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u017F]+)/
+      return notEmpty.test(text) && !emojiRegex().exec(text)
+    },
+
     handleSearch(ev: Event): void {
       ev.preventDefault()
       if (this.isValidateText(this.textValue)) {
@@ -150,9 +156,8 @@ export default Vue.extend({
       }
     },
 
-    isValidateText(text: string): boolean {
-      const notEmpty = /([a-zA-Z0-9\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u017F]+)/
-      return notEmpty.test(text) && !emojiRegex().exec(text)
+    handleChange(): void {
+      this.$emit('on-change-input', this.textValue)
     }
   }
 })
