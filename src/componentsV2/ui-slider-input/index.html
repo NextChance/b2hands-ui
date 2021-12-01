@@ -1,0 +1,42 @@
+<div class="nc-slider" :class="{'nc-slider--disabled': isDisabled}">
+  <div id="drag-dot-placeholder" class="nc-slider__drag-dot-placeholder"></div>
+  <div
+    class="nc-slider__container"
+    ref="nc-slider__container"
+    @click="clickTrack"
+  >
+    <div class="nc-slider__total-track"></div>
+    <div
+      class="nc-slider__selected-track"
+      :style="{
+            'left': `${trackSize * floorRelativePosition}px`,
+            'right': `${trackSize - (trackSize * ceilRelativePosition)}px`
+          }"
+    ></div>
+    <span
+      v-if="isDouble"
+      class="nc-slider__trigger nc-slider__trigger--min"
+      draggable="true"
+      :style="{ 'left': `${trackSize * floorRelativePosition}px` }"
+      @dragstart="dragStartHandler"
+      @drag="dragHandler"
+      @dragend="dragEndHandler"
+      @touchstart="touchStartHandler"
+      @touchmove="touchMoveHandler"
+      @touchend="dragEndHandler"
+    ></span>
+    <span
+      class="nc-slider__trigger nc-slider__trigger--max"
+      draggable="true"
+      :style="{ 'left': `${trackSize * ceilRelativePosition}px` }"
+      @dragstart="dragStartHandler"
+      @drag="dragHandler"
+      @dragend="dragEndHandler"
+      @touchstart="touchStartHandler"
+      @touchmove="touchMoveHandler"
+      @touchend="dragEndHandler"
+    ></span>
+  </div>
+  <div v-if="floorLabel" class="nc-slider__label nc-slider__label--min">{{floorLabel}}</div>
+  <div v-if="ceilLabel" class="nc-slider__label nc-slider__label--max">{{ceilLabel}}</div>
+</div>

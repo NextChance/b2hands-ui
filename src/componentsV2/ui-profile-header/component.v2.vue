@@ -2,8 +2,8 @@
 <style lang="scss" scoped src="./styles.scss"></style>
 <script lang="ts">
 import Vue from 'vue'
-import UiLazyInvent from './ui-lazy-invent.vue'
-import { ProfileImgUI } from '@/types/Profile'
+import UiLazyInvent from '../ui-lazy-invent/component.v2.vue'
+import { ProfileImgUI } from '@/external/types/Profile'
 
 export default Vue.extend({
   name: 'UiProfileHeader',

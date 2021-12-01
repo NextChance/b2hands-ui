@@ -18,8 +18,11 @@ $itemGap: 8px;
       @include box-skeleton;
     }
 
-    :deep .placeholder-image {
-      height: unset;
+    :deep,
+    ::v-deep {
+      .placeholder-image {
+        height: unset;
+      }
     }
   }
 
