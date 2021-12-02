@@ -66,7 +66,7 @@ export default Vue.extend({
     }
   },
   methods: {
-    handleClickDelete(): void {
+    handleClickDelete (): void {
       const input = this.$refs.searchInput as HTMLElement
       this.searchIsFocused = false
       this.textValue = ''
@@ -74,12 +74,12 @@ export default Vue.extend({
       this.$emit('on-clear-input')
     },
 
-    handleInputFocus(): void {
+    handleInputFocus (): void {
       this.searchIsFocused = true
       this.$emit('on-focus-input')
     },
 
-    handleBlur(): void {
+    handleBlur (): void {
       setTimeout(() => {
         const input = this.$refs.searchInput as HTMLElement
         if (!document.activeElement?.isEqualNode(input)) {
@@ -89,16 +89,12 @@ export default Vue.extend({
       }, 250)
     },
 
-    handleChange(): void {
-      this.$emit('on-change-input', this.textValue)
-    },
-
-    isValidateText(text: string): boolean {
+    isValidateText (text: string): boolean {
       const notEmpty = /([a-zA-Z0-9\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u017F]+)/
       return notEmpty.test(text) && !emojiRegex().exec(text)
     },
 
-    handleSearch(ev: Event): void {
+    handleSearch (ev: Event): void {
       ev.preventDefault()
       if (this.isValidateText(this.textValue)) {
         this.$emit('on-search-done', this.textValue)
@@ -106,7 +102,7 @@ export default Vue.extend({
       }
     },
 
-    handleInput(ev: Event): void {
+    handleInput (ev: Event): void {
       ev.preventDefault()
       if (this.isValidateText(this.textValue)) {
         this.$emit('on-input-change', this.textValue)
