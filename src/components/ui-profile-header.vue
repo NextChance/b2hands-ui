@@ -34,7 +34,7 @@
         </div>
       </div>
     </component>
-    <div class="ui-profile-header__more-options">
+    <div v-if="!isHiddenMoreOptions" class="ui-profile-header__more-options">
       <a
         href="#"
         class="ui-profile-header__more-options__link"
@@ -83,6 +83,10 @@ export default Vue.extend({
       default: ''
     },
     hasProfileLink: {
+      type: Boolean,
+      default: false
+    },
+    isHiddenMoreOptions: {
       type: Boolean,
       default: false
     }
