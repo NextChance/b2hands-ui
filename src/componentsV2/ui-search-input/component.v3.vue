@@ -2,7 +2,7 @@
 <style lang="scss" scoped src="./styles.scss"></style>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue3'
+import { defineComponent, onMounted, ref } from 'vue3'
 import emojiRegex from 'emoji-regex'
 
 export default defineComponent({
@@ -45,15 +45,16 @@ export default defineComponent({
       default: ''
     }
   },
-  setup ({ props }, emit) {
+  setup({ props }, emit) {
     const textValue = ref('')
     const searchIsFocused = ref(false)
     const searchInput = ref(null)
 
     const handleClickDelete = (): void => {
+      const input = (searchInput as unknown) as HTMLElement
       searchIsFocused.value = false
-      textValue.value = '';
-      (searchInput as HTMLElement).focus()
+      textValue.value = ''
+      input.focus()
       emit('on-clear-input')
     }
 
@@ -64,7 +65,8 @@ export default defineComponent({
 
     const handleBlur = (): void => {
       setTimeout(() => {
-        if (!document.activeElement?.isEqualNode(searchInput as HTMLElement)) {
+        const input = (searchInput as unknown) as HTMLElement
+        if (!document.activeElement?.isEqualNode(input)) {
           searchIsFocused.value = false
           emit('on-blur-input')
         }
@@ -72,18 +74,35 @@ export default defineComponent({
     }
 
     const handleChange = (): void => {
-      emit('on-change-input', textValue)
+      emit('on-change-input', textValue.value)
+    }
+
+    const isValidateText = (text: string): boolean => {
+      const notEmpty = /([a-zA-Z0-9\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u017F]+)/
+      return notEmpty.test(text) && !emojiRegex().exec(text)
     }
 
     const handleSearch = (ev: Event): void => {
-      const notEmpty = /([a-zA-Z0-9\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u017F]+)/
       ev.preventDefault()
-      if (notEmpty.test(textValue) && !emojiRegex().exec(textValue)) {
-        emit('on-search-done', textValue)
+      if (isValidateText(textValue.value)) {
+        emit('on-search-done', textValue.value)
         searchIsFocused.value = false
       }
     }
 
+    const handleInput = (ev: Event): void => {
+      ev.preventDefault()
+      if (isValidateText(textValue.value)) {
+        emit('on-input-change', textValue.value)
+      }
+
+      onMounted(() => {
+        if (props.hasAutoFocus) {
+          const input = (searchInput as unknown) as HTMLElement
+          input.focus()
+        }
+      })
+    }
 
     return {
       textValue,
@@ -92,7 +111,9 @@ export default defineComponent({
       handleInputFocus,
       handleBlur,
       handleChange,
-      handleSearch
+      handleSearch,
+      handleInput,
+      isValidateText
     }
   }
 })
