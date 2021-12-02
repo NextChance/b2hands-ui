@@ -38,6 +38,10 @@ export default Vue.extend({
     hasProfileLink: {
       type: Boolean,
       default: false
+    },
+    isHiddenMoreOptions: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {

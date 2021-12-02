@@ -38,6 +38,10 @@ export default defineComponent({
     hasProfileLink: {
       type: Boolean,
       default: false
+    },
+    isHiddenMoreOptions: {
+      type: Boolean,
+      default: false
     }
   },
   emits: ['click'],
