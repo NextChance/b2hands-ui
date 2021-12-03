@@ -45,7 +45,7 @@ export default defineComponent({
       default: ''
     }
   },
-  setup({ props }, emit) {
+  setup(props, { emit }) {
     const textValue = ref('')
     const searchIsFocused = ref(false)
     const searchInput = ref(null)

@@ -13,7 +13,9 @@ export default defineComponent({
       default: false
     }
   },
-  emits: ['click'],
+  emits: [
+    'on-modal-close'
+  ],
   setup (props, { emit }) {
     const handleClose = (): void => {
       /**

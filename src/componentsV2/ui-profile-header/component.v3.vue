@@ -40,7 +40,10 @@ export default defineComponent({
       default: false
     }
   },
-  emits: ['click'],
+  emits: [
+    'on-more-options-clicked',
+    'on-profile-clicked'
+  ],
   setup(props, { emit }) {
     const handleMoreOptions = (event: Event): void => {
       event.preventDefault()

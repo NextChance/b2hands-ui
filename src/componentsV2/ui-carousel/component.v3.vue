@@ -44,7 +44,7 @@ export default defineComponent({
   setup (props, { emit }) {
     let isFirstImageLoaded = ref(false)
     let isAnyImageLoaded = ref(false)
-    const imageActions = ref(null)
+    const imageActions = ref<Array<HTMLElement> | null>(null)
 
     const onImageLoaded = (index: number): void => {
       isAnyImageLoaded.value = true

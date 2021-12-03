@@ -26,15 +26,15 @@ export default defineComponent({
     }
   },
   setup (props, { emit }) {
-    const container = ref(null)
+    const container = ref<HTMLElement | null>(null)
     const activeTabIndex = ref(-1)
     const windowScreenWidth = ref(0)
     const scrollOnList = ref(0)
-    const uiTab = ref(null)
+    const uiTab = ref<Array<HTMLElement> | null>(null)
 
     const markerProperties = computed(() => {
       if (uiTab && Array.isArray(uiTab)) {
-        const activeTabRef: HTMLElement = uiTab[activeTabIndex] as HTMLElement
+        const activeTabRef: HTMLElement = uiTab[activeTabIndex.value] as HTMLElement
         return {
           windowScreenWidth: windowScreenWidth,
           index: activeTabIndex,
@@ -51,15 +51,15 @@ export default defineComponent({
       }
     })
 
-    watch(props.activeTabId, (newValue: string, oldValue: string | undefined) => {
+    watch(() => props.activeTabId, (newValue: string, oldValue: string | undefined) => {
       if (newValue) {
-        const activeTabIndex = props.tabs.findIndex((tab: any) => (tab as UiTab).id === newValue)
+        const _activeTabIndex = props.tabs.findIndex((tab: any) => (tab as UiTab).id === newValue)
         nextTick(() => {
-          activeTabIndex.value = activeTabIndex !== -1 ? activeTabIndex : 0
+          activeTabIndex.value = _activeTabIndex !== -1 ? _activeTabIndex : 0
 
-          const tabsRef = uiTab as Array<any>
+          const tabsRef = uiTab.value as Array<HTMLElement>
           if (tabsRef) {
-            const activeTabRef: HTMLElement = tabsRef[activeTabIndex] as HTMLElement
+            const activeTabRef: HTMLElement = tabsRef[activeTabIndex.value] as HTMLElement
             const gapOffset = 12
             scrollOnList.value = activeTabRef.offsetLeft + activeTabRef.offsetWidth + gapOffset
           }
@@ -69,7 +69,7 @@ export default defineComponent({
       immediate: true
     })
 
-    watch(props.tabs, (newValue: string) => {
+    watch(() => props.tabs, (newValue: any) => {
       if (newValue) {
         if (newValue.length && !props.activeTabId) {
           activeTabIndex.value = 0

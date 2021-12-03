@@ -75,8 +75,8 @@ export default defineComponent({
     'on-image-loaded'
   ],
   setup (props, {emit}) {
-    const visibilityPlaceholder = ref(null)
-    const main = ref(null)
+    const visibilityPlaceholder = ref<HTMLElement | null>(null)
+    const main = ref<HTMLElement | null>(null)
 
     let isImageLoaded = false
     let isHidden = true
@@ -88,14 +88,14 @@ export default defineComponent({
       if (isVisible) {
         isHidden = false
         loadingImage = addSiblingNodeWithLoadingImage(
-          visibilityPlaceholder as HTMLElement
+          visibilityPlaceholder.value as HTMLElement
         )
         loadingImage?.classList.add('lazy-image__loading')
         if (props.loadingHeight && props.loadingWidth) {
           loadingImage.style.height = `${props.loadingHeight}px`
           loadingImage.style.width = `${props.loadingWidth}px`
         }
-        (visibilityPlaceholder as HTMLElement).classList.add('lazy-image--hide')
+        (visibilityPlaceholder.value as HTMLElement).classList.add('lazy-image--hide')
         emit('image-visible')
       }
     }
@@ -117,7 +117,7 @@ export default defineComponent({
 
     onMounted(() => {
       if (props.isErrorForced) {
-        replaceNodeWithErrorImage(visibilityPlaceholder as HTMLElement)
+        replaceNodeWithErrorImage(visibilityPlaceholder.value as HTMLElement)
       }
     })
 
