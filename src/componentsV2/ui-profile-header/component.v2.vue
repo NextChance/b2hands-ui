@@ -1,5 +1,6 @@
 <template src="./index.html"></template>
 <style lang="scss" scoped src="./styles.scss"></style>
+
 <script lang="ts">
 import Vue from 'vue'
 import UiLazyInvent from '../ui-lazy-invent/component.v2.vue'
