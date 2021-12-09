@@ -31,6 +31,10 @@ export default Vue.extend({
       type: String,
       default: ''
     },
+    areMoreOptionsHidden: {
+      type: Boolean,
+      default: false
+    },
     profileRoute: {
       type: String,
       default: ''

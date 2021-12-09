@@ -34,7 +34,9 @@
       </div>
     </div>
   </component>
-  <div class="ui-profile-header__more-options">
+  <div
+    v-if="!areMoreOptionsHidden"
+    class="ui-profile-header__more-options">
     <a
       href="#"
       class="ui-profile-header__more-options__link"
