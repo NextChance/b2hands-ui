@@ -1,5 +1,6 @@
 <template src="./index.html"></template>
-<style lang="scss" scoped src="./styles.scss"></style>
+<style lang='scss' scoped src='./styles-scoped.scss'></style>
+<style lang="scss" src="./styles.scss"></style>
 
 <script lang="ts">
 import Vue from 'vue'

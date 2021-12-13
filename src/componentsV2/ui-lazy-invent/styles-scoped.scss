@@ -1,0 +1,30 @@
+.lazy-image {
+  $lazy-image: &;
+
+  object-fit: cover;
+  opacity: 0;
+  position: absolute;
+  transition: opacity .3s ease-in;
+  width: 100%;
+
+  &--loaded {
+    opacity: 1;
+    position: static;
+    z-index: 1;
+
+    :deep,
+    ::v-deep {
+      ~ #{$lazy-image}__loading {
+        position: absolute;
+        top: 0;
+        opacity: 0;
+      }
+    }
+  }
+
+  &--hide {
+    position: absolute;
+  }
+
+
+}
