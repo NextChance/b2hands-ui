@@ -84,7 +84,7 @@ export default Vue.extend({
         const input = this.$refs.searchInput as HTMLElement
         if (!document.activeElement?.isEqualNode(input)) {
           this.searchIsFocused = false
-          this.$emit('on-blur-input')
+          this.$emit('on-blur-input', this.textValue)
         }
       }, 250)
     },
