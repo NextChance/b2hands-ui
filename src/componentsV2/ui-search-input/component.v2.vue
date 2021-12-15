@@ -104,9 +104,10 @@ export default Vue.extend({
 
     handleInput (ev: Event): void {
       ev.preventDefault()
-      if (this.isValidateText(this.textValue)) {
-        this.$emit('on-input-change', this.textValue)
-      }
+      this.$emit('on-input-change', {
+        textValue: this.textValue,
+        isValid: this.isValidateText(this.textValue)
+      })
     }
   }
 })

@@ -88,17 +88,18 @@ export default defineComponent({
 
     const handleInput = (ev: Event): void => {
       ev.preventDefault()
-      if (isValidateText(textValue.value)) {
-        emit('on-input-change', textValue.value)
-      }
-
-      onMounted(() => {
-        if (props.hasAutoFocus) {
-          const input = (searchInput as unknown) as HTMLElement
-          input.focus()
-        }
+      emit('on-input-change', {
+        textValue: textValue.value,
+        isValid: isValidateText(textValue.value)
       })
     }
+
+    onMounted(() => {
+      if (props.hasAutoFocus) {
+        const input = (searchInput as unknown) as HTMLElement
+        input.focus()
+      }
+    })
 
     return {
       textValue,
