@@ -51,13 +51,11 @@ export default Vue.extend({
     }
   },
   watch: {
-    profileImage (newImage, oldImage) {
-      if (Object.keys(newImage).length) {
-        this.showImage = false
-        setTimeout(() => {
-          this.showImage = true
-        }, 10)
-      }
+    profileImage () {
+      this.showImage = false
+      setTimeout(() => {
+        this.showImage = true
+      }, 10)
     }
   },
   methods: {
