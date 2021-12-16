@@ -91,7 +91,7 @@ export default Vue.extend({
 
     isValidateText (text: string): boolean {
       const notEmpty = /([a-zA-Z0-9\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u017F]+)/
-      return notEmpty.test(text) && !emojiRegex().exec(text)
+      return notEmpty.test(text) && !emojiRegex().exec(text) && !!text.trim()
     },
 
     handleSearch (ev: Event): void {
