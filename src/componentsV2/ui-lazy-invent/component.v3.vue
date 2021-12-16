@@ -2,8 +2,9 @@
 <style lang="scss" scoped src="./styles.scss"></style>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted} from 'vue3'
+import { defineComponent, ref, onMounted, watch } from 'vue3'
 import { addSiblingNodeWithLoadingImage, replaceNodeWithErrorImage } from '@/external/tools/errorImage'
+import AnyObject from '@/external/types/AnyObject'
 
 export default defineComponent({
   name: 'ui-lazy-lazy-image',
@@ -77,6 +78,8 @@ export default defineComponent({
   setup (props, {emit}) {
     const visibilityPlaceholder = ref<HTMLElement | null>(null)
     const main = ref<HTMLElement | null>(null)
+    const showImage = ref(Boolean)
+    showImage.value = true
 
     let isImageLoaded = false
     let isHidden = true
@@ -114,6 +117,15 @@ export default defineComponent({
       loadingImage?.remove()
       emit('on-image-error')
     }
+
+    watch(() => props.profileImage, (newImage: AnyObject) => {
+      if (Object.keys(newImage).length) {
+        showImage.value = false
+        setTimeout(() => {
+          showImage.value = true
+        }, 10)
+      }
+    })
 
     onMounted(() => {
       if (props.isErrorForced) {

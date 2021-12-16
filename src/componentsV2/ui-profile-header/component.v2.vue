@@ -11,6 +11,11 @@ export default Vue.extend({
   components: {
     UiLazyInvent
   },
+  data () {
+    return {
+      showImage: true
+    }
+  },
   props: {
     profileImage: {
       type: Object as () => ProfileImgUI,
@@ -43,6 +48,16 @@ export default Vue.extend({
     hasProfileLink: {
       type: Boolean,
       default: false
+    }
+  },
+  watch: {
+    profileImage (newImage, oldImage) {
+      if (Object.keys(newImage).length) {
+        this.showImage = false
+        setTimeout(() => {
+          this.showImage = true
+        }, 10)
+      }
     }
   },
   methods: {

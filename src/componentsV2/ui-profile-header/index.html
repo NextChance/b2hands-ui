@@ -7,11 +7,13 @@
     @click.capture="onClickProfile($event)"
   >
     <div class="ui-profile-header__image">
-      <ui-lazy-invent
-        :src="profileImage.smallest"
-        :srcset="profileImage.srcSet"
-        :alt="alt"
-      />
+      <div v-if="showImage">
+        <ui-lazy-invent
+          :src="profileImage.smallest"
+          :srcset="profileImage.srcSet"
+          :alt="alt"
+        />
+      </div>
     </div>
     <div class="ui-profile-header__info">
       <div
