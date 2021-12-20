@@ -195,7 +195,7 @@ export default Vue.extend({
     box-shadow: 0 0 0 $spacing-size-2 $background-2;
     color: $black-100;
     outline: none;
-    padding: 0;
+    padding: 0 $spacing-size-5 0 0;
     width: 100%;
 
     &::placeholder {
