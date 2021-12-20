@@ -18,7 +18,7 @@ export default defineComponent({
     }
   },
   setup(props) {
-    const tabContainer = ref(null)
+    const tabContainer = ref<HTMLElement | null>(null)
     let container: HTMLElement | null | any = null
     let isMinScroll = false
     let isMaxScroll = false
@@ -106,7 +106,7 @@ export default defineComponent({
     }
 
     onMounted(() => {
-      container = (tabContainer as HTMLElement)
+      container = (tabContainer.value as HTMLElement)
       const { maxTranslation, hasSlideNavigation } = getCarouselSizing()
       // @ts-ignore
       window.addEventListener('resize', onWindowResize)

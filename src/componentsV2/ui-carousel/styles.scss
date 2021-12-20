@@ -1,0 +1,209 @@
+.ui-carousel {
+  display: flex;
+  height: 90vw;
+  position: relative;
+
+  &__thumbnails {
+    display: none;
+  }
+
+  &__gallery {
+    $ui-carousel-gallery: &;
+
+    -webkit-transform: translateZ(0); // iOS hack. Don't remove
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: x;
+
+    &--active {
+      overflow-x: scroll;
+    }
+
+    &--one-image {
+      overflow-x: hidden;
+
+      #{$ui-carousel-gallery} {
+        &__list,
+        &__item {
+          width: 100%;
+        }
+      }
+    }
+
+    &::-webkit-scrollbar {
+      background-color: $background-1;
+      display: block;
+      height: 2px;
+      padding: 0;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: $background-3;
+      border-radius: 0;
+    }
+
+    &__list {
+      align-items: flex-start;
+      display: flex;
+      flex-direction: row;
+      height: 100%;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    &__item {
+      $item: &;
+
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 0;
+
+      & + & {
+        margin-left: $spacing-size-2;
+      }
+    }
+
+    &__image {
+      display: flex;
+      justify-content: center;
+      height: inherit;
+      max-width: 100vw;
+      min-height: 100%;
+      min-width: 100%;
+      object-fit: contain;
+      width: auto;
+    }
+  }
+
+  @media (max-width: $breakpoint-s - 1px) {
+    :deep,
+    ::v-deep {
+      .placeholder-image {
+        height: 100%;
+        width: initial;
+
+        svg {
+          height: 100%;
+        }
+      }
+    }
+
+    &__gallery {
+      @include affrodance-velo;
+
+      &::after {
+        display: block;
+        height: 100%;
+        position: sticky;
+        right: initial;
+        top: initial;
+        width: 100%;
+      }
+
+      background-color: #fdfdfd;
+      width: 100%;
+
+      &__item {
+        $item: &;
+
+        height: 100%;
+
+        &__extra-content,
+        .nav-actions {
+          display: none;
+        }
+      }
+    }
+  }
+
+  @media (min-width: $breakpoint-s) {
+    align-items: flex-start;
+    background: $white;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+
+    :deep,
+    ::v-deep {
+      .placeholder-image {
+        width: 100%;
+
+        svg {
+          width: 100%;
+        }
+      }
+    }
+
+    &__thumbnails {
+      display: block;
+      position: sticky;
+      top: 0;
+
+      :deep,
+      ::v-deep {
+        .placeholder-image--error {
+          font-size: $font-size-7;
+        }
+      }
+
+      &__item {
+        height: auto;
+        margin-bottom: $spacing-size-2;
+        width: 100%;
+      }
+
+      &__image {
+        height: auto;
+        vertical-align: top;
+        width: 100%;
+      }
+    }
+
+    &__extra-content--mobile,
+    .nav-actions--mobile {
+      display: none;
+    }
+
+    &__gallery {
+      :deep,
+      ::v-deep {
+        .placeholder-image--error {
+          font-size: $font-size-13;
+        }
+      }
+
+      &__list {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      &__image {
+        display: block;
+        width: 100%;
+      }
+
+      &__item {
+        $item: &;
+        @include affrodance-velo;
+
+        margin-bottom: $spacing-size-4;
+        position: relative;
+        width: 100%;
+
+        & + & {
+          margin-left: 0;
+        }
+
+        &:nth-child(n + 2) {
+          #{$item}__extra-content {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}

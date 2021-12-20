@@ -61,42 +61,53 @@ export default Vue.extend({
   },
   mounted() {
     if (this.hasAutoFocus) {
-      (this.$refs.searchInput as HTMLElement).focus()
+      const searchInput = this.$refs.searchInput as HTMLElement
+      searchInput.focus()
     }
   },
   methods: {
-    handleClickDelete(): void {
+    handleClickDelete (): void {
+      const input = this.$refs.searchInput as HTMLElement
       this.searchIsFocused = false
-      this.textValue = '';
-      (this.$refs.searchInput as HTMLElement).focus()
+      this.textValue = ''
+      input.focus()
       this.$emit('on-clear-input')
     },
 
-    handleInputFocus(): void {
+    handleInputFocus (): void {
       this.searchIsFocused = true
       this.$emit('on-focus-input')
     },
 
-    handleBlur(): void {
+    handleBlur (): void {
       setTimeout(() => {
-        if (!document.activeElement?.isEqualNode(this.$refs.searchInput as HTMLElement)) {
+        const input = this.$refs.searchInput as HTMLElement
+        if (!document.activeElement?.isEqualNode(input)) {
           this.searchIsFocused = false
-          this.$emit('on-blur-input')
+          this.$emit('on-blur-input', this.textValue)
         }
       }, 250)
     },
 
-    handleChange(): void {
-      this.$emit('on-change-input', this.textValue)
+    isValidateText (text: string): boolean {
+      const notEmpty = /([a-zA-Z0-9\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u017F]+)/
+      return notEmpty.test(text) && !emojiRegex().exec(text) && !!text.trim()
     },
 
-    handleSearch(ev: Event): void {
-      const notEmpty = /([a-zA-Z0-9\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u017F]+)/
+    handleSearch (ev: Event): void {
       ev.preventDefault()
-      if (notEmpty.test(this.textValue) && !emojiRegex().exec(this.textValue)) {
+      if (this.isValidateText(this.textValue)) {
         this.$emit('on-search-done', this.textValue)
         this.searchIsFocused = false
       }
+    },
+
+    handleInput (ev: Event): void {
+      ev.preventDefault()
+      this.$emit('on-input-change', {
+        textValue: this.textValue,
+        isValid: this.isValidateText(this.textValue)
+      })
     }
   }
 })

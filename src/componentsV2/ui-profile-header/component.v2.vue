@@ -1,5 +1,6 @@
 <template src="./index.html"></template>
 <style lang="scss" scoped src="./styles.scss"></style>
+
 <script lang="ts">
 import Vue from 'vue'
 import UiLazyInvent from '../ui-lazy-invent/component.v2.vue'
@@ -9,6 +10,11 @@ export default Vue.extend({
   name: 'UiProfileHeader',
   components: {
     UiLazyInvent
+  },
+  data () {
+    return {
+      showImage: true
+    }
   },
   props: {
     profileImage: {
@@ -31,6 +37,10 @@ export default Vue.extend({
       type: String,
       default: ''
     },
+    areMoreOptionsHidden: {
+      type: Boolean,
+      default: false
+    },
     profileRoute: {
       type: String,
       default: ''
@@ -42,6 +52,14 @@ export default Vue.extend({
     isHiddenMoreOptions: {
       type: Boolean,
       default: false
+    }
+  },
+  watch: {
+    profileImage () {
+      this.showImage = false
+      setTimeout(() => {
+        this.showImage = true
+      }, 10)
     }
   },
   methods: {

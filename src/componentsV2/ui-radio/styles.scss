@@ -29,9 +29,9 @@
     content: '';
     display: block;
     height: $radioSize - $tickSpacing;
-    left: ($tickSpacing / 2) + $radioBorderThickness;
+    left: math.div($tickSpacing, 2) + $radioBorderThickness;
     position: absolute;
-    top: ($tickSpacing / 2) + $radioBorderThickness;
+    top: math.div($tickSpacing, 2) + $radioBorderThickness;
     transform: scale(0);
     transform-origin: center;
     transition: background-color .1s linear, transform .1s linear;

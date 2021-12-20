@@ -17,19 +17,19 @@ export default defineComponent({
       default: []
     }
   },
-  setup ({ props }, emit) {
+  setup (props, { emit }) {
     const itemGap = ref(10)
     const debounceTimer = ref(setTimeout(() => {}, 0))
-    const grid = ref(null)
-    const rowHeight = ref()(0)
-    const masonryContainer = ref(null)
-    const masonryElement = ref(null)
+    const grid = ref<HTMLElement | null>(null)
+    const rowHeight = ref(0)
+    const masonryContainer = ref<HTMLElement | null>(null)
+    const masonryElement = ref<Array<HTMLElement> | null>(null)
 
     const resizeGridItem = (item: HTMLElement): void => {
       // const rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'))
       const itemHeight = item.children[0].getBoundingClientRect().height
       if (itemHeight) {
-        const rowSpan = Math.floor((itemHeight + itemGap) / (rowHeight))
+        const rowSpan = Math.floor((itemHeight + itemGap.value) / (rowHeight.value))
         item.style.gridRowEnd = 'span ' + rowSpan
       }
     }
@@ -47,14 +47,14 @@ export default defineComponent({
       if (grid.value) {
         rowHeight.value = parseInt(window.getComputedStyle(grid.value).getPropertyValue('grid-auto-rows'))
       }
-      const masonryElements = masonryElement as [HTMLElement]
-      masonryElements.forEach((masonryElement: HTMLElement) => {
+
+      (masonryElement.value || []).forEach((masonryElement: HTMLElement) => {
         resizeGridItem(masonryElement)
       })
     }
 
     const onImageLoaded = (image: HTMLImageElement,index: number) => {
-      const masonryElements = masonryElement as [HTMLElement]
+      const masonryElements = masonryElement.value as [HTMLElement]
       emit('onImageLoaded', { image, index })
       resizeGridItem(masonryElements[index])
     }
@@ -64,7 +64,7 @@ export default defineComponent({
     }
 
     onMounted(() => {
-      grid.value = masonryContainer as HTMLElement
+      grid.value = masonryContainer.value as HTMLElement
       if (grid.value) {
         rowHeight.value = parseInt(window.getComputedStyle(grid.value).getPropertyValue('grid-auto-rows'))
       }

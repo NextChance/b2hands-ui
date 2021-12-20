@@ -2,8 +2,9 @@
 <style lang="scss" scoped src="./styles.scss"></style>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted} from 'vue3'
+import { defineComponent, ref, onMounted, watch } from 'vue3'
 import { addSiblingNodeWithLoadingImage, replaceNodeWithErrorImage } from '@/external/tools/errorImage'
+import AnyObject from '@/external/types/AnyObject'
 
 export default defineComponent({
   name: 'ui-lazy-lazy-image',
@@ -75,8 +76,10 @@ export default defineComponent({
     'on-image-loaded'
   ],
   setup (props, {emit}) {
-    const visibilityPlaceholder = ref(null)
-    const main = ref(null)
+    const visibilityPlaceholder = ref<HTMLElement | null>(null)
+    const main = ref<HTMLElement | null>(null)
+    const showImage = ref(Boolean)
+    showImage.value = true
 
     let isImageLoaded = false
     let isHidden = true
@@ -88,14 +91,14 @@ export default defineComponent({
       if (isVisible) {
         isHidden = false
         loadingImage = addSiblingNodeWithLoadingImage(
-          visibilityPlaceholder as HTMLElement
+          visibilityPlaceholder.value as HTMLElement
         )
         loadingImage?.classList.add('lazy-image__loading')
         if (props.loadingHeight && props.loadingWidth) {
           loadingImage.style.height = `${props.loadingHeight}px`
           loadingImage.style.width = `${props.loadingWidth}px`
         }
-        (visibilityPlaceholder as HTMLElement).classList.add('lazy-image--hide')
+        (visibilityPlaceholder.value as HTMLElement).classList.add('lazy-image--hide')
         emit('image-visible')
       }
     }
@@ -115,9 +118,18 @@ export default defineComponent({
       emit('on-image-error')
     }
 
+    watch(() => props.profileImage, (newImage: AnyObject) => {
+      if (Object.keys(newImage).length) {
+        showImage.value = false
+        setTimeout(() => {
+          showImage.value = true
+        }, 10)
+      }
+    })
+
     onMounted(() => {
       if (props.isErrorForced) {
-        replaceNodeWithErrorImage(visibilityPlaceholder as HTMLElement)
+        replaceNodeWithErrorImage(visibilityPlaceholder.value as HTMLElement)
       }
     })
 
