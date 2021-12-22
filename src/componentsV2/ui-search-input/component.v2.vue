@@ -10,7 +10,7 @@ export default Vue.extend({
   props: {
     id: {
       type: String,
-      required: true
+      default: ''
     },
     disabled: {
       type: Boolean,
