@@ -90,7 +90,6 @@ export default Vue.extend({
        *
        * @event on-change
        */
-      console.log('onChange newValue', newValue)
       if (!this.isDisabled) {
         this.$emit('change', newValue)
       }
