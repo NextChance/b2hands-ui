@@ -1,6 +1,6 @@
 <template>
   <div class="ui-input-date">
-    <input
+    <!-- <input
       v-model="formattedDate"
       type="text"
       class="ui-input-date__placeholder"
@@ -8,7 +8,7 @@
       :name="name"
       :disabled="disabled"
       :isReadonly="isReadonly"
-    />
+    /> -->
     <input
       v-model="selectedDate"
       type="date"
@@ -118,7 +118,7 @@ export default Vue.extend({
     top: 0;
     width: 100%;
     height: 100%;
-    opacity: 0;
+    opacity: 1;
     cursor: pointer;
     box-sizing: border-box;
     &::-webkit-calendar-picker-indicator {
