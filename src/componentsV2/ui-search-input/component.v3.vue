@@ -87,6 +87,7 @@ export default defineComponent({
     }
 
     const handleInput = (ev: Event): void => {
+      console.log('>>>>>oninput event')
       ev.preventDefault()
       emit('on-input-change', {
         textValue: textValue.value,
