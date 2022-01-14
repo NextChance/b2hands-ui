@@ -111,6 +111,8 @@ export default Vue.extend({
     width: 100%;
   }
   &__datepicker {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
     position: absolute;
     left: 0;
     top: 0;
