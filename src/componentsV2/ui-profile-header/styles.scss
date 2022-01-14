@@ -19,6 +19,9 @@
     position: relative;
     overflow: hidden;
     width: $spacing-size-7;
+    & .lazy-image {
+      border-radius: 50%;
+    }
   }
 
   &__info {

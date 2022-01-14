@@ -8,6 +8,7 @@
     >
       <div class="ui-profile-header__image">
         <ui-lazy-invent
+          class="lazy-image"
           :src="profileImage.smallest"
           :srcset="profileImage.srcSet"
           :alt="alt"
@@ -121,6 +122,9 @@ export default Vue.extend({
     position: relative;
     overflow: hidden;
     width: $spacing-size-7;
+    & .lazy-image {
+      border-radius: 50%;
+    }
   }
 
   &__info {
