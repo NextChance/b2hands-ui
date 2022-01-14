@@ -103,6 +103,7 @@ export default Vue.extend({
     },
 
     handleInput (ev: Event): void {
+      console.log('input change')
       ev.preventDefault()
       this.$emit('on-input-change', {
         textValue: this.textValue,
