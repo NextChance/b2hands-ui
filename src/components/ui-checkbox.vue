@@ -14,15 +14,16 @@
       class="ui-checkbox__button"
       :value="value"
       :checked="isChecked"
-      @change="onChange"
-    ><label
+      @change="onChange($event.currentTarget.value)"
+    /><label
       v-if="label"
       class="ui-checkbox__label"
       :for="name || id"
     >{{label}}</label
-  ><i
-    v-if="!isSchrodinger"
-    class="ui-checkbox__sign b2i-check"/>
+    ><i
+      v-if="!isSchrodinger"
+      @click="onChange(value)"
+      class="ui-checkbox__sign b2i-check"/>
   </div>
 </template>
 
@@ -83,14 +84,14 @@ export default Vue.extend({
     /**
      * Close modal
      */
-    onChange($event: Event): void {
+    onChange(newValue: String): void {
       /**
        * Close event
        *
        * @event on-change
        */
       if (!this.isDisabled) {
-        this.$emit('change', ($event.currentTarget as HTMLInputElement)?.value)
+        this.$emit('change', newValue)
       }
     }
   }
@@ -106,7 +107,6 @@ export default Vue.extend({
 
   line-height: $checkboxSize;
   color: $black-100;
-  cursor: pointer;
   position: relative;
   user-select: none;
 
@@ -187,6 +187,8 @@ export default Vue.extend({
 
   &__label {
     @include body('s');
+
+    cursor: pointer;
     padding-left: $spacing-size-3 - (2 * $checkboxBorderThickness);
     vertical-align: top;
   }
