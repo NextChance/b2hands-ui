@@ -58,14 +58,14 @@ export default Vue.extend({
     /**
      * Close modal
      */
-    onChange($event: Event): void {
+    onChange(newValue: string): void {
       /**
        * Close event
        *
        * @event on-change
        */
       if (!this.isDisabled) {
-        this.$emit('change', ($event.currentTarget as HTMLInputElement)?.value)
+        this.$emit('change', newValue)
       }
     }
   }
