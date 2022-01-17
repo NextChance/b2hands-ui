@@ -40,6 +40,10 @@ export default Vue.extend({
       type: Boolean,
       default: false
     },
+    isFocus: {
+      type: Boolean,
+      default: false
+    },
     limitCharacter: {
       type: String,
       default: ''
@@ -59,6 +63,14 @@ export default Vue.extend({
         this.textValue = _value
         if (input) {
           input.value = this.textValue
+        }
+      }
+    },
+    isFocus: {
+      handler(_value): void {
+        if (_value) {
+          const searchInput = this.$refs.searchInput as HTMLElement
+          searchInput.focus()
         }
       }
     }
