@@ -55,7 +55,11 @@ export default Vue.extend({
     value: {
       immediate: true,
       handler(_value): void {
+        const input = this.$refs.searchInput as HTMLInputElement
         this.textValue = _value
+        if (input) {
+          input.value = this.textValue
+        }
       }
     }
   },
@@ -67,9 +71,9 @@ export default Vue.extend({
   },
   methods: {
     handleClickDelete (): void {
-      const input = this.$refs.searchInput as HTMLElement
       this.searchIsFocused = false
-      this.textValue = ''
+      const input = this.$refs.searchInput as HTMLInputElement
+      input.value = ''
       input.focus()
       this.$emit('on-clear-input')
     },
@@ -79,12 +83,12 @@ export default Vue.extend({
       this.$emit('on-focus-input')
     },
 
-    handleBlur (): void {
+    handleBlur (ev: Event): void {
       setTimeout(() => {
         const input = this.$refs.searchInput as HTMLElement
         if (!document.activeElement?.isEqualNode(input)) {
           this.searchIsFocused = false
-          this.$emit('on-blur-input', this.textValue)
+          this.$emit('on-blur-input', ev)
         }
       }, 250)
     },
@@ -104,6 +108,7 @@ export default Vue.extend({
 
     handleInput (ev: Event): void {
       ev.preventDefault()
+      this.textValue = (this.$refs['searchInput'] as HTMLInputElement).value
       this.$emit('on-input-change', {
         textValue: this.textValue,
         isValid: this.isValidateText(this.textValue)
