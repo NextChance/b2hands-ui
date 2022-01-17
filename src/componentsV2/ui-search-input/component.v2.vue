@@ -55,6 +55,7 @@ export default Vue.extend({
     value: {
       immediate: true,
       handler(_value): void {
+        console.log('>>>>_value', _value)
         this.textValue = _value
       }
     }
@@ -108,7 +109,7 @@ export default Vue.extend({
     },
 
     handleInput (ev: Event): void {
-      console.log('>>>>>oninput event')
+      console.log('>>>>>oninput event', this.textValue)
       ev.preventDefault()
       this.$emit('on-input-change', {
         textValue: this.textValue,
