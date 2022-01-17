@@ -85,6 +85,7 @@ export default Vue.extend({
         const input = this.$refs.searchInput as HTMLElement
         if (!document.activeElement?.isEqualNode(input)) {
           this.searchIsFocused = false
+          console.log('>>>on-blur-input', this.textValue)
           this.$emit('on-blur-input', this.textValue)
         }
       }, 250)
@@ -102,7 +103,9 @@ export default Vue.extend({
 
     handleSearch (ev: Event): void {
       ev.preventDefault()
+      console.log('>>>on-search-done', this.textValue)
       if (this.isValidateText(this.textValue)) {
+        console.log('>>>on-search-done is valid text', this.textValue)
         this.$emit('on-search-done', this.textValue)
         this.searchIsFocused = false
       }
@@ -110,6 +113,15 @@ export default Vue.extend({
 
     handleInput (ev: Event): void {
       console.log('>>>>>oninput event', this.textValue)
+      ev.preventDefault()
+      this.$emit('on-input-change', {
+        textValue: this.textValue,
+        isValid: this.isValidateText(this.textValue)
+      })
+    },
+
+    handleInput2 (ev: Event): void {
+      console.log('>>>>>oninput 2 event key up', this.textValue)
       ev.preventDefault()
       this.$emit('on-input-change', {
         textValue: this.textValue,
