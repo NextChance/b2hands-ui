@@ -90,6 +90,7 @@ export default Vue.extend({
     },
 
     isValidateText (text: string): boolean {
+      console.log('>>>text', text)
       const notEmpty = /([a-zA-Z0-9\u00C0-\u00D6\u00D8-\u00F6\u00F8-\u017F]+)/
       console.log('validate text', notEmpty.test(text))
       console.log('validate emoji', emojiRegex().exec(text))
