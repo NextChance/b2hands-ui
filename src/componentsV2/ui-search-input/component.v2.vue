@@ -52,17 +52,16 @@ export default Vue.extend({
   data() {
     return {
       textValue: '',
-      searchIsFocused: false
+      searchIsFocused: false,
+      isDelete: false
     }
   },
   watch: {
     value: {
       immediate: true,
       handler(_value): void {
-        const input = this.$refs.searchInput as HTMLInputElement
-        this.textValue = _value
-        if (input) {
-          input.value = this.textValue
+        if (!this.isDelete) {
+          this.textValue = _value
         }
       }
     },
@@ -86,6 +85,8 @@ export default Vue.extend({
       this.searchIsFocused = false
       const input = this.$refs.searchInput as HTMLInputElement
       input.value = ''
+      this.textValue = ''
+      this.isDelete = true
       input.focus()
       this.$emit('on-clear-input')
     },
@@ -100,6 +101,7 @@ export default Vue.extend({
         const input = this.$refs.searchInput as HTMLElement
         if (!document.activeElement?.isEqualNode(input)) {
           this.searchIsFocused = false
+          this.isDelete = false
           this.$emit('on-blur-input', ev)
         }
       }, 250)
@@ -111,6 +113,7 @@ export default Vue.extend({
     },
 
     handleSearch (ev: Event): void {
+      this.isDelete = false
       ev.preventDefault()
       if (this.isValidateText(this.textValue)) {
         this.$emit('on-search-done', this.textValue)
@@ -120,11 +123,14 @@ export default Vue.extend({
 
     handleInput (ev: Event): void {
       ev.preventDefault()
-      this.textValue = (this.$refs['searchInput'] as HTMLInputElement).value
-      this.$emit('on-input-change', {
-        textValue: this.textValue,
-        isValid: this.isValidateText(this.textValue)
-      })
+      this.isDelete = false
+      if (this.textValue !== (this.$refs['searchInput'] as HTMLInputElement).value) {
+        this.textValue = (this.$refs['searchInput'] as HTMLInputElement).value
+        this.$emit('on-input-change', {
+          textValue: this.textValue,
+          isValid: this.isValidateText(this.textValue)
+        })
+      }
     }
   }
 })
