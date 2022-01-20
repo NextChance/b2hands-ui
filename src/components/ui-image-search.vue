@@ -242,7 +242,7 @@ export default Vue.extend({
     }
   }
 
-  /deep/ .placeholder-image {
+  ::v-deep .placeholder-image {
     height: 100%;
 
     svg {
@@ -261,8 +261,8 @@ export default Vue.extend({
     }
 
     &__bound {
-      margin-left: -1 * $size / 2;
-      margin-top: -1 * $size / 2;
+      margin-left: calc(-1 * $size / 2);
+      margin-top: calc(-1 * $size / 2);
       height: $size;
       width: $size;
 

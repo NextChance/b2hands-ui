@@ -182,7 +182,7 @@ export default Vue.extend({
     position: static;
     z-index: 1;
 
-    /deep/ {
+    ::v-deep {
       ~ #{$lazy-image}__loading {
         position: absolute;
         top: 0;
