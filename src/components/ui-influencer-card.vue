@@ -328,8 +328,8 @@ export default Vue.extend({
     font-size: $font-size-3;
     height: $size;
     justify-content: center;
-    margin-left: -1 * $size / 2;
-    margin-top: -1 * $size / 2;
+    margin-left: calc(-1 * $size / 2);
+    margin-top: calc(-1 * $size / 2);
     position: absolute;
     transform: scale(1);
     transform-origin: center;
@@ -354,8 +354,8 @@ export default Vue.extend({
     }
 
     &__bound {
-      margin-left: -1 * $size / 2;
-      margin-top: -1 * $size / 2;
+      margin-left: calc(-1 * $size / 2);
+      margin-top: calc(-1 * $size / 2);
       height: $size;
       width: $size;
 
@@ -369,7 +369,7 @@ export default Vue.extend({
   .nav-actions {
     &__icons {
       $navActionIcons: &;
-      $padding: ($font-size-9 - $font-size-6) / 2;
+      $padding: calc(($font-size-9 - $font-size-6) / 2);
       align-items: center;
       display: flex;
       line-height: 1rem;

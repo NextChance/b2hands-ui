@@ -155,7 +155,7 @@ export default Vue.extend({
     #{$ui-product-card}__media {
       pointer-events: none;
 
-      /deep/ .nav-actions {
+      ::v-deep .nav-actions {
         &, &__icons {
           pointer-events: all;
         }

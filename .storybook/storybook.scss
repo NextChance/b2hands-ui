@@ -57,7 +57,7 @@ a {
     .list {
       .item {
         box-sizing: border-box;
-        /deep/ {
+        ::v-deep {
           .ui-product-card {
             &__media {
               height: 56.91vw;
@@ -67,7 +67,7 @@ a {
       }
       @media (min-width: $breakpoint-s) {
         .item {
-          /deep/ {
+          ::v-deep {
             .ui-product-card {
               &__media {
                 height: 35.54vw;
@@ -79,7 +79,7 @@ a {
       }
       @media (min-width: $breakpoint-m) {
         .item {
-          /deep/ {
+          ::v-deep {
             .ui-product-card {
               &__media {
                 height: 27.743vw;
