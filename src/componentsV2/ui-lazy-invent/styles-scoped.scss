@@ -11,10 +11,12 @@
     opacity: 1;
     position: static;
     z-index: 1;
-    ~ #{$lazy-image}__loading {
-      position: absolute;
-      top: 0;
-      opacity: 0;
+    ::v-deep {
+      ~ #{$lazy-image}__loading {
+        position: absolute;
+        top: 0;
+        opacity: 0;
+      }
     }
   }
 
