@@ -22,7 +22,7 @@ export const carouselWithSeveralImages = () => ({
     }
   },
   template: `
-    <div class="story-ui-carousel-container-2">
+    <div class="story-ui-carousel-container-2 col-container">
       <ui-carouselV2 :items="items" />
     </div>`,
   methods: { }
@@ -37,7 +37,7 @@ export const carouselWithOneImage = () => ({
     }
   },
   template: `
-    <div class="story-ui-carousel-container-2">
+    <div class="story-ui-carousel-container-2 col-container">
       <ui-carouselV2 :items="items" />
     </div>`,
   methods: { }
