@@ -92,8 +92,10 @@ export default Vue.extend({
     },
 
     handleInputFocus (): void {
-      this.searchIsFocused = true
-      this.$emit('on-focus-input')
+      if (!this.isReadonly) {
+        this.searchIsFocused = true
+        this.$emit('on-focus-input')
+      }
     },
 
     handleBlur (ev: Event): void {

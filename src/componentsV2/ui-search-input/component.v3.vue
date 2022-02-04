@@ -59,8 +59,10 @@ export default defineComponent({
     }
 
     const handleInputFocus = (): void => {
-      searchIsFocused.value = true
-      emit('on-focus-input')
+      if (!props.isReadonly) {
+        searchIsFocused.value = true
+        emit('on-focus-input')
+      }
     }
 
     const handleBlur = (): void => {
