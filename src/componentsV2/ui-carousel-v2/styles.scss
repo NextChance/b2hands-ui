@@ -34,6 +34,11 @@
       padding: 0;
     }
 
+    &::-webkit-scrollbar-thumb {
+      background-color: $background-3;
+      border-radius: 0;
+    }
+
     &__list {
       align-items: flex-start;
       display: flex;
@@ -143,6 +148,10 @@
           &__item,
           &__list {
             width: 100%;
+            justify-content: left;
+          }
+          &__image {
+            max-width: unset;
           }
         }
       }
