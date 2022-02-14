@@ -3,7 +3,10 @@ import UiCarouselV2 from '~/componentsV2/ui-carousel-v2/component.v2.vue'
 
 import {
   itemsMock2,
-  itemsMockErr,
+  itemsMockOneImageVertical,
+  itemsMockOneHorizontal,
+  ItemsMockOne,
+  itemsMockErr
 } from '~/fixtures/ui-carousel.fixture.js'
 
 
@@ -29,7 +32,53 @@ export const carouselWithSeveralImages = () => ({
 })
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-export const carouselWithOneImage = () => ({
+export const carouselWithOne = () => ({
+  components: { UiCarouselV2 },
+  data() {
+    return {
+      items: ItemsMockOne
+    }
+  },
+  template: `
+    <div class="story-ui-carousel-container-2">
+      <ui-carouselV2 :items="items" />
+    </div>`,
+  methods: { }
+})
+
+
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+export const carouselWithOneImageVertical = () => ({
+  components: { UiCarouselV2 },
+  data() {
+    return {
+      items: itemsMockOneImageVertical
+    }
+  },
+  template: `
+    <div class="story-ui-carousel-container-2">
+      <ui-carouselV2 :items="items" />
+    </div>`,
+  methods: { }
+})
+
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+export const carouselWithOneImageHorizontal = () => ({
+  components: { UiCarouselV2 },
+  data() {
+    return {
+      items: itemsMockOneHorizontal
+    }
+  },
+  template: `
+    <div class="story-ui-carousel-container-2">
+      <ui-carouselV2 :items="items" />
+    </div>`,
+  methods: { }
+})
+
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+export const carouselWithOneImageError = () => ({
   components: { UiCarouselV2 },
   data() {
     return {
@@ -42,3 +91,4 @@ export const carouselWithOneImage = () => ({
     </div>`,
   methods: { }
 })
+
