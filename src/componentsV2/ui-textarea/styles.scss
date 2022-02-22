@@ -1,0 +1,38 @@
+
+.ui-textarea {
+  position: relative;
+  text-align: left;
+
+  &__container {
+    border: 1px solid $black-50;
+    border-radius: $spacing-size-1;
+    min-height: 140px;
+    padding: 10px $spacing-size-4 $spacing-size-4;
+
+    &.is-focused {
+      outline: 0;
+    }
+
+    .input-content {
+      height: 100%;
+      position: relative;
+
+      &__input {
+        @include body('m');
+        background: none;
+        border: none;
+        box-sizing: border-box;
+        color: $black-70;
+        overflow: hidden;
+        padding: 0;
+        resize: none;
+        width: 100%;
+        z-index: 1;
+
+        &:focus {
+          outline: 0;
+        }
+      }
+    }
+  }
+}

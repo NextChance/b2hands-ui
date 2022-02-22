@@ -1,19 +1,16 @@
 <div :class="['ui-stars', { 'ui-stars--editable': isEditable }]">
-  <template
+  <div
     v-for="(item, index) in Array(1, 2, 3, 4, 5)"
+    :key="`stars-${item}`"
+    role="radio"
+    :aria-label="`${item}-star`"
+    :aria-checked="item === value"
+    :tabindex="0"
+    :class="['ui-stars__container', { 'ui-stars__container--checked': item <= value }]"
+    @click="onClick(item)"
   >
-    <div
-      :key="`stars-${item}`"
-      role="radio"
-      :aria-label="`${item}-star`"
-      :aria-checked="item === value"
-      :tabindex="0"
-      :class="['ui-stars__container', { 'ui-stars__container--checked': item <= value }]"
-      @click="onClick(item)"
-    >
-      <i class="star" />
-    </div>
-  </template>
+    <i class="star" />
+  </div>
   <div
     v-show="totalAmount !== ''"
     class="ui-stars__total"

@@ -22,8 +22,7 @@ export default Vue.extend({
   methods: {
     onClick(item: number): void {
       if (this.isEditable) {
-        const total = item === this.value ? item - 1 : item
-        this.$emit('on-rating-selected', total)
+        this.$emit('on-rating-selected', item)
       }
     }
   }
