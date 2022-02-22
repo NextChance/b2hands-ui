@@ -149,3 +149,18 @@ a {
     display: block;
   }
 }
+
+.story-stars-input {
+  .ui-stars__container {
+    i.star {
+      height: 26px;
+      width: 27px;
+    }
+  }
+}
+
+
+.story-textarea {
+  width: 295px;
+  margin: 0 auto;
+}

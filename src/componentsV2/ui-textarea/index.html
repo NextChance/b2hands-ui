@@ -1,0 +1,25 @@
+<div class="ui-textarea">
+  <div
+    class="ui-textarea__container"
+    >
+    <div class="input-content">
+      <textarea
+        v-model="inputValue"
+        class="input-content__input"
+        ref="textarea"
+        rows="4"
+        cols="50"
+        :disabled="disabled"
+        :id="id"
+        :maxlength="maxLength"
+        :name="name"
+        :style="{'height': textAreaHeight}"
+        :placeholder="placeholder"
+        @input="handleInput"
+        @keyup="handleKeyUp"
+        @focus="handleFocus"
+        @blur="handleBlur"
+      ></textarea>
+    </div>
+  </div>
+</div>
