@@ -4,6 +4,7 @@
     class="modal"
   >
     <div class='modal__header wrapper--s'>
+      <slot name="header"></slot>
       <i class="modal__icon b2i-modal" @click="handleClose"></i>
     </div>
     <div class="modal__content">

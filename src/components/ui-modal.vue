@@ -78,7 +78,7 @@ export default Vue.extend({
     &__header {
       box-sizing: border-box;
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
     }
 
     &__content {
