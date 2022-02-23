@@ -98,8 +98,10 @@ export default Vue.extend({
   position: relative;
   width: 100%;
   height: $spacing-size-8;
+
   &__placeholder {
     @include body('m');
+
     border: none;
     border-bottom: $border-3;
     color: $content-2;
@@ -110,24 +112,29 @@ export default Vue.extend({
     top: 0;
     width: 100%;
   }
+
   &__datepicker {
-    position: absolute;
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
     left: 0;
-    top: 0;
-    width: 100%;
     height: 100%;
     opacity: 0;
-    cursor: pointer;
-    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
     &::-webkit-calendar-picker-indicator {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 100%;
+      cursor: pointer;
       height: 100%;
+      left: 0;
       margin: 0;
       padding: 0;
-      cursor: pointer;
+      position: absolute;
+      top: 0;
+      width: 100%;
     }
   }
 }
