@@ -1,6 +1,7 @@
 .lazy-image {
   $lazy-image: &;
 
+  display: block;
   object-fit: cover;
   opacity: 0;
   position: absolute;
