@@ -24,6 +24,8 @@
     opacity: 0;
     cursor: pointer;
     box-sizing: border-box;
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
     &::-webkit-calendar-picker-indicator {
       position: absolute;
       left: 0;

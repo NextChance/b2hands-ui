@@ -217,7 +217,7 @@ export default Vue.extend({
   }
 
   @media (max-width: $breakpoint-s - 1px) {
-    /deep/ {
+    ::v-deep {
       .placeholder-image {
         height: 100%;
         width: initial;
@@ -263,7 +263,7 @@ export default Vue.extend({
     height: 100%;
     width: 100%;
 
-    /deep/ {
+    ::v-deep {
       .placeholder-image {
         width: 100%;
 
@@ -278,7 +278,7 @@ export default Vue.extend({
       position: sticky;
       top: 0;
 
-      /deep/ {
+      ::v-deep {
         .placeholder-image--error {
           font-size: $font-size-7;
         }
@@ -303,7 +303,7 @@ export default Vue.extend({
     }
 
     &__gallery {
-      /deep/ {
+      ::v-deep {
         .placeholder-image--error {
           font-size: $font-size-13;
         }

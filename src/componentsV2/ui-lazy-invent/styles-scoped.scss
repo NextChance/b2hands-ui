@@ -11,8 +11,6 @@
     opacity: 1;
     position: static;
     z-index: 1;
-
-    :deep,
     ::v-deep {
       ~ #{$lazy-image}__loading {
         position: absolute;

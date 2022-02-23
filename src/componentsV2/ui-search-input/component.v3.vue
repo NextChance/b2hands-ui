@@ -10,7 +10,7 @@ export default defineComponent({
   props: {
     id: {
       type: String,
-      required: true
+      default: ''
     },
     disabled: {
       type: Boolean,
@@ -59,8 +59,10 @@ export default defineComponent({
     }
 
     const handleInputFocus = (): void => {
-      searchIsFocused.value = true
-      emit('on-focus-input')
+      if (!props.isReadonly) {
+        searchIsFocused.value = true
+        emit('on-focus-input')
+      }
     }
 
     const handleBlur = (): void => {

@@ -15,8 +15,8 @@
     </label>
     <input
       :id="id"
+      v-model='textValue'
       ref="searchInput"
-      v-model="textValue"
       :disabled="disabled"
       :type="type"
       enterKeyHint="search"

@@ -1,0 +1,52 @@
+<div class="ui-carousel-v2 col-container">
+  <div
+    class="ui-carousel-v2__gallery col-12--xs col-12--s"
+    ref="carousel"
+    :class="{
+        'ui-carousel-v2__gallery--one-image': items.length === 1,
+        'ui-carousel-v2__gallery--active': isAnyImageLoaded
+      }"
+  >
+    <ul class="ui-carousel-v2__gallery__list">
+      <li
+        v-for="(item, index) in items"
+        :id="`image-${index}`"
+        :key="`carousel-${index}`"
+        class="ui-carousel-v2__gallery__item"
+      >
+        <ui-lazy-invent
+          class="ui-carousel-v2__gallery__image"
+          :alt="item.alt"
+          :src="item.src"
+          :srcset="item.srcSets"
+          :delayLoad="!isFirstImageLoaded && index !== 0"
+          sizes="(max-width: 768px) 36.2vw, 90vw"
+          @on-image-loaded="onImageLoaded(index)"
+          @on-image-error="onImageError(index)"
+        ></ui-lazy-invent>
+      </li>
+    </ul>
+  </div>
+  <template v-if="hasSlideNavigation">
+    <button
+      :class="['ui-carousel-v2__button', 'ui-carousel-v2__button--left', {'ui-carousel-v2__button--left-disabled': isMinScroll}]"
+      @click="moveToLeft"
+      :disabled="isMinScroll"
+    >
+      <svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-left">
+        <polygon transform="translate(12 12) rotate(-90) translate(-12 -12)" points="6.6333 8 12 13.257 17.367 8 19 9.6 12 16.457 5 9.6"/>
+      </svg>
+      <span class="text">previous</span>
+    </button>
+    <button
+      :class="['ui-carousel-v2__button', 'ui-carousel-v2__button--right', {'ui-carousel-v2__button--right-disabled': isMaxScroll}]"
+      @click="moveToRight"
+      :disabled="isMaxScroll"
+    >
+      <svg version="1.1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="icon-right">
+        <polygon transform="translate(12 12) rotate(-90) translate(-12 -12)" points="6.6333 8 12 13.257 17.367 8 19 9.6 12 16.457 5 9.6"/>
+      </svg>
+      <span class="text">next</span>
+    </button>
+  </template>
+</div>

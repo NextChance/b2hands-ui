@@ -32,14 +32,11 @@ export default defineComponent({
       default: ''
     }
   },
-  emits: [
-    'change'
-  ],
-  setup (props, { emit }) {
-
-    const onChange = ($event: Event): void => {
+  emits: ['change'],
+  setup(props, { emit }) {
+    const onChange = (newValue: string): void => {
       if (!props.isDisabled) {
-        emit('change', ($event.currentTarget as HTMLInputElement)?.value)
+        emit('change', newValue)
       }
     }
     return {

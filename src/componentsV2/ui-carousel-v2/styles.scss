@@ -1,15 +1,10 @@
-.ui-carousel {
+.ui-carousel-v2 {
   display: flex;
   height: 90vw;
   position: relative;
 
-  &__thumbnails {
-    display: none;
-  }
-
   &__gallery {
     $ui-carousel-gallery: &;
-
     -webkit-transform: translateZ(0); // iOS hack. Don't remove
     height: 100%;
     overflow-x: hidden;
@@ -61,6 +56,7 @@
       display: flex;
       justify-content: center;
       margin-bottom: 0;
+      height: 100%;
 
       & + & {
         margin-left: $spacing-size-2;
@@ -77,9 +73,7 @@
       object-fit: contain;
       width: auto;
     }
-  }
 
-  @media (max-width: $breakpoint-s - 1px) {
     ::v-deep {
       .placeholder-image {
         height: 100%;
@@ -90,6 +84,14 @@
         }
       }
     }
+
+  }
+
+  &__button {
+    display: none;
+  }
+
+  @media (max-width: calc($breakpoint-s - 1px)) {
 
     &__gallery {
       @include affrodance-velo;
@@ -105,99 +107,103 @@
 
       background-color: #fdfdfd;
       width: 100%;
-
-      &__item {
-        $item: &;
-
-        height: 100%;
-
-        &__extra-content,
-        .nav-actions {
-          display: none;
-        }
-      }
     }
   }
 
   @media (min-width: $breakpoint-s) {
-    align-items: flex-start;
-    background: $white;
-    flex-direction: row;
-    height: 100%;
+    $baseHeight: 256px;
+    $baseWith: 360px;
+    height: $baseHeight;
     width: 100%;
 
-    ::v-deep {
-      .placeholder-image {
-        width: 100%;
-
-        svg {
-          width: 100%;
-        }
-      }
-    }
-
-    &__thumbnails {
-      display: block;
-      position: sticky;
-      top: 0;
-
-      ::v-deep {
-        .placeholder-image--error {
-          font-size: $font-size-7;
-        }
-      }
-
-      &__item {
-        height: auto;
-        margin-bottom: $spacing-size-2;
-        width: 100%;
-      }
-
-      &__image {
-        height: auto;
-        vertical-align: top;
-        width: 100%;
-      }
-    }
-
-    &__extra-content--mobile,
-    .nav-actions--mobile {
-      display: none;
-    }
-
     &__gallery {
+      $ui-carousel-gallery: &;
       ::v-deep {
         .placeholder-image--error {
           font-size: $font-size-13;
         }
       }
 
-      &__list {
-        flex-direction: column;
-        width: 100%;
-      }
-
       &__image {
-        display: block;
-        width: 100%;
+        max-width: $baseHeight;
+        min-height: $baseHeight;
+        min-width: auto;
       }
 
       &__item {
         $item: &;
-        @include affrodance-velo;
 
         margin-bottom: $spacing-size-4;
         position: relative;
-        width: 100%;
+        height: 100%;
+      }
 
-        & + & {
-          margin-left: 0;
-        }
-
-        &:nth-child(n + 2) {
-          #{$item}__extra-content {
-            display: block;
+      &--one-image {
+        ::v-deep {
+          .placeholder-image {
+            width: auto;
           }
+        }
+        #{$ui-carousel-gallery} {
+          &__item,
+          &__list {
+            width: 100%;
+            justify-content: left;
+          }
+          &__image {
+            max-width: unset;
+          }
+        }
+      }
+    }
+
+    &__button {
+      $buttonsize: 32px;
+      $buttonLeftRightMargin: 0;
+      &--left,
+      &--right {
+        align-items: center;
+        background: $white;
+        border: none;
+        border-radius: 50%;
+        box-shadow: 0 $spacing-size-1 $spacing-size-1 0 rgba($black-100, 0.05);
+        display: flex;
+        height: $buttonsize;
+        justify-content: center;
+        object-fit: contain;
+        position: absolute;
+        top: calc(
+          ($baseHeight / 2) - ($buttonsize / 2)
+          );
+        width: $buttonsize;
+        z-index: 3;
+        .text {
+          display: none;
+        }
+        .icon-left,
+        .icon-right {
+          width: 17px;
+          height: 17px;
+          fill: #191919;
+        }
+      }
+
+      &--left {
+        left: $buttonLeftRightMargin;
+        .icon-left {
+          transform: rotate(180deg);
+        }
+      }
+      &--right {
+        right: $buttonLeftRightMargin;
+      }
+
+      &--left-disabled,
+      &--right-disabled {
+        background-color: $black-20;
+        .icon-left,
+        .icon-right {
+          fill: $black-50;
         }
       }
     }

@@ -9,6 +9,7 @@
     <div class="ui-profile-header__image">
       <div v-if="showImage">
         <ui-lazy-invent
+          class="lazy-container"
           :src="profileImage.smallest"
           :srcset="profileImage.srcSet"
           :alt="alt"

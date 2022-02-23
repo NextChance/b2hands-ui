@@ -10,7 +10,7 @@ export default Vue.extend({
   props: {
     id: {
       type: String,
-      required: true
+      default: ''
     },
     disabled: {
       type: Boolean,
@@ -40,6 +40,10 @@ export default Vue.extend({
       type: Boolean,
       default: false
     },
+    isFocus: {
+      type: Boolean,
+      default: false
+    },
     limitCharacter: {
       type: String,
       default: ''
@@ -48,14 +52,25 @@ export default Vue.extend({
   data() {
     return {
       textValue: '',
-      searchIsFocused: false
+      searchIsFocused: false,
+      isDelete: false
     }
   },
   watch: {
     value: {
       immediate: true,
       handler(_value): void {
-        this.textValue = _value
+        if (!this.isDelete) {
+          this.textValue = _value
+        }
+      }
+    },
+    isFocus: {
+      handler(_value): void {
+        if (_value) {
+          const searchInput = this.$refs.searchInput as HTMLElement
+          searchInput.focus()
+        }
       }
     }
   },
@@ -67,24 +82,29 @@ export default Vue.extend({
   },
   methods: {
     handleClickDelete (): void {
-      const input = this.$refs.searchInput as HTMLElement
       this.searchIsFocused = false
+      const input = this.$refs.searchInput as HTMLInputElement
+      input.value = ''
       this.textValue = ''
+      this.isDelete = true
       input.focus()
       this.$emit('on-clear-input')
     },
 
     handleInputFocus (): void {
-      this.searchIsFocused = true
-      this.$emit('on-focus-input')
+      if (!this.isReadonly) {
+        this.searchIsFocused = true
+        this.$emit('on-focus-input')
+      }
     },
 
-    handleBlur (): void {
+    handleBlur (ev: Event): void {
       setTimeout(() => {
         const input = this.$refs.searchInput as HTMLElement
         if (!document.activeElement?.isEqualNode(input)) {
           this.searchIsFocused = false
-          this.$emit('on-blur-input', this.textValue)
+          this.isDelete = false
+          this.$emit('on-blur-input', ev)
         }
       }, 250)
     },
@@ -95,6 +115,7 @@ export default Vue.extend({
     },
 
     handleSearch (ev: Event): void {
+      this.isDelete = false
       ev.preventDefault()
       if (this.isValidateText(this.textValue)) {
         this.$emit('on-search-done', this.textValue)
@@ -104,6 +125,8 @@ export default Vue.extend({
 
     handleInput (ev: Event): void {
       ev.preventDefault()
+      this.isDelete = false
+      this.textValue = (this.$refs['searchInput'] as HTMLInputElement).value
       this.$emit('on-input-change', {
         textValue: this.textValue,
         isValid: this.isValidateText(this.textValue)

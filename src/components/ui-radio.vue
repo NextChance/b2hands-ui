@@ -91,9 +91,8 @@ export default Vue.extend({
   $radioBorderThickness: $spacing-size-0;
   $radioSize: $spacing-size-4 - (2 *  $spacing-size-0);
 
-  line-height: $radioSize;
   color: $black-100;
-  cursor: pointer;
+  line-height: $radioSize;
   position: relative;
   user-select: none;
 
@@ -162,6 +161,8 @@ export default Vue.extend({
 
   &__label {
     @include body('s');
+
+    cursor: pointer;
     padding-left: $spacing-size-3 - (2 * $radioBorderThickness);
     vertical-align: top;
   }

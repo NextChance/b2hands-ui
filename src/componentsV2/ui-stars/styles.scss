@@ -1,0 +1,39 @@
+.ui-stars {
+  $stars: &;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  &__container {
+    margin-right: $spacing-size-1;
+    .star {
+      height: 13px;
+      width: 13px;
+      &:before {
+        background-image: url("~@/assets/svg/star-unchecked.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+        content: '';
+        display: block;
+        height:inherit;
+        width: inherit;
+      }
+    }
+    &--checked {
+      .star {
+        &:before {
+          background-image: url("~@/assets/svg/star-checked.svg");
+        }
+      }
+    }
+  }
+  &__total {
+    @include body('s');
+     margin-left: 9px;
+  }
+
+  &--editable {
+    .star {
+      cursor: pointer;
+    }
+  }
+}
