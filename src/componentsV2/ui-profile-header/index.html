@@ -7,14 +7,14 @@
     @click.capture="onClickProfile($event)"
   >
     <div class="ui-profile-header__image">
-      <div v-if="showImage">
+      <template v-if="showImage">
         <ui-lazy-invent
           class="lazy-container"
           :src="profileImage.smallest"
           :srcset="profileImage.srcSet"
           :alt="alt"
         />
-      </div>
+      </template>
     </div>
     <div class="ui-profile-header__info">
       <div
@@ -31,7 +31,6 @@
         'ui-profile-header__info__secondary-text--skeleton':
           !secondaryInfo || secondaryInfo === ''
       }"
-        v-if="secondaryInfo !== ''"
       >
         {{ secondaryInfo }}
       </div>

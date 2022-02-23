@@ -51,11 +51,13 @@ export default Vue.extend({
     }
   },
   watch: {
-    profileImage () {
-      this.showImage = false
-      setTimeout(() => {
-        this.showImage = true
-      }, 10)
+    profileImage (newProfileImage) {
+      if (!newProfileImage.url && !newProfileImage.srcSet) {
+        this.showImage = false
+        setTimeout(() => {
+          this.showImage = true
+        }, 10)
+      }
     }
   },
   methods: {

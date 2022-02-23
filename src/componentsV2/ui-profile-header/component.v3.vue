@@ -1,7 +1,7 @@
 <template src="./index.html"></template>
 <style scoped lang="scss" src="./styles.scss"></style>
 <script lang="ts">
-import { defineComponent } from 'vue3'
+import { defineComponent, ref, watch } from 'vue3'
 import UiLazyInvent from '../ui-lazy-invent/component.v3.vue'
 import { ProfileImgUI } from '@/external/types/Profile'
 
@@ -45,6 +45,8 @@ export default defineComponent({
     'on-profile-clicked'
   ],
   setup(props, { emit }) {
+    let showImage =  ref(true)
+
     const handleMoreOptions = (event: Event): void => {
       event.preventDefault()
       emit('on-more-options-clicked')
@@ -54,6 +56,17 @@ export default defineComponent({
       event.preventDefault()
       emit('on-profile-clicked')
     }
+
+    watch(
+    () => props.profileImage, (profileImage:ProfileImgUI) => {
+      if (!profileImage.url && !profileImage.srcSet) {
+        showImage.value = false
+        setTimeout(() => {
+          showImage.value = true
+        }, 10)
+
+      }
+    })
 
     return {
       handleMoreOptions,
