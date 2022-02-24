@@ -1,5 +1,10 @@
 
-<div class="ui-profile-header">
+<div :class="[
+    'ui-profile-header',
+    {
+      'ui-profile-header--with-more-options': !areMoreOptionsHidden
+    }
+  ]">
   <component
     :is="hasProfileLink ? 'a' : 'span'"
     :href="hasProfileLink ? profileRoute : null"

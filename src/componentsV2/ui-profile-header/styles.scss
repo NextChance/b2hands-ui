@@ -1,11 +1,19 @@
 .ui-profile-header {
   $ui-profile-header: &;
-  align-items: center;
   box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
   padding: $spacing-size-2;
   width: 100%;
+
+  &--with-more-options {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    #{$ui-profile-header}__link {
+      flex-grow: 1;
+    }
+  }
+
   &__link {
     align-items: center;
     display: flex;
