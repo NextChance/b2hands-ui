@@ -60,7 +60,12 @@ export default Vue.extend({
     },
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    onImageError(_refIndex: number): void {},
+    onImageError(_refIndex: number): void {
+      this.isAnyImageLoaded = true
+      if (_refIndex === 0) {
+        this.isFirstImageLoaded = true
+      }
+    },
 
     getCarouselSizing(): CarouselSizing  {
       const carousel = this.$refs.carousel as HTMLElement
