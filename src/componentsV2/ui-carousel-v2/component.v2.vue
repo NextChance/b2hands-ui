@@ -4,12 +4,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import UiLazyInvent from '../ui-lazy-invent/component.v2.vue'
-
-interface ImgItem {
-  src: string
-  srcSets: string
-  alt: string
-}
+import Image from '@/external/types/Image'
 
 interface CarouselSizing {
   containerWidth: number
@@ -25,7 +20,7 @@ export default Vue.extend({
   props: {
     items: {
       type: Array,
-      default: (): Array<ImgItem> => []
+      default: (): Array<Image> => []
     }
   },
   data() {
