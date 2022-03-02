@@ -127,7 +127,7 @@ export default Vue.extend({
       this.setScrollStatus(
         maxTranslation,
         hasSlideNavigation,
-        carousel.scrollLeft
+        carousel?.scrollLeft || 0
       )
     },
 
@@ -137,7 +137,7 @@ export default Vue.extend({
       this.setScrollStatus(
         maxTranslation,
         hasSlideNavigation,
-        carousel.scrollLeft
+        carousel?.scrollLeft || 0
       )
     }
   }
