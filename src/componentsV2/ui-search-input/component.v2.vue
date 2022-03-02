@@ -127,11 +127,12 @@ export default Vue.extend({
     handleInput (ev: Event): void {
       ev.preventDefault()
       this.isDelete = false
-      if (this.textValue !== this.lastTextValueSent) {
-        this.lastTextValueSent = this.textValue
+      const textValue = (this.$refs['searchInput'] as HTMLInputElement).value
+      if (textValue !== this.lastTextValueSent) {
+        this.lastTextValueSent = textValue
         this.$emit('on-input-change', {
-          textValue: this.textValue,
-          isValid: this.isValidateText(this.textValue)
+          textValue,
+          isValid: this.isValidateText(textValue)
         })
       }
     }
