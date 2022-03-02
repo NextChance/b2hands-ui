@@ -52,6 +52,7 @@ export default Vue.extend({
   data() {
     return {
       textValue: '',
+      lastTextValueSent: '',
       searchIsFocused: false,
       isDelete: false
     }
@@ -126,9 +127,8 @@ export default Vue.extend({
     handleInput (ev: Event): void {
       ev.preventDefault()
       this.isDelete = false
-      const textValue = (this.$refs['searchInput'] as HTMLInputElement).value
-      if (this.textValue !== textValue) {
-        this.textValue = textValue
+      if (this.textValue !== this.lastTextValueSent) {
+        this.lastTextValueSent = this.textValue
         this.$emit('on-input-change', {
           textValue: this.textValue,
           isValid: this.isValidateText(this.textValue)
