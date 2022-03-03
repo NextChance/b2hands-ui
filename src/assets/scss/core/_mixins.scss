@@ -168,7 +168,7 @@
   -webkit-box-orient: vertical;
   display: -webkit-box;
   -webkit-line-clamp: $lines;
-  max-height: ($lines * $lineHeight);
+  max-height: ($lines * $lineHeight) !important;
   overflow: hidden;
   text-overflow: ellipsis;
   word-break: break-word;
