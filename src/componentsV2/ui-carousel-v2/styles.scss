@@ -110,7 +110,7 @@
     $baseHeight: 256px;
     $baseWith: 360px;
     height: $baseHeight;
-    width: 100%;
+    min-width: 100%;
 
     &__gallery {
       $ui-carousel-gallery: &;
