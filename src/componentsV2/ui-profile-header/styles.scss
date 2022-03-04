@@ -30,6 +30,13 @@
     .lazy-container {
       border-radius: 50%;
     }
+
+    ::v-deep .placeholder-image--error {
+      font-size: $font-size-5;
+      &::before {
+        color: $black-60;
+      }
+    }
   }
 
   &__info {
