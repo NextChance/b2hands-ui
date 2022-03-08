@@ -63,11 +63,12 @@
       }
     }
 
-    &__image {
+    & &__image {
       display: flex;
       justify-content: center;
       height: 100%;
       width: auto;
+      max-width: 90vw;
     }
 
     ::v-deep {
@@ -108,7 +109,7 @@
 
   @media (min-width: $breakpoint-s) {
     $baseHeight: 256px;
-    $baseWith: 360px;
+    $baseWith: 400px;
     height: $baseHeight;
     min-width: 100%;
 
@@ -120,8 +121,8 @@
         }
       }
 
-      &__image {
-        max-width: $baseHeight;
+      & &__image {
+        max-width: $baseWith;
         min-height: $baseHeight;
         min-width: auto;
       }
