@@ -30,14 +30,16 @@ export default Vue.extend({
       maxTranslation: 0,
       isMaxScroll: false,
       isMinScroll: false,
-      hasSlideNavigation: false
+      hasSlideNavigation: false,
+      debounceTimer: setTimeout(() => {})
     } as {
       isFirstImageLoaded: boolean
       isAnyImageLoaded: boolean
       maxTranslation: number
       isMaxScroll: boolean
       isMinScroll: boolean
-      hasSlideNavigation: boolean
+      hasSlideNavigation: boolean,
+      debounceTimer: any
     }
   },
   mounted() {
@@ -50,6 +52,13 @@ export default Vue.extend({
       hasSlideNavigation,
       carousel.scrollLeft
     )
+  },
+  watch: {
+    items () {
+      this.$nextTick(() => {
+        this.setArrowStatus()
+      })
+    }
   },
   methods: {
     onImageLoaded (index: number): void {
@@ -87,28 +96,23 @@ export default Vue.extend({
       let scrollPosition
       const {
         containerWidth,
-        maxTranslation,
-        hasSlideNavigation
+        maxTranslation
       } = this.getCarouselSizing()
       scrollPosition = carousel.scrollLeft + containerWidth
       scrollPosition =
         scrollPosition > maxTranslation ? maxTranslation : scrollPosition
       carousel.scrollLeft = scrollPosition
-      this.setScrollStatus(maxTranslation, hasSlideNavigation, scrollPosition)
     },
 
     moveToLeft(): void {
       const carousel = this.$refs.carousel as HTMLElement
       let scrollPosition
       const {
-        containerWidth,
-        maxTranslation,
-        hasSlideNavigation
+        containerWidth
       } = this.getCarouselSizing()
       scrollPosition = carousel.scrollLeft - containerWidth
       scrollPosition = scrollPosition < 0 ? 0 : scrollPosition
       carousel.scrollLeft = scrollPosition
-      this.setScrollStatus(maxTranslation, hasSlideNavigation, scrollPosition)
     },
 
     setScrollStatus(
@@ -117,7 +121,7 @@ export default Vue.extend({
       scrollPosition: number
     ): void {
       this.hasSlideNavigation = hasSlideNavigation
-      this.isMaxScroll = scrollPosition === maxTranslation
+      this.isMaxScroll = scrollPosition >= maxTranslation
       this.isMinScroll = scrollPosition === 0
     },
 
