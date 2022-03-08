@@ -11,7 +11,7 @@
       <li
         v-for="(item, index) in items"
         :id="`image-${index}`"
-        :key="`carousel-${index}`"
+        :key="`carousel-${index}-${item.src}`"
         class="ui-carousel-v2__gallery__item"
       >
         <ui-lazy-invent
