@@ -42,6 +42,17 @@ export default Vue.extend({
       debounceTimer: any
     }
   },
+  watch: {
+    items: {
+      immediate: true,
+      handler(): void {
+        this.$forceUpdate()
+        this.$nextTick(() => {
+          this.setArrowStatus()
+        })
+      }
+    }
+  },
   mounted() {
     const carousel = this.$refs.carousel as HTMLElement
     const { maxTranslation, hasSlideNavigation } = this.getCarouselSizing()
@@ -52,13 +63,6 @@ export default Vue.extend({
       hasSlideNavigation,
       carousel.scrollLeft
     )
-  },
-  watch: {
-    items () {
-      this.$nextTick(() => {
-        this.setArrowStatus()
-      })
-    }
   },
   methods: {
     onImageLoaded (index: number): void {
@@ -82,6 +86,11 @@ export default Vue.extend({
       const maxTranslation = carousel
         ? carousel.scrollWidth - containerWidth
         : 0
+
+
+      console.log('maxTranslation',maxTranslation)
+      console.log('carousel.scrollWidth',carousel.scrollWidth)
+      console.log('containerWidth',containerWidth)
       const hasSlideNavigation = maxTranslation > 0
 
       return {
@@ -127,6 +136,7 @@ export default Vue.extend({
 
     setArrowStatus(): void {
       const carousel = this.$refs.carousel as HTMLElement
+      console.log('setArrowStatus', this.items[0].src)
       const { maxTranslation, hasSlideNavigation } = this.getCarouselSizing()
       this.setScrollStatus(
         maxTranslation,
