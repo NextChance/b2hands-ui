@@ -86,11 +86,6 @@ export default Vue.extend({
       const maxTranslation = carousel
         ? carousel.scrollWidth - containerWidth
         : 0
-
-
-      console.log('maxTranslation',maxTranslation)
-      console.log('carousel.scrollWidth',carousel.scrollWidth)
-      console.log('containerWidth',containerWidth)
       const hasSlideNavigation = maxTranslation > 0
 
       return {
@@ -136,7 +131,6 @@ export default Vue.extend({
 
     setArrowStatus(): void {
       const carousel = this.$refs.carousel as HTMLElement
-      console.log('setArrowStatus', this.items[0].src)
       const { maxTranslation, hasSlideNavigation } = this.getCarouselSizing()
       this.setScrollStatus(
         maxTranslation,
