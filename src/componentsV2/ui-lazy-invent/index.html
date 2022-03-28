@@ -1,4 +1,5 @@
 <div v-if="!forceImageLoad && (isHidden || delayLoad)"
+     :key="`placeholder-${Math.random()*1000}`"
      ref="visibilityPlaceholder"
      class="placeholder-image placeholder-image--loading"
      :height="`${loadingHeight}px`"
@@ -24,6 +25,7 @@
 </div>
 <img
   v-else-if="src || srcset"
+  :key="`loaded-image-${Math.random()*1000}`"
   ref="main"
   :src="src"
   :srcset="srcset"
