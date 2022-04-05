@@ -1,6 +1,13 @@
 <div class="ui-textarea">
   <div
+    ref="container"
     class="ui-textarea__container"
+    :class="[
+          'ui-textarea__container',
+          {
+            'ui-textarea__container--empty': !inputValue.length
+          }
+        ]"
     >
     <div class="input-content">
       <textarea

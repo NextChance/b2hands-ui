@@ -90,7 +90,8 @@ export default Vue.extend({
       this.textAreaHeight = '0px'
       uiTextarea.blur()
       this.$nextTick(function () {
-        this.textAreaHeight = uiTextarea.scrollHeight + 'px'
+        const container = this.$refs.container as HTMLInputElement
+        this.textAreaHeight = (uiTextarea.scrollHeight > container.offsetHeight ? uiTextarea.scrollHeight : container.offsetHeight) + 'px'
         uiTextarea.focus()
       })
     }
