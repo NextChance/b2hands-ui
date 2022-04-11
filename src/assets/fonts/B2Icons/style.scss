@@ -257,6 +257,12 @@
   }
 }
 
+.b2i-check-badge {
+  &:before {
+    content: $b2i-check-badge;
+  }
+}
+
 /* REDES SOCIALES */
 
 .b2i-apple {
