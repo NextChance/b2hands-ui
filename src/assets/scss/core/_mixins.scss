@@ -48,18 +48,24 @@
     background-color: map-get($theme, 'regular');
     color: $white;
 
-    &:hover {
-      background-color: map-get($theme, 'hover');
-      border: 1px solid map-get($theme, 'hover');
-      color: $white;
+
+    @media (min-width: $breakpoint-s) {
+      &:hover {
+        background-color: map-get($theme, 'hover');
+        border: 1px solid map-get($theme, 'hover');
+        color: $white;
+      }
     }
+
   } @else {
     background-color: $white;
     color: map-get($theme, 'regular');
 
-    &:hover {
-      border: 1px solid map-get($theme, 'hover');
-      color: map-get($theme, 'hover');
+    @media (min-width: $breakpoint-s) {
+      &:hover {
+        border: 1px solid map-get($theme, 'hover');
+        color: map-get($theme, 'hover');
+      }
     }
   }
 }
