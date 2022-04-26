@@ -109,6 +109,7 @@
   @media (min-width: $breakpoint-s) {
     $baseHeight: 256px;
     $baseWith: 400px;
+
     height: $baseHeight;
     min-width: 100%;
 
@@ -140,12 +141,14 @@
             width: auto;
           }
         }
+
         #{$ui-carousel-gallery} {
           &__item,
           &__list {
             width: 100%;
             justify-content: left;
           }
+
           &__image {
             max-width: unset;
           }
@@ -154,8 +157,6 @@
     }
 
     &__button {
-      $buttonsize: 32px;
-      $buttonLeftRightMargin: $spacing-size-2;
       &--left,
       &--right {
         align-items: center;
@@ -164,18 +165,19 @@
         border-radius: 50%;
         box-shadow: 0 $spacing-size-1 $spacing-size-1 0 rgba($black-100, 0.05);
         display: flex;
-        height: $buttonsize;
+        height: $spacing-size-7;
         justify-content: center;
         object-fit: contain;
         position: absolute;
-        top: calc(
-          ($baseHeight / 2) - ($buttonsize / 2)
-          );
-        width: $buttonsize;
+        top: 50%;
+        transoform: translateY(-50%);
+        width: $spacing-size-7;
         z-index: 3;
+
         .text {
           display: none;
         }
+
         .icon-left,
         .icon-right {
           width: 17px;
@@ -185,18 +187,21 @@
       }
 
       &--left {
-        left: $buttonLeftRightMargin;
+        left: $spacing-size-2;
+
         .icon-left {
           transform: rotate(180deg);
         }
       }
+
       &--right {
-        right: $buttonLeftRightMargin;
+        right: $spacing-size-2;
       }
 
       &--left-disabled,
       &--right-disabled {
         background-color: $black-20;
+
         .icon-left,
         .icon-right {
           fill: $black-50;

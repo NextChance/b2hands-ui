@@ -23,8 +23,13 @@ $font-size-15: 4.5 * $base-unit; // 72px
 $font-size-16: 5 * $base-unit; // 80px
 
 //LINE HEIGHT
+$line-height-0: .75 * $base-unit; // 12px
+$line-height-05: $base-unit; // 16px
 $line-height-1: 1.125 * $base-unit; // 18px
 $line-height-2: 1.25 * $base-unit; // 20px
 $line-height-3: 1.5 * $base-unit; // 24px
 $line-height-4: 2 * $base-unit; // 32px
 $line-height-5: 2.5 * $base-unit; // 40px
+$line-height-6: 3 * $base-unit; // 48px
+$line-height-7: 3.5 * $base-unit; // 56px
+$line-height-8: 5 * $base-unit; // 80px
