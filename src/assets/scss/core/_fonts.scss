@@ -7,7 +7,7 @@ $fonts-path: '~@/assets/fonts' !default;
   font-display: fallback;
   font-family: 'Helvetica Now';
   font-style: normal;
-  font-weight: normal;
+  font-weight: 400;
   src: url('#{$fonts-path}/Helvetica_Now_Text.otf') format('opentype');
 }
 
@@ -16,7 +16,7 @@ $fonts-path: '~@/assets/fonts' !default;
   font-display: fallback;
   font-family: 'Helvetica Now Medium';
   font-style: normal;
-  font-weight: normal;
+  font-weight: 500;
   src: url('#{$fonts-path}/Helvetica_Now_Text_Medium.otf') format('opentype');
 }
 
