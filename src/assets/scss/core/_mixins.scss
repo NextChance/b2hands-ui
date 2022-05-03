@@ -124,6 +124,7 @@
 }
 
 @mixin headers ($size) {
+  color: #4d4d4d;
   font-family: $font-helvetica-regular;
   font-weight: 500;
   @if ($size == 'm') {
