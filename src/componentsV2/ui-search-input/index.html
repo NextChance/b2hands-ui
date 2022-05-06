@@ -9,7 +9,13 @@
       <i class="b2i-search"></i>
     </button>
   </slot>
-  <div class="ui-search-input__container">
+  <div
+    :class="[
+      'ui-search-input__container',
+      {
+        'ui-search-input__container--show-delete': value
+      }
+    ]">
     <label :for="id" :v-if="labelText" class="ui-search-input__label">
       {{ labelText }}
     </label>
@@ -24,7 +30,7 @@
       autocomplete="off"
       autocorrect="off"
       :readonly="isReadonly"
-      :placeholder="placeholder"
+      :placeholder="searchIsFocused ? '' : placeholder"
       :maxlength='limitCharacter'
       class="ui-search-input__input"
       @focus="handleInputFocus"
@@ -33,7 +39,7 @@
       @keyup.enter="handleSearch"
     />
     <button
-      v-show="searchIsFocused || value"
+      v-show="value"
       class="ui-search-input__icon-right"
       aria-label="Clear"
       @click="handleClickDelete"

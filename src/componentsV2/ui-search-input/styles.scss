@@ -20,6 +20,10 @@
     flex-grow: 1;
     padding: $spacing-size-2 0;
     position: relative;
+
+    &--show-delete {
+      padding-right: $spacing-size-6;
+    }
   }
 
   &__input {
