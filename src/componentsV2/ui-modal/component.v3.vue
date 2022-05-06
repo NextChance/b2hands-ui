@@ -11,6 +11,10 @@ export default defineComponent({
     isOpen: {
       type: Boolean,
       default: false
+    },
+    hasHeader: {
+      type: Boolean,
+      default: true
     }
   },
   emits: [
