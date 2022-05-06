@@ -97,7 +97,7 @@ export default Vue.extend({
   },
   methods: {
     onVisibilityChanged(isVisible: boolean): void {
-      if (isVisible) {
+      if (isVisible && !this.loadingImage) {
         this.isHidden = false
         this.loadingImage = addSiblingNodeWithLoadingImage(this.$refs.visibilityPlaceholder as HTMLElement)
         this.loadingImage?.classList.add('lazy-image__loading');
