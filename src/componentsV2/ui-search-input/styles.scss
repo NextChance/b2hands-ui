@@ -40,6 +40,10 @@
     &::placeholder {
       color: $black-70;
     }
+
+    &:placeholder-shown {
+      text-overflow: ellipsis;
+    }
   }
 
   &__icon-right {
