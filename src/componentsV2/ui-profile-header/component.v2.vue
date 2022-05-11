@@ -48,6 +48,14 @@ export default Vue.extend({
     hasProfileLink: {
       type: Boolean,
       default: false
+    },
+    hideSecondaryInfo: {
+      type: Boolean,
+      default: false
+    },
+    showInitials: {
+      type: Boolean,
+      default: false
     }
   },
   watch: {
@@ -68,6 +76,15 @@ export default Vue.extend({
     onClickProfile(event: Event): void {
       event.preventDefault()
       this.$emit('on-profile-clicked')
+    }
+  },
+
+  computed: {
+    userInitials (): string {
+      return this.userName
+        .split(' ')
+        .map(word => word === 'de' ? 'd' : word.charAt(0).toUpperCase())
+        .join('')
     }
   }
 })

@@ -90,6 +90,7 @@ export default Vue.extend({
       this.isDelete = true
       input.focus()
       this.$emit('on-clear-input')
+      this.isDelete = false
     },
 
     handleInputFocus (): void {

@@ -1,7 +1,7 @@
 <template src="./index.html"></template>
 <style scoped lang="scss" src="./styles.scss"></style>
 <script lang="ts">
-import { defineComponent, ref, watch } from 'vue3'
+import { computed, defineComponent, ref, watch } from 'vue3'
 import UiLazyInvent from '../ui-lazy-invent/component.v3.vue'
 import { ProfileImgUI } from '@/external/types/Profile'
 
@@ -38,6 +38,14 @@ export default defineComponent({
     hasProfileLink: {
       type: Boolean,
       default: false
+    },
+    hideSecondaryInfo: {
+      type: Boolean,
+      default: false
+    },
+    showInitials: {
+      type: Boolean,
+      default: false
     }
   },
   emits: [
@@ -57,6 +65,13 @@ export default defineComponent({
       emit('on-profile-clicked')
     }
 
+    const userInitials = computed(() => {
+      return props.userName
+        .split(' ')
+        .map((word:string) => word === 'de' ? 'd' : word.charAt(0).toUpperCase())
+        .join('')
+    })
+
     watch(
     () => props.profileImage, (profileImage:ProfileImgUI) => {
       if (!profileImage.url && !profileImage.srcSet) {
@@ -70,8 +85,9 @@ export default defineComponent({
 
     return {
       handleMoreOptions,
-      onClickProfile
+      onClickProfile,
+      userInitials
     }
-  }
+  },
 })
 </script>

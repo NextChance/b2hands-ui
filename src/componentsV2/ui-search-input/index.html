@@ -1,4 +1,10 @@
-<div class="ui-search-input accept-key-press">
+<div
+  :class="[
+    'ui-search-input',
+    'accept-key-press',
+    {'ui-search-input--focused': searchIsFocused}
+    ]"
+>
   <slot>
     <button
       id="searchButton"
@@ -30,7 +36,7 @@
       autocomplete="off"
       autocorrect="off"
       :readonly="isReadonly"
-      :placeholder="searchIsFocused ? '' : placeholder"
+      :placeholder="placeholder"
       :maxlength='limitCharacter'
       class="ui-search-input__input"
       @focus="handleInputFocus"

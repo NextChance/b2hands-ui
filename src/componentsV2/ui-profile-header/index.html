@@ -12,13 +12,16 @@
     @click.capture="onClickProfile($event)"
   >
     <div class="ui-profile-header__image">
-      <template v-if="showImage">
+      <template v-if="showImage && !showInitials">
         <ui-lazy-invent
           class="lazy-container"
           :src="profileImage.url"
           :srcset="profileImage.srcSet"
           :alt="alt"
         />
+      </template>
+      <template v-if="showInitials">
+        <span class="ui-profile-header__initials">{{ userInitials }}</span>
       </template>
     </div>
     <div class="ui-profile-header__info">
@@ -31,6 +34,7 @@
       >{{ userName }}</div
       >
       <div
+        v-if="!hideSecondaryInfo"
         class="ui-profile-header__info__secondary-text"
         :class="{
         'ui-profile-header__info__secondary-text--skeleton':
