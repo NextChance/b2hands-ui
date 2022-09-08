@@ -18,7 +18,7 @@ export default class UiTextarea extends Vue {
   @Prop({ default: '' }) value!: String
   @Prop({ default: '' }) placeholder!: String
   @Prop({ default: true }) hasAutofocus!: boolean
-
+  @Prop({ default: false }) disableBreakLines!: boolean
 
   @Watch('value', { immediate: true })
   onValueChange (newValue: string) {
@@ -62,6 +62,12 @@ export default class UiTextarea extends Vue {
         ? uiTextarea.scrollHeight
         : container.offsetHeight) + 'px'
     })
+  }
+
+  handleEnterPress(event: Event): void {
+    if (this.disableBreakLines) {
+      event.preventDefault()
+    }
   }
 }
 </script>
