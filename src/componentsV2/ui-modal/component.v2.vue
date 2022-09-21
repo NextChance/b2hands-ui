@@ -11,7 +11,7 @@ export default Vue.extend({
      */
     isOpen: {
       type: Boolean,
-      default: false
+      default: true
     },
     hasHeader: {
       type: Boolean,
