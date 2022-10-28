@@ -16207,7 +16207,7 @@ web-namespaces@^1.0.0:
 
 "web-utils@https://github.com/NextChance/web-utils.git":
   version "1.0.0"
-  resolved "https://github.com/NextChance/web-utils.git#e61aa443d1b0fd4376e66608fc6dc026b56381c5"
+  resolved "https://github.com/NextChance/web-utils.git#7eacbdf92723d71fd0e49a2fa7bea5431c717d94"
   dependencies:
     fs-extra "^10.0.0"
     ts-exif-parser "^0.2.1"

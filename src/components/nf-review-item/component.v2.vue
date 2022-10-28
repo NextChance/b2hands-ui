@@ -4,10 +4,10 @@
 <script lang='ts'>
 import Vue, { PropType } from 'vue'
 import { getElapsedTime } from '@/external/tools/elapsedTime'
-import UiProfileHeader from '@/components/ui-profile-header/component.v2.vue'
-import UiLazyInvent from '@/components/ui-lazy-invent/component.v2.vue'
+import UiProfileHeader from '../ui-profile-header/component.v2.vue'
+import UiLazyInvent from '../ui-lazy-invent/component.v2.vue'
 
-import type { _ImageSlim, ReviewReply, User } from '@/types/NoFakes_Reviews'
+import type { _ImageSlim, ReviewReply, User } from '@/external/types/NoFakes_Reviews'
 
 export default Vue.extend({
   name: 'NfReviewItem',
