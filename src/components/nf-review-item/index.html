@@ -1,0 +1,130 @@
+<div :class="['review-item', {'review-item--skeleton': hasSkeletons}]">
+  <div class="review-item__header">
+    <div class="review-item__header__content">
+      <ui-profile-header
+        :class="[
+            'review-item__profile',
+            {
+              'review-item__profile--without-image': !user.image && user.name,
+              'review-item__profile--without-reviews': !user.totalReviews
+            }
+          ]"
+        are-more-options-hidden
+        :profile-image="!user.image && user.name ? {url: BROKEN_IMAGE} : user.image"
+        :show-initials="!user.image && !!user.name"
+        :alt="user.name"
+        :user-name="isReply ? $t('review_reply_title', {variable1: businessName}) : user.name"
+        hide-secondary-info
+      />
+      <div
+        v-if="!isReply"
+        class="review-item__rating"
+      >
+        <star-review
+          :rating="rating"
+          :is-star-thick="true"
+          :show-value="showRatingValue"
+          :show-primary-color="true"
+        />
+        <i
+          v-if="isVerifiedReview"
+          class="nficon-no-fakes-logo review-item__rating__verified-icon"
+        />
+      </div>
+    </div>
+    <div v-if="isVerifiedReview">
+      <button
+        :disabled="status==='pending'"
+        class="review-item__header__options"
+        @click="showOptions"
+      >
+        <div class="dot" />
+        <div class="dot" />
+        <div class="dot" />
+      </button>
+    </div>
+  </div>
+  <p class="review-item__date">
+    {{ formatDate }}
+  </p>
+
+  <p
+    v-if="text"
+    ref="msgContainer"
+    :style="{maxHeight: containerMaxHeight}"
+    :class="['review-item__text', {'review-item__text--open': isShowingEllipsis}]"
+  >{{ text }}</p>
+  <p
+    v-if="hasSkeletons"
+    class="review-item__text"
+  />
+  <p
+    v-if="hasSkeletons"
+    class="review-item__text review-item__text--last"
+  />
+  <div
+    v-if="hasScrollMsg"
+    :class="['review-item__option', {'review-item__option--open': isReviewOpen}]"
+    @click="handleToogleMsg()"
+  >
+    <button class="review-item__option__more">
+      {{ $t('view_more') }}
+    </button>
+    <button class="review-item__option__less">
+      {{ $t('view_less') }}
+    </button>
+  </div>
+  <div
+    class="review-item__images"
+    v-if="images.length"
+  >
+    <ul
+      class="review-item__images__list"
+    >
+      <li
+        v-for="(item, i) in images"
+        :key="`reviewImage-${id}-${i}`"
+        class="review-item__images__item"
+        @click="handleImage(i)"
+      >
+        <ui-lazy-invent
+          class="review-item__image"
+          :src="item.url"
+          alt=""/>
+      </li>
+    </ul>
+  </div>
+  <div
+    v-if="!!status"
+    :class="[
+        'review-item__status',
+        {'review-item__status--pending': isPending}
+      ]"
+  >
+    <i
+      :class="[
+          'review-item__status__icon',
+          {'nficon-info-24': isPending}
+        ]"
+    />
+    <p>
+      {{ getStatusMsg }}
+    </p>
+  </div>
+  <div
+    v-if="!!reply"
+    class="review-item__reply"
+  >
+    <review-item
+      v-observe-visibility="{
+          callback: onReplyVisibilityChange,
+          once:true
+        }"
+      :id="id"
+      :text="reply.text"
+      :published-at="reply.repliedAt"
+      :is-reply="true"
+      :business-name="businessName"
+    />
+  </div>
+</div>
