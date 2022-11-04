@@ -16,6 +16,7 @@ import Vue, { PropType } from 'vue'
 import { getElapsedTime } from '@/external/tools/elapsedTime'
 import UiProfileHeader from '../ui-profile-header/component.v2.vue'
 import UiLazyInvent from '../ui-lazy-invent/component.v2.vue'
+import NfStarReview from '../nf-star-review/component.v2.vue'
 
 import type { _ImageSlim, ReviewReply, User } from '@/external/types/NoFakes_Reviews'
 
@@ -34,7 +35,8 @@ export default Vue.extend({
   },
   components: {
     UiProfileHeader,
-    UiLazyInvent
+    UiLazyInvent,
+    NfStarReview
   },
   props: {
     user: {
@@ -133,6 +135,9 @@ export default Vue.extend({
         })
       }
     }
+  },
+  mounted () {
+    console.log('-----> ', this.locale, 'this.locale')
   },
   methods: {
     handleToogleMsg () {

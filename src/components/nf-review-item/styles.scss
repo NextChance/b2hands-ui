@@ -311,8 +311,8 @@
 
           &::after {
             color: var(--color-semantic-info);
-            font-family: $icomoon-font-family;
-            content: $b2i-eye;
+            font-family: $no-fakes-icomoon-font-family;
+            content: $nficon-store;
             font-size: $font-size-7;
             left: 50%;
             position: absolute;
@@ -330,7 +330,7 @@
 
       &__date {
         color: var(--color-content-3);
-        font-size: $font-size-5;
+        font-size: $font-size-2;
         font-weight: 400;
         line-height: $line-height-3;
         letter-spacing: -0.5px;
@@ -339,7 +339,7 @@
       &__text {
         color: var(--color-content-3);
         line-height: 2.25 * $base-unit;
-        font-size: $font-size-9;
+        font-size: $font-size-4;
         font-weight: 450;
         letter-spacing: 0px;
       }
