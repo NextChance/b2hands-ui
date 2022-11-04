@@ -3,7 +3,7 @@
 <script lang="ts">
 import { computed, defineComponent, ref, watch } from 'vue3'
 import UiLazyInvent from '../ui-lazy-invent/component.v3.vue'
-import { ProfileImgUI } from '@/external/types/Profile'
+import type { ProfileImgUI } from '@/external/types/Profile'
 
 export default defineComponent({
   name: 'UiProfileHeader',
@@ -46,6 +46,10 @@ export default defineComponent({
     showInitials: {
       type: Boolean,
       default: false
+    },
+    areMoreOptionsHidden: {
+      type: Boolean,
+      default: false
     }
   },
   emits: [
@@ -53,7 +57,7 @@ export default defineComponent({
     'on-profile-clicked'
   ],
   setup(props, { emit }) {
-    let showImage =  ref(true)
+    const showImage =  ref(true)
 
     const handleMoreOptions = (event: Event): void => {
       event.preventDefault()
@@ -86,7 +90,8 @@ export default defineComponent({
     return {
       handleMoreOptions,
       onClickProfile,
-      userInitials
+      userInitials,
+      showImage
     }
   },
 })

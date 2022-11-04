@@ -4,7 +4,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { Component, Prop, Watch } from 'vue-property-decorator'
-import AnyObject from '@/external/types/AnyObject'
+import type AnyObject from '@/external/types/AnyObject'
 
 @Component
 export default class UiScrollableList extends Vue {

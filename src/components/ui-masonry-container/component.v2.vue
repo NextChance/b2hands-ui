@@ -4,7 +4,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import UiLazyInvent from '../ui-lazy-invent/component.v2.vue'
-import { DiscoveryImage } from '@/external/types/Image'
+import type { DiscoveryImage } from '@/external/types/Image'
 
 export default Vue.extend({
   data () {

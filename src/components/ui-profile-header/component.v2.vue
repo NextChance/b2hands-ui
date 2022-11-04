@@ -4,7 +4,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import UiLazyInvent from '../ui-lazy-invent/component.v2.vue'
-import { ProfileImgUI } from '@/external/types/Profile'
+import type { ProfileImgUI } from '@/external/types/Profile'
 
 export default Vue.extend({
   name: 'UiProfileHeader',

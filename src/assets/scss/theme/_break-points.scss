@@ -5,7 +5,7 @@ $breakpoint-m: 1024px !default;
 $breakpoint-l: 1280px !default;
 $breakpoint-xl: 1920px !default;
 
-$breakpoints: (
+$uiBreakpoints: (
   'xs': $breakpoint-initial,
   // 'xs-extra': $breakpoint-xs,
   's': $breakpoint-s,

@@ -1,4 +1,14 @@
 <template src="./index.html"></template>
+<style>
+:root {
+  --nfReviewItem-primary: #110827;
+  --nfReviewItem-secondary: #767189;
+  --nfReviewItem-success: #00E3D4;
+  --nfReviewItem-success--light: #F0FFFE;
+  --nfReviewItem-info: #1456FF;
+  --nfReviewItem-info--light: #EBF0FF;
+}
+</style>
 <style lang="scss" scoped src="./styles.scss"></style>
 
 <script lang='ts'>
@@ -55,6 +65,10 @@ export default Vue.extend({
       type: Boolean,
       default: false
     },
+    hasOptions: {
+      type: Boolean,
+      default: false
+    },
     status: {
       type: String,
       default: ''
@@ -78,7 +92,7 @@ export default Vue.extend({
       type: Array as PropType<_ImageSlim[]>,
       default: (): _ImageSlim[] => []
     },
-    $t: {
+    translate: {
       type: Function
     },
     locale: {
@@ -94,11 +108,11 @@ export default Vue.extend({
       return this.status === 'pending'
     },
     getStatusMsg (): String {
-      return this.status === 'pending' ? this.$t('review_status_pending_msg') : ''
+      return this.status === 'pending' ? this.translate('review_status_pending_msg') : ''
     },
     formatDate (): String {
       const elapseTime = getElapsedTime(this.publishedAt, this.locale)
-      return typeof elapseTime === 'string' ? elapseTime : this.$t(elapseTime.msg, { variable1: elapseTime.variable1 })
+      return typeof elapseTime === 'string' ? elapseTime : this.translate(elapseTime.msg, { variable1: elapseTime.variable1 })
     }
   },
   watch: {

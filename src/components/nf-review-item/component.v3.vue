@@ -1,14 +1,26 @@
 <template src="./index.html"></template>
+<style>
+:root {
+  --nfReviewItem-primary: #110827;
+  --nfReviewItem-secondary: #767189;
+  --nfReviewItem-success: #00E3D4;
+  --nfReviewItem-success--light: #F0FFFE;
+  --nfReviewItem-info: #1456FF;
+  --nfReviewItem-info--light: #EBF0FF;
+}
+</style>
 <style lang="scss" scoped src="./styles.scss"></style>
 
 <script setup lang='ts'>
-import { computed, ref, onMounted, watch } from 'vue'
+import { computed, ref, watch, nextTick } from 'vue3'
 import { getElapsedTime } from '@/external/tools/elapsedTime'
-import UiProfileHeader from '../ui-profile-header/component.v2.vue'
-import UiLazyInvent from '../ui-lazy-invent/component.v2.vue'
+import UiProfileHeader from '../ui-profile-header/component.v3.vue'
+import UiLazyInvent from '../ui-lazy-invent/component.v3.vue'
+import NfStarReview from '../nf-star-review/component.v3.vue'
+import NfReviewItem from './component.v3.vue'
 
 import type { _ImageSlim, ReviewReply, User } from '@/external/types/NoFakes_Reviews'
-import { nextTick } from 'vue3'
+
 const isShowingEllipsis = ref(false)
 const isReviewOpen = ref(false)
 const isReplyOpen = ref(false)
@@ -36,16 +48,17 @@ const props = withDefaults(
     text: string;
     id: string;
     rating: number;
-    showRatingValue: Boolean;
+    showRatingValue: boolean;
     publishedAt: number;
-    isVerifiedReview: Boolean;
+    isVerifiedReview: boolean;
+    hasOptions?: boolean;
     status?: string;
     reply?: ReviewReply;
     businessName: string;
     businessId: string;
-    isReply: Boolean;
+    isReply: boolean;
     images: _ImageSlim[];
-    $t: Function;
+    translate: Function;
     locale: string;
   }>(),
   {
@@ -53,21 +66,25 @@ const props = withDefaults(
     text: '',
     id: '',
     rating: 0,
-    showRatingValue: Boolean,
+    showRatingValue: false,
     publishedAt: 0,
-    isVerifiedReview: Boolean,
+    isVerifiedReview: false,
+    hasOptions: false,
     status: '',
     reply: undefined,
     businessName: '',
     businessId: '',
-    isReply: Boolean,
+    isReply: false,
     // @ts-ignore
     images: [],
-    $t: Function,
+    translate: Function,
     locale: '',
   }
 );
 
+const user = computed(() => {
+  return props.user
+})
 
 const hasSkeletons = computed(() => {
   return !props.rating && !props.isReply
@@ -78,12 +95,12 @@ const isPending = computed(() => {
 })
 
 const getStatusMsg = computed(() => {
-  return props.status === 'pending' ? props.$t('review_status_pending_msg') : ''
+  return props.status === 'pending' ? props.translate('review_status_pending_msg') : ''
 })
 
 const formatDate = computed(() => {
   const elapseTime = getElapsedTime(props.publishedAt, props.locale)
-  return typeof elapseTime === 'string' ? elapseTime : props.$t(elapseTime.msg, { variable1: elapseTime.variable1 })
+  return typeof elapseTime === 'string' ? elapseTime : props.translate(elapseTime.msg, { variable1: elapseTime.variable1 })
 })
 
 watch(() => props.text, () => {

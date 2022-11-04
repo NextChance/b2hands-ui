@@ -3,7 +3,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted, onUnmounted, watch } from 'vue3'
-import AnyObject from '@/external/types/AnyObject'
+import type AnyObject from '@/external/types/AnyObject'
 
 export default defineComponent({
   name: 'UiScrollableList',

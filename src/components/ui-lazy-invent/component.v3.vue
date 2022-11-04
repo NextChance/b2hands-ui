@@ -1,10 +1,15 @@
 <template src="./index.html"></template>
+<style>
+.lazy-image + .placeholder-image {
+  position: absolute;
+}
+</style>
 <style lang="scss" scoped src="./styles.scss"></style>
 
 <script lang="ts">
 import { defineComponent, ref, onMounted, watch } from 'vue3'
 import { addSiblingNodeWithLoadingImage, replaceNodeWithErrorImage } from '@/external/tools/errorImage'
-import AnyObject from '@/external/types/AnyObject'
+import type AnyObject from '@/external/types/AnyObject'
 
 export default defineComponent({
   name: 'ui-lazy-lazy-image',
@@ -78,18 +83,18 @@ export default defineComponent({
   setup (props, {emit}) {
     const visibilityPlaceholder = ref<HTMLElement | null>(null)
     const main = ref<HTMLElement | null>(null)
-    const showImage = ref(Boolean)
+    const showImage = ref(false)
     showImage.value = true
 
     let isImageLoaded = false
-    let isHidden = true
+    let isHidden = ref(true)
     let loadingImage:any = null
 
     const rand = (Math.random() * 1000).toFixed()
 
     const onVisibilityChanged = (isVisible: boolean): void => {
       if (isVisible) {
-        isHidden = false
+        isHidden.value = false
         loadingImage = addSiblingNodeWithLoadingImage(
           visibilityPlaceholder.value as HTMLElement
         )
@@ -108,7 +113,7 @@ export default defineComponent({
       isImageLoaded = true
       setTimeout(() => {
         loadingImage?.remove()
-      }, 350)
+      }, 5350)
       emit('on-image-loaded', main)
     }
 
@@ -133,7 +138,16 @@ export default defineComponent({
       }
     })
 
-    return { isImageLoaded, isHidden, rand, onImageError, onImageLoaded, onVisibilityChanged }
+    return {
+      visibilityPlaceholder,
+      main,
+      isImageLoaded,
+      isHidden,
+      rand,
+      onImageError,
+      onImageLoaded,
+      onVisibilityChanged
+    }
   }
 })
 </script>

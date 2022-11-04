@@ -2,6 +2,7 @@
   <div class="review-item__header">
     <div class="review-item__header__content">
       <ui-profile-header
+        v-if="user"
         :class="[
             'review-item__profile',
             {
@@ -13,14 +14,14 @@
         :profile-image="!user.image && user.name ? {url: BROKEN_IMAGE} : user.image"
         :show-initials="!user.image && !!user.name"
         :alt="user.name"
-        :user-name="isReply ? $t('review_reply_title', {variable1: businessName}) : user.name"
+        :user-name="isReply ? translate('review_reply_title', {variable1: businessName}) : user.name"
         hide-secondary-info
       />
       <div
         v-if="!isReply"
         class="review-item__rating"
       >
-        <star-review
+        <nf-star-review
           :rating="rating"
           :is-star-thick="true"
           :show-value="showRatingValue"
@@ -32,21 +33,14 @@
         />
       </div>
     </div>
-    <div v-if="isVerifiedReview">
-      <button
-        :disabled="status==='pending'"
-        class="review-item__header__options"
-        @click="showOptions"
-      >
-        <div class="dot" />
-        <div class="dot" />
-        <div class="dot" />
-      </button>
-    </div>
+    <button
+      v-if="hasOptions"
+      :disabled="status==='pending'"
+      class="review-item__header__options"
+      @click="showOptions"
+    >···</button>
   </div>
-  <p class="review-item__date">
-    {{ formatDate }}
-  </p>
+  <p class="review-item__date">{{ formatDate }}</p>
 
   <p
     v-if="text"
@@ -67,12 +61,8 @@
     :class="['review-item__option', {'review-item__option--open': isReviewOpen}]"
     @click="handleToogleMsg()"
   >
-    <button class="review-item__option__more">
-      {{ $t('view_more') }}
-    </button>
-    <button class="review-item__option__less">
-      {{ $t('view_less') }}
-    </button>
+    <button class="review-item__option__more">{{ translate('view_more') }}</button>
+    <button class="review-item__option__less">{{ translate('view_less') }}</button>
   </div>
   <div
     class="review-item__images"
@@ -107,15 +97,13 @@
           {'nficon-info-24': isPending}
         ]"
     />
-    <p>
-      {{ getStatusMsg }}
-    </p>
+    <p>{{ getStatusMsg }}</p>
   </div>
   <div
     v-if="!!reply"
     class="review-item__reply"
   >
-    <review-item
+    <nf-review-item
       v-observe-visibility="{
           callback: onReplyVisibilityChange,
           once:true

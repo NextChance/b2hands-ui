@@ -2,7 +2,7 @@
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background-color: $lilac-100;
+  background-color: var(--nfReviewItem-primary);
   margin-right: 8px;
 
   &:last-of-type {
@@ -54,19 +54,21 @@
   }
 
   &__header {
-    position: relative;
+    align-items: center;
     display: flex;
     justify-content: space-between;
+    position: relative;
 
     &__content {
       display: flex;
+      margin-bottom: $spacing-size-4;
       position: relative;
     }
 
     &__options {
-      display: flex;
       background-color: transparent;
-      padding: $spacing-size-3;
+      font-size: $font-size-8;
+      padding: 0.8*$spacing-size-3 $spacing-size-3 1.2*$spacing-size-3;
 
       &:disabled {
         opacity: 0.6;
@@ -76,7 +78,6 @@
   }
 
   &__profile {
-    margin-bottom: $spacing-size-4;
     padding: 0 !important;
 
     &--without-image {
@@ -104,14 +105,15 @@
         }
 
         &__initials {
-          @include body('l', 'medium');
-
           align-items: center;
-          background-color: $green-10;
-          color: $green-70;
+          background-color: var(--nfReviewItem-success--light);
+          color: var(--nfReviewItem-success);
           display: flex;
-          justify-content: center;
+          font-size: $font-size-7;
+          font-weight: $font-medium;
           height: 100%;
+          justify-content: center;
+          line-height: $line-height-4;
         }
 
         &__info {
@@ -119,21 +121,25 @@
           display: flex;
 
           &__main-text {
-            @include heading2('xs');
             @include ellipsis(1, $line-height-3);
+
+            font-size: $font-size-5;
+            font-weight: 400;
+            line-height: $line-height-3;
+            letter-spacing: -0.5px;
           }
 
           &__secondary-text {
             @include headers('m');
 
-            color: $lilac-70;
+            color: var(--nfReviewItem-secondary);
             display: inline-block;
             flex-shrink: 0;
             position: relative;
             margin-left: $spacing-size-3;
 
             &:before {
-              background-color: $lilac-70;
+              background-color: var(--nfReviewItem-secondary);
               border-radius: 50%;
               content: '';
               height: $spacing-size-1;
@@ -151,15 +157,17 @@
   }
 
   &__rating {
-    bottom: $spacing-size-4;
     display: flex;
     left: $spacing-size-9 + $spacing-size-2;
     margin-bottom: $spacing-size-1;
     position: absolute;
+    top: $spacing-size-6;
 
     &__verified-icon {
-      color: $green-70;
+      color: var(--nfReviewItem-success);
+      line-height: 19px;
       margin-left: $spacing-size-2;
+      vertical-align: middle;
     }
 
     ::v-deep {
@@ -170,19 +178,16 @@
   }
 
   &__text {
-    @include body('m');
     @include ellipsis(3, $line-height-3);
 
-    color: $black-70;
+    color: var(--nfReviewItem-secondary);
+    font-size: $font-size-5;
+    line-height: $line-height-3;
     transition: max-height .3s;
     white-space: break-spaces;
 
     &--open {
       -webkit-line-clamp: unset;
-    }
-
-    &:last-child {
-      margin-bottom: $spacing-size-4;
     }
   }
 
@@ -195,7 +200,7 @@
     button {
       background-color: transparent;
       border: none;
-      color: $blue-60;
+      color: var(--nfReviewItem-info);
       font-size: $font-size-3;
       left: 0;
       line-height: $base-unit;
@@ -233,7 +238,7 @@
   &__date {
     @include detail('s');
 
-    color: $black-60;
+    color: var(--nfReviewItem-secondary);
     margin-bottom: $spacing-size-2;
 
     &:last-child {
@@ -250,12 +255,14 @@
     margin-top: $spacing-size-7;
 
     &--pending {
-      color: $blue-60;
-      background-color: $blue-20;
+      background-color:  var(--nfReviewItem-info--light);
+      color: var(--nfReviewItem-info);
     }
 
     p {
-      @include body('m', 'regular');
+      font-size: $font-size-4;
+      font-weight: $font-regular;
+      line-height: $line-height-3;
       margin-left: $spacing-size-2;
     }
   }
@@ -285,8 +292,12 @@
         display: flex;
 
         &__main-text {
-          @include heading2('2xs');
           @include ellipsis(2, $line-height-3);
+
+          font-size: $font-size-4;
+          font-weight: 450;
+          letter-spacing: 0px;
+          line-height: $line-height-3;
         }
       }
 
@@ -297,10 +308,11 @@
 
         .placeholder-image {
           background-color: $white;
+
           &::after {
             color: var(--color-semantic-info);
-            font-family: $no-fakes-icomoon-font-family;
-            content: $nficon-store;
+            font-family: $icomoon-font-family;
+            content: $b2i-eye;
             font-size: $font-size-7;
             left: 50%;
             position: absolute;
@@ -317,15 +329,19 @@
       }
 
       &__date {
-        @include body2('xs');
-
         color: var(--color-content-3);
+        font-size: $font-size-5;
+        font-weight: 400;
+        line-height: $line-height-3;
+        letter-spacing: -0.5px;
       }
 
       &__text {
-        @include body2('m');
-
         color: var(--color-content-3);
+        line-height: 2.25 * $base-unit;
+        font-size: $font-size-9;
+        font-weight: 450;
+        letter-spacing: 0px;
       }
     }
 
@@ -334,17 +350,20 @@
 
   &__images {
     margin: $spacing-size-4 0 $spacing-size-2;
+    overflow-x: hidden;
 
     &__list {
       display: flex;
-      padding: 0 $spacing-size-4;
+      list-style: none;
       margin: 0 (-$spacing-size-4);
       overflow-x: auto;
+      padding: 0 $spacing-size-4;
     }
 
     &__item {
       position: relative;
       margin-right: $spacing-size-2;
+      overflow: hidden;
 
       &:last-of-type {
         margin-right: 0;

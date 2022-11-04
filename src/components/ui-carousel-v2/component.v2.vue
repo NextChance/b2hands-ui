@@ -4,7 +4,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import UiLazyInvent from '../ui-lazy-invent/component.v2.vue'
-import Image from '@/external/types/Image'
+import type Image from '@/external/types/Image'
 
 interface CarouselSizing {
   containerWidth: number

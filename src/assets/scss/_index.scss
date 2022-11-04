@@ -11,4 +11,4 @@
 @import 'theme/placeholder-image';
 @import 'theme/layout';
 
-@include get-grid-classes($breakpoints-gaps, $breakpoints)
+@include get-grid-classes($breakpoints-gaps, $uiBreakpoints)
