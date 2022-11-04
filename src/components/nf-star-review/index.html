@@ -1,0 +1,48 @@
+<div class="star-review">
+  <ul class="star-review__list">
+    <li
+      v-for="index in maxStars"
+      :key="`star-${index}`"
+      class="star-review__list__item"
+      @click="handleReview(index)"
+    >
+      <svg
+        :class="[
+          'star-review__icon',
+          {
+            'star-review__icon--primary': showPrimaryColor,
+            'star-review__icon--transparent': isDefaultStar
+          }
+        ]"
+        height="34"
+        width="32"
+        :viewBox="viewBox"
+      >
+        <path
+          :d="starTypeIdle(index > Math.round(rating))">
+        </path>
+      </svg>
+      <input
+        v-if="isAnInput"
+        type="radio"
+        class="star-review__input"
+        :name="inputName"
+        :id="`${inputName}-${index}`"
+        :checked="index === Math.round(rating)"
+      >
+    </li>
+  </ul>
+  <p
+    v-if="showValue"
+    class="star-review__rating"
+  >
+    {{ formatRating }}
+  </p>
+  <p
+    v-if="!rating && showSecondaryInfo"
+    class="star-review__rating--empty"
+  >
+    {{ $t('review_rating_empty') }}
+  </p>
+</div>
+

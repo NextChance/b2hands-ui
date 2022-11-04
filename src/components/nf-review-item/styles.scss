@@ -1,0 +1,401 @@
+.dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--nfReviewItem-primary);
+  margin-right: 8px;
+
+  &:last-of-type {
+    margin-right: 0;
+  }
+}
+
+.review-item{
+  $reviewItem: &;
+
+  &--skeleton {
+    #{$reviewItem}__profile {
+      ::v-deep {
+        .ui-profile-header__info__main-text {
+          margin-bottom: 0 !important;
+        }
+        .ui-profile-header__info__secondary-text {
+          display: none;
+        }
+      }
+    }
+
+    #{$reviewItem}__text {
+      @include text-skeleton();
+
+      height: $base-unit;
+
+      &--last {
+        width: 25%;
+      }
+    }
+
+    #{$reviewItem}__rating {
+      ::v-deep .star-review__list{
+        @include box-skeleton();
+        &__item {
+          opacity: 0;
+        }
+      }
+
+      ::v-deep .star-review__rating{
+        display: none;
+      }
+    }
+
+    #{$reviewItem}__date {
+      display: none;
+    }
+  }
+
+  &__header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+
+    &__content {
+      display: flex;
+      margin-bottom: $spacing-size-4;
+      position: relative;
+    }
+
+    &__options {
+      background-color: transparent;
+      font-size: $font-size-8;
+      padding: 0.8*$spacing-size-3 $spacing-size-3 1.2*$spacing-size-3;
+
+      &:disabled {
+        opacity: 0.6;
+        pointer-events: none;
+      }
+    }
+  }
+
+  &__profile {
+    padding: 0 !important;
+
+    &--without-image {
+      ::v-deep .placeholder-image--error {
+        font-size: $font-size-4;
+
+        &::before {
+          content: "\e914";
+        }
+      }
+    }
+
+    &--without-reviews {
+      ::v-deep .ui-profile-header__info__secondary-text {
+        display: none !important;
+      }
+    }
+
+    ::v-deep {
+      .ui-profile-header {
+        &__image {
+          height: $spacing-size-9;
+          width: $spacing-size-9;
+          flex-shrink: 0;
+        }
+
+        &__initials {
+          align-items: center;
+          background-color: var(--nfReviewItem-success--light);
+          color: var(--nfReviewItem-success);
+          display: flex;
+          font-size: $font-size-7;
+          font-weight: $font-medium;
+          height: 100%;
+          justify-content: center;
+          line-height: $line-height-4;
+        }
+
+        &__info {
+          align-self: flex-start;
+          display: flex;
+
+          &__main-text {
+            @include ellipsis(1, $line-height-3);
+
+            font-size: $font-size-5;
+            font-weight: 400;
+            line-height: $line-height-3;
+            letter-spacing: -0.5px;
+          }
+
+          &__secondary-text {
+            @include headers('m');
+
+            color: var(--nfReviewItem-secondary);
+            display: inline-block;
+            flex-shrink: 0;
+            position: relative;
+            margin-left: $spacing-size-3;
+
+            &:before {
+              background-color: var(--nfReviewItem-secondary);
+              border-radius: 50%;
+              content: '';
+              height: $spacing-size-1;
+              margin-right: $spacing-size-2;
+              position: absolute;
+              right: 100%;
+              top: 50%;
+              transform: translateY(-50%);
+              width: $spacing-size-1;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  &__rating {
+    display: flex;
+    left: $spacing-size-9 + $spacing-size-2;
+    margin-bottom: $spacing-size-1;
+    position: absolute;
+    top: $spacing-size-6;
+
+    &__verified-icon {
+      color: var(--nfReviewItem-success);
+      line-height: 19px;
+      margin-left: $spacing-size-2;
+      vertical-align: middle;
+    }
+
+    ::v-deep {
+      .star-review__rating {
+        color: $black-100;
+      }
+    }
+  }
+
+  &__text {
+    @include ellipsis(3, $line-height-3);
+
+    color: var(--nfReviewItem-secondary);
+    font-size: $font-size-5;
+    line-height: $line-height-3;
+    transition: max-height .3s;
+    white-space: break-spaces;
+
+    &--open {
+      -webkit-line-clamp: unset;
+    }
+  }
+
+  &__option {
+    height: (2*$spacing-size-4) + $base-unit;
+    margin-top: $spacing-size-2;
+    perspective: 600px;
+    position: relative;
+
+    button {
+      background-color: transparent;
+      border: none;
+      color: var(--nfReviewItem-info);
+      font-size: $font-size-3;
+      left: 0;
+      line-height: $base-unit;
+      transition: top .5s, transform .5s, opacity .3s .2s;
+      padding: $spacing-size-4 $spacing-size-2 $spacing-size-4 0;
+      perspective: 600px;
+      position: absolute;
+    }
+
+    &__more {
+      top: 0;
+      transform: rotateX(0);
+      opacity: 1;
+    }
+
+    &--open &__more {
+      top: 50%;
+      transform: rotateX(90deg);
+      opacity: 0;
+    }
+
+    &__less{
+      top: -50%;
+      transform: rotateX(-90deg);
+      opacity: 0;
+    }
+
+    &--open &__less{
+      top: 0;
+      transform: rotateX(0);
+      opacity: 1;
+    }
+  }
+
+  &__date {
+    @include detail('s');
+
+    color: var(--nfReviewItem-secondary);
+    margin-bottom: $spacing-size-2;
+
+    &:last-child {
+      margin-bottom: $spacing-size-7;
+    }
+  }
+
+  &__status {
+    margin-bottom: $spacing-size-4;
+    padding: $spacing-size-2 $spacing-size-3;
+    display: flex;
+    align-items: baseline;
+    border-radius: $spacing-size-2;
+    margin-top: $spacing-size-7;
+
+    &--pending {
+      background-color:  var(--nfReviewItem-info--light);
+      color: var(--nfReviewItem-info);
+    }
+
+    p {
+      font-size: $font-size-4;
+      font-weight: $font-regular;
+      line-height: $line-height-3;
+      margin-left: $spacing-size-2;
+    }
+  }
+
+  &__reply {
+    background-color: var(--color-semantic-info-light);
+    border-radius: $spacing-size-4;
+    padding: $spacing-size-4 $spacing-size-5;
+    margin-top: $spacing-size-4;
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      background-color: var(--color-semantic-info);
+      content: "";
+      display: block;
+      width: 4px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+    }
+
+    ::v-deep .ui-profile-header {
+      &__info {
+        align-self: center;
+        display: flex;
+
+        &__main-text {
+          @include ellipsis(2, $line-height-3);
+
+          font-size: $font-size-4;
+          font-weight: 450;
+          letter-spacing: 0px;
+          line-height: $line-height-3;
+        }
+      }
+
+      &__image{
+        svg, .placeholder-image::before{
+          display: none;
+        }
+
+        .placeholder-image {
+          background-color: $white;
+
+          &::after {
+            color: var(--color-semantic-info);
+            font-family: $no-fakes-icomoon-font-family;
+            content: $nficon-store;
+            font-size: $font-size-7;
+            left: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+          }
+        }
+      }
+    }
+
+    #{$reviewItem} {
+      &__header {
+        margin-bottom: $spacing-size-2;
+      }
+
+      &__date {
+        color: var(--color-content-3);
+        font-size: $font-size-2;
+        font-weight: 400;
+        line-height: $line-height-3;
+        letter-spacing: -0.5px;
+      }
+
+      &__text {
+        color: var(--color-content-3);
+        line-height: 2.25 * $base-unit;
+        font-size: $font-size-4;
+        font-weight: 450;
+        letter-spacing: 0px;
+      }
+    }
+
+
+  }
+
+  &__images {
+    margin: $spacing-size-4 0 $spacing-size-2;
+    overflow-x: hidden;
+
+    &__list {
+      display: flex;
+      list-style: none;
+      margin: 0 (-$spacing-size-4);
+      overflow-x: auto;
+      padding: 0 $spacing-size-4;
+    }
+
+    &__item {
+      position: relative;
+      margin-right: $spacing-size-2;
+      overflow: hidden;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+
+      ::v-deep .placeholder-image--error {
+        border-radius: $spacing-size-4;
+        cursor: pointer;
+        height: 6 * $base-unit;
+        overflow: hidden;
+        width: 6 * $base-unit;
+      }
+    }
+  }
+
+  &__image {
+    border-radius: $spacing-size-4;
+    cursor: pointer;
+    height: 6 * $base-unit;
+    width: 6 * $base-unit;
+  }
+
+  @media (min-width: $breakpoint-s) {
+    &__images {
+      &__list {
+        padding: unset;
+        margin: unset;
+      }
+    }
+
+    &__status {
+      align-items: center;
+    }
+  }
+}

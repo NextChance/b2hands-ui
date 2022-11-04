@@ -1,0 +1,300 @@
+@import "variables";
+
+@font-face {
+  font-family: '#{$no-fakes-icomoon-font-family}';
+  src:  url('#{$no-fakes-icomoon-font-path}/#{$no-fakes-icomoon-font-family}.eot?u3oiat');
+  src:  url('#{$no-fakes-icomoon-font-path}/#{$no-fakes-icomoon-font-family}.eot?u3oiat#iefix') format('embedded-opentype'),
+    url('#{$no-fakes-icomoon-font-path}/#{$no-fakes-icomoon-font-family}.ttf?u3oiat') format('truetype'),
+    url('#{$no-fakes-icomoon-font-path}/#{$no-fakes-icomoon-font-family}.woff?u3oiat') format('woff'),
+    url('#{$no-fakes-icomoon-font-path}/#{$no-fakes-icomoon-font-family}.svg?u3oiat##{$no-fakes-icomoon-font-family}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="nficon-"], [class*=" nficon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: '#{$no-fakes-icomoon-font-family}' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.nficon-travel {
+  &:before {
+    content: $nficon-travel;
+  }
+}
+.nficon-library {
+  &:before {
+    content: $nficon-library;
+  }
+}
+.nficon-bakery {
+  &:before {
+    content: $nficon-bakery;
+  }
+}
+.nficon-fashion {
+  &:before {
+    content: $nficon-fashion;
+  }
+}
+.nficon-coffee {
+  &:before {
+    content: $nficon-coffee;
+  }
+}
+.nficon-sports {
+  &:before {
+    content: $nficon-sports;
+  }
+}
+.nficon-fuel-station {
+  &:before {
+    content: $nficon-fuel-station;
+  }
+}
+.nficon-gifts {
+  &:before {
+    content: $nficon-gifts;
+  }
+}
+.nficon-restaurant {
+  &:before {
+    content: $nficon-restaurant;
+  }
+}
+.nficon-pets {
+  &:before {
+    content: $nficon-pets;
+  }
+}
+.nficon-drugstore {
+  &:before {
+    content: $nficon-drugstore;
+  }
+}
+.nficon-cinema {
+  &:before {
+    content: $nficon-cinema;
+  }
+}
+.nficon-shopping-bag {
+  &:before {
+    content: $nficon-shopping-bag;
+  }
+}
+.nficon-technology {
+  &:before {
+    content: $nficon-technology;
+  }
+}
+.nficon-jewelry {
+  &:before {
+    content: $nficon-jewelry;
+  }
+}
+.nficon-empty-website {
+  &:before {
+    content: $nficon-empty-website;
+  }
+}
+.nficon-website {
+  &:before {
+    content: $nficon-website;
+  }
+}
+.nficon-empty-store {
+  &:before {
+    content: $nficon-empty-store;
+  }
+}
+.nficon-gift {
+  &:before {
+    content: $nficon-gift;
+  }
+}
+.nficon-review {
+  &:before {
+    content: $nficon-review;
+  }
+}
+.nficon-write {
+  &:before {
+    content: $nficon-write;
+  }
+}
+.nficon-no-fakes-logo {
+  &:before {
+    content: $nficon-no-fakes-logo;
+  }
+}
+.nficon-map-pin {
+  &:before {
+    content: $nficon-map-pin;
+  }
+}
+.nficon-placeholder-20 {
+  &:before {
+    content: $nficon-placeholder-20;
+  }
+}
+.nficon-profile-32 {
+  &:before {
+    content: $nficon-profile-32;
+  }
+}
+.nficon-gift-home {
+  &:before {
+    content: $nficon-gift-home;
+  }
+}
+.nficon-store-home {
+  &:before {
+    content: $nficon-store-home;
+  }
+}
+.nficon-ticket-home {
+  &:before {
+    content: $nficon-ticket-home;
+  }
+}
+.nficon-home {
+  &:before {
+    content: $nficon-home;
+  }
+}
+.nficon-check-circle-40 {
+  &:before {
+    content: $nficon-check-circle-40;
+  }
+}
+.nficon-star-active-40 {
+  &:before {
+    content: $nficon-star-active-40;
+  }
+}
+.nficon-star-default-40 {
+  &:before {
+    content: $nficon-star-default-40;
+  }
+}
+.nficon-chevron-left {
+  &:before {
+    content: $nficon-chevron-left;
+  }
+}
+.nficon-chevron-right {
+  &:before {
+    content: $nficon-chevron-right;
+  }
+}
+.nficon-arrow-left {
+  &:before {
+    content: $nficon-arrow-left;
+  }
+}
+.nficon-arrow-right {
+  &:before {
+    content: $nficon-arrow-right;
+  }
+}
+.nficon-close {
+  &:before {
+    content: $nficon-close;
+  }
+}
+.nficon-profile-24 {
+  &:before {
+    content: $nficon-profile-24;
+  }
+}
+.nficon-star-active-16 {
+  &:before {
+    content: $nficon-star-active-16;
+  }
+}
+.nficon-star-default-16 {
+  &:before {
+    content: $nficon-star-default-16;
+  }
+}
+.nficon-star-active-20 {
+  &:before {
+    content: $nficon-star-active-20;
+  }
+}
+.nficon-star-default-20 {
+  &:before {
+    content: $nficon-star-default-20;
+  }
+}
+.nficon-points {
+  &:before {
+    content: $nficon-points;
+  }
+}
+.nficon-info-20 {
+  &:before {
+    content: $nficon-info-20;
+  }
+}
+.nficon-search {
+  &:before {
+    content: $nficon-search;
+  }
+}
+.nficon-store {
+  &:before {
+    content: $nficon-store;
+  }
+}
+.nficon-bell {
+  &:before {
+    content: $nficon-bell;
+  }
+}
+.nficon-info-24 {
+  &:before {
+    content: $nficon-info-24;
+  }
+}
+.nficon-headphones {
+  &:before {
+    content: $nficon-headphones;
+  }
+}
+.nficon-help {
+  &:before {
+    content: $nficon-help;
+  }
+}
+.nficon-camera {
+  &:before {
+    content: $nficon-camera;
+  }
+}
+.nficon-placeholder-24 {
+  &:before {
+    content: $nficon-placeholder-24;
+  }
+}
+.nficon-navigation {
+  &:before {
+    content: $nficon-navigation;
+  }
+}
+.nficon-check-circle-24 {
+  &:before {
+    content: $nficon-check-circle-24;
+  }
+}
+

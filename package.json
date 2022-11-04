@@ -141,8 +141,6 @@
     ]
   },
   "husky": {
-    "hooks": {
-      "pre-push": "npm run coverage"
-    }
+    "hooks": {}
   }
 }
