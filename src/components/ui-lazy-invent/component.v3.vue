@@ -7,9 +7,11 @@
 <style lang="scss" scoped src="./styles.scss"></style>
 
 <script lang="ts">
-import { defineComponent, ref, onMounted, watch } from 'vue3'
-import { addSiblingNodeWithLoadingImage, replaceNodeWithErrorImage } from '@/external/tools/errorImage'
-import type AnyObject from '@/external/types/AnyObject'
+import { defineComponent, ref, onMounted } from 'vue3'
+import {
+  addSiblingNodeWithLoadingImage,
+  replaceNodeWithErrorImage
+} from '@/external/tools/errorImage'
 
 export default defineComponent({
   name: 'ui-lazy-lazy-image',
@@ -75,20 +77,14 @@ export default defineComponent({
       default: false
     }
   },
-  emits: [
-    'image-visible',
-    'on-image-error',
-    'on-image-loaded'
-  ],
-  setup (props, {emit}) {
+  emits: ['image-visible', 'on-image-error', 'on-image-loaded'],
+  setup(props, { emit }) {
     const visibilityPlaceholder = ref<HTMLElement | null>(null)
     const main = ref<HTMLElement | null>(null)
-    const showImage = ref(false)
-    showImage.value = true
 
     let isImageLoaded = false
-    let isHidden = ref(true)
-    let loadingImage:any = null
+    const isHidden = ref(true)
+    let loadingImage: any = null
 
     const rand = (Math.random() * 1000).toFixed()
 
@@ -103,7 +99,9 @@ export default defineComponent({
           loadingImage.style.height = `${props.loadingHeight}px`
           loadingImage.style.width = `${props.loadingWidth}px`
         }
-        (visibilityPlaceholder.value as HTMLElement).classList.add('lazy-image--hide')
+        ;(visibilityPlaceholder.value as HTMLElement).classList.add(
+          'lazy-image--hide'
+        )
         emit('image-visible')
       }
     }
@@ -122,15 +120,6 @@ export default defineComponent({
       loadingImage?.remove()
       emit('on-image-error')
     }
-
-    watch(() => props.profileImage, (newImage: AnyObject) => {
-      if (Object.keys(newImage).length) {
-        showImage.value = false
-        setTimeout(() => {
-          showImage.value = true
-        }, 10)
-      }
-    })
 
     onMounted(() => {
       if (props.isErrorForced) {
