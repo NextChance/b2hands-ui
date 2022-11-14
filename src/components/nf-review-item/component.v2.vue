@@ -136,9 +136,6 @@ export default Vue.extend({
       }
     }
   },
-  mounted () {
-    console.log('-----> ', this.locale, 'this.locale')
-  },
   methods: {
     handleToogleMsg () {
       if (this.isReviewOpen) {
