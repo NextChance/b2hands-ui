@@ -122,7 +122,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   // @ts-ignore
-  window.removeEventListener('resize', this.onWindowResize)
+  window.removeEventListener('resize', onWindowResize)
   if (container) {
     container.removeEventListener('scroll', setArrowStatus)
   }
