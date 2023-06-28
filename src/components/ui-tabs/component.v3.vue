@@ -18,6 +18,10 @@ const props = defineProps({
   hasScroll: {
     type: Boolean,
     default: false
+  },
+  hideHelpers: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -29,6 +33,7 @@ const scrollOnList = ref(0)
 const uiTab = ref<Array<HTMLElement> | null>(null)
 
 watch(() => props.activeTabId, (newValue: string, oldValue: string | undefined) => {
+
   if (newValue) {
     const _activeTabIndex = props.tabs.findIndex((tab: any) => (tab as UiTab).id === newValue)
     nextTick(() => {
@@ -57,13 +62,13 @@ watch(() => props.tabs, (newValue: any) => {
 })
 
 const markerProperties = computed(() => {
-  if (uiTab && Array.isArray(uiTab)) {
-    const activeTabRef: HTMLElement = uiTab[activeTabIndex.value] as HTMLElement
+  if (uiTab.value && Array.isArray(uiTab.value)) {
+    const activeTabRef: HTMLElement = uiTab.value[activeTabIndex.value] as HTMLElement
     return {
       windowScreenWidth: windowScreenWidth,
       index: activeTabIndex,
-      left: activeTabRef.offsetLeft,
-      width: activeTabRef.clientWidth
+      left: activeTabRef?.offsetLeft || 0,
+      width: activeTabRef?.clientWidth || 0
     }
   } else {
     return {

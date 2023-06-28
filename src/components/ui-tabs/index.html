@@ -1,6 +1,7 @@
 <UiScrollableList
   :class="['ui-tabs', {'ui-tabs--scrollable': hasScroll}]"
   :has-scroll="hasScroll"
+  :hide-helpers="hideHelpers"
   :forced-scroll="scrollOnList"
 >
   <ul class="ui-tabs__list">
@@ -14,6 +15,6 @@
   </ul>
   <div
     class="ui-tabs__marker"
-    :style="{ transform: `translateX(${markerProperties.left}px) scaleX(${markerProperties.width})`}"
+    :style="{ transform: `translateX(${markerProperties.left}px)`, width: `${markerProperties.width}px` }"
   ></div>
 </UiScrollableList>

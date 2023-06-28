@@ -8,7 +8,12 @@
   <transition name="fade">
     <div
       v-if="hasScroll && !isMinScroll"
-      class="ui-scrollable-list__scroll-helper ui-scrollable-list__scroll-helper--prev">
+      :class="[
+          'ui-scrollable-list__scroll-helper',
+           'ui-scrollable-list__scroll-helper--prev',
+           {'ui-scrollable-list__scroll-helper--hide': hideHelpers}
+        ]"
+    >
       <button
         class="ui-scrollable-list__button"
         @click="moveScrollLeft"
@@ -18,7 +23,12 @@
   <transition name="fade">
     <div
       v-if="hasScroll && !isMaxScroll"
-      class="ui-scrollable-list__scroll-helper ui-scrollable-list__scroll-helper--next">
+      :class="[
+          'ui-scrollable-list__scroll-helper',
+           'ui-scrollable-list__scroll-helper--next',
+           {'ui-scrollable-list__scroll-helper--hide': hideHelpers}
+        ]"
+    >
       <button
         class="ui-scrollable-list__button"
         @click="moveScrollRight"
