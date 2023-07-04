@@ -2,7 +2,7 @@
 <style lang="scss" scoped src="./styles.scss"></style>
 
 <script setup lang="ts">
-import { computed, defineProps, defineEmits, nextTick, ref, watch } from 'vue3'
+import { computed, nextTick, ref, watch } from 'vue3'
 import UiScrollableList from '../ui-scrollable-list/component.v3.vue'
 import type { UiTab } from '@/external/types/Components'
 

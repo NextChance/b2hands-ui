@@ -2,7 +2,7 @@
 <style lang="scss" scoped src="./styles.scss"></style>
 
 <script setup lang="ts">
-import { defineProps, ref, onMounted, onUnmounted, watch } from 'vue3'
+import { ref, onMounted, onUnmounted, watch } from 'vue3'
 import type AnyObject from '@/external/types/AnyObject'
 
 const props = defineProps({
